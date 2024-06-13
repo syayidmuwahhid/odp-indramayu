@@ -22,3 +22,6 @@ Route::name('admin.')->group(function() {
     Route::resource('user', UserController::class);
 });
 
+Route::get('/tes', function (){
+    return view('tes');
+});
