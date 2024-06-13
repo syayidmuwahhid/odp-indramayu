@@ -9,7 +9,7 @@ Route::get('/', function () {
 });
 
 Route::get('/login', [AuthController::class, 'index']);
-Route::post('/login', [AuthController::class, 'signin'])->name('login');
+Route::post('/login', [AuthController::class, 'authenticate'])->name('login');
 Route::get('/register', [AuthController::class, 'register']);
 Route::post('/register', [AuthController::class,'signup'])->name('register');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
@@ -19,9 +19,9 @@ Route::name('admin.')->group(function() {
         return view('layouts.app');
     })->name('dashboard');
 
-    Route::resource('user', UserController::class);
+    Route::resource('user', UserController::class)->except('show');
 });
 
 Route::get('/tes', function (){
-    return view('tes');
+    return csrf_token();
 });
