@@ -22,6 +22,11 @@ Route::name('admin.')->group(function() {
     Route::resource('user', UserController::class)->except('show');
 });
 
+
 Route::get('/tes', function (){
     return csrf_token();
 });
+
+Route::get('/slider', function () {
+    return view('slider.index');
+})->name('slider');
