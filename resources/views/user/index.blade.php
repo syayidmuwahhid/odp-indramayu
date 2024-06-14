@@ -13,7 +13,7 @@
           </div>
           <div class="flex-auto px-0 pt-0 pb-2">
             <div class="p-0 overflow-x-auto">
-              <table class="items-center w-full mb-0 align-top border-gray-200 text-slate-500">
+              <table class="items-center w-full mb-0 align-top border-gray-200 text-slate-500 dataTable">
                 <thead class="align-bottom">
                   <tr>
                     <th class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">Author</th>
@@ -416,6 +416,24 @@
     </div>
 
 </div>
-
-
 @endsection
+
+@push('js')
+<script>
+    $(document).ready(function() {
+        let html = `
+                <form method="post" action="/getData" id="form">
+                    <label class="text-green-900">Name</label>
+                    <input id="swal-input1" class="swal2-input" placeholder="name">
+                    <label>Email</label>
+                    <input id="swal-input2" class="swal2-input" placeholder="email">
+                </form>
+            `;
+        modal({
+            title: "Form Tambah User",
+            html,
+            form: document.getElementById('form')
+        });
+    });
+</script>
+@endpush
