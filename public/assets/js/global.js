@@ -1,3 +1,6 @@
+//define url root apps
+const baseL = $("#baseL").val();
+
 $(document).ready(function () {
     //select 2 initially
     $(".select2").select2({
@@ -43,20 +46,28 @@ $(document).ready(function () {
 });
 
 //generate form with sweetalerts2
-async function modal({ title, html, form }) {
+async function modal({ title, html, formId }) {
+    console.log(formId);
     const { value: formValues } = await Swal.fire({
         title,
         html,
         focusConfirm: false,
         preConfirm: () => {
-            return new FormData(document.getElementById("form"));
+            return {
+                url: baseL + $(`#${formId}`).attr("action"),
+                formData: new FormData(document.getElementById(formId)),
+            };
         },
     });
     if (formValues) {
-        // let formData = new formData();
-        // formData.append('name', formValues[0]);
-        // formData.append('email', formValues[0]);
-        console.log(formValues);
-        // Swal.fire(JSON.stringify(formValues));
+        let { url, formData } = formValues;
+
+        try {
+            let response = await fetch(url);
+            let data = await response.json();
+            console.log(data);
+        } catch (error) {
+            console.log(error);
+        }
     }
 }

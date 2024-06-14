@@ -13,9 +13,7 @@
                         class="p-6 pb-0 mb-0 flex justify-between bg-white border-b-0 border-b-solid rounded-t-2xl border-b-transparent">
                         <h6>Authors table</h6>
 
-                        {{-- button modal --}}
-                        <button type="button" data-toggle="modal" id="openModalButton" data-target="#import"
-                            class="inline-block px-8 py-2 font-bold text-center uppercase align-middle transition-all bg-transparent border border-solid rounded-lg shadow-none cursor-pointer active:opacity-85 leading-pro text-xs ease-soft-in tracking-tight-soft bg-150 bg-x-25 hover:scale-102 active:shadow-soft-xs border-fuchsia-500 text-fuchsia-500 hover:text-fuchsia-500 hover:opacity-75 hover:shadow-none active:scale-100 active:border-fuchsia-500 active:bg-fuchsia-500 active:text-white hover:active:border-fuchsia-500 hover:active:bg-transparent hover:active:text-fuchsia-500 hover:active:opacity-75">Import</button>
+                        <button type="button" id="btnAddModal" class="inline-block px-8 py-2 font-bold text-center uppercase align-middle transition-all bg-transparent border border-solid rounded-lg shadow-none cursor-pointer active:opacity-85 leading-pro text-xs ease-soft-in tracking-tight-soft bg-150 bg-x-25 hover:scale-102 active:shadow-soft-xs border-fuchsia-500 text-fuchsia-500 hover:text-fuchsia-500 hover:opacity-75 hover:shadow-none active:scale-100 active:border-fuchsia-500 active:bg-fuchsia-500 active:text-white hover:active:border-fuchsia-500 hover:active:bg-transparent hover:active:text-fuchsia-500 hover:active:opacity-75">Tambah</button>
                     </div>
                     <div class="flex-auto px-0 pt-0 pb-2">
                         <div class="p-0 overflow-x-auto">
@@ -648,21 +646,5 @@
 @endsection
 
 @push('js')
-<script>
-    $(document).ready(function() {
-        let html = `
-                <form method="post" action="/getData" id="form">
-                    <label class="text-green-900">Name</label>
-                    <input id="swal-input1" class="swal2-input" placeholder="name">
-                    <label>Email</label>
-                    <input id="swal-input2" class="swal2-input" placeholder="email">
-                </form>
-            `;
-        modal({
-            title: "Form Tambah User",
-            html,
-            form: document.getElementById('form')
-        });
-    });
-</script>
+<script src="{{ asset('assets/js/pages/user-index.js') }}"></script>
 @endpush
