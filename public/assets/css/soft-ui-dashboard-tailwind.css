@@ -3566,7 +3566,7 @@ h6 {
 }
 
 .focus\:shadow-soft-primary-outline:focus {
-  --tw-shadow: 0 0 0 2px #e9aede;
+  --tw-shadow: 0 0 0 2px #88f5a0;
   --tw-shadow-colored: 0 0 0 2px var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }

@@ -22,3 +22,6 @@ Route::name('admin.')->group(function() {
     Route::resource('user', UserController::class);
 });
 
+Route::get('/slider', function () {
+    return view('slider.index');
+})->name('slider');
