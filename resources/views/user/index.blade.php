@@ -644,39 +644,25 @@
 
     </div>
 
-
-
-
+</div>
 @endsection
 
 @push('js')
-    <script>
-        const openModalButton = document.getElementById('openModalButton');
-        const closeModalButtons = document.querySelectorAll('#closeModalButton, #closeModalButton2');
-        const modal = document.getElementById('import');
-
-
-        // // openModalButton.addEventListener('click', () => {
-        // //     console.log("testing")
-        // // })
-
-        openModalButton.addEventListener('click', () => {
-            modal.classList.remove('hidden');
-            console.log("testing")
+<script>
+    $(document).ready(function() {
+        let html = `
+                <form method="post" action="/getData" id="form">
+                    <label class="text-green-900">Name</label>
+                    <input id="swal-input1" class="swal2-input" placeholder="name">
+                    <label>Email</label>
+                    <input id="swal-input2" class="swal2-input" placeholder="email">
+                </form>
+            `;
+        modal({
+            title: "Form Tambah User",
+            html,
+            form: document.getElementById('form')
         });
-
-        closeModalButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                modal.classList.add('hidden');
-                // modal.classList.remove('opacity-100');
-            });
-        });
-
-        // window.addEventListener('click', (event) => {
-        //     if (event.target == modal) {
-        //         modal.classList.add('hidden');
-        //         modal.classList.remove('opacity-100');
-        //     }
-        // });
-    </script>
+    });
+</script>
 @endpush
