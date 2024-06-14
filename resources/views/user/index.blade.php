@@ -648,7 +648,7 @@
 @endsection
 
 @push('js')
-<script>
+{{-- <script>
     $(document).ready(function() {
         let html = `
                 <form method="post" action="/getData" id="form">
@@ -662,6 +662,39 @@
             title: "Form Tambah User",
             html,
             form: document.getElementById('form')
+        });
+    });
+</script> --}}
+
+<script>
+    $(document).ready(function() {
+        $('#openModalButton').click(function() {
+            // Definisikan HTML modal form
+            let html = `
+                <form method="post" action="/getData" id="form">
+                    <label class="text-green-900">Name</label>
+                    <input id="swal-input1" class="swal2-input" placeholder="name" name="name">
+                    <label>Email</label>
+                    <input id="swal-input2" class="swal2-input" placeholder="email" name="email">
+                </form>
+            `;
+
+            // Menampilkan modal menggunakan SweetAlert2
+            Swal.fire({
+                title: 'Form Tambah User',
+                html: html,
+                showCancelButton: true,
+                preConfirm: () => {
+                    return {
+                        name: document.getElementById('swal-input1').value,
+                        email: document.getElementById('swal-input2').value
+                    }
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('form').submit();
+                }
+            });
         });
     });
 </script>
