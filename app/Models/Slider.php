@@ -9,6 +9,8 @@ class Slider extends Model
 {
     use HasFactory;
 
+    protected $table = 'slider';
+
     /**
      * The attributes that are mass assignable.
      *

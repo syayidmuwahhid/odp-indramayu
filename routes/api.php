@@ -21,7 +21,7 @@ Route::apiResource('article', ArticleController::class);
 Route::apiResource('tags', TagsController::class)->except('update');
 Route::post('/tags/{tags}', [TagsController::class, 'update'])->name('tags.update');
 
-Route::apiResource('category', Category::class)->except('update');
+Route::apiResource('category', CategoryController::class)->except('update');
 Route::post('/category/{category}', [CategoryController::class, 'update'])->name('category.update');
 
 Route::apiResource('video', VideoController::class);
