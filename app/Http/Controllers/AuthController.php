@@ -48,6 +48,7 @@ class AuthController extends Controller
         }
 
         // Return back with an error message and only the email input
+
         return back()->withErrors([
             'login' => 'Email atau Password Salah.',
         ])->onlyInput('email');
@@ -88,7 +89,7 @@ class AuthController extends Controller
 
             // Set a success flash message and redirect the user to the login page
             session()->flash('success', 'Silakan Login untuk melanjutkan');
-            return redirect()->route('login');
+            return redirect('/login');
 
         } catch (\Throwable $th) {
             // Rollback the database transaction in case of any error
