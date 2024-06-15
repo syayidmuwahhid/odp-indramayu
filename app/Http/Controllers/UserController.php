@@ -10,56 +10,41 @@ use Illuminate\Support\Facades\DB;
 class UserController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Get all users except superadmin.
      *
-     * @return \Illuminate\Http\Response
-     * @return \Illuminate\View\View
+     * @return \Illuminate\Http\JsonResponse The JSON response with status, message, and optionally data.
      *
-     * @throws \Throwable
+     * @throws \Throwable If an error occurs during the database transaction.
      */
-    public function index()
-    {
-        /**
-         * Prepare the response data.
-         *
-         * @var array $resp
-         */
+    function index() {
+        // Initialize the response data
         $resp = [
-            'title' => 'User Management',
+            'status' => false,
         ];
+        $code = 500;
 
-        /**
-         * Return the view with the response data.
-         *
-         * @return \Illuminate\View\View
-         */
-        return view('user.index', $resp);
-    }
+        try {
+            // Fetch all users except superadmin
+            $user = User::where('role', '!=', 0)->get();
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\View\View
-     *
-     * @throws \Throwable
-     */
-    public function create()
-    {
-        /**
-         * Prepare the response data.
-         *
-         * @var array $resp
-         */
-        $resp = [
-            'title' => 'Add User',
-        ];
+            // Prepare the success response data
+            $resp['status'] = true;
+            $resp['message'] = 'Berhasil Mengambil data user';
+            $resp['data'] = $user;
+            $code = 200;
 
-        /**
-         * Return the view with the response data.
-         *
-         * @return \Illuminate\View\View
-         */
-        return view('user.form', $resp);
+            // Commit the database transaction
+            DB::commit();
+        } catch (\Throwable $th) {
+            // Prepare the error response data
+            $resp['message'] = $th->getMessage();
+
+            // Rollback the database transaction
+            DB::rollBack();
+        }
+
+        // Return the response as a JSON response
+        return response()->json($resp, $code);
     }
 
     /**
@@ -124,31 +109,48 @@ class UserController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Get a single user data by its unique identifier.
+     *
+     * @param string $id The unique identifier of the user to be fetched.
+     *
+     * @return \Illuminate\Http\JsonResponse The JSON response with status, message, and optionally data.
+     *
+     * @throws \Throwable If an error occurs during the database transaction.
      */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param string $id The unique identifier of the user to be edited.
-     *
-     * @return \Illuminate\View\View The view for editing the user with the title 'Edit User'.
-     *
-     * @throws \Throwable If an error occurs while rendering the view.
-     */
-    public function edit(string $id)
-    {
-        // Prepare the response data
+    function show(string $id) {
+        // Initialize the response data
         $resp = [
-            'title' => 'Edit User',
+            'status' => false,
         ];
+        $code = 500;
 
-        // Return the view with the response data
-        return view('user.edit', $resp);
+        try {
+            // Find the user by its unique identifier
+            $user = User::find($id);
+
+            // Check if the user is a superadmin
+            if ($user->role == '0') {
+                throw new Error('Data User tidak bisa diakses');
+            }
+
+            // Prepare the success response data
+            $resp['status'] = true;
+            $resp['message'] = 'Berhasil Mengambil data user';
+            $resp['data'] = $user;
+            $code = 200;
+
+            // Commit the database transaction
+            DB::commit();
+        } catch (\Throwable $th) {
+            // Prepare the error response data
+            $resp['message'] = $th->getMessage();
+
+            // Rollback the database transaction
+            DB::rollBack();
+        }
+
+        // Return the response as a JSON response
+        return response()->json($resp, $code);
     }
 
     /**
@@ -257,89 +259,6 @@ class UserController extends Controller
             // Prepare the success response data
             $resp['status'] = true;
             $resp['message'] = 'User berhasil dihapus';
-            $code = 200;
-
-            // Commit the database transaction
-            DB::commit();
-        } catch (\Throwable $th) {
-            // Prepare the error response data
-            $resp['message'] = $th->getMessage();
-
-            // Rollback the database transaction
-            DB::rollBack();
-        }
-
-        // Return the response as a JSON response
-        return response()->json($resp, $code);
-    }
-
-    /**
-     * Get all users except superadmin.
-     *
-     * @return \Illuminate\Http\JsonResponse The JSON response with status, message, and optionally data.
-     *
-     * @throws \Throwable If an error occurs during the database transaction.
-     */
-    function getDatas() {
-        // Initialize the response data
-        $resp = [
-            'status' => false,
-        ];
-        $code = 500;
-
-        try {
-            // Fetch all users except superadmin
-            $user = User::where('role', '!=', 0)->get();
-
-            // Prepare the success response data
-            $resp['status'] = true;
-            $resp['message'] = 'Berhasil Mengambil data user';
-            $resp['data'] = $user;
-            $code = 200;
-
-            // Commit the database transaction
-            DB::commit();
-        } catch (\Throwable $th) {
-            // Prepare the error response data
-            $resp['message'] = $th->getMessage();
-
-            // Rollback the database transaction
-            DB::rollBack();
-        }
-
-        // Return the response as a JSON response
-        return response()->json($resp, $code);
-    }
-
-    /**
-     * Get a single user data by its unique identifier.
-     *
-     * @param string $id The unique identifier of the user to be fetched.
-     *
-     * @return \Illuminate\Http\JsonResponse The JSON response with status, message, and optionally data.
-     *
-     * @throws \Throwable If an error occurs during the database transaction.
-     */
-    function getData(string $id) {
-        // Initialize the response data
-        $resp = [
-            'status' => false,
-        ];
-        $code = 500;
-
-        try {
-            // Find the user by its unique identifier
-            $user = User::find($id);
-
-            // Check if the user is a superadmin
-            if ($user->role == '0') {
-                throw new Error('Data User tidak bisa diakses');
-            }
-
-            // Prepare the success response data
-            $resp['status'] = true;
-            $resp['message'] = 'Berhasil Mengambil data user';
-            $resp['data'] = $user;
             $code = 200;
 
             // Commit the database transaction
