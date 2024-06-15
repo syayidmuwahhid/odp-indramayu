@@ -5,7 +5,8 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('layouts.app');
+    // return view('layouts.app');
+    return redirect()->route('admin.dashboard');
 });
 
 Route::get('/login', [AuthController::class, 'index']);
@@ -14,7 +15,7 @@ Route::get('/register', [AuthController::class, 'register']);
 Route::post('/register', [AuthController::class,'signup'])->name('register');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
-Route::name('admin.')->prefix('admin')->group(function() {
+Route::name('admin.')->prefix('admin')->middleware('auth')->group(function() {
     Route::get('/', function () {
         return view('layouts.app');
     })->name('dashboard');
