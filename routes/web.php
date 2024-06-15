@@ -20,17 +20,18 @@ Route::name('admin.')->prefix('admin')->middleware('auth')->group(function() {
         return view('layouts.app');
     })->name('dashboard');
 
-    Route::resource('user', UserController::class)->except('show', 'update');
-    Route::post('/user/{id}', [UserController::class, 'update'])->name('user.update');
-    Route::get('/user/get-data', [UserController::class, 'getDatas']);
-    Route::get('/user/get-data/{id}', [UserController::class, 'getData']);
+    Route::name('user.')->prefix('user')->group(function() {
+        Route::get('/', function () {
+            $resp = [
+                'title' => 'User Management',
+            ];
+
+            return view('user.index', $resp);
+        })->name('index');
+    });
+
+    Route::get('/slider', function () {
+        return view('slider.index');
+    })->name('slider');
 });
 
-
-Route::get('/tes', function (){
-    return csrf_token();
-});
-
-Route::get('/slider', function () {
-    return view('slider.index');
-})->name('slider');

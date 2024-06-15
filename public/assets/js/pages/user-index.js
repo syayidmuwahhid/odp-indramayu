@@ -25,7 +25,7 @@ function formModal() {
         title: "Form Tambah User",
         formId: "formModal",
         method: "POST",
-        url: "/admin/user",
+        url: "/api/user",
         html,
         callback: getData,
     });
@@ -41,9 +41,7 @@ function formModal() {
 async function editModal(id) {
     try {
         // Fetch user data from the server
-        let { data } = await getRequestData(
-            `${baseL}/admin/user/get-data/${id}`
-        );
+        let { data } = await getRequestData(`${baseL}/api/user/${id}`);
 
         // Prepare the HTML for the form with user data
         let html = `<form id="editModal">`;
@@ -60,7 +58,7 @@ async function editModal(id) {
             title: "Form Edit User",
             formId: "editModal",
             method: "POST",
-            url: `/admin/user/${id}`,
+            url: `/api/user/${id}`,
             html,
             callback: getData,
         });
@@ -79,7 +77,7 @@ async function editModal(id) {
 async function getData() {
     try {
         // Fetch user data from the server
-        let data = await getRequestData(`${baseL}/admin/user/get-data`);
+        let data = await getRequestData(`${baseL}/api/user`);
 
         // Throw an error if the request fails or the response status is not successful
         if (!data.status) {
@@ -123,7 +121,7 @@ function hapusData(id) {
         confirm("Hapus?", "Yakin menghapus data?", async function () {
             // Send a DELETE request to the server
             let data = await postData(
-                `${baseL}/admin/user/${id}`,
+                `${baseL}/api/user/${id}`,
                 null,
                 "DELETE"
             );
