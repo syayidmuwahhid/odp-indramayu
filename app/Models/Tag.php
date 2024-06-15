@@ -10,6 +10,8 @@ class Tag extends Model
 {
     use HasFactory;
 
+    protected $table = 'tag';
+
     /**
      * The attributes that are mass assignable.
      *

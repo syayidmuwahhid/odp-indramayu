@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 
 class CategoryController extends Controller
 {
-        /**
+     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\JsonResponse
@@ -43,14 +43,6 @@ class CategoryController extends Controller
 
         // Return the response as a JSON response
         return response()->json($resp, $code);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
     }
 
     /**

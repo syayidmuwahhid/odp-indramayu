@@ -10,6 +10,8 @@ class Video extends Model
 {
     use HasFactory;
 
+    protected $table = 'article';
+
     /**
      * The attributes that are mass assignable.
      *
