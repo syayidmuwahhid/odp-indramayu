@@ -14,12 +14,15 @@ Route::get('/register', [AuthController::class, 'register']);
 Route::post('/register', [AuthController::class,'signup'])->name('register');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
-Route::name('admin.')->group(function() {
+Route::name('admin.')->prefix('admin')->group(function() {
     Route::get('/', function () {
         return view('layouts.app');
     })->name('dashboard');
 
-    Route::resource('user', UserController::class)->except('show');
+    Route::resource('user', UserController::class)->except('show', 'update');
+    Route::post('/user/{id}', [UserController::class, 'update'])->name('user.update');
+    Route::get('/user/get-data', [UserController::class, 'getDatas']);
+    Route::get('/user/get-data/{id}', [UserController::class, 'getData']);
 });
 
 
