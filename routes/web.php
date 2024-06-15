@@ -20,15 +20,7 @@ Route::name('admin.')->prefix('admin')->middleware('auth')->group(function() {
         return view('layouts.app');
     })->name('dashboard');
 
-    Route::name('user.')->prefix('user')->group(function() {
-        Route::get('/', function () {
-            $resp = [
-                'title' => 'User Management',
-            ];
-
-            return view('user.index', $resp);
-        })->name('index');
-    });
+    Route::get('/user', fn() => view('user.index'))->name('user.index');
 
     Route::get('/slider', function () {
         return view('slider.index');
