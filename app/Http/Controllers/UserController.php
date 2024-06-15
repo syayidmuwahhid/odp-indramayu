@@ -48,32 +48,6 @@ class UserController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\View\View
-     *
-     * @throws \Throwable
-     */
-    public function create()
-    {
-        /**
-         * Prepare the response data.
-         *
-         * @var array $resp
-         */
-        $resp = [
-            'title' => 'Add User',
-        ];
-
-        /**
-         * Return the view with the response data.
-         *
-         * @return \Illuminate\View\View
-         */
-        return view('user.form', $resp);
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -177,26 +151,6 @@ class UserController extends Controller
 
         // Return the response as a JSON response
         return response()->json($resp, $code);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param string $id The unique identifier of the user to be edited.
-     *
-     * @return \Illuminate\View\View The view for editing the user with the title 'Edit User'.
-     *
-     * @throws \Throwable If an error occurs while rendering the view.
-     */
-    public function edit(string $id)
-    {
-        // Prepare the response data
-        $resp = [
-            'title' => 'Edit User',
-        ];
-
-        // Return the view with the response data
-        return view('user.edit', $resp);
     }
 
     /**
