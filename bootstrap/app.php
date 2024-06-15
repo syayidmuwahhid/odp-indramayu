@@ -13,7 +13,7 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->validateCsrfTokens(except: [
-            'http://localhost:8000/*',
+            // 'http://localhost:8000/*',
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
