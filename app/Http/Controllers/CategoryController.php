@@ -244,4 +244,39 @@ class CategoryController extends Controller
         return response()->json($resp, $code);
     }
 
+    public function list()
+    {
+        // Start a database transaction
+        DB::beginTransaction();
+
+        // Initialize the response data
+        $resp = [
+            'status' => false,
+        ];
+        $code = 500;
+
+        try {
+            // Fetch all categories from the database
+            $category = Category::get(['id', 'name as text']);
+
+            // Prepare the success response data
+            $resp['status'] = true;
+            $resp['message'] = 'Berhasil Mengambil data';
+            $resp['data'] = $category;
+            $code = 200;
+
+            // Commit the database transaction
+            DB::commit();
+        } catch(\Throwable $th) {
+            // Prepare the error response data
+            $resp['message'] = $th->getMessage();
+
+            // Rollback the database transaction
+            DB::rollBack();
+        }
+
+        // Return the response as a JSON response
+        return response()->json($resp, $code);
+    }
+
 }
