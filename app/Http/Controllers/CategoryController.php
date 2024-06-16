@@ -2,21 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
-use Error;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class UserController extends Controller
+class CategoryController extends Controller
 {
-    /**
-     * Get all users except superadmin.
+        /**
+     * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\JsonResponse The JSON response with status, message, and optionally data.
-     *
-     * @throws \Throwable If an error occurs during the database transaction.
+     * @return \Illuminate\Http\JsonResponse
      */
-    function index() {
+    public function index()
+    {
         // Initialize the response data
         $resp = [
             'status' => false,
@@ -24,13 +22,13 @@ class UserController extends Controller
         $code = 500;
 
         try {
-            // Fetch all users except superadmin
-            $user = User::where('role', '!=', 0)->get();
+            // Fetch all categories from the database
+            $category = Category::all();
 
             // Prepare the success response data
             $resp['status'] = true;
-            $resp['message'] = 'Berhasil Mengambil data user';
-            $resp['data'] = $user;
+            $resp['message'] = 'Berhasil Mengambil data';
+            $resp['data'] = $category;
             $code = 200;
 
             // Commit the database transaction
@@ -39,7 +37,7 @@ class UserController extends Controller
             // Prepare the error response data
             $resp['message'] = $th->getMessage();
 
-            // Rollback the database transaction
+            // Rollback the database transaction in case of any error
             DB::rollBack();
         }
 
@@ -53,6 +51,7 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\JsonResponse
      *
+     * @throws \Illuminate\Validation\ValidationException
      * @throws \Throwable
      */
     public function store(Request $request)
@@ -69,29 +68,18 @@ class UserController extends Controller
         try {
             // Validate the incoming request data
             $request->validate([
-                'name' => ['required'],
-                'email' => ['required', 'email'],
-                'password' => ['required', 'min:8'],
+                'name' => ['required']
             ]);
 
-            // Prepare the payload for creating a new user
-            $payload = $request->only('name', 'email', 'password');
-            $payload['role'] = 1;
-
-            // Check if the email already exists in the database
-            $user = User::where('email', $payload['email'])->count();
-
-            // If the email already exists, throw an error
-            if ($user > 0) {
-                throw new Error('Email sudah terdaftar');
-            }
+            // Prepare the payload for creating a new data
+            $payload = $request->only('name');
 
             // Create a new user in the database
-            User::create($payload);
+            Category::create($payload);
 
             // Prepare the success response data
             $resp['status'] = true;
-            $resp['message'] = 'Berhasil Menambah user';
+            $resp['message'] = 'Berhasil Menambah Data';
             $code = 200;
 
             // Commit the database transaction
@@ -109,15 +97,16 @@ class UserController extends Controller
     }
 
     /**
-     * Get a single user data by its unique identifier.
+     * Display the specified resource.
      *
-     * @param string $id The unique identifier of the user to be fetched.
+     * @param string $id The unique identifier of the category to be displayed.
      *
-     * @return \Illuminate\Http\JsonResponse The JSON response with status, message, and optionally data.
+     * @return \Illuminate\Http\JsonResponse The response containing the status, message, and data of the category.
      *
-     * @throws \Throwable If an error occurs during the database transaction.
+     * @throws \Throwable If any error occurs during the database transaction.
      */
-    function show(string $id) {
+    public function show(string $id)
+    {
         // Initialize the response data
         $resp = [
             'status' => false,
@@ -125,18 +114,13 @@ class UserController extends Controller
         $code = 500;
 
         try {
-            // Find the user by its unique identifier
-            $user = User::find($id);
-
-            // Check if the user is a superadmin
-            if ($user->role == '0') {
-                throw new Error('Data User tidak bisa diakses');
-            }
+            // Find the category by its unique identifier
+            $category = Category::find($id);
 
             // Prepare the success response data
             $resp['status'] = true;
-            $resp['message'] = 'Berhasil Mengambil data user';
-            $resp['data'] = $user;
+            $resp['message'] = 'Berhasil Mengambil data';
+            $resp['data'] = $category;
             $code = 200;
 
             // Commit the database transaction
@@ -156,12 +140,13 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request The incoming request.
-     * @param  string  $id The unique identifier of the user to be updated.
+     * @param Request $request The incoming request containing the updated data.
+     * @param string $id The unique identifier of the category to be updated.
      *
-     * @return \Illuminate\Http\JsonResponse The JSON response with status, message, and optionally data.
+     * @return \Illuminate\Http\JsonResponse The response containing the status, message, and updated data.
      *
-     * @throws \Throwable If an error occurs during the database transaction or validation.
+     * @throws \Illuminate\Validation\ValidationException If the incoming request data is not valid.
+     * @throws \Throwable If any error occurs during the database transaction.
      */
     public function update(Request $request, string $id)
     {
@@ -177,33 +162,18 @@ class UserController extends Controller
         try {
             // Validate the incoming request data
             $request->validate([
-                'email' => ['email'],
+                'name' => ['required'],
             ]);
 
-            // Prepare the payload for updating the user
-            $payload = $request->only('name', 'email', 'password');
+            // Prepare the payload for updating the category
+            $payload = $request->only('name');
 
-            // If password is provided, validate it
-            if ($request->password) {
-                $request->validate([
-                    'password' => ['min:8'],
-                ]);
-            } else {
-                // If password is not provided, remove it from the payload
-                unset($payload['password']);
-            }
+            // Find the category by its unique identifier
+            $category = Category::find($id);
 
-            // Find the user by its unique identifier
-            $user = User::find($id);
-
-            // Check if the user is a superadmin
-            if ($user->role == '0') {
-                throw new Error('Superadmin tidak bisa diedit');
-            }
-
-            // Update the user with the provided payload
-            $user->fill($payload);
-            $user->save();
+            // Update the category with the provided payload
+            $category->fill($payload);
+            $category->save();
 
             // Prepare the success response data
             $resp['status'] = true;
@@ -227,11 +197,11 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param string $id The unique identifier of the user to be deleted.
+     * @param string $id The unique identifier of the category to be deleted.
      *
-     * @return \Illuminate\Http\JsonResponse The JSON response with status, message, and optionally data.
+     * @return \Illuminate\Http\JsonResponse The response containing the status, message, and deletion result.
      *
-     * @throws \Throwable If an error occurs during the database transaction.
+     * @throws \Throwable If any error occurs during the database transaction.
      */
     public function destroy(string $id)
     {
@@ -245,20 +215,15 @@ class UserController extends Controller
         $code = 500;
 
         try {
-            // Find the user by its unique identifier
-            $user = User::find($id);
+            // Find the category by its unique identifier
+            $category = Category::find($id);
 
-            // Check if the user is a superadmin
-            if ($user->role == '0') {
-                throw new Error('Superadmin tidak bisa dihapus');
-            }
-
-            // Delete the user
-            $user->delete();
+            // Delete the category
+            $category->delete();
 
             // Prepare the success response data
             $resp['status'] = true;
-            $resp['message'] = 'User berhasil dihapus';
+            $resp['message'] = 'Data berhasil dihapus';
             $code = 200;
 
             // Commit the database transaction
@@ -274,4 +239,5 @@ class UserController extends Controller
         // Return the response as a JSON response
         return response()->json($resp, $code);
     }
+
 }

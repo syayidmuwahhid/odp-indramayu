@@ -4,7 +4,7 @@ $(document).ready(function () {
 });
 
 /**
- * Function to show modal form for adding new user.
+ * Function to show modal form for adding new category.
  * It prepares the HTML for the form and calls the modal function to display it.
  *
  * @returns {void}
@@ -14,51 +14,47 @@ function formModal() {
     let html = `<form id="formModal">`;
     html += `<label>Name</label>`;
     html += `<input class="swal2-input" placeholder="name" name="name"> <br/>`;
-    html += `<label>Email</label>`;
-    html += `<input class="swal2-input" placeholder="email" name="email"> <br/>`;
-    html += `<label>Password</label>`;
-    html += `<input class="swal2-input" placeholder="Password" name="password" value="12345678">`;
     html += `</form>`;
+
 
     // Call the modal function to display the form
     modal({
-        title: "Form Tambah User",
+        title: "Form Tambah category",
         formId: "formModal",
         method: "POST",
-        url: "/api/user",
+        url: "/api/category",
         html,
         callback: getData,
     });
 }
 
 /**
- * Function to show modal form for editing an existing user.
- * It prepares the HTML for the form, fetches user data from the server, and calls the modal function to display it.
+ * Function to show modal form for editing an existing category.
+ * It prepares the HTML for the form, fetches category data from the server, and calls the modal function to display it.
  *
- * @param {number} id - The unique identifier of the user to be edited.
+ * @param {number} id - The unique identifier of the category to be edited.
  * @returns {Promise<void>}
  */
 async function editModal(id) {
     try {
-        // Fetch user data from the server
-        let { data } = await getRequestData(`${baseL}/api/user/${id}`);
+        // Fetch category data from the server
+        let { data } = await getRequestData(`${baseL}/api/category/${id}`);
 
-        // Prepare the HTML for the form with user data
+        // Prepare the HTML for the form with category data
         let html = `<form id="editModal">`;
         html += `<label>Name</label>`;
         html += `<input class="swal2-input" placeholder="name" name="name" value="${data.name}"> <br/>`;
         html += `<label>Email</label>`;
-        html += `<input class="swal2-input" placeholder="email" name="email" value="${data.email}"> <br/>`;
         html += `<label>Password</label>`;
         html += `<input class="swal2-input" placeholder="Password" name="password">`;
         html += `</form>`;
 
         // Call the modal function to display the form
         modal({
-            title: "Form Edit User",
+            title: "Form Edit category",
             formId: "editModal",
             method: "POST",
-            url: `/api/user/${id}`,
+            url: `/api/category/${id}`,
             html,
             callback: getData,
         });
@@ -69,15 +65,15 @@ async function editModal(id) {
 }
 
 /**
- * Function to fetch and display user data in the table.
+ * Function to fetch and display category data in the table.
  *
  * @returns {Promise<void>}
  * @throws Will throw an error if the request fails or the response status is not successful.
  */
 async function getData() {
     try {
-        // Fetch user data from the server
-        let data = await getRequestData(`${baseL}/api/user`);
+        // Fetch category data from the server
+        let data = await getRequestData(`${baseL}/api/category`);
 
         // Throw an error if the request fails or the response status is not successful
         if (!data.status) {
@@ -92,7 +88,6 @@ async function getData() {
             let html = `<tr>`;
             html += `<td class="text-center p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">${++i}</td>`;
             html += `<td class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">${value.name}</td>`;
-            html += `<td class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">${value.email}</td>`;
             html += `<td class=" align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">`;
             html += `<button class="text-sm font-semibold leading-tight text-blue-600" onclick="editModal(${value.id})">Edit</button> | `;
             html += `<button class="text-sm font-semibold leading-tight text-red-400" onclick="hapusData(${value.id})">Hapus</button>`;
@@ -109,10 +104,10 @@ async function getData() {
 }
 
 /**
- * Function to handle user deletion.
- * It shows a confirmation dialog, sends a DELETE request to the server, and refreshes the user data table.
+ * Function to handle category deletion.
+ * It shows a confirmation dialog, sends a DELETE request to the server, and refreshes the category data table.
  *
- * @param {number} id - The unique identifier of the user to be deleted.
+ * @param {number} id - The unique identifier of the category to be deleted.
  * @returns {void}
  */
 function hapusData(id) {
@@ -121,7 +116,7 @@ function hapusData(id) {
         confirm("Hapus?", "Yakin menghapus data?", async function () {
             // Send a DELETE request to the server
             let data = await postData(
-                `${baseL}/api/user/${id}`,
+                `${baseL}/api/category/${id}`,
                 null,
                 "DELETE"
             );
@@ -135,7 +130,7 @@ function hapusData(id) {
             // Show a success notification
             notif("success", "Berhasil");
 
-            // Refresh the user data table
+            // Refresh the category data table
             getData();
         });
     } catch (error) {
