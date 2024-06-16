@@ -144,7 +144,7 @@ class SliderController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        return response()->json($id);
     }
 
     /**
@@ -152,7 +152,7 @@ class SliderController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        return response()->json($request->all());
     }
 
     /**
@@ -160,6 +160,6 @@ class SliderController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        return response()->json($id);
     }
 }
