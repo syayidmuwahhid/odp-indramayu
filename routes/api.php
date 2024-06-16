@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\SliderController;
 use App\Http\Controllers\TagsController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VideoController;
@@ -25,3 +26,5 @@ Route::apiResource('category', CategoryController::class)->except('update');
 Route::post('/category/{category}', [CategoryController::class, 'update'])->name('category.update');
 
 Route::apiResource('video', VideoController::class);
+
+Route::apiResource('slider', SliderController::class);
