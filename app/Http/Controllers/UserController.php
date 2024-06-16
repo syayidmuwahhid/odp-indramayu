@@ -23,6 +23,7 @@ class UserController extends Controller
         ];
         $code = 500;
 
+        DB::beginTransaction();
         try {
             // Fetch all users except superadmin
             $user = User::where('role', '!=', 0)->get();
@@ -123,6 +124,8 @@ class UserController extends Controller
             'status' => false,
         ];
         $code = 500;
+
+        DB::beginTransaction();
 
         try {
             // Find the user by its unique identifier

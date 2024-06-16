@@ -21,6 +21,8 @@ class CategoryController extends Controller
         ];
         $code = 500;
 
+        DB::beginTransaction();
+
         try {
             // Fetch all categories from the database
             $category = Category::all();
@@ -112,6 +114,8 @@ class CategoryController extends Controller
             'status' => false,
         ];
         $code = 500;
+
+        DB::beginTransaction();
 
         try {
             // Find the category by its unique identifier
