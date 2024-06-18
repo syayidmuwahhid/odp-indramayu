@@ -19,7 +19,6 @@ class Slider extends Model
     protected $fillable = [
         'title',
         'location',
-        'description',
-        'user_id'
+        'description'
     ];
 }

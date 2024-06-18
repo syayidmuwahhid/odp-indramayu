@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Slider;
+use Error;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 
 class SliderController extends Controller
 {
@@ -77,6 +79,7 @@ class SliderController extends Controller
             // Prepare the full file path
             $filename = $path. $img_name;
 
+            //setup data
             $payload = $request->only('title', 'description');
             $payload['location'] = $filename;
 
@@ -140,19 +143,81 @@ class SliderController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        return response()->json($id);
-    }
-
-    /**
      * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  string  $id
+     * @return \Illuminate\Http\JsonResponse
      */
     public function update(Request $request, string $id)
     {
-        return response()->json($request->all());
+        // Initialize the response data
+        $resp = [
+            'status' => false,
+        ];
+        $code = 500;
+
+        // Start a database transaction
+        DB::beginTransaction();
+
+        try {
+            // Find the slider by its unique identifier
+            $slider = Slider::find($id);
+
+            // Store the old image location
+            $oldSliderImg = $slider->location;
+
+            // Validate the incoming request data
+            $request->validate([
+                'title' => ['required'],
+                'description' => ['required'],
+            ]);
+
+            // Prepare the data to be updated
+            $payload = $request->only('title', 'description');
+
+            // Prepare the file path
+            $path = "storage/slider/";
+
+            // If a new file is uploaded
+            if ($request->hasFile('file')) {
+                // Generate a unique name for the file
+                $img_name = time(). $request->file('file')->hashName();
+
+                // Move the uploaded file to the specified location
+                $request->file('file')->move($path, $img_name);
+
+                // Prepare the full file path
+                $payload['location'] = $path . $img_name;
+            }
+
+            // Update the slider data
+            $slider->fill($payload);
+            $slider->save();
+
+            // If a new file is uploaded and the old file exists, delete the old file
+            if ($request->hasFile('file') && File::exists($oldSliderImg)) {
+                File::delete($oldSliderImg);
+            }
+
+            // Prepare the success response data
+            $resp['message'] = 'Berhasil update data';
+            $resp['status'] = true;
+            $code = 200;
+
+            // Commit the database transaction
+            DB::commit();
+
+        } catch (\Throwable $th) {
+            // Prepare the error response data
+            $resp['message'] = $th->getMessage();
+
+            // Rollback the database transaction
+            DB::rollBack();
+        }
+
+        // Return the response as a JSON response
+        return response()->json($resp, $code);
     }
 
     /**
@@ -160,6 +225,43 @@ class SliderController extends Controller
      */
     public function destroy(string $id)
     {
-        return response()->json($id);
+        // Start a database transaction
+        DB::beginTransaction();
+
+        // Initialize the response data
+        $resp = [
+            'status' => false,
+        ];
+        $code = 500;
+
+        try {
+            // Find the user by its unique identifier
+            $slider = Slider::find($id);
+
+            // Delete the user
+            $slider->delete();
+
+            // Check if the file exists and delete it
+            if (File::exists($slider->location)) {
+                File::delete($slider->location);
+            }
+
+            // Prepare the success response data
+            $resp['status'] = true;
+            $resp['message'] = 'data berhasil dihapus';
+            $code = 200;
+
+            // Commit the database transaction
+            DB::commit();
+        } catch (\Throwable $th) {
+            // Prepare the error response data
+            $resp['message'] = $th->getMessage();
+
+            // Rollback the database transaction
+            DB::rollBack();
+        }
+
+        // Return the response as a JSON response
+        return response()->json($resp, $code);
     }
 }
