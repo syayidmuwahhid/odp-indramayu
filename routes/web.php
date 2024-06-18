@@ -2,11 +2,13 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\Vue\HomeController;
 use Illuminate\Support\Facades\Route;
+use Inertia\Inertia;
 
 Route::get('/', function () {
     // return view('layouts.app');
-    return redirect()->route('admin.dashboard');
+    return redirect()->route('homepage');
 });
 
 Route::get('/login', [AuthController::class, 'index']);
@@ -26,3 +28,6 @@ Route::name('admin.')->prefix('admin')->middleware('auth')->group(function () {
 
     Route::get('/slider', fn () => view('slider.index'))->name('slider');
 });
+
+Route::get('/homepage', [HomeController::class, 'index'])->name('homepage');
+Route::get('/about', fn () => Inertia::render('About'))->name('about');
