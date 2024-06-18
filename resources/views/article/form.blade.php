@@ -1,8 +1,5 @@
 @extends('layouts.app')
 @section('title', 'tambah data article')
-@push('css')
-    <link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet">
-@endpush
 
 
 @section('content')
@@ -77,6 +74,6 @@
 
 @endsection
 @push('js')
-    <script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/41.4.2/classic/ckeditor.js"></script>
     <script src="{{ asset('assets/js/pages/article-form.js') }}"></script>
 @endpush
