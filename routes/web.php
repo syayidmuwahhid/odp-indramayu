@@ -23,6 +23,6 @@ Route::name('admin.')->prefix('admin')->middleware('auth')->group(function () {
     Route::get('/user', fn () => view('user.index'))->name('user.index');
     Route::get('/category', fn () => view('category.index'))->name('category.index');
     Route::get('/tag', fn () => view('tag.index'))->name('tag.index');
-
     Route::get('/slider', fn () => view('slider.index'))->name('slider');
+    Route::get('/video', fn () => view('video.index'))->name('video');
 });
