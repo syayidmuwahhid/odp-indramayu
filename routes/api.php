@@ -26,6 +26,8 @@ Route::get('/category/list', [CategoryController::class, 'list'])->name('categor
 Route::apiResource('category', CategoryController::class)->except('update');
 Route::post('/category/{category}', [CategoryController::class, 'update'])->name('category.update');
 
-Route::apiResource('video', VideoController::class);
+Route::apiResource('video', VideoController::class)->except('update');
+Route::post('/video/{video}', [VideoController::class, 'update'])->name('video.update');
 
-Route::apiResource('slider', SliderController::class);
+Route::apiResource('slider', SliderController::class)->except('update');
+Route::post('/slider/{slider}', [SliderController::class, 'update'])->name('slider.update');

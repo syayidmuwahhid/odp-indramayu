@@ -31,10 +31,22 @@
     <link href="{{ asset('assets/css/nucleo-svg.css') }}" rel="stylesheet" />
     <!-- Main Styling -->
     <link href="{{ asset('assets/css/soft-ui-dashboard-tailwind.css?v=1.0.5') }}" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
 
     <!-- Nepcha Analytics (nepcha.com) -->
     <!-- Nepcha is a easy-to-use web analytics. No cookies and fully compliant with GDPR, CCPA and PECR. -->
     <script defer data-site="YOUR_DOMAIN_HERE" src="https://api.nepcha.com/js/nepcha-analytics.js"></script>
+    <script>
+        function errorAlert(message) {
+            $(document).ready(function() {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Galat!',
+                    text: message,
+                });
+            });
+        }
+    </script>
   </head>
 
   <body class="m-0 font-sans antialiased font-normal bg-white text-start text-base leading-default text-slate-500">
@@ -113,7 +125,7 @@
             <div class="w-full max-w-full px-3 mx-auto mt-0 md:flex-0 shrink-0 md:w-7/12 lg:w-5/12 xl:w-4/12">
               <div class="relative z-0 flex flex-col min-w-0 break-words bg-white border-0 shadow-soft-xl rounded-2xl bg-clip-border">
                 <div class="p-6 mb-0 text-center bg-white border-b-0 rounded-t-2xl">
-                  <h5 class="text-transparent bg-gradient-to-tl from-green-600 to-cyan-400 bg-clip-text">Register with</h5>
+                  <h5 class="text-transparent bg-gradient-to-tl from-green-600 to-cyan-400 bg-clip-text">Register</h5>
                 </div>
                 {{-- <div class="flex flex-wrap px-3 -mx-3 sm:px-6 xl:px-12">
                   <div class="w-3/12 max-w-full px-1 ml-auto flex-0">
@@ -161,43 +173,31 @@
                 </div> --}}
                 <div class="flex-auto p-6">
                   <form role="form text-left" method="POST" action="{{ route('register') }}">
+                    @csrf
                     <div class="mb-4">
-                      <input required name="name" type="text" class="text-sm focus:shadow-soft-primary-outline leading-5.6 ease-soft block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding py-2 px-3 font-normal text-gray-700 transition-all focus:border-fuchsia-300 focus:bg-white focus:text-gray-700 focus:outline-none focus:transition-shadow" placeholder="Name" aria-label="Name" aria-describedby="email-addon" />
+                      <input required name="name" type="text" class="text-sm focus:shadow-soft-primary-outline leading-5.6 ease-soft block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding py-2 px-3 font-normal text-gray-700 transition-all focus:border-fuchsia-300 focus:bg-white focus:text-gray-700 focus:outline-none focus:transition-shadow" placeholder="Nama" aria-label="Name" aria-describedby="email-addon" value="{{ old('name') }}"/>
                     </div>
                     <div class="mb-4">
-                      <input required name="email" type="email" class="text-sm focus:shadow-soft-primary-outline leading-5.6 ease-soft block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding py-2 px-3 font-normal text-gray-700 transition-all focus:border-fuchsia-300 focus:bg-white focus:text-gray-700 focus:outline-none focus:transition-shadow" placeholder="Email" aria-label="Email" aria-describedby="email-addon" />
+                      <input required name="email" type="email" class="text-sm focus:shadow-soft-primary-outline leading-5.6 ease-soft block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding py-2 px-3 font-normal text-gray-700 transition-all focus:border-fuchsia-300 focus:bg-white focus:text-gray-700 focus:outline-none focus:transition-shadow" placeholder="Email" aria-label="Email" value="{{ old('email') }}" aria-describedby="email-addon" />
                     </div>
                     <div class="mb-4">
                       <input required name="password" id="password" type="password" class="text-sm focus:shadow-soft-primary-outline leading-5.6 ease-soft block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding py-2 px-3 font-normal text-gray-700 transition-all focus:border-fuchsia-300 focus:bg-white focus:text-gray-700 focus:outline-none focus:transition-shadow" placeholder="Password" aria-label="Password" aria-describedby="password-addon" />
-                      <svg xmlns="http://www.w3.org/2000/svg" width="25" height="35" fill="gray" id="togglePassword"
-                      class="bi bi-eye absolute top-1/2 right-7 -translate-y-2/2 cursor-pointer z-20 opacity-100"
-                      viewBox="0 0 16 16">
-                      <path
-                          d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z">
-                      </path>
-                      <path
-                          d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z">
-                      </path>
-                      </svg>
-                      <svg xmlns="http://www.w3.org/2000/svg" width="25" height="35" fill="currentColor"
-                          class="bi bi-eye-slash-fill absolute top-1/2 right-7 -z-1 -translate-y-2/2 cursor-pointer hidden"
-                          id="mama" viewBox="0 0 16 16">
-                          <path
-                              d="m10.79 12.912-1.614-1.615a3.5 3.5 0 0 1-4.474-4.474l-2.06-2.06C.938 6.278 0 8 0 8s3 5.5 8 5.5a7.029 7.029 0 0 0 2.79-.588zM5.21 3.088A7.028 7.028 0 0 1 8 2.5c5 0 8 5.5 8 5.5s-.939 1.721-2.641 3.238l-2.062-2.062a3.5 3.5 0 0 0-4.474-4.474L5.21 3.089z">
-                          </path>
-                          <path
-                              d="M5.525 7.646a2.5 2.5 0 0 0 2.829 2.829l-2.83-2.829zm4.95.708-2.829-2.83a2.5 2.5 0 0 1 2.829 2.829zm3.171 6-12-12 .708-.708 12 12-.708.708z">
-                          </path>
-                      </svg>
                     </div>
-                    <div class="min-h-6 pl-6.92 mb-0.5 block">
+                    <div class="mb-4">
+                      <input required name="confirm_password" id="confirm_password" type="password" class="text-sm focus:shadow-soft-primary-outline leading-5.6 ease-soft block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding py-2 px-3 font-normal text-gray-700 transition-all focus:border-fuchsia-300 focus:bg-white focus:text-gray-700 focus:outline-none focus:transition-shadow" placeholder="Konfirmasi Password" aria-label="Password" aria-describedby="password-addon" />
+                    </div>
+                    {{-- <div class="min-h-6 pl-6.92 mb-0.5 block">
                       <input id="terms" class="w-4.92 h-4.92 ease-soft -ml-6.92 rounded-1.4 checked:bg-gradient-to-tl checked:from-green-600 checked:to-cyan-400 after:text-xxs after:font-awesome after:duration-250 after:ease-soft-in-out duration-250 relative float-left mt-1 cursor-pointer appearance-none border border-solid border-slate-200 bg-white bg-contain bg-center bg-no-repeat align-top transition-all after:absolute after:flex after:h-full after:w-full after:items-center after:justify-center after:text-white after:opacity-0 after:transition-all after:content-['\f00c'] checked:border-0 checked:border-transparent checked:bg-transparent checked:after:opacity-100" type="checkbox" value="" checked />
                       <label class="mb-2 ml-1 font-normal cursor-pointer select-none text-sm text-slate-700" for="terms"> I agree the <a href="javascript:;" class="font-bold text-transparent bg-gradient-to-tl from-green-600 to-cyan-400 bg-clip-text">Terms and Conditions</a> </label>
-                    </div>
+                    </div> --}}
                     <div class="text-center">
                       <button type="submit" class="inline-block w-full px-6 py-3 mt-6 mb-2 font-bold text-center text-white uppercase align-middle transition-all bg-gradient-to-tl from-green-600 to-cyan-400 border-0 rounded-lg cursor-pointer active:opacity-85 hover:scale-102 hover:shadow-soft-xs leading-pro text-xs ease-soft-in tracking-tight-soft shadow-soft-md bg-150 bg-x-25 bg-gradient-to-tl from-gray-900 to-slate-800 hover:border-slate-700 hover:bg-slate-700 hover:text-white">Sign up</button>
                     </div>
                     <p class="mt-4 mb-0 leading-normal text-sm">Already have an account? <a href="{{ url('/login') }}" class="font-bold text-slate-700 text-transparent bg-gradient-to-tl from-green-600 to-cyan-400 bg-clip-text">Sign in</a></p>
+
+                    @error('error')
+                        <script>errorAlert('{{ $message }}')</script>
+                    @enderror
                   </form>
                 </div>
               </div>
@@ -252,20 +252,7 @@
     </main>
   </body>
   <!-- plugin for scrollbar  -->
-  <script src="../assets/js/plugins/perfect-scrollbar.min.js" async></script>
+  <script src="{{ asset('assets/js/plugins/perfect-scrollbar.min.js') }}" async></script>
   <!-- main script file  -->
-  <script src="../assets/js/soft-ui-dashboard-tailwind.js?v=1.0.5" async></script>
-
-  <script>
-    const togglePassword = document.getElementById('togglePassword');
-    const password = document.querySelector('#password');
-    togglePassword.addEventListener('click', function (e) {
-      // toggle the type attribute
-      console.log('clicked')
-      const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
-      password.setAttribute('type', type);
-      // toggle the eye slash icon
-      this.classList.toggle('bi-eye-slash-fill');
-    });
-  </script>
+  <script src="{{ asset('assets/js/soft-ui-dashboard-tailwind.js?v=1.0.5') }}" async></script>
 </html>

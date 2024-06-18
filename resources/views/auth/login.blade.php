@@ -31,10 +31,32 @@
     <link href="{{ asset('assets/css/nucleo-svg.css') }}" rel="stylesheet" />
     <!-- Main Styling -->
     <link href="{{ asset('assets/css/soft-ui-dashboard-tailwind.css?v=1.0.5') }}" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
 
     <!-- Nepcha Analytics (nepcha.com) -->
     <!-- Nepcha is a easy-to-use web analytics. No cookies and fully compliant with GDPR, CCPA and PECR. -->
     <script defer data-site="YOUR_DOMAIN_HERE" src="https://api.nepcha.com/js/nepcha-analytics.js"></script>
+    <script>
+        function errorAlert(message) {
+            $(document).ready(function() {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Galat!',
+                    text: message,
+                });
+            });
+        }
+
+        function successAlert(message) {
+            $(document).ready(function() {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Berhasil!',
+                    text: message,
+                });
+            });
+        }
+    </script>
   </head>
 
   <body class="m-0 font-sans antialiased font-normal bg-white text-start text-base leading-default text-slate-500">
@@ -148,12 +170,16 @@
                         </svg>
                       </div>
                       <div class="min-h-6 mb-0.5 block pl-12">
-                        <input id="rememberMe" class="mt-0.54 rounded-10 duration-250 ease-soft-in-out after:rounded-circle after:shadow-soft-2xl after:duration-250 checked:after:translate-x-5.25 h-5 relative float-left -ml-12 w-10 cursor-pointer appearance-none bg-slate-800/10 bg-none bg-contain bg-left bg-no-repeat align-top transition-all after:absolute after:top-px after:h-4 after:w-4 after:translate-x-px after:bg-white after:content-[''] checked:border-slate-800/95 checked:bg-gradient-to-tl from-green-600 to-cyan-400 checked:bg-none checked:bg-right" type="checkbox" checked="" />
+                        <input name="remember" id="rememberMe" class="mt-0.54 rounded-10 duration-250 ease-soft-in-out after:rounded-circle after:shadow-soft-2xl after:duration-250 checked:after:translate-x-5.25 h-5 relative float-left -ml-12 w-10 cursor-pointer appearance-none bg-slate-800/10 bg-none bg-contain bg-left bg-no-repeat align-top transition-all after:absolute after:top-px after:h-4 after:w-4 after:translate-x-px after:bg-white after:content-[''] checked:border-slate-800/95 checked:bg-gradient-to-tl from-green-600 to-cyan-400 checked:bg-none checked:bg-right" type="checkbox" checked="" />
                         <label class="mb-2 ml-1 font-normal cursor-pointer select-none text-sm text-slate-700" for="rememberMe">Remember me</label>
                       </div>
                       @error('login')
-                      <span class="text-red-900 text-sm">{{ $message }}</span>
+                      <script> errorAlert('{{ $message }}'); </script>
                       @enderror
+
+                        @if (session()->has('success'))
+                        <script>successAlert(`{{ session()->get('success') }}`)</script>
+                        @endif
                       <div class="text-center">
                         <button type="submit" class="inline-block w-full px-6 py-3 mt-6 mb-0 font-bold text-center text-white uppercase align-middle transition-all bg-transparent border-0 rounded-lg cursor-pointer shadow-soft-md bg-x-25 bg-150 leading-pro text-xs ease-soft-in tracking-tight-soft bg-gradient-to-tl from-green-600 to-cyan-400 hover:scale-102 hover:shadow-soft-xs active:opacity-85">
                           Sign in
@@ -239,5 +265,6 @@
       // toggle the eye slash icon
       this.classList.toggle('bi-eye-slash-fill');
     });
+
   </script>
 </html>
