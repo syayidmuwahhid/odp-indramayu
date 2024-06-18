@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    const quill = new Quill('#editor', {
-        theme: 'snow'
-      });
+    ClassicEditor.create(document.querySelector("#editor")).catch((error) => {
+        console.error(error);
+    });
 });
