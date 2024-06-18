@@ -21,6 +21,8 @@ class TagsController extends Controller
        ];
        $code = 500;
 
+       DB::beginTransaction();
+
        try {
            // Fetch all categories from the database
            $tag = Tag::all();
@@ -101,6 +103,8 @@ class TagsController extends Controller
            'status' => false,
        ];
        $code = 500;
+
+       DB::beginTransaction();
 
        try {
            // Find the user by its unique identifier
