@@ -6,23 +6,23 @@ $(document).ready(function () {
 function formModal() {
     let html = `
     <form id="formModal" enctype="multipart/form-data">
-    <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+    <div style="display: flex; align-items: center; margin: 2rem 2.1rem; width: 420px;">
         <label>Judul</label>
         <input class="swal2-input" style="flex:1;" placeholder="Judul" name="title"> <br/>
     </div>
-    <div style="display: flex; align-items: center; margin-bottom: 1rem;">
-        <label style="width: 100px; margin-right: 1rem;">Image</label>
-        <input type="file" class="swal1-file" style="width: 320px;" name="file" accept=".jpg,.png"> <br/>
-    </div>
-    <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+    <div style="display: flex; align-items: center; margin-bottom: 3rem;">
         <label>Deskripsi</label>
         <input class="swal2-input" style="flex:1;" placeholder="Deskripsi" name="description"> <br/>
+    </div>
+    <div style="display: flex; align-items: center; margin-bottom: 2rem;">
+        <label style="width: 100px; margin-right: 1rem;">Gambar</label>
+        <input type="file" class="swal1-file" style="width: 330px;" name="file" accept=".jpg,.png"> <br/>
     </div>
     </form>
     `;
 
     modal({
-        title: "Form Tambah Slider",
+        title: "Tambah Slider",
         formId: "formModal",
         method: "POST",
         url: "/api/slider",
@@ -45,13 +45,13 @@ async function getData() {
                 <td class="text-center p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">${++i}</td>
                 <td><img src="${baseL}/${value.location}" alt="${
                 value.description
-            }" style="width: 100px;"></td>
+                }" style="width: 100px;"></td>
                 <td>${value.title}</td>
                 <td>${value.description}</td>
-                <td>
+                <td class="text-center">
                     <button class="text-sm font-semibold leading-tight text-blue-600" onclick="editModal(${
                         value.id
-                    })">Edit</button>
+                    })">Edit |</button>
                     <button class="text-sm font-semibold leading-tight text-red-400" onclick="hapusData(${
                         value.id
                     })">Hapus</button>
@@ -59,6 +59,63 @@ async function getData() {
             </tr>
             `;
             $("#tbody_data").append(html);
+        });
+    } catch (error) {
+        notif("error", "Galat!", error);
+    }
+}
+
+async function editModal(id) {
+    try {
+        let { data } = await getRequestData(`${baseL}/api/slider/${id}`);
+
+        let html = `
+        <form id="editModal" enctype="multipart/form-data">
+        <div style="display: flex; align-items: center; margin: 2rem 2.1rem; width: 420px;">
+            <label>Judul</label>
+            <input class="swal2-input" style="flex:1;" placeholder="Judul" name="title" value="${data.title}"> <br/>
+        </div>
+        <div style="display: flex; align-items: center; margin-bottom: 3rem;">
+            <label>Deskripsi</label>
+            <input class="swal2-input" style="flex:1;" placeholder="Deskripsi" name="description" value="${data.description}"> <br/>
+        </div>
+        <div style="display: flex; align-items: center; margin-bottom: 2rem;">
+            <label style="width: 100px; margin-right: 1rem;">Gambar</label>
+            <input type="file" class="swal1-file" style="width: 330px;" name="file" accept=".jpg,.png" value="${data.file}"> <br/>
+        </div>
+        </form>
+        `;
+
+        modal({
+            title: "Edit Slider",
+            formId: "editModal",
+            method: "PUT",
+            url: `/api/slider/${id}`,
+            html,
+            callback: getData,
+        });
+    }
+    catch (error) {
+        notif("error", "Galat!", error);
+    }
+}
+
+async function hapusData(id) {
+    try {
+        confirm("Hapus?", "Yakin hapus data ini?", async function () {
+            let data = await postData(
+                `${baseL}/api/slider/${id}`, 
+                null,
+                "DELETE"
+            );
+
+            if (!data.status) {
+                throw new Error(data.message);
+            }
+
+            notif("success", "Berhasil!", data.message);
+
+            getData();
         });
     } catch (error) {
         notif("error", "Galat!", error);
