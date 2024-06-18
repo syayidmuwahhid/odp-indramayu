@@ -60,7 +60,7 @@ class SliderController extends Controller
         try {
             // Validate the incoming request data
             $request->validate([
-                'name' => ['required'],
+                'title' => ['required'],
                 'file' => ['required'],
                 'description' => ['required'],
             ]);
@@ -77,7 +77,7 @@ class SliderController extends Controller
             // Prepare the full file path
             $filename = $path. $img_name;
 
-            $payload = $request->only('name', 'description');
+            $payload = $request->only('title', 'description');
             $payload['location'] = $filename;
 
             // Create a new user in the database
