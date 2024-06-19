@@ -45,7 +45,7 @@ async function getData() {
                 <td class="text-center p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">${++i}</td>
                 <td><img src="${baseL}/${value.location}" alt="${
                 value.description
-                }" style="width: 100px;"></td>
+            }" style="width: 100px;"></td>
                 <td>${value.title}</td>
                 <td>${value.description}</td>
                 <td class="text-center">
@@ -89,13 +89,12 @@ async function editModal(id) {
         modal({
             title: "Edit Slider",
             formId: "editModal",
-            method: "PUT",
+            method: "POST",
             url: `/api/slider/${id}`,
             html,
             callback: getData,
         });
-    }
-    catch (error) {
+    } catch (error) {
         notif("error", "Galat!", error);
     }
 }
@@ -104,7 +103,7 @@ async function hapusData(id) {
     try {
         confirm("Hapus?", "Yakin hapus data ini?", async function () {
             let data = await postData(
-                `${baseL}/api/slider/${id}`, 
+                `${baseL}/api/slider/${id}`,
                 null,
                 "DELETE"
             );
