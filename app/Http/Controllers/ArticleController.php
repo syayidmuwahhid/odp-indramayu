@@ -11,7 +11,7 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        //
+        return response()->json('ok');
     }
 
     /**
@@ -19,7 +19,7 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        //
+        return response()->json('ok');
     }
 
     /**
@@ -27,7 +27,7 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return response()->json($request->all());
     }
 
     /**
@@ -35,7 +35,7 @@ class ArticleController extends Controller
      */
     public function show(string $id)
     {
-        //
+        return response()->json($id);
     }
 
     /**
@@ -43,7 +43,7 @@ class ArticleController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        return response()->json($id);
     }
 
     /**
@@ -51,7 +51,7 @@ class ArticleController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        return response()->json($request->all());
     }
 
     /**
@@ -59,6 +59,6 @@ class ArticleController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        return response()->json($id);
     }
 }

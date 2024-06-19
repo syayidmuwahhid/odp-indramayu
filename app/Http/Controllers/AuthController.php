@@ -35,8 +35,10 @@ class AuthController extends Controller
             'password' => ['required'],
         ]);
 
+        $remember = $request->has('remember') ? true : false;
+
         // Attempt to authenticate the user with the provided credentials
-        if (Auth::attempt($credentials)) {
+        if (Auth::attempt($credentials, $remember)) {
 
             // Regenerate the session ID
             $request->session()->regenerate();
@@ -73,12 +75,18 @@ class AuthController extends Controller
             ]);
 
             // Get all the request data
-            $payload = $request->only('name', 'email', 'password', 'confirmPassword');
+            $payload = $request->only('name', 'email', 'password', 'confirm_password');
             $payload['role'] = 1;
 
             // Check if the password and confirm password match
-            if ($payload['password']!= $payload['confirmPassword']) {
+            if ($payload['password']!= $payload['confirm_password']) {
                 throw new Error('Password tidak sama');
+            }
+
+            //check if email is registered
+            $user = User::where('email', $payload['email'])->count();
+            if ($user > 0) {
+                throw new Error('Email sudah terdaftar');
             }
 
             // Create a new user in the database

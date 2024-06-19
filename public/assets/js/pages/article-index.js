@@ -85,7 +85,7 @@ async function getData() {
             let html = `<tr>`;
             html += `<td class="text-center p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">${++i}</td>`;
             html += `<td class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">${value.name}</td>`;
-            html += `<td class="text-center align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">`;
+            html += `<td class=" align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">`;
             html += `<button class="text-sm font-semibold leading-tight text-blue-600" onclick="editModal(${value.id})">Edit</button> | `;
             html += `<button class="text-sm font-semibold leading-tight text-red-400" onclick="hapusData(${value.id})">Hapus</button>`;
             html += `</td>`;

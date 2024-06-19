@@ -18,8 +18,10 @@ class Video extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'title',
+        'description',
         'location',
+        'thumbnail',
     ];
 
     public function User(): BelongsTo

@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 
 class CategoryController extends Controller
 {
-     /**
+        /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\JsonResponse
@@ -20,6 +20,8 @@ class CategoryController extends Controller
             'status' => false,
         ];
         $code = 500;
+
+        DB::beginTransaction();
 
         try {
             // Fetch all categories from the database
@@ -47,6 +49,12 @@ class CategoryController extends Controller
 
     /**
      * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\JsonResponse
+     *
+     * @throws \Illuminate\Validation\ValidationException
+     * @throws \Throwable
      */
     public function store(Request $request)
     {
@@ -73,7 +81,7 @@ class CategoryController extends Controller
 
             // Prepare the success response data
             $resp['status'] = true;
-            $resp['message'] = 'Berhasil Menambah data';
+            $resp['message'] = 'Berhasil Menambah Data';
             $code = 200;
 
             // Commit the database transaction
@@ -92,6 +100,12 @@ class CategoryController extends Controller
 
     /**
      * Display the specified resource.
+     *
+     * @param string $id The unique identifier of the category to be displayed.
+     *
+     * @return \Illuminate\Http\JsonResponse The response containing the status, message, and data of the category.
+     *
+     * @throws \Throwable If any error occurs during the database transaction.
      */
     public function show(string $id)
     {
@@ -101,8 +115,10 @@ class CategoryController extends Controller
         ];
         $code = 500;
 
+        DB::beginTransaction();
+
         try {
-            // Find the user by its unique identifier
+            // Find the category by its unique identifier
             $category = Category::find($id);
 
             // Prepare the success response data
@@ -127,6 +143,14 @@ class CategoryController extends Controller
 
     /**
      * Update the specified resource in storage.
+     *
+     * @param Request $request The incoming request containing the updated data.
+     * @param string $id The unique identifier of the category to be updated.
+     *
+     * @return \Illuminate\Http\JsonResponse The response containing the status, message, and updated data.
+     *
+     * @throws \Illuminate\Validation\ValidationException If the incoming request data is not valid.
+     * @throws \Throwable If any error occurs during the database transaction.
      */
     public function update(Request $request, string $id)
     {
@@ -145,10 +169,10 @@ class CategoryController extends Controller
                 'name' => ['required'],
             ]);
 
-            // Prepare the payload for updating the user
+            // Prepare the payload for updating the category
             $payload = $request->only('name');
 
-            // Find the user by its unique identifier
+            // Find the category by its unique identifier
             $category = Category::find($id);
 
             // Update the category with the provided payload
@@ -176,42 +200,83 @@ class CategoryController extends Controller
 
     /**
      * Remove the specified resource from storage.
+     *
+     * @param string $id The unique identifier of the category to be deleted.
+     *
+     * @return \Illuminate\Http\JsonResponse The response containing the status, message, and deletion result.
+     *
+     * @throws \Throwable If any error occurs during the database transaction.
      */
     public function destroy(string $id)
     {
-       // Start a database transaction
-       DB::beginTransaction();
+        // Start a database transaction
+        DB::beginTransaction();
 
-       // Initialize the response data
-       $resp = [
-           'status' => false,
-       ];
-       $code = 500;
+        // Initialize the response data
+        $resp = [
+            'status' => false,
+        ];
+        $code = 500;
 
-       try {
-           // Find the user by its unique identifier
-           $category = Category::find($id);
+        try {
+            // Find the category by its unique identifier
+            $category = Category::find($id);
 
-           // Delete the user
-           $category->delete();
+            // Delete the category
+            $category->delete();
 
-           // Prepare the success response data
-           $resp['status'] = true;
-           $resp['message'] = 'data berhasil dihapus';
-           $code = 200;
+            // Prepare the success response data
+            $resp['status'] = true;
+            $resp['message'] = 'Data berhasil dihapus';
+            $code = 200;
 
-           // Commit the database transaction
-           DB::commit();
-       } catch (\Throwable $th) {
-           // Prepare the error response data
-           $resp['message'] = $th->getMessage();
+            // Commit the database transaction
+            DB::commit();
+        } catch (\Throwable $th) {
+            // Prepare the error response data
+            $resp['message'] = $th->getMessage();
 
-           // Rollback the database transaction
-           DB::rollBack();
-       }
+            // Rollback the database transaction
+            DB::rollBack();
+        }
 
-       // Return the response as a JSON response
-       return response()->json($resp, $code);
-   }
+        // Return the response as a JSON response
+        return response()->json($resp, $code);
+    }
+
+    public function list()
+    {
+        // Start a database transaction
+        DB::beginTransaction();
+
+        // Initialize the response data
+        $resp = [
+            'status' => false,
+        ];
+        $code = 500;
+
+        try {
+            // Fetch all categories from the database
+            $category = Category::get(['id', 'name as text']);
+
+            // Prepare the success response data
+            $resp['status'] = true;
+            $resp['message'] = 'Berhasil Mengambil data';
+            $resp['data'] = $category;
+            $code = 200;
+
+            // Commit the database transaction
+            DB::commit();
+        } catch(\Throwable $th) {
+            // Prepare the error response data
+            $resp['message'] = $th->getMessage();
+
+            // Rollback the database transaction
+            DB::rollBack();
+        }
+
+        // Return the response as a JSON response
+        return response()->json($resp, $code);
+    }
 
 }
