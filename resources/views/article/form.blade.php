@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('title', 'tambah data article')
+
 @push('css')
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 @endpush
@@ -34,7 +35,7 @@
                                     <label for="category"
                                         class="text-sm font-medium text-gray-900 block mb-2">kategori</label>
                                     <select name="category_id" id="select_category"
-                                        class="inputan !important">
+                                        class="inputan">
                                     </select>
 
                                 </div>

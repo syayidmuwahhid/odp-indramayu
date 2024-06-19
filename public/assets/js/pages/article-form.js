@@ -8,10 +8,11 @@ $(document).ready(function () {
 
 async function getCategoryList() {
     let { data } = await getRequestData(`${baseL}/api/category/list`);
-    $("#select_category").select2({
-        width: "100%",
-        placeholder: "pilih kategori",
-        allowclear: true,
-        data,
-    });
+    $("#select_category")
+        .select2({
+            placeholder: "pilih kategori",
+            // allowclear: true,
+            data,
+        })
+        .addClass("inputan");
 }
