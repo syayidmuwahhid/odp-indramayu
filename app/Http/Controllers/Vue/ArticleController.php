@@ -38,12 +38,9 @@ class ArticleController extends Controller
 
         $article = Article::create($validateData);
 
-        $files = ['thumbnail'];
-        foreach ($files as $file) {
-            if($request->hasFile($file)) {
-                $filePath = $request->file($file)->store('articles/', 'public');
-                $article->$file = $filePath;
-            }
+        if($request->hasFile('thumbnail')) {
+            $filePath = $request->file('thumbnail')->store('articles', 'public');
+            $article->thumbnail = $filePath;
         }
 
         $article->save();
@@ -64,7 +61,8 @@ class ArticleController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $article = Article::find($id);
+        return Inertia::render('Article/Edit', compact('article'));
     }
 
     /**
@@ -72,7 +70,24 @@ class ArticleController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $validateData = $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+            "thumbnail" => 'nullable|image|mimes:png,jpg',
+        ]);
+
+        $article = Article::find($id);
+        $article->update($validateData);
+
+        if($request->hasFile('thumbnail')) {
+            $filePath = $request->file('thumbnail')->store('articles', 'public');
+            $article->thumbnail = $filePath;
+        }
+
+        // $article->fill($validateData);
+        $article->save();
+
+        return redirect()->route('homepage')->with('success', 'Article Berhasil diedit!');
     }
 
     /**
@@ -80,6 +95,8 @@ class ArticleController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $article = Article::find($id);
+        $article->delete();
+        return redirect()->route('homepage')->with('success', 'Article Berhasil dihapus!');
     }
 }

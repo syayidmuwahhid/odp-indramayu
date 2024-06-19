@@ -52,19 +52,21 @@ export default {
             type: Object,
             default: null,
         },
+        article: Object,
     },
     data() {
         return {
             form: {
-                title: "",
-                description: "",
-                thumbnail: "",
+                _method: "PUT",
+                title: this.article.title,
+                description: this.article.description,
+                thumbnail: this.article.thumbnail,
             },
         };
     },
     methods: {
         submitForm() {
-            router.post("/articles", this.form);
+            router.post(`/articles/${this.article.id}`, this.form);
         },
     },
 };
