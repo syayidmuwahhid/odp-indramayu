@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\Vue\ArticleController;
 use App\Http\Controllers\Vue\HomeController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -15,7 +16,7 @@ Route::get('/login', [AuthController::class, 'index']);
 Route::post('/login', [AuthController::class, 'authenticate'])->name('login');
 Route::get('/register', [AuthController::class, 'register']);
 Route::post('/register', [AuthController::class, 'signup'])->name('register');
-Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::name('admin.')->prefix('admin')->middleware('auth')->group(function () {
     Route::get('/', function () {
@@ -31,3 +32,4 @@ Route::name('admin.')->prefix('admin')->middleware('auth')->group(function () {
 
 Route::get('/homepage', [HomeController::class, 'index'])->name('homepage');
 Route::get('/about', fn () => Inertia::render('About'))->name('about');
+Route::resource('articles', ArticleController::class);

@@ -1,9 +1,39 @@
 <template>
     <main>
-        <header class="text-center mt-2">
-            <Link class="m-1" href="/">Home</Link>
-            <Link class="m-1" href="/about">About</Link>
-            <Link class="m-1" href="/contact">Contact</Link>
+        <header class="text-center mt-2 bg-green-500 py-3 text-xl text-bold">
+            <Link
+                class="m-2"
+                href="/homepage"
+                :class="{ 'text-red-500': $page.url == '/homepage' }"
+                >Home</Link
+            >
+            <Link
+                class="m-2"
+                href="/articles/create"
+                :class="{ 'text-red-500': $page.url == '/articles/create' }"
+                >Articles</Link
+            >
+            <Link
+                class="m-2"
+                href="/about"
+                :class="{ 'text-red-500': $page.url == '/about' }"
+                >About</Link
+            >
+            <Link
+                class="m-2"
+                href="/contact"
+                :class="{ 'text-red-500': $page.url == '/contact' }"
+                >Contact</Link
+            >
+            <Link
+                class="m-2"
+                href="/logout"
+                method="post"
+                :data="{ data: true }"
+                :header="{ authorization: 123456 }"
+                as="button"
+                >Logout</Link
+            >
         </header>
         <article>
             <slot />

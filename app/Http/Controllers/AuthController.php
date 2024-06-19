@@ -104,6 +104,7 @@ class AuthController extends Controller
 
     public function logout(Request $request)
     {
+        return response()->json($request->all());
         // Logout the authenticated user
         Auth::logout();
 

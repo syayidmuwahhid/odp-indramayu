@@ -20,12 +20,8 @@ class Article extends Model
      */
     protected $fillable = [
         'title',
-        'date',
-        'content',
-        'video',
-        'image',
-        'category_id',
-        'user_id',
+        'description',
+        'thubnail'
     ];
 
     public function User(): BelongsTo

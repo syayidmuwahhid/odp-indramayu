@@ -1,7 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Vue;
 
+use App\Http\Controllers\Controller;
+use App\Models\Article;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -20,7 +22,7 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        return Inertia::render('Article.Create');
+        return Inertia::render('Article/Create');
     }
 
     /**
@@ -28,7 +30,25 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validateData = $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+            "thumbnail" => 'nullable|image|mimes:png,jpg',
+        ]);
+
+        $article = Article::create($validateData);
+
+        $files = ['thumbnail'];
+        foreach ($files as $file) {
+            if($request->hasFile($file)) {
+                $filePath = $request->file($file)->store('articles/', 'public');
+                $article->$file = $filePath;
+            }
+        }
+
+        $article->save();
+
+        return redirect()->route('homepage')->with('success', 'Article Berhasil ditambahkan!');
     }
 
     /**
