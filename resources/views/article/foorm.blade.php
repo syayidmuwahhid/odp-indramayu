@@ -1,6 +1,5 @@
 @extends('layouts.app')
 @section('title', 'tambah data article')
-
 @push('css')
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 @endpush
@@ -20,53 +19,47 @@
                     </div>
                     <div class="p-6 space-y-6">
                         <form action="#" class="h-full flex flex-col">
-                            <div class="grid grid-cols-6 gap-6 h-full">
-
+                            <div class="grid grid-cols-6 gap-6 flex-grow">
                                 {{-- title --}}
                                 <div class="col-span-6 sm:col-span-3">
-                                    <label for="product-name"
-                                        class="text-sm font-medium text-gray-900 block mb-2">Title</label>
-                                    <input type="text" name="title" id="product-name" class="inputan"
-                                        placeholder="tambahkan judul artikel" required>
+                                    <label for="product-name" class="text-sm font-medium text-gray-900 block mb-2">Title</label>
+                                    <input type="text" name="product-name" id="product-name" class="inputan" placeholder="Apple Imac 27”" required="">
                                 </div>
                                 {{-- kategory --}}
                                 <div class="col-span-6 sm:col-span-3">
-                                    <label for="category"
-                                        class="text-sm font-medium text-gray-900 block mb-2">Kategori</label>
-                                    <select name="category_id" id="select_category" class="inputan" required>
+                                    <label for="category" class="text-sm font-medium text-gray-900 block mb-2">Kategori</label>
+                                    <select name="category_id" id="select_category" class="inputan">
                                     </select>
                                 </div>
                                 {{-- foto --}}
                                 <div class="col-span-6 sm:col-span-3">
-                                    <label for="foto" class="text-sm font-medium text-gray-900 block mb-2">Foto</label>
-                                    <input type="file" name="foto" id="foto" class="inputan" accept="image/*">
+                                    <label for="brand" class="text-sm font-medium text-gray-900 block mb-2">Foto</label>
+                                    <input type="file" name="brand" id="brand" class="inputan" placeholder="Apple" required="">
                                 </div>
                                 {{-- vidio --}}
                                 <div class="col-span-6 sm:col-span-3">
-                                    <label for="video" class="text-sm font-medium text-gray-900 block mb-2">Vidio</label>
-                                    <input type="file" name="video" id="video" class="inputan" accept="video/*">
+                                    <label for="brand" class="text-sm font-medium text-gray-900 block mb-2">Vidio</label>
+                                    <input type="file" name="brand" id="brand" class="inputan" placeholder="Apple" required="">
                                 </div>
                                 {{-- tanggal --}}
                                 <div class="col-span-6 sm:col-span-3">
-                                    <label for="date"
-                                        class="text-sm font-medium text-gray-900 block mb-2">Tanggal</label>
-                                    <input type="date" name="date" id="date" class="inputan" required="">
+                                    <label for="price" class="text-sm font-medium text-gray-900 block mb-2">Tanggal</label>
+                                    <input type="date" name="price" id="price" class="inputan" placeholder="$2300" required="">
                                 </div>
                                 {{-- content --}}
                                 <div class="col-span-full">
-                                    <label for="content"
-                                        class="text-sm font-medium text-gray-900 block mb-2">Content</label>
+                                    <label for="product-details" class="text-sm font-medium text-gray-900 block mb-2">Content</label>
                                     <div class="">
                                         <div id="editor" class="h-96"></div>
                                     </div>
-
                                 </div>
                             </div>
+
                             <div class="mt-5 flex justify-end">
-                                <button
-                                    class="text-white inline-flex items-center justify-center rounded-xl bg-green-500 py-3 px-6 font-dm text-base font-bold shadow-xl shadow-green-400 transition-transform duration-200 ease-in-out hover:scale-[1.02]">Simpan</button>
+                                <button class="text-white inline-flex items-center justify-center rounded-xl bg-green-500 py-3 px-6 font-dm text-base font-bold shadow-xl shadow-green-400 transition-transform duration-200 ease-in-out hover:scale-[1.02]">Simpan</button>
                             </div>
                         </form>
+
                     </div>
 
                 </div>
@@ -77,8 +70,8 @@
 
 @endsection
 @push('js')
-    <script src="https://cdn.ckeditor.com/ckeditor5/41.4.2/classic/ckeditor.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script src="https://cdn.ckeditor.com/ckeditor5/41.4.2/classic/ckeditor.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="{{ asset('assets/js/pages/article-form.js') }}"></script>
     {{-- <script>
         $(document).ready(function() {

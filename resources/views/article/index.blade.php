@@ -11,7 +11,7 @@
                     class="relative flex flex-col min-w-0 mb-6 break-words bg-white border-0 border-transparent border-solid shadow-soft-xl rounded-2xl bg-clip-border">
                     <div
                         class="p-6 pb-0 mb-0 flex justify-between bg-white border-b-0 border-b-solid rounded-t-2xl border-b-transparent">
-                        <h6>Tabel article</h6>
+                        <h6>Tabel Artikel</h6>
 
                         {{-- button modal --}}
                         <a href="{{ route("admin.article.form") }}"
