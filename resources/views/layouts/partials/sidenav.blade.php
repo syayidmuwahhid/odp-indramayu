@@ -181,8 +181,10 @@
                 <a class="{{ url()->current() == route('admin.article.index') ? $a_active : '' }} py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-4 transition-colors"
                     href="{{ route('admin.article.index') }}">
                     <div
+
                         class="{{ url()->current() == route('admin.article.index') ? $i_active : '' }}shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5">
                         <svg width="12px" height="12px" viewBox="0 0 40 40" version="1.1"
+
                             xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                             <title>settings</title>
                             <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -203,7 +205,7 @@
                                     </g>
                                 </g>
                             </g>
-                        </svg>
+                        </svg> --}}
                     </div>
                     <span class="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">Artikel</span>
                 </a>
