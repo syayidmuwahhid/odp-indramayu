@@ -16,7 +16,7 @@ Route::post('/register', [AuthController::class, 'signup'])->name('register');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::name('admin.')->prefix('admin')->middleware('auth')->group(function () {
-    Route::get('/', fn() => view('layouts.app'))->name('dashboard');
+    Route::get('/', fn() => view('dashboard'))->name('dashboard');
 
     Route::get('/user', fn () => view('user.index'))->name('user.index');
     Route::get('/category', fn () => view('category.index'))->name('category.index');
