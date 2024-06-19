@@ -180,7 +180,13 @@
                     href="{{ route('admin.article.index') }}">
                     <div
                         class="shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5">
-                        <svg width="12px" height="12px" viewBox="0 0 40 40" version="1.1"
+                        <svg class="w-12 h-12 text-gray-800" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <title>Article Icon</title>
+                          <path class="fill-current" d="M19 2H5C3.897 2 3 2.897 3 4V20C3 21.103 3.897 22 5 22H19C20.103 22 21 21.103 21 20V4C21 2.897 20.103 2 19 2ZM19 20H5V4H19V20Z"/>
+                          <path class="fill-current" d="M7 6H17V8H7V6ZM7 10H17V12H7V10ZM7 14H14V16H7V14Z"/>
+                        </svg>
+                        
+                        {{-- <svg width="12px" height="12px" viewBox="0 0 40 40" version="1.1"
                             xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                             <title>settings</title>
                             <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -201,7 +207,7 @@
                                     </g>
                                 </g>
                             </g>
-                        </svg>
+                        </svg> --}}
                     </div>
                     <span class="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">Artikel</span>
                 </a>

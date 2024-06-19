@@ -3,6 +3,13 @@ $(document).ready(function () {
     getData(); // get data
 });
 
+function closeDialog(event, id) {
+    const modal = document.getElementById(id);
+    if (event.target === modal) {
+        modal.close();
+    }
+}
+
 function formModal() {
     let html = `
     <form id="formModal" enctype="multipart/form-data">
@@ -43,9 +50,14 @@ async function getData() {
         data.data.forEach((value, i) => {
             let html = `<tr>
                 <td class="text-center p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">${++i}</td>
-                <td><img src="${baseL}/${value.location}" alt="${
-                value.description
-            }" style="width: 100px;"></td>
+                <td class="text-center p-4">
+                    <img src="${baseL}/${value.location}" alt="${value.description}" style="width: 150px; height: 30vh; object-fit: cover;" onclick="myModal${i}.showModal()">
+                    <dialog id="myModal${i}" class="modal" style="width: 100vh; max-width: 800px; background-color: transparent; border: none; padding: 0; overflow: hidden;" onclick="closeDialog(event, 'myModal${i}')">
+                        <div class="modal-box" style="padding: 0; display: flex; justify-content: center; align-items: center; background-color: transparent;">
+                            <img src="${baseL}/${value.location}" alt="${value.description}" class="modal-image" style="width: 100%; height: 90vh; max-width: 100%;object-fit: contain;">
+                        </div>
+                    </dialog>
+                </td>
                 <td>${value.title}</td>
                 <td>${value.description}</td>
                 <td class="text-center">
