@@ -12,7 +12,7 @@ $(document).ready(function () {
 async function getData() {
     try {
         // Fetch category data from the server
-        let data = await getRequestData(`${baseL}/api/category`);
+        let data = await getRequestData(`${baseL}/api/tag`);
 
         // Throw an error if the request fails or the response status is not successful
         if (!data.status) {
