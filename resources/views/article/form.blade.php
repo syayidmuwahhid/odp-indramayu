@@ -34,7 +34,7 @@
                                     <label for="category"
                                         class="text-sm font-medium text-gray-900 block mb-2">kategori</label>
                                     <select name="category_id" id="select_category"
-                                        class="!inputan">
+                                        class="inputan !important">
                                     </select>
 
                                 </div>

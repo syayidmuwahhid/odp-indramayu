@@ -73,6 +73,7 @@
                 </a>
             </li>
 
+            {{-- SLIDER --}}
             <li class="mt-0.5 w-full">
                 <a class="py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-4 transition-colors"
                     href="{{ route('admin.slider') }}">
@@ -90,6 +91,7 @@
                 </a>
             </li>
 
+            {{-- VIDIO --}}
             <li class="mt-0.5 w-full">
                 <a class="py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-4 transition-colors"
                     href="{{ route('admin.video') }}">
@@ -135,7 +137,7 @@
                 </g>
               </svg> --}}
                     </div>
-                    <span class="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">Category</span>
+                    <span class="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">Kategori</span>
                 </a>
             </li>
 
@@ -201,12 +203,12 @@
                             </g>
                         </svg>
                     </div>
-                    <span class="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">article</span>
+                    <span class="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">Artikel</span>
                 </a>
             </li>
 
             {{-- INI CONTOH SEMATA --}}
-            <li class="mt-0.5 w-full">
+            {{-- <li class="mt-0.5 w-full">
           <a class="py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-4 transition-colors" href="./pages/profile.html">
             <div class="shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5">
               <svg width="12px" height="12px" viewBox="0 0 46 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -226,11 +228,10 @@
             </div>
             <span class="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">Profile</span>
           </a>
-        </li>
-
+        </li> --}}
 
             {{-- INI CONTOH SEMATA --}}
-            <li class="mt-0.5 w-full">
+            {{-- <li class="mt-0.5 w-full">
           <a class="py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-4 transition-colors" href="./pages/sign-in.html">
             <div class="shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5">
               <svg width="12px" height="12px" viewBox="0 0 40 44" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -249,10 +250,10 @@
             </div>
             <span class="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">Sign In</span>
           </a>
-        </li>
+        </li> --}}
 
             {{-- INI CONTOH SEMATA --}}
-            <li class="mt-0.5 w-full">
+            {{-- <li class="mt-0.5 w-full">
           <a class="py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-4 transition-colors" href="./pages/sign-up.html">
             <div class="shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5">
               <svg width="12px" height="20px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -276,13 +277,13 @@
             </div>
             <span class="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">Sign Up</span>
           </a>
-        </li>
+        </li> --}}
         </ul>
     </div>
 
     {{-- <div class="mx-4">
       <!-- load phantom colors for card after: -->
-      <p class="invisible hidden text-red-600 after:bg-gradient-to-tl  after:to-slate-800 after:from-blue-600 after:to-cyan-400 after:from-red-500 after:to-yellow-400 after:from-green-600 after:to-lime-400 after:from-red-600 after:to-rose-400 after:from-slate-600 after:to-slate-300 text-lime-500 text-cyan-500 text-slate-400 text-fuchsia-500"></p>
+      <p class="invisible hidden after:bg-gradient-to-tl after:from-red-500 after:to-yellow-400 after:from-green-600 after:to-lime-400 after:from-red-600 after:to-rose-400 after:from-slate-600 after:to-slate-300 text-lime-500 text-cyan-500 text-slate-400 text-fuchsia-500"></p>
       <div class="after:opacity-65 after:bg-gradient-to-tl after:from-slate-600 after:to-slate-300 relative flex min-w-0 flex-col items-center break-words rounded-2xl border-0 border-solid border-blue-900 bg-white bg-clip-border shadow-none after:absolute after:top-0 after:bottom-0 after:left-0 after:z-10 after:block after:h-full after:w-full after:rounded-2xl after:content-['']" sidenav-card>
         <div class="mb-7.5 absolute h-full w-full rounded-2xl bg-cover bg-center" style="background-image: url({{ asset('assets/img/curved-images/white-curved.jpeg') }})"></div>
         <div class="relative z-20 flex-auto w-full p-4 text-left text-white">
