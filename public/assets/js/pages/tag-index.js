@@ -11,12 +11,14 @@ $(document).ready(function () {
 async function getData() {
     try {
         // Fetch category data from the server
-        let data = await getRequestData(`${baseL}/api/tag`);
+        let data = await getRequestData(`${baseL}/api/tags`);
 
         // Throw an error if the request fails or the response status is not successful
         if (!data.status) {
             throw new Error(data.message);
         }
+
+        console.log(data);
 
         // Clear the table body
         $("#tbody_data").empty();
@@ -26,7 +28,7 @@ async function getData() {
             let html = `<tr>`;
             html += `<td class="text-center p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">${++i}</td>`;
             html += `<td class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">${value.name}</td>`;
-            html += `<td class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">${value.article_name}</td>`;
+            html += `<td class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">${value.article_tag.article.title}</td>`;
             html += `</tr>`;
 
             // Append the generated HTML to the table body

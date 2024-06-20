@@ -15,36 +15,39 @@ class TagsController extends Controller
     */
    public function index()
    {
-       // Initialize the response data
-       $resp = [
-           'status' => false,
-       ];
-       $code = 500;
+        // Initialize the response data
+        $resp = [
+            'status' => false,
+        ];
+        $code = 500;
 
-       DB::beginTransaction();
+        DB::beginTransaction();
 
-       try {
-           // Fetch all categories from the database
-           $tag = Tag::all();
+        try {
+            // Fetch all categories from the database
+            $tags = Tag::all();
+            foreach ($tags as $tag) {
+                $tag->ArticleTag->Article;
+            }
 
-           // Prepare the success response data
-           $resp['status'] = true;
-           $resp['message'] = 'Berhasil Mengambil Data';
-           $resp['data'] = $tag;
-           $code = 200;
+            // Prepare the success response data
+            $resp['status'] = true;
+            $resp['message'] = 'Berhasil Mengambil Data';
+            $resp['data'] = $tags;
+            $code = 200;
 
-           // Commit the database transaction
-           DB::commit();
-       } catch (\Throwable $th) {
-           // Prepare the error response data
-           $resp['message'] = $th->getMessage();
+            // Commit the database transaction
+            DB::commit();
+        } catch (\Throwable $th) {
+            // Prepare the error response data
+            $resp['message'] = $th->getMessage();
 
-           // Rollback the database transaction in case of any error
-           DB::rollBack();
-       }
+            // Rollback the database transaction in case of any error
+            DB::rollBack();
+        }
 
-       // Return the response as a JSON response
-       return response()->json($resp, $code);
+        // Return the response as a JSON response
+        return response()->json($resp, $code);
    }
 
    /**
