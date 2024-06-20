@@ -197,3 +197,11 @@ async function postData(url, formData, method) {
     // If successful, return the response data
     return data;
 }
+
+function inputValidate(id, title = "") {
+    const data = $(id).val();
+
+    if (!data) {
+        throw new Error(`${title} Inputan Wajib diisi!`);
+    }
+}
