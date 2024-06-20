@@ -2,6 +2,8 @@
 @section('title', 'tambah data article')
 @push('css')
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    {{-- tagify --}}
+    <link href="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.css" rel="stylesheet" type="text/css" />
 @endpush
 
 @section('content')
@@ -51,6 +53,11 @@
                                         class="text-sm font-medium text-gray-900 block mb-2">Tanggal</label>
                                     <input type="date" name="date" id="date" class="inputan" required="">
                                 </div>
+                                {{-- tag --}}
+                                <div class="col-span-6 sm:col-span-3">
+                                    <label for="price" class="text-sm font-medium text-gray-900 block mb-2">Tag</label>
+                                    <input name='tags' id="tag-input" value='' placeholder='Add tags' class="inputan">
+                                </div>
                                 {{-- content --}}
                                 <div class="col-span-full">
                                     <label for="content"
@@ -71,7 +78,6 @@
                 </div>
             </div>
         </div>
-
     </div>
 
 @endsection
@@ -79,9 +85,20 @@
     <script src="https://cdn.ckeditor.com/ckeditor5/41.4.2/classic/ckeditor.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="{{ asset('assets/js/pages/article-form.js') }}"></script>
-    {{-- <script>
-        $(document).ready(function() {
-        $('.js-example-basic-single').select2();
-    });
-    </script> --}}
+    {{-- tagify --}}
+    <script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.polyfills.min.js"></script>
+    <script>
+        var input = document.getElementById('tag-input');
+        var tagify = new Tagify(input);
+        var tagify = new Tagify(input, {
+            whitelist: ["tag1", "tag2", "tag3"], // Daftar tag yang diizinkan
+            maxTags: 5, // Maksimum jumlah tag yang bisa ditambahkan
+            backspace: "edit", // Aksi saat menekan tombol backspace
+            placeholder: "Type to add a tag"
+        });
+        tagify.on('add', function(e) {
+            console.log("Tag added:", e.detail.data);
+        });
+    </script>
 @endpush
