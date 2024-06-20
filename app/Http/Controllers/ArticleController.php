@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ArticleController extends Controller
 {
@@ -27,7 +28,26 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        return response()->json($request->all());
+        $resp = [
+            'status' => false,
+        ];
+        $code = 500;
+        DB::beginTransaction();
+
+        try {
+            $resp['data'] = $request->all();
+            $resp['status'] = true;
+            $resp['message'] = 'Berhasil menyimpan data';
+            $code = 200;
+            DB::commit();
+        } catch (\Throwable $th) {
+            // Prepare the error response data
+            $resp['message'] = $th->getMessage();
+
+            // Rollback the database transaction
+            DB::rollBack();
+        }
+        return response()->json($resp, $code);
     }
 
     /**

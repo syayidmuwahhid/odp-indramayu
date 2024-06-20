@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('title', 'tambah data article')
+
 @push('css')
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     {{-- tagify --}}
@@ -20,7 +21,7 @@
                         <h6>form tambah article</h6>
                     </div>
                     <div class="p-6 space-y-6">
-                        <form action="#" class="h-full flex flex-col">
+                        <form action="/api/article" class="h-full flex flex-col" method="post" id="form_submit">
                             <div class="grid grid-cols-6 gap-6 h-full">
 
                                 {{-- title --}}
@@ -51,7 +52,7 @@
                                 <div class="col-span-6 sm:col-span-3">
                                     <label for="date"
                                         class="text-sm font-medium text-gray-900 block mb-2">Tanggal</label>
-                                    <input type="date" name="date" id="date" class="inputan" required="">
+                                    <input type="date" name="date" id="date" class="inputan" required="" value="{{ date('Y-m-d') }}">
                                 </div>
                                 {{-- tag --}}
                                 <div class="col-span-6 sm:col-span-3">

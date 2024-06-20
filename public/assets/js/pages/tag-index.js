@@ -2,7 +2,6 @@ $(document).ready(function () {
     getData(); // get data
 });
 
-
 /**
  * Function to fetch and display category data in the table.
  *
