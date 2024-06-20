@@ -10,7 +10,7 @@
                 <div
                     class="relative flex flex-col min-w-0 mb-6 break-words bg-white border-0 border-transparent border-solid shadow-soft-xl rounded-2xl bg-clip-border">
                     <div
-                        class="p-6 pb-0 mb-0 flex justify-between bg-white border-b-0 border-b-solid rounded-t-2xl border-b-transparent">
+                        class="p-6 pb-0 mb-7 flex justify-between bg-white border-b-0 border-b-solid rounded-t-2xl border-b-transparent">
                         <h6>Tabel User</h6>
                         {{-- bg-gradient-to-tl from-green-500 to-cyan-200 --}}
                         {{-- button modal --}}
@@ -26,7 +26,7 @@
                                             No</th>
 
                                         <th
-                                            class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                                            class="px-2 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
                                             Nama</th>
                                         <th
                                             class="px-6 py-3 pl-2 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">

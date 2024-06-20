@@ -15,7 +15,7 @@
     <div class="items-center block w-auto max-h-screen overflow-auto grow basis-full">
         <ul class="flex flex-col pl-0 mb-0">
             @php($a_active = 'shadow-soft-xl rounded-lg bg-white font-semibold text-slate-700 ')
-            @php($i_active = 'bg-gradient-to-tl from-green-500 to-cyan-200 ')
+            @php($i_active = 'bg-gradient-to-tl from-green-300 to-cyan-100 ')
 
             {{-- DASHBOARD --}}
             <li class="mt-0.5 w-full">
