@@ -6,7 +6,7 @@
         <a class="block px-8 py-6 m-0 text-sm whitespace-nowrap text-slate-700" href="javascript:;" target="_blank">
             <img src="{{ asset('assets/img/logo-ct.png') }}"
                 class="inline h-full max-w-full transition-all duration-200 ease-nav-brand max-h-8" alt="main_logo" />
-            <span class="ml-1 font-semibold transition-all duration-200 ease-nav-brand">Soft UI Dashboard</span>
+            <span class="ml-1 font-semibold transition-all duration-200 ease-nav-brand">ODP Indramayu</span>
         </a>
     </div>
 
@@ -14,18 +14,18 @@
 
     <div class="items-center block w-auto max-h-screen overflow-auto grow basis-full">
         <ul class="flex flex-col pl-0 mb-0">
+            @php($a_active = 'shadow-soft-xl rounded-lg bg-white font-semibold text-slate-700 ')
+            @php($i_active = 'bg-gradient-to-tl from-green-500 to-cyan-200 ')
 
             {{-- DASHBOARD --}}
             <li class="mt-0.5 w-full">
-                <a class="py-2.7 shadow-soft-xl text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap rounded-lg bg-white px-4 font-semibold text-slate-700 transition-colors"
-                    href="{{ route('admin.dashboard') }}">
-                    <div
-                        class="bg-gradient-to-tl from-purple-700 to-pink-500 shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5">
+                <a class="{{ url()->current() == route('admin.dashboard') ? $a_active : '' }} py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-4 transition-colors" href="{{ route('admin.dashboard') }}">
+                    <div class="{{ url()->current() == route('admin.dashboard') ? $i_active : '' }}shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5">
                         <svg width="12px" height="12px" viewBox="0 0 45 40" version="1.1"
                             xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                             <title>shop</title>
                             <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                <g transform="translate(-1716.000000, -439.000000)" fill="#FFFFFF" fill-rule="nonzero">
+                                <g transform="translate(-1716.000000, -439.000000)" fill="#6F747F" fill-rule="nonzero">
                                     <g transform="translate(1716.000000, 291.000000)">
                                         <g transform="translate(0.000000, 148.000000)">
                                             <path class="opacity-60"
@@ -46,10 +46,10 @@
 
             {{-- MANAGEMENT USER --}}
             <li class="mt-0.5 w-full">
-                <a class="py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-4 transition-colors"
+                <a class="{{ url()->current() == route('admin.user.index') ? $a_active : '' }} py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-4 transition-colors"
                     href="{{ route('admin.user.index') }}">
                     <div
-                        class="shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5">
+                        class="{{ url()->current() == route('admin.user.index') ? $i_active : '' }} shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5">
                         <svg width="12px" height="12px" viewBox="0 0 42 42" version="1.1"
                             xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                             <title>office</title>
@@ -75,10 +75,10 @@
 
             {{-- SLIDER --}}
             <li class="mt-0.5 w-full">
-                <a class="py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-4 transition-colors"
+                <a class="{{ url()->current() == route('admin.slider') ? $a_active : '' }} py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-4 transition-colors"
                     href="{{ route('admin.slider') }}">
                     <div
-                        class="shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center fill-current stroke-0 text-center xl:p-2.5">
+                        class="{{ url()->current() == route('admin.slider') ? $i_active : '' }} shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center fill-current stroke-0 text-center xl:p-2.5">
                         <svg class="w-10 h-10" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <rect width="40" height="40" rx="5" class="fill-slate-800 opacity-60"></rect>
                             <rect x="5" y="5" width="30" height="20" class="fill-white"></rect>
@@ -93,10 +93,10 @@
 
             {{-- VIDIO --}}
             <li class="mt-0.5 w-full">
-                <a class="py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-4 transition-colors"
+                <a class="{{ url()->current() == route('admin.video') ? $a_active : '' }} py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-4 transition-colors"
                     href="{{ route('admin.video') }}">
                     <div
-                        class="shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5">
+                        class="{{ url()->current() == route('admin.video') ? $i_active : '' }}shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5">
                         <svg class="w-10 h-10" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <rect width="40" height="40" rx="5" class="fill-slate-900 opacity-60"></rect>
                             <polygon points="15,10 30,20 15,30" class="fill-white"></polygon>
@@ -108,11 +108,11 @@
 
             {{-- CATEGORY --}}
             <li class="mt-0.5 w-full">
-                <a class="py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-4 transition-colors"
+                <a class="{{ url()->current() == route('admin.category.index') ? $a_active : '' }} py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-4 transition-colors"
                     href="{{ route('admin.category.index') }}">
 
                     <div
-                        class="shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5">
+                        class="{{ url()->current() == route('admin.category.index') ? $i_active : '' }}shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5">
                         <svg class="w-10 h-10" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <rect width="40" height="40" rx="5" class="fill-slate-800 opacity-60">
                             </rect>
@@ -141,12 +141,30 @@
                 </a>
             </li>
 
+
+
+            {{-- ARTICLE --}}
+            <li class="mt-0.5 w-full">
+                <a class="{{ url()->current() == route('admin.article.index') ? $a_active : '' }} py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-4 transition-colors"
+                    href="{{ route('admin.article.index') }}">
+                    <div
+
+                        class="{{ url()->current() == route('admin.article.index') ? $i_active : '' }}shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5">
+                        <svg width="12px" height="12px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path fill-rule="evenodd" clip-rule="evenodd" d="M2 1.5C2 1.22386 2.22386 1 2.5 1H21.5C21.7761 1 22 1.22386 22 1.5V22.5C22 22.7761 21.7761 23 21.5 23H2.5C2.22386 23 2 22.7761 2 22.5V1.5ZM9 5C9 4.44772 9.44772 4 10 4H19C19.5523 4 20 4.44772 20 5C20 5.55228 19.5523 6 19 6H10C9.44772 6 9 5.55228 9 5ZM5 8C5 7.44772 5.44772 7 6 7H19C19.5523 7 20 7.44772 20 8C20 8.55228 19.5523 9 19 9H6C5.44772 9 5 8.55228 5 8ZM5 11C5 10.4477 5.44772 10 6 10H19C19.5523 10 20 10.4477 20 11C20 11.5523 19.5523 12 19 12H6C5.44772 12 5 11.5523 5 11ZM5 14C5 13.4477 5.44772 13 6 13H19C19.5523 13 20 13.4477 20 14C20 14.5523 19.5523 15 19 15H6C5.44772 15 5 14.5523 5 14ZM5 17C5 16.4477 5.44772 16 6 16H16C16.5523 16 17 16.4477 17 17C17 17.5523 16.5523 18 16 18H6C5.44772 18 5 17.5523 5 17Z" fill="#9E9E9E"/>
+                        </svg>
+                        
+                    </div>
+                    <span class="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">Artikel</span>
+                </a>
+            </li>
+
             {{-- TAG --}}
             <li class="mt-0.5 w-full">
-                <a class="py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-4 transition-colors"
+                <a class="{{ url()->current() == route('admin.tag.index') ? $a_active : '' }} py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-4 transition-colors"
                     href="{{ route('admin.tag.index') }}">
                     <div
-                        class="shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5">
+                        class="{{ url()->current() == route('admin.tag.index') ? $i_active : '' }}shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5">
                         <svg class="w-10 h-10" viewBox="0 0 40 40" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
                             <rect width="40" height="40" rx="5" class="fill-slate-800 opacity-60">
@@ -171,39 +189,6 @@
               </svg> --}}
                     </div>
                     <span class="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">Tag</span>
-                </a>
-            </li>
-
-            {{-- ARTICLE --}}
-            <li class="mt-0.5 w-full">
-                <a class="py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-4 transition-colors"
-                    href="{{ route('admin.article.index') }}">
-                    <div
-                        class="shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5">
-                        <svg width="12px" height="12px" viewBox="0 0 40 40" version="1.1"
-                            xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                            <title>settings</title>
-                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                <g transform="translate(-2020.000000, -442.000000)" fill="#FFFFFF"
-                                    fill-rule="nonzero">
-                                    <g transform="translate(1716.000000, 291.000000)">
-                                        <g transform="translate(304.000000, 151.000000)">
-                                            <polygon class="fill-slate-800 opacity-60"
-                                                points="18.0883333 15.7316667 11.1783333 8.82166667 13.3333333 6.66666667 6.66666667 0 0 6.66666667 6.66666667 13.3333333 8.82166667 11.1783333 15.315 17.6716667">
-                                            </polygon>
-                                            <path class="fill-slate-800 opacity-60"
-                                                d="M31.5666667,23.2333333 C31.0516667,23.2933333 30.53,23.3333333 30,23.3333333 C29.4916667,23.3333333 28.9866667,23.3033333 28.48,23.245 L22.4116667,30.7433333 L29.9416667,38.2733333 C32.2433333,40.575 35.9733333,40.575 38.275,38.2733333 L38.275,38.2733333 C40.5766667,35.9716667 40.5766667,32.2416667 38.275,29.94 L31.5666667,23.2333333 Z">
-                                            </path>
-                                            <path class="fill-slate-800"
-                                                d="M33.785,11.285 L28.715,6.215 L34.0616667,0.868333333 C32.82,0.315 31.4483333,0 30,0 C24.4766667,0 20,4.47666667 20,10 C20,10.99 20.1483333,11.9433333 20.4166667,12.8466667 L2.435,27.3966667 C0.95,28.7083333 0.0633333333,30.595 0.00333333333,32.5733333 C-0.0583333333,34.5533333 0.71,36.4916667 2.11,37.89 C3.47,39.2516667 5.27833333,40 7.20166667,40 C9.26666667,40 11.2366667,39.1133333 12.6033333,37.565 L27.1533333,19.5833333 C28.0566667,19.8516667 29.01,20 30,20 C35.5233333,20 40,15.5233333 40,10 C40,8.55166667 39.685,7.18 39.1316667,5.93666667 L33.785,11.285 Z">
-                                            </path>
-                                        </g>
-                                    </g>
-                                </g>
-                            </g>
-                        </svg>
-                    </div>
-                    <span class="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">Artikel</span>
                 </a>
             </li>
 
