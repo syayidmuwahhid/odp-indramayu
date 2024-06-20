@@ -19,10 +19,13 @@
                 <ul class="flex flex-row justify-end pl-0 mb-0 list-none md-max:w-full">
                     <!-- Options button with dropdown -->
                     <li class="relative flex items-center" x-data="{ open: false }">
-                        <button @click='open = !open' type="button"
-                            class=""
-                            id="menu-button" aria-expanded="true" aria-haspopup="true">
-                            {{ Auth::user()->name }}
+                        {{-- <button class="bg-red-500">kiwiw</button> --}}
+                        <button @click='open = !open' type="button" class="flex items-center gap-1" id="menu-button"
+                            aria-expanded="true" aria-haspopup="true">
+                            <div class="flex flex-col items-end">
+                                <span class="text-xs">{{ Auth::user()->name }}</span>
+                                <span class="text-[10px]">{{ Auth::user()->email }}</span>
+                            </div>
                             <svg class="-mr-1 h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"
                                 aria-hidden="true">
                                 <path fill-rule="evenodd"
@@ -39,15 +42,20 @@
                             <div class="py-1" role="none">
                                 <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->
                                 <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem"
-                                    tabindex="-1" id="menu-item-0">Profile</a>
+                                    tabindex="-1" id="menu-item-0"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" class="scale-125" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+                                        <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
+                                      </svg><span class="pl-2 hidden sm:inline">Profile</span></a>
 
                             </div>
                             <div class="py-1" role="none">
-                                <a href="{{ route('logout') }}"
-                                class="block px-4 py-2 text-sm text-gray-700">
-                                <i class="fa fa-user sm:mr-1"></i>
-                                <span class="hidden sm:inline">Keluar</span>
-                            </a>
+                                <a href="{{ route('logout') }}" class="block px-4 py-2 text-sm text-gray-700">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" class="scale-y-150 scale-x-125" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0z"/>
+                                        <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z"/>
+                                      </svg>
+                                    <span class="pl-2 hidden sm:inline">Keluar</span>
+                                </a>
                             </div>
                         </div>
                     </li>
@@ -58,4 +66,3 @@
 
     <!-- Alpine.js -->
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js"></script>
-
