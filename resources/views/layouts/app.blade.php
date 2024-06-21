@@ -53,7 +53,7 @@
             top: 50%;
             margin-top: -20px;
             position: absolute;
-            z-index: 19 !important;
+            z-index: 59 !important;
             animation: loading-bar-spinner 400ms linear infinite;
         }
 

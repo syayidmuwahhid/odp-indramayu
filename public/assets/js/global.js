@@ -20,6 +20,9 @@ $(document).ready(function () {
 
 function blockUI() {
     $.blockUI({
+        css: {
+            border: 'transparent'
+        },
         message: `<div id="loading-bar-spinner" class="spinner"><div class="spinner-icon"></div></div>`,
     });
 }
@@ -120,8 +123,10 @@ async function modal({
         html,
         focusConfirm: false,
         showCancelButton: true,
-        confirmButtonText: "Save",
+        confirmButtonText: "Simpan",
         showLoaderOnConfirm: true,
+        confirmButtonColor: "#22C55E",
+        cancelButtonColor: "#d33",
         preConfirm: () => {
             let form = document.getElementById(formId);
             return {
