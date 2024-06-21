@@ -20,7 +20,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('assets/img/apple-icon.png') }}" />
-    <link rel="icon" type="image/png" href="{{ asset('assets/img/favicon.png') }}" />
+    <link rel="icon" type="image/png" href="{{ asset('favicon.ico') }}" />
     <title>Register - Dashboard</title>
     <!-- Fonts and icons -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
@@ -114,7 +114,7 @@
           <div class="container z-10">
             <div class="flex flex-wrap justify-center -mx-3">
               <div class="w-full max-w-full px-3 mx-auto mt-0 text-center lg:flex-0 shrink-0 lg:w-5/12">
-                <h1 class="mt-12 mb-2 text-white">Welcome!</h1>
+                <h1 class="mt-12 mb-2 text-white">Selamat Datang</h1>
                 {{-- <p class="text-white">Use these awesome forms to login or create new account in your project for free.</p> --}}
               </div>
             </div>
@@ -125,7 +125,7 @@
             <div class="w-full max-w-full px-3 mx-auto mt-0 md:flex-0 shrink-0 md:w-7/12 lg:w-5/12 xl:w-4/12">
               <div class="relative z-0 flex flex-col min-w-0 break-words bg-white border-0 shadow-soft-xl rounded-2xl bg-clip-border">
                 <div class="p-6 mb-0 text-center bg-white border-b-0 rounded-t-2xl">
-                  <h5 class="text-transparent bg-gradient-to-tl from-green-600 to-cyan-400 bg-clip-text">Register</h5>
+                  <h5 class="text-transparent bg-gradient-to-tl from-green-600 to-cyan-400 bg-clip-text uppercase">Daftar</h5>
                 </div>
                 {{-- <div class="flex flex-wrap px-3 -mx-3 sm:px-6 xl:px-12">
                   <div class="w-3/12 max-w-full px-1 ml-auto flex-0">
@@ -191,9 +191,9 @@
                       <label class="mb-2 ml-1 font-normal cursor-pointer select-none text-sm text-slate-700" for="terms"> I agree the <a href="javascript:;" class="font-bold text-transparent bg-gradient-to-tl from-green-600 to-cyan-400 bg-clip-text">Terms and Conditions</a> </label>
                     </div> --}}
                     <div class="text-center">
-                      <button type="submit" class="inline-block w-full px-6 py-3 mt-6 mb-2 font-bold text-center text-white uppercase align-middle transition-all bg-gradient-to-tl from-green-600 to-cyan-400 border-0 rounded-lg cursor-pointer active:opacity-85 hover:scale-102 hover:shadow-soft-xs leading-pro text-xs ease-soft-in tracking-tight-soft shadow-soft-md bg-150 bg-x-25 bg-gradient-to-tl from-gray-900 to-slate-800 hover:border-slate-700 hover:bg-slate-700 hover:text-white">Sign up</button>
+                      <button type="submit" class="inline-block w-full px-6 py-3 mt-6 mb-2 font-bold text-center text-white uppercase align-middle transition-all bg-gradient-to-tl from-green-600 to-cyan-400 border-0 rounded-lg cursor-pointer active:opacity-85 hover:scale-102 hover:shadow-soft-xs leading-pro text-xs ease-soft-in tracking-tight-soft shadow-soft-md bg-150 bg-x-25 bg-gradient-to-tl from-gray-900 to-slate-800 hover:border-slate-700 hover:bg-slate-700 hover:text-white">Daftar</button>
                     </div>
-                    <p class="mt-4 mb-0 leading-normal text-sm">Already have an account? <a href="{{ url('/login') }}" class="font-bold text-slate-700 text-transparent bg-gradient-to-tl from-green-600 to-cyan-400 bg-clip-text">Sign in</a></p>
+                    <p class="mt-4 mb-0 leading-normal text-sm">Tidak punya akun?? <a href="{{ url('/login') }}" class="font-bold text-slate-700 text-transparent bg-gradient-to-tl from-green-600 to-cyan-400 bg-clip-text">Masuk</a></p>
 
                     @error('error')
                         <script>errorAlert('{{ $message }}')</script>
