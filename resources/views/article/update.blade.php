@@ -1,43 +1,10 @@
 @extends('layouts.app')
-@section('title', 'tambah data article')
+@section('title', 'Update data article')
 
 @push('css')
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     {{-- tagify --}}
     <link href="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.css" rel="stylesheet" type="text/css" />
-    <style>
-        .tags-look .tagify__dropdown__item{
-            display: inline-block;
-            vertical-align: middle;
-            border-radius: 3px;
-            padding: .3em .5em;
-            border: 1px solid #CCC;
-            background: #F3F3F3;
-            margin: .2em;
-            font-size: .85em;
-            color: black;
-            transition: 0s;
-        }
-
-        .tags-look .tagify__dropdown__item--active{
-            border-color: black;
-        }
-
-        .tags-look .tagify__dropdown__item:hover{
-            background: lightyellow;
-            border-color: gold;
-        }
-
-        .tags-look .tagify__dropdown__item--hidden {
-            max-width: 0;
-            max-height: initial;
-            padding: .3em 0;
-            margin: .2em 0;
-            white-space: nowrap;
-            text-indent: -20px;
-            border: 0;
-        }
-    </style>
 @endpush
 
 @section('content')
@@ -55,13 +22,14 @@
                     </div>
                     <div class="p-6 space-y-6">
                         <form action="/api/article" class="h-full flex flex-col" method="post" id="form_submit" enctype="multipart/form-data">
+                            <input type="hidden" id="aricle-id" value="{{ $id }}">
                             <div class="grid grid-cols-6 gap-6 h-full">
 
                                 {{-- title --}}
                                 <div class="col-span-6 sm:col-span-3">
                                     <label for="product-name"
                                         class="text-sm font-medium text-gray-900 block mb-2">Judul <span class="text-sm text-red-500">*</span></label>
-                                    <input type="text" name="title" id="product-name" class="inputan"
+                                    <input type="text" name="title" id="title" class="inputan"
                                         placeholder="tambahkan judul artikel" required>
                                 </div>
                                 {{-- kategory --}}
@@ -71,7 +39,7 @@
                                     <select name="category_id" id="select_category" class="inputan" required>
                                     </select>
                                 </div>
-                                {{-- tanggal --}}
+                                {{-- date --}}
                                 <div class="col-span-6 sm:col-span-3">
                                     <label for="date"
                                     class="text-sm font-medium text-gray-900 block mb-2">Tanggal Artikel <span class="text-sm text-red-500">*</span></label>
@@ -80,7 +48,7 @@
                                 {{-- tag --}}
                                 <div class="col-span-6 sm:col-span-3">
                                     <label for="price" class="text-sm font-medium text-gray-900 block mb-2">Tag Artikel <span class="text-sm text-red-500">*</span></label>
-                                    <input id="tag-input" placeholder="Tag Artikel" class="inputan tagify--custom-dropdown">
+                                    <input id="tag-input" placeholder="Tag Artikel" class="inputan">
                                 </div>
                                 {{-- content --}}
                                 <div class="col-span-full">
@@ -116,7 +84,8 @@
 @push('js')
     <script src="https://cdn.ckeditor.com/ckeditor5/41.4.2/classic/ckeditor.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="{{ asset('assets/js/pages/article-edit.js') }}"></script>
+    {{-- tagify --}}
     <script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify"></script>
     <script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.polyfills.min.js"></script>
-    <script src="{{ asset('assets/js/pages/article-form.js') }}"></script>
 @endpush

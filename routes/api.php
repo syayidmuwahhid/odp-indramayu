@@ -19,6 +19,7 @@ Route::post('/user/{user}', [UserController::class, 'update'])->name('user.updat
 
 Route::apiResource('article', ArticleController::class);
 
+Route::get('/tags/list/category', [TagsController::class, 'listByCategory'])->name('tags.list.category');
 Route::apiResource('tags', TagsController::class)->except('update');
 Route::post('/tags/{tags}', [TagsController::class, 'update'])->name('tags.update');
 
