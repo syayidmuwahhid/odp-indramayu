@@ -4,11 +4,6 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    // return view('layouts.app');
-    return redirect()->route('admin.dashboard');
-});
-
 Route::get('/login', [AuthController::class, 'index']);
 Route::post('/login', [AuthController::class, 'authenticate'])->name('login');
 Route::get('/register', [AuthController::class, 'register']);
@@ -30,3 +25,6 @@ Route::name('admin.')->prefix('admin')->middleware('auth')->group(function () {
     Route::get('/slider', fn () => view('admin.slider.index'))->name('slider');
     Route::get('/video', fn () => view('admin.video.index'))->name('video');
 });
+
+
+Route::get('/', fn ()  => view('landing-page'))->name('landing-page');
