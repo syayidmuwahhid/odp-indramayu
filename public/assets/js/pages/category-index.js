@@ -1,6 +1,8 @@
+let table;
 $(document).ready(function () {
     $("#btnAddModal").click(formModal); //show modal when btn is clicked
     getData(); // get data
+    table = $("#table_container").html();
 });
 
 /**
@@ -15,7 +17,6 @@ function formModal() {
     html += `<label>Name</label>`;
     html += `<input class="swal2-input" placeholder="name" name="name"> <br/>`;
     html += `</form>`;
-
 
     // Call the modal function to display the form
     modal({
@@ -78,7 +79,8 @@ async function getData() {
         }
 
         // Clear the table body
-        $("#tbody_data").empty();
+
+        $("#table_container").empty().html(table);
 
         // Iterate over the fetched data and generate HTML for each row
         data.data.forEach((value, i) => {
@@ -103,6 +105,8 @@ async function getData() {
             // Append the generated HTML to the table body
             $("#tbody_data").append(html);
         });
+
+        $("#table_data").dataTable();
     } catch (error) {
         // Display an error notification
         notif("error", "Galat!", error);
