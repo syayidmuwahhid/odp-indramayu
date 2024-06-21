@@ -134,10 +134,11 @@ class ArticleController extends Controller
             // Find the article by its unique identifier
             $article = Article::find($id);
             $tags = Tag::select('tag.name', 'article_tag.article_id')
-                ->join('article_tag', 'article_tag.id', 'article_tag_id')
-                ->having('article_tag.article_id', $id)
+
+                ->join('article_tag', "article_tag.id", "article_tag_id")
+                ->having("article_tag.article_id", $id)
                 ->get();
-            $article['tags'] = $tags;
+            $article['tags'] =  $tags;
 
             // Prepare the success response data
             $resp['status'] = true;
