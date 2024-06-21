@@ -18,6 +18,15 @@ $(document).ready(function () {
     // });
 });
 
+function blockUI() {
+    $.blockUI({
+        css: {
+            border: 'transparent'
+        },
+        message: `<div id="loading-bar-spinner" class="spinner"><div class="spinner-icon"></div></div>`,
+    });
+}
+
 /**
  * Displays a notification using SweetAlert2.
  *
@@ -60,33 +69,33 @@ function confirm(title, text, callback = () => {}) {
     });
 }
 
-// function setDataTable(id) {
-//     let tb = new DataTable(id, {
-//         layout: {
-//             topStart: null,
-//             topEnd: null,
-//             bottomStart: "pageLength",
-//             bottomEnd: "paging",
-//         },
-//         destroy: true,
-//     });
+function setDataTable(id) {
+    let tb = new DataTable(id, {
+        layout: {
+            topStart: null,
+            topEnd: null,
+            bottomStart: "pageLength",
+            bottomEnd: "paging",
+        },
+        destroy: true,
+    });
 
-//     $(".dataTable-search").on("keyup", function () {
-//         let searchTerm = $(this).val();
-//         tb.search(searchTerm).draw();
-//     });
+    $(".dataTable-search").on("keyup", function () {
+        let searchTerm = $(this).val();
+        tb.search(searchTerm).draw();
+    });
 
-//     $(".dataTable-filter").on("change", () => {
-//         let value = $(".dataTable-filter option:selected").val();
-//         const column = $(".dataTable-filter").data("column");
+    $(".dataTable-filter").on("change", () => {
+        let value = $(".dataTable-filter option:selected").val();
+        const column = $(".dataTable-filter").data("column");
 
-//         if (value === "all") {
-//             value = "";
-//         }
+        if (value === "all") {
+            value = "";
+        }
 
-//         tb.column(column).search(value).draw();
-//     });
-// }
+        tb.column(column).search(value).draw();
+    });
+}
 
 /**
  * Displays a modal form using SweetAlert2 and handles form submission.
@@ -114,8 +123,10 @@ async function modal({
         html,
         focusConfirm: false,
         showCancelButton: true,
-        confirmButtonText: "Save",
+        confirmButtonText: "Simpan",
         showLoaderOnConfirm: true,
+        confirmButtonColor: "#22C55E",
+        cancelButtonColor: "#d33",
         preConfirm: () => {
             let form = document.getElementById(formId);
             return {
@@ -149,6 +160,7 @@ async function modal({
  * @throws {Error} - If the request fails or the response status is not successful.
  */
 async function getRequestData(url) {
+    blockUI();
     let response = await fetch(url);
     let data = await response.json();
 
@@ -157,6 +169,8 @@ async function getRequestData(url) {
         // If not successful, throw an error with the response message
         throw new Error(data.message);
     }
+
+    $.unblockUI();
 
     // If successful, return the response data
     return data;
@@ -181,6 +195,7 @@ async function getRequestData(url) {
  *   .catch(error => console.error(error));
  */
 async function postData(url, formData, method) {
+    blockUI();
     let response = await fetch(url, {
         method,
         body: formData,
@@ -194,6 +209,16 @@ async function postData(url, formData, method) {
         throw new Error(data.message);
     }
 
+    $.unblockUI();
+
     // If successful, return the response data
     return data;
+}
+
+function inputValidate(id, title = "") {
+    const data = $(id).val();
+
+    if (!data) {
+        throw new Error(`${title} Inputan Wajib diisi!`);
+    }
 }

@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string('title');
             $table->date('date');
             $table->text('content');
-            $table->string('video');
-            $table->string('image');
+            $table->string('video')->nullable();
+            $table->string('image')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('category_id');
             $table->timestamps();

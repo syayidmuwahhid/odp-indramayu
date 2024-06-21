@@ -16,15 +16,17 @@ Route::post('/register', [AuthController::class, 'signup'])->name('register');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::name('admin.')->prefix('admin')->middleware('auth')->group(function () {
-    Route::get('/', fn() => view('layouts.app'))->name('dashboard');
+    Route::get('/', fn() => view('admin.dashboard'))->name('dashboard');
 
-    Route::get('/user', fn () => view('user.index'))->name('user.index');
-    Route::get('/category', fn () => view('category.index'))->name('category.index');
-    Route::get('/tag', fn () => view('tag.index'))->name('tag.index');
+    Route::get('/user', fn () => view('admin.user.index'))->name('user.index');
+    Route::get('/category', fn () => view('admin.category.index'))->name('category.index');
+    Route::get('/tag', fn () => view('admin.tag.index'))->name('tag.index');
 
-    Route::get('/article', fn () => view('article.index'))->name('article.index');
-    Route::get('/article/form', fn () => view('article..form'))->name('article.form');
+    Route::get('/article', fn () => view('admin.article.index'))->name('article.index');
+    Route::get('/article/form', fn () => view('admin.article..form'))->name('article.form');
+    Route::get('/article/{id}/edit', fn($id) => view('admin.article.update', ['id' => $id]))->name('article.update');
 
-    Route::get('/slider', fn () => view('slider.index'))->name('slider');
-    Route::get('/video', fn () => view('video.index'))->name('video');
+
+    Route::get('/slider', fn () => view('admin.slider.index'))->name('slider');
+    Route::get('/video', fn () => view('admin.video.index'))->name('video');
 });

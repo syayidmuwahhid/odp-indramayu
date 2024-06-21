@@ -58,7 +58,7 @@ class VideoController extends Controller
             'status' => false,
         ];
         $code = 500;
-
+        
         try {
             // Validate the incoming request data
             $request->validate([
@@ -66,15 +66,15 @@ class VideoController extends Controller
                 'file' => ['required'],
                 'description' => ['required'],
             ]);
-
+            
             $payload = $request->only('title', 'description');
-
+            
             // Prepare the file path
             $path = "storage/video/" . $request->title . "/";
-
+            
             // Generate a unique name for the file
             $video_name = time(). $request->file('file')->hashName();
-
+            
             // Move the uploaded file to the specified location
             $request->file('file')->move($path, $video_name);
 
@@ -83,19 +83,19 @@ class VideoController extends Controller
             $payload['thumbnail'] = 'https://static.vecteezy.com/system/resources/previews/002/162/107/original/camera-video-illustration-hand-drawing-vector.jpg';
 
             if ($request->hasFile('thumbnail')) {
-                 // Generate a unique name for the file
-                $img_name = time(). $request->file('file')->hashName();
-
+                // Generate a unique name for the file
+                $img_name = time(). $request->file('thumbnail')->hashName();
+                
                 // Move the uploaded file to the specified location
-                $request->file('file')->move($path, $img_name);
+                $request->file('thumbnail')->move($path, $img_name);
 
                 // Prepare the full file path
                 $payload['thumbnail'] = $path . $img_name;
             }
-
+            
             // Create a new user in the database
             Video::create($payload);
-
+            
             // Prepare the success response data
             $resp['status'] = true;
             $resp['message'] = 'Berhasil Menambah Data';
@@ -195,10 +195,10 @@ class VideoController extends Controller
 
             if ($request->hasFile('thumbnail')) {
                  // Generate a unique name for the file
-                $img_name = time(). $request->file('file')->hashName();
+                $img_name = time(). $request->file('thumbnail')->hashName();
 
                 // Move the uploaded file to the specified location
-                $request->file('file')->move($path, $img_name);
+                $request->file('thumbnail')->move($path, $img_name);
 
                 // Prepare the full file path
                 $payload['thumbnail'] = $path . $img_name;

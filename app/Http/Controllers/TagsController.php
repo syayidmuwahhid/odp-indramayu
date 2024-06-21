@@ -15,36 +15,39 @@ class TagsController extends Controller
     */
    public function index()
    {
-       // Initialize the response data
-       $resp = [
-           'status' => false,
-       ];
-       $code = 500;
+        // Initialize the response data
+        $resp = [
+            'status' => false,
+        ];
+        $code = 500;
 
-       DB::beginTransaction();
+        DB::beginTransaction();
 
-       try {
-           // Fetch all categories from the database
-           $tag = Tag::all();
+        try {
+            // Fetch all categories from the database
+            $tags = Tag::all();
+            foreach ($tags as $tag) {
+                $tag->ArticleTag->Article;
+            }
 
-           // Prepare the success response data
-           $resp['status'] = true;
-           $resp['message'] = 'Berhasil Mengambil Data';
-           $resp['data'] = $tag;
-           $code = 200;
+            // Prepare the success response data
+            $resp['status'] = true;
+            $resp['message'] = 'Berhasil Mengambil Data';
+            $resp['data'] = $tags;
+            $code = 200;
 
-           // Commit the database transaction
-           DB::commit();
-       } catch (\Throwable $th) {
-           // Prepare the error response data
-           $resp['message'] = $th->getMessage();
+            // Commit the database transaction
+            DB::commit();
+        } catch (\Throwable $th) {
+            // Prepare the error response data
+            $resp['message'] = $th->getMessage();
 
-           // Rollback the database transaction in case of any error
-           DB::rollBack();
-       }
+            // Rollback the database transaction in case of any error
+            DB::rollBack();
+        }
 
-       // Return the response as a JSON response
-       return response()->json($resp, $code);
+        // Return the response as a JSON response
+        return response()->json($resp, $code);
    }
 
    /**
@@ -93,132 +96,166 @@ class TagsController extends Controller
        return response()->json($resp, $code);
    }
 
-   /**
+    /**
     * Display the specified resource.
     */
-   public function show(string $id)
-   {
-       // Initialize the response data
-       $resp = [
-           'status' => false,
-       ];
-       $code = 500;
+    public function show(string $id)
+    {
+        // Initialize the response data
+        $resp = [
+            'status' => false,
+        ];
+        $code = 500;
 
-       DB::beginTransaction();
+        DB::beginTransaction();
 
-       try {
-           // Find the user by its unique identifier
-           $tag = Tag::find($id);
+        try {
+            // Find the user by its unique identifier
+            $tag = Tag::find($id);
 
-           // Prepare the success response data
-           $resp['status'] = true;
-           $resp['message'] = 'Berhasil Mengambil Data';
-           $resp['data'] = $tag;
-           $code = 200;
+            // Prepare the success response data
+            $resp['status'] = true;
+            $resp['message'] = 'Berhasil Mengambil Data';
+            $resp['data'] = $tag;
+            $code = 200;
 
-           // Commit the database transaction
-           DB::commit();
-       } catch (\Throwable $th) {
-           // Prepare the error response data
-           $resp['message'] = $th->getMessage();
+            // Commit the database transaction
+            DB::commit();
+        } catch (\Throwable $th) {
+            // Prepare the error response data
+            $resp['message'] = $th->getMessage();
 
-           // Rollback the database transaction
-           DB::rollBack();
-       }
+            // Rollback the database transaction
+            DB::rollBack();
+        }
 
-       // Return the response as a JSON response
-       return response()->json($resp, $code);
-   }
+        // Return the response as a JSON response
+        return response()->json($resp, $code);
+    }
 
    /**
     * Update the specified resource in storage.
     */
    public function update(Request $request, string $id)
-   {
-       // Start a database transaction
-       DB::beginTransaction();
+    {
+        // Start a database transaction
+        DB::beginTransaction();
 
-       // Initialize the response data
-       $resp = [
-           'status' => false,
-       ];
-       $code = 500;
+        // Initialize the response data
+        $resp = [
+            'status' => false,
+        ];
+        $code = 500;
 
-       try {
-        return response()->json($request->all());
-           // Validate the incoming request data
-           $request->validate([
-               'name' => ['required'],
-           ]);
+        try {
+            return response()->json($request->all());
+            // Validate the incoming request data
+            $request->validate([
+                'name' => ['required'],
+            ]);
 
-           // Prepare the payload for updating the user
-           $payload = $request->only('name');
+            // Prepare the payload for updating the user
+            $payload = $request->only('name');
 
-           // Find the user by its unique identifier
-           $tag = Tag::find($id);
+            // Find the user by its unique identifier
+            $tag = Tag::find($id);
 
-           // Update the category with the provided payload
-           $tag->fill($payload);
-           $tag->save();
+            // Update the category with the provided payload
+            $tag->fill($payload);
+            $tag->save();
 
-           // Prepare the success response data
-           $resp['status'] = true;
-           $resp['message'] = 'Berhasil diupdate';
-           $code = 200;
+            // Prepare the success response data
+            $resp['status'] = true;
+            $resp['message'] = 'Berhasil diupdate';
+            $code = 200;
 
-           // Commit the database transaction
-           DB::commit();
-       } catch (\Throwable $th) {
-           // Prepare the error response data
-           $resp['message'] = $th->getMessage();
+            // Commit the database transaction
+            DB::commit();
+        } catch (\Throwable $th) {
+            // Prepare the error response data
+            $resp['message'] = $th->getMessage();
 
-           // Rollback the database transaction
-           DB::rollBack();
-       }
+            // Rollback the database transaction
+            DB::rollBack();
+        }
 
-       // Return the response as a JSON response
-       return response()->json($resp, $code);
-   }
+        // Return the response as a JSON response
+        return response()->json($resp, $code);
+    }
 
    /**
     * Remove the specified resource from storage.
     */
-   public function destroy(string $id)
-   {
-      // Start a database transaction
-      DB::beginTransaction();
+    public function destroy(string $id)
+    {
+        // Start a database transaction
+        DB::beginTransaction();
 
-      // Initialize the response data
-      $resp = [
-          'status' => false,
-      ];
-      $code = 500;
+        // Initialize the response data
+        $resp = [
+            'status' => false,
+        ];
+        $code = 500;
 
-      try {
-        return response()->json($id);
-          // Find the user by its unique identifier
-          $tag = Tag::find($id);
+        try {
+            return response()->json($id);
+            // Find the user by its unique identifier
+            $tag = Tag::find($id);
 
-          // Delete the user
-          $tag->delete();
+            // Delete the user
+            $tag->delete();
 
-          // Prepare the success response data
-          $resp['status'] = true;
-          $resp['message'] = 'data berhasil dihapus';
-          $code = 200;
+            // Prepare the success response data
+            $resp['status'] = true;
+            $resp['message'] = 'data berhasil dihapus';
+            $code = 200;
 
-          // Commit the database transaction
-          DB::commit();
-      } catch (\Throwable $th) {
-          // Prepare the error response data
-          $resp['message'] = $th->getMessage();
+            // Commit the database transaction
+            DB::commit();
+        } catch (\Throwable $th) {
+            // Prepare the error response data
+            $resp['message'] = $th->getMessage();
 
-          // Rollback the database transaction
-          DB::rollBack();
-      }
+            // Rollback the database transaction
+            DB::rollBack();
+        }
 
-      // Return the response as a JSON response
-      return response()->json($resp, $code);
-  }
+        // Return the response as a JSON response
+        return response()->json($resp, $code);
+    }
+
+
+    public function listByCategory(Request $request) {
+        // Start a database transaction
+        DB::beginTransaction();
+
+        // Initialize the response data
+        $resp = [
+            'status' => false,
+        ];
+        $code = 500;
+
+        try {
+            $idCategory = $request->query('id');
+            $tags = Tag::select('category.id as category_id', 'tag.name')
+                ->join('article_tag', 'article_tag.id', 'article_tag_id')
+                ->join('article', 'article_id', 'article.id')
+                ->join('category', 'category.id', 'category_id')
+                ->having('category.id', $idCategory)
+                ->get();
+
+            $resp['status'] = true;
+            $resp['message'] = 'Berhasil Mengambil Data';
+            $resp['data'] = $tags;
+            $code = 200;
+        } catch (\Throwable $th) {
+            // Prepare the error response data
+            $resp['message'] = $th->getMessage();
+
+            // Rollback the database transaction
+            DB::rollBack();
+        }
+        return response()->json($resp, $code);
+    }
 
 }

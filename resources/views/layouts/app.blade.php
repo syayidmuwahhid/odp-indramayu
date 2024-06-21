@@ -38,10 +38,39 @@
     <!-- Nepcha Analytics (nepcha.com) -->
     <!-- Nepcha is a easy-to-use web analytics. No cookies and fully compliant with GDPR, CCPA and PECR. -->
     {{-- <script defer data-site="YOUR_DOMAIN_HERE" src="https://api.nepcha.com/js/nepcha-analytics.js"></script> --}}
-    <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
+    {{-- <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script> --}}
+    {{-- <script src="{{  asset('assets/js/plugins/jquery.blockUI.js') }}" ></script> --}}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.blockUI/2.70/jquery.blockUI.min.js"></script>
     {{-- <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" /> --}}
     {{-- <link href="https://cdn.datatables.net/v/dt/dt-2.0.8/b-3.0.2/fc-5.0.1/fh-4.0.1/kt-2.12.1/r-3.0.2/sc-2.4.3/sb-1.7.1/sp-2.3.1/datatables.min.css" rel="stylesheet"> --}}
     {{-- <link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet"> --}}
+
+    <style>
+        #loading-bar-spinner.spinner {
+            left: 50%;
+            margin-left: -20px;
+            top: 50%;
+            margin-top: -20px;
+            position: absolute;
+            z-index: 59 !important;
+            animation: loading-bar-spinner 400ms linear infinite;
+        }
+
+        #loading-bar-spinner.spinner .spinner-icon {
+            width: 40px;
+            height: 40px;
+            border:  solid 4px transparent;
+            border-top-color:  #00C8B1 !important;
+            border-left-color: #00C8B1 !important;
+            border-radius: 50%;
+        }
+
+        @keyframes loading-bar-spinner {
+        0%   { transform: rotate(0deg);   transform: rotate(0deg); }
+        100% { transform: rotate(360deg); transform: rotate(360deg); }
+        }
+    </style>
 
     @stack('css')
   </head>
