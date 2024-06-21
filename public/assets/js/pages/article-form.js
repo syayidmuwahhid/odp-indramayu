@@ -2,13 +2,35 @@ let editorInstance;
 let tags = [];
 
 $(document).ready(function () {
-    ClassicEditor.create(document.querySelector("#editor"))
+    ClassicEditor.create(document.querySelector("#editor"), {
+        removePlugins: [
+            'Image',
+            'ImageCaption',
+            'ImageStyle',
+            'ImageToolbar',
+            'ImageUpload',
+            'EasyImage',
+            'Base64UploadAdapter',
+            'CKFinder',
+            'CKFinderUploadAdapter'
+        ],
+        toolbar: {
+            items: [
+            'undo', 'redo', '|' ,
+                'heading', '|',
+                'bold', 'italic', 'link', '|',
+                'bulletedList', 'numberedList', 'blockQuote', '|',
+                'undo', 'redo'
+            ]
+        }
+    })
         .then((editor) => {
             editorInstance = editor;
         })
         .catch((error) => {
             console.error(error);
         });
+
 
     getCategoryList();
 
@@ -59,7 +81,7 @@ async function submitForm(e) {
             throw new Error("Isi Artikel tidak boleh Kosong");
         }
 
-        post_data.append("content", editorData);
+          post_data.append("content", editorData);
 
         let data = await postData(url, post_data, method);
 

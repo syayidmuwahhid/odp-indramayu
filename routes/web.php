@@ -24,6 +24,8 @@ Route::name('admin.')->prefix('admin')->middleware('auth')->group(function () {
 
     Route::get('/article', fn () => view('article.index'))->name('article.index');
     Route::get('/article/form', fn () => view('article..form'))->name('article.form');
+    Route::get('/article/{id}/edit', fn($id) => view('article.update', ['id' => $id]))->name('article.update');
+
 
     Route::get('/slider', fn () => view('slider.index'))->name('slider');
     Route::get('/video', fn () => view('video.index'))->name('video');

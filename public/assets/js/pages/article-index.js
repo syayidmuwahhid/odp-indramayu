@@ -5,14 +5,14 @@ $(document).ready(function () {
 });
 
 /**
- * Function to fetch and display category data in the table.
+ * Function to fetch and display article data in the table.
  *
  * @returns {Promise<void>}
  * @throws Will throw an error if the request fails or the response status is not successful.
  */
 async function getData() {
     try {
-        // Fetch category data from the server
+        // Fetch article data from the server
         let data = await getRequestData(`${baseL}/api/article`);
 
         // Throw an error if the request fails or the response status is not successful
@@ -25,6 +25,7 @@ async function getData() {
 
         // Iterate over the fetched data and generate HTML for each row
         data.data.forEach((value, i) => {
+
             let html = `<tr>
                 <td class="text-center p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">${++i}</td>
                 <td class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">${value.title}</td>
@@ -50,13 +51,13 @@ async function getData() {
         $("#table_data").dataTable();
     } catch (error) {
         // Display an error notification
-        notif("error", "Galat!", error);
+        notif("error", "Galat!", error.message);
     }
 }
 
 /**
  * Function to handle category deletion.
- * It shows a confirmation dialog, sends a DELETE request to the server, and refreshes the category data table.
+ * It shows a confirmation dialog, sends a DELETE request to the server, and refreshes the article data table.
  *
  * @param {number} id - The unique identifier of the category to be deleted.
  * @returns {void}
@@ -81,7 +82,7 @@ function hapusData(id) {
             // Show a success notification
             notif("success", "Berhasil", data.message);
 
-            // Refresh the category data table
+            // Refresh the article data table
             getData();
         });
     } catch (error) {
