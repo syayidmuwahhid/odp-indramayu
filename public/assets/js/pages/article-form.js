@@ -1,7 +1,9 @@
 let editorInstance;
 let tags = [];
+let tagfy;
 
-$(document).ready(function () {
+
+$(document).ready(async function () {
     ClassicEditor.create(document.querySelector("#editor"), {
         removePlugins: [
             'Image',
@@ -31,18 +33,36 @@ $(document).ready(function () {
             console.error(error);
         });
 
-
-    getCategoryList();
+    await getCategoryList();
 
     var input = document.getElementById("tag-input");
-    const tagify = new Tagify(input, {
+    tagify = new Tagify(input, {
+        whitelist: [],
         backspace: "edit", // Aksi saat menekan tombol backspace
         placeholder: "Masukan Tag Artikel",
+        dropdown: {
+            maxItems: 20, // <- mixumum allowed rendered suggestions
+            classname: "tags-look", // <- custom classname for this dropdown, so it could be targeted
+            enabled: 0, // <- show suggestions on focus
+            closeOnSelect: false, // <- do not hide the suggestions dropdown once an item has been selected
+        },
     });
-    // tagify.on("add", function (e) {
-    //     tags.push(e.detail.data.value);
-    // });
 
+    $("#select_category").change(async function () {
+        let category_id = $(this).val();
+        let whitelist = [];
+        let { data } = await getRequestData(
+            `${baseL}/api/tags/list/category?id=${category_id}`
+        );
+
+        data.forEach((element) => {
+            whitelist.push(element.name);
+        });
+
+        tagify.whitelist = [...new Set(whitelist)];
+    });
+
+    $("#select_category").change();
     $("#form_submit").submit(submitForm);
 });
 
