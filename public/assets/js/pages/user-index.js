@@ -1,6 +1,9 @@
+let table;
 $(document).ready(function () {
     $("#btnAddModal").click(formModal); //show modal when btn is clicked
     getData(); // get data
+
+    table = $("#table_container").html();
 });
 
 /**
@@ -85,7 +88,7 @@ async function getData() {
         }
 
         // Clear the table body
-        $("#tbody_data").empty();
+        $("#table_container").empty().html(table);
 
         // Iterate over the fetched data and generate HTML for each row
         data.data.forEach((value, i) => {
@@ -102,6 +105,8 @@ async function getData() {
             // Append the generated HTML to the table body
             $("#tbody_data").append(html);
         });
+
+        $("#table_data").dataTable();
     } catch (error) {
         // Display an error notification
         notif("error", "Galat!", error);

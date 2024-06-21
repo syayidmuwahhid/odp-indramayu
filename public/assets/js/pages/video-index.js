@@ -1,6 +1,9 @@
+let table;
 $(document).ready(function () {
     $("#btnAddModal").click(formModal); //show modal when btn is clicked
     getData(); // get data
+
+    table = $("#table_container").html();
 });
 
 function closeDialog(event, id) {
@@ -10,7 +13,7 @@ function closeDialog(event, id) {
     }
 }
 
-function formModal () {
+function formModal() {
     let html = `
     <form id="formModal" enctype="multipart/form-data">
     <div style="display: flex; align-items: center; margin: 2rem 2.1rem; width: 420px;">
@@ -43,22 +46,27 @@ function formModal () {
 }
 
 async function getData() {
-    try{
+    try {
         let data = await getRequestData(`${baseL}/api/video`);
 
-        if(!data.status) {
+        if (!data.status) {
             throw new Error(data.message);
         }
 
-        $("#tbody_data").empty();
+        $("#table_container").empty().html(table);
+
         data.data.forEach((value, i) => {
             let html = `<tr>
                 <td class="text-center p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">${++i}</td>
                 <td class="text-center p-4">
-                    <img src="${baseL}/${value.thumbnail}" alt="${value.description}" style="width: 150px; height: 30vh; object-fit: cover;" onclick="myModal${i}.showModal()">
+                    <img src="${baseL}/${value.thumbnail}" alt="${
+                value.description
+            }" style="width: 150px; height: 30vh; object-fit: cover;" onclick="myModal${i}.showModal()">
                     <dialog id="myModal${i}" class="modal" style="width: 100vh; max-width: 800px; background-color: transparent; border: none; padding: 0; overflow: hidden;" onclick="closeDialog(event, 'myModal${i}')">
                         <div class="modal-box" style="padding: 0; display: flex; justify-content: center; align-items: center; background-color: transparent;">
-                            <video src="${baseL}/${value.location}" controls class="modal-image" style="width: 100%; height: 90vh; max-width: 100%;object-fit: contain;"></video>
+                            <video src="${baseL}/${
+                value.location
+            }" controls class="modal-image" style="width: 100%; height: 90vh; max-width: 100%;object-fit: contain;"></video>
                         </div>
                     </dialog>
                 </td>
@@ -76,15 +84,15 @@ async function getData() {
             `;
             $("#tbody_data").append(html);
         });
-    }
-    catch (error) {
+        $("#table_data").dataTable();
+    } catch (error) {
         notif("error", "Galat!", error);
     }
 }
 
 async function editModal(id) {
     try {
-        let {data} = await getRequestData(`${baseL}/api/video/${id}`);
+        let { data } = await getRequestData(`${baseL}/api/video/${id}`);
 
         let html = `
         <form id="editModal" enctype="multipart/form-data">
@@ -107,7 +115,7 @@ async function editModal(id) {
         </form>
         `;
 
-        modal ({
+        modal({
             title: "Edit Video",
             formId: "editModal",
             method: "POST",
@@ -115,8 +123,7 @@ async function editModal(id) {
             html,
             callback: getData,
         });
-    }
-    catch (error) {
+    } catch (error) {
         notif("error", "Galat!", error);
     }
 }
@@ -137,8 +144,7 @@ async function hapusData(id) {
             notif("success", "Berhasil!", data.message);
             getData();
         });
-    }
-    catch (error) {
+    } catch (error) {
         notif("error", "Galat!", error);
     }
 }

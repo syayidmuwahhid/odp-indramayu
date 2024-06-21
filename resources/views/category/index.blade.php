@@ -19,9 +19,8 @@
                         </button>
                     </div>
                     <div class="flex-auto px-0 pt-0 pb-2">
-                        <div class="p-0 overflow-x-auto">
-                            <table id="table_data"
-                                class="items-center w-full mb-0 align-top border-gray-200 text-slate-500">
+                        <div class="px-10 overflow-x-auto" id="table_container">
+                            <table id="table_data" class="items-center w-full mb-0 align-top border-gray-200 text-slate-500">
                                 <thead class="align-bottom">
                                     <tr>
                                         <th
@@ -31,7 +30,7 @@
                                         <th
                                             class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
                                             Nama kategori</th>
-                                            
+
                                             <th class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
                                                 Aksi
                                               </th>
@@ -50,6 +49,11 @@
     </div>
 @endsection
 
+@push('css')
+    <link href="https://cdn.datatables.net/v/dt/dt-2.0.8/b-3.0.2/fc-5.0.1/fh-4.0.1/kt-2.12.1/r-3.0.2/sc-2.4.3/sb-1.7.1/sp-2.3.1/datatables.min.css" rel="stylesheet">
+@endpush
+
 @push('js')
+    <script src="https://cdn.datatables.net/v/dt/dt-2.0.8/b-3.0.2/fc-5.0.1/fh-4.0.1/kt-2.12.1/r-3.0.2/sc-2.4.3/sb-1.7.1/sp-2.3.1/datatables.min.js"></script>
     <script src="{{ asset('assets/js/pages/category-index.js') }}"></script>
 @endpush
