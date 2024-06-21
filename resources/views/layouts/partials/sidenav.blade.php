@@ -69,7 +69,7 @@
                             </g>
                         </svg>
                     </div>
-                    <span class="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">Manajemen User</span>
+                    <span class="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">User</span>
                 </a>
             </li>
 
@@ -153,14 +153,14 @@
                         <svg width="12px" height="12px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <path fill-rule="evenodd" clip-rule="evenodd" d="M2 1.5C2 1.22386 2.22386 1 2.5 1H21.5C21.7761 1 22 1.22386 22 1.5V22.5C22 22.7761 21.7761 23 21.5 23H2.5C2.22386 23 2 22.7761 2 22.5V1.5ZM9 5C9 4.44772 9.44772 4 10 4H19C19.5523 4 20 4.44772 20 5C20 5.55228 19.5523 6 19 6H10C9.44772 6 9 5.55228 9 5ZM5 8C5 7.44772 5.44772 7 6 7H19C19.5523 7 20 7.44772 20 8C20 8.55228 19.5523 9 19 9H6C5.44772 9 5 8.55228 5 8ZM5 11C5 10.4477 5.44772 10 6 10H19C19.5523 10 20 10.4477 20 11C20 11.5523 19.5523 12 19 12H6C5.44772 12 5 11.5523 5 11ZM5 14C5 13.4477 5.44772 13 6 13H19C19.5523 13 20 13.4477 20 14C20 14.5523 19.5523 15 19 15H6C5.44772 15 5 14.5523 5 14ZM5 17C5 16.4477 5.44772 16 6 16H16C16.5523 16 17 16.4477 17 17C17 17.5523 16.5523 18 16 18H6C5.44772 18 5 17.5523 5 17Z" fill="#9E9E9E"/>
                         </svg>
-                        
+
                     </div>
                     <span class="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">Artikel</span>
                 </a>
             </li>
 
             {{-- TAG --}}
-            <li class="mt-0.5 w-full">
+            {{-- <li class="mt-0.5 w-full">
                 <a class="{{ url()->current() == route('admin.tag.index') ? $a_active : '' }} py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-4 transition-colors"
                     href="{{ route('admin.tag.index') }}">
                     <div
@@ -171,7 +171,7 @@
                             </rect>
                             <path d="M10 15 L20 5 L35 20 L25 30 Z" class="fill-white"></path>
                             <circle cx="22" cy="8" r="2" class="fill-slate-800"></circle>
-                        </svg>
+                        </svg> --}}
 
                         {{-- <svg width="12px" height="12px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <title>settings</title>
@@ -187,13 +187,13 @@
                   </g>
                 </g>
               </svg> --}}
-                    </div>
+                    {{-- </div>
                     <span class="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">Tag</span>
                 </a>
-            </li>
+            </li> --}}
 
             {{-- INI CONTOH SEMATA --}}
-            <li class="mt-0.5 w-full">
+            {{-- <li class="mt-0.5 w-full">
           <a class="py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-4 transition-colors" href="./pages/profile.html">
             <div class="shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5">
               <svg width="12px" height="12px" viewBox="0 0 46 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -213,7 +213,7 @@
             </div>
             <span class="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">Profile</span>
           </a>
-        </li>
+        </li> --}}
 
             {{-- INI CONTOH SEMATA --}}
             {{-- <li class="mt-0.5 w-full">
