@@ -43,7 +43,8 @@
 @section('content')
 
 <div class="w-full px-6 py-6 mx-auto">
-    <form action="/api/profil" class="h-full flex flex-col" method="post" id="form_submit" enctype="multipart/form-data">
+    <form action="/api/profile/1" class="h-full flex flex-col" method="post" id="form_submit" enctype="multipart/form-data">
+        <input type="hidden" name="_method" value="PUT" />
 
         <div class="grid grid-cols-2 gap-6">
             <div class="p-6 min-w-0 mb-6 break-words bg-white border-0 border-transparent border-solid shadow-soft-xl rounded-2xl bg-clip-border">
@@ -84,7 +85,7 @@
                     <div></div><div></div><div></div>
                     <label class="flex items-center h-full">Gambar Banner <span class="text-sm text-red-500">*</span></label>
                     <div class="col-span-2 align-middle flex flex-col justify-center items-center">
-                        <img src="" alt="Banner" id="img_banner" style="height: 150px" class="mb-3"/>
+                        <img src="" alt="Banner" id="img_banner" style="width: 300px;" class="mb-3"/>
                         <input type="file" name="banner" id="banner" class="inputan" accept="image/*">
                     </div>
                 </div>
@@ -93,7 +94,7 @@
                     <div></div><div></div><div></div>
                     <label class="flex items-center h-full">Logo <span class="text-sm text-red-500">*</span></label>
                     <div class="col-span-2 align-middle flex flex-col justify-center items-center">
-                        <img src="" alt="Logo" id="img_icon" style="height: 150px" class="mb-3"/>
+                        <img src="" alt="Logo" id="img_icon" style="width: 300px" class="mb-3"/>
                         <input type="file" name="icon" id="icon" class="inputan" accept="image/*">
                     </div>
                 </div>

@@ -43,6 +43,7 @@ function notif(type, title, message) {
         title: title,
         text: message,
     });
+    $.unblockUI();
 }
 
 /**

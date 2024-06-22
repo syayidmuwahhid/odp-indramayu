@@ -1,4 +1,4 @@
-let editorInstance;
+let editorInstance, oldBanner, oldIcon;
 $(document).ready(async function () {
     var tags = document.getElementById("tags");
     tagifyTag = new Tagify(tags, {
@@ -60,6 +60,26 @@ $(document).ready(async function () {
 
     await getData();
 
+    $("#banner").change(function (e) {
+        let file = e.target.files[0];
+
+        if (file) {
+            $("#img_banner").attr("src", URL.createObjectURL(file));
+        } else {
+            $("#img_banner").attr("src", `${baseL}/${oldBanner}`);
+        }
+    });
+
+    $("#icon").change(function (e) {
+        let file = e.target.files[0];
+
+        if (file) {
+            $("#img_icon").attr("src", URL.createObjectURL(file));
+        } else {
+            $("#img_icon").attr("src", `${baseL}/${oldIcon}`);
+        }
+    });
+
     $("#form_submit").submit(submitForm);
 });
 
@@ -83,27 +103,31 @@ async function getData() {
         $("#img_banner").attr("src", `${baseL}/${data.data.banner}`);
         $("#img_icon").attr("src", `${baseL}/${data.data.icon}`);
         editorInstance.setData(data.data.history);
+        oldBanner = data.data.banner;
+        oldIcon = data.data.icon;
     } catch (error) {
         notif("error", "Galat!", error);
     }
 }
 
 async function submitForm(e) {
-    e.preventDefault();
-    console.log("ok");
-    // try {
-    //     let data = await postData(
-    //         `${baseL}/api/profile`,
-    //         $("#form_submit").serialize(),
-    //         "PUT"
-    //     );
+    try {
+        e.preventDefault();
+        const url = baseL + $(this).attr("action");
+        const method = $(this).attr("method");
+        const post_data = new FormData(this);
 
-    //     if (!data.status) {
-    //         throw new Error(data.message);
-    //     }
+        post_data.append("history", editorInstance.getData());
 
-    //     notif("success", "Berhasil!", data.message);
-    // } catch (error) {
-    //     notif("error", "Galat!", error);
-    // }
+        let data = await postData(url, post_data, method);
+
+        if (!data.status) {
+            throw new Error(data.message);
+        }
+
+        notif("success", "Berhasil!", data.message);
+        window.location.reload();
+    } catch (error) {
+        notif("error", "Galat!", error);
+    }
 }

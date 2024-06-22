@@ -30,6 +30,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Profile::create([
+            'id' => 1,
             'app_name' => 'ODP Indramayu',
             'title' => 'ODP Indramayu',
             'banner' => 'assets/img/curved-images/curved1.jpg',
