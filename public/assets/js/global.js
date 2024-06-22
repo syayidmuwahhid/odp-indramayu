@@ -1,5 +1,6 @@
 //define url root apps
 const baseL = $("#baseL").val();
+const userID = $("#user_id").val();
 
 $(document).ready(function () {
     //select 2 initially
@@ -21,7 +22,7 @@ $(document).ready(function () {
 function blockUI() {
     $.blockUI({
         css: {
-            border: 'transparent'
+            border: "transparent",
         },
         message: `<div id="loading-bar-spinner" class="spinner"><div class="spinner-icon"></div></div>`,
     });
@@ -42,6 +43,7 @@ function notif(type, title, message) {
         title: title,
         text: message,
     });
+    $.unblockUI();
 }
 
 /**
@@ -221,4 +223,16 @@ function inputValidate(id, title = "") {
     if (!data) {
         throw new Error(`${title} Inputan Wajib diisi!`);
     }
+}
+
+function convertDate(d) {
+    const date = new Date(d);
+
+    const day = String(date.getDate()).padStart(2, "0");
+    const monthLong = date.toLocaleString("default", { month: "long" });
+    const year = date.getFullYear();
+
+    const formattedDateLong = `${day} ${monthLong} ${year}`;
+
+    return formattedDateLong;
 }

@@ -17,7 +17,7 @@ class AuthController extends Controller
      */
     public function index()
     {
-        return view('auth.login');
+        return view('admin.auth.login');
     }
 
 
@@ -58,7 +58,7 @@ class AuthController extends Controller
 
     public function register()
     {
-        return view('auth.register');
+        return view('admin.auth.register');
     }
 
     public function signup(Request $request)

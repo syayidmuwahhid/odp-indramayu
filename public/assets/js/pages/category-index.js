@@ -45,6 +45,7 @@ async function editModal(id) {
         let html = `<form id="editModal">`;
         html += `<label>Name</label>`;
         html += `<input class="swal2-input" placeholder="name" name="name" value="${data.name}"> <br/>`;
+        html += `<input type="hidden" name="_method" value="PUT">`;
         html += `</form>`;
 
         // Call the modal function to display the form

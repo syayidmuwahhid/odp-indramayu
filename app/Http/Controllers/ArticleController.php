@@ -27,7 +27,10 @@ class ArticleController extends Controller
 
         try {
             // Fetch all categories from the database
-            $article = Article::all();
+            $article = Article::select('article.*', 'category.name as category_name', 'users.name as user_name', 'users.email as user_email')
+                ->join('category', 'category.id', 'category_id')
+                ->join('users', 'users.id', 'user_id')
+                ->get();
 
             // Prepare the success response data
             $resp['status'] = true;
