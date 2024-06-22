@@ -36,10 +36,10 @@
       class="navbar-nav order-2 hidden w-full flex-[0_0_100%] lg:order-1 lg:flex lg:w-auto lg:flex-auto lg:justify-center lg:space-x-5"
     >
       <li class="nav-item">
-        <a href="" class="nav-link active">Home</a>
+        <a href="{{ route('landing-page') }}" class="nav-link active">Home</a>
       </li>
       <li class="nav-item">
-        <a href="about.html" class="nav-link">About</a>
+        <a href="{{ route('about') }}" class="nav-link">About</a>
       </li>
       <li class="nav-item">
         <a href="blog.html" class="nav-link">Blog</a>
@@ -103,6 +103,6 @@
       </li>
     </ul>
     <div class="order-1 ml-auto hidden items-center md:order-2 md:ml-0 lg:flex">
-      <a class="btn btn-white btn-sm" href="signin.html">Sing Up Now</a>
+      <a class="btn btn-white btn-sm" href="{{ route('login') }}">Masuk</a>
     </div>
   </nav>

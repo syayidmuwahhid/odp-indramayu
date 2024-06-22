@@ -1,5 +1,6 @@
 //define url root apps
 const baseL = $("#baseL").val();
+const userID = $("#user_id").val();
 
 $(document).ready(function () {
     //select 2 initially
@@ -21,7 +22,7 @@ $(document).ready(function () {
 function blockUI() {
     $.blockUI({
         css: {
-            border: 'transparent'
+            border: "transparent",
         },
         message: `<div id="loading-bar-spinner" class="spinner"><div class="spinner-icon"></div></div>`,
     });
