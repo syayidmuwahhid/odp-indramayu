@@ -43,6 +43,7 @@ function notif(type, title, message) {
         title: title,
         text: message,
     });
+    $.unblockUI();
 }
 
 /**
@@ -222,4 +223,16 @@ function inputValidate(id, title = "") {
     if (!data) {
         throw new Error(`${title} Inputan Wajib diisi!`);
     }
+}
+
+function convertDate(d) {
+    const date = new Date(d);
+
+    const day = String(date.getDate()).padStart(2, "0");
+    const monthLong = date.toLocaleString("default", { month: "long" });
+    const year = date.getFullYear();
+
+    const formattedDateLong = `${day} ${monthLong} ${year}`;
+
+    return formattedDateLong;
 }

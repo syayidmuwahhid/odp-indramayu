@@ -20,7 +20,7 @@ Route::apiResource('user', UserController::class);
 
 Route::apiResource('article', ArticleController::class);
 
-Route::apiResource('profile', ProfileController::class);
+Route::apiResource('profile', ProfileController::class)->only('index', 'update');
 
 Route::get('/tags/list/category', [TagsController::class, 'listByCategory'])->name('tags.list.category');
 Route::apiResource('tags', TagsController::class);
