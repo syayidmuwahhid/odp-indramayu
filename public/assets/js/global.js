@@ -42,6 +42,7 @@ function notif(type, title, message) {
         icon: type,
         title: title,
         text: message,
+        timer: 3000,
     });
     $.unblockUI();
 }

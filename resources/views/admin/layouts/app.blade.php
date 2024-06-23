@@ -164,6 +164,8 @@
   <script src="{{ asset('assets/js/plugins/perfect-scrollbar.min.js') }}" async></script>
   <!-- github button -->
   <script async defer src="https://buttons.github.io/buttons.js"></script>
+<!-- Alpine.js -->
+<script src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js"></script>
   <!-- main script file  -->
   {{-- <script src="{{ asset('assets/js/soft-ui-dashboard-tailwind.js?v=1.0.5') }}" async></script> --}}
   {{-- <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> --}}
@@ -171,5 +173,43 @@
   {{-- <script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script> --}}
 
   <script src="{{ asset('assets/js/global.js') }}"></script>
+
+  <script>
+    $('#pengaturan_menu').click(async function() {
+        try {
+            let { data } = await getRequestData(`${baseL}/api/user/${userID}`);
+
+            let html = `
+            <form id="settingModal" enctype="multipart/form-data">
+                <div style="display: flex; align-items: center; margin: 2rem 2.1rem; width: 420px;">
+                    <label>Nama</label>
+                    <input class="swal2-input" style="flex:1;" placeholder="Nama" name="name" value="${data.name}"> <br/>
+                </div>
+                <div style="display: flex; align-items: center; margin-bottom: 3rem;">
+                    <label>Email</label>
+                    <input type="email" class="swal2-input" style="flex:1;" placeholder="Email" name="email" value="${data.email}"> <br/>
+                </div>
+                <div style="display: flex; align-items: center; margin-bottom: 3rem;">
+                    <label>Password</label>
+                    <input type="password" class="swal2-input" style="flex:1;" placeholder="Password" name="password" value=""> <br/>
+                </div>
+                <input type="hidden" name="_method" value="PUT">
+            </form>
+            `;
+
+            modal({
+                title: "Akun",
+                formId: "settingModal",
+                method: "POST",
+                url: `/api/user/${userID}`,
+                html,
+                callback: () => { window.location.reload(); },
+            });
+        } catch (error) {
+            notif("error", "Galat!", error);
+        }
+    });
+  </script>
+
   @stack('js')
 </html>

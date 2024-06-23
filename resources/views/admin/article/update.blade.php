@@ -18,11 +18,11 @@
                     class="relative flex flex-col min-w-0 mb-6 break-words bg-white border-0 border-transparent border-solid shadow-soft-xl rounded-2xl bg-clip-border">
                     <div
                         class="capitalize p-6 pb-0 mb-0 flex justify-between bg-white border-b-0 border-b-solid rounded-t-2xl border-b-transparent">
-                        <h6>form tambah article</h6>
+                        <h6>form edit article</h6>
                     </div>
                     <div class="p-6 space-y-6">
-                        <form action="/api/article" class="h-full flex flex-col" method="post" id="form_submit" enctype="multipart/form-data">
-                            <input type="hidden" id="aricle-id" value="{{ $id }}">
+                        <form action="/api/article/{{ $id }}" class="h-full flex flex-col" method="post" id="form_submit" enctype="multipart/form-data">
+                            <input type="hidden" id="article_id" value="{{ $id }}">
                             <div class="grid grid-cols-6 gap-6 h-full">
 
                                 {{-- title --}}

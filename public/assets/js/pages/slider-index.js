@@ -25,8 +25,8 @@ function formModal() {
         <input class="swal2-input" style="flex:1;" placeholder="Deskripsi" name="description"> <br/>
     </div>
     <div style="display: flex; align-items: center; margin-bottom: 2rem;">
-        <label style="width: 100px; margin-right: 1rem;">Gambar</label>
-        <input type="file" class="swal1-file" style="width: 330px;" name="file" accept=".jpg,.png"> <br/>
+        <label style="width: 100px; margin-right: 1rem;">Slider</label>
+        <input type="file" class="swal1-file" style="width: 330px;" name="file" accept=".jpeg,.png,.jpg,.gif,.svg,.avi,.mpeg,.quicktime,.mp4"> <br/>
     </div>
     </form>
     `;
@@ -52,19 +52,26 @@ async function getData() {
         $("#table_container").empty().html(table);
 
         data.data.forEach((value, i) => {
+            let src = baseL + "/" + value.location;
+            let res = `<img src="${baseL}/${value.location}" alt="${value.description}" class="modal-image" style="width: 100%; height: 90vh; max-width: 100%;object-fit: contain;">`;
+
+            if (value.type == "video") {
+                src =
+                    "https://static.vecteezy.com/system/resources/previews/002/162/107/original/camera-video-illustration-hand-drawing-vector.jpg";
+                res = `<video src="${baseL}/${value.location}" controls class="modal-image" style="width: 100%; height: 90vh; max-width: 100%;object-fit: contain;" ></video>`;
+            }
+
             let html = `<tr>
                 <td class="text-center p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">${++i}</td>
                 <td class="py-4">
 
-                    <img src="${baseL}/${value.location}" alt="${
+                    <img src="${src}" alt="${
                 value.description
             }" class="max-w-full max-h-full p-2  bg-cover object-cover bg-center cursor-pointer" onclick="myModal${i}.showModal()">
 
                     <dialog id="myModal${i}" class="modal" style="width: 100vh; max-width: 800px; background-color: transparent; border: none; padding: 0; overflow: hidden;" onclick="closeDialog(event, 'myModal${i}')">
                         <div class="modal-box" style="padding: 0; display: flex; justify-content: center; align-items: center; background-color: transparent;">
-                            <img src="${baseL}/${value.location}" alt="${
-                value.description
-            }" class="modal-image" style="width: 100%; height: 90vh; max-width: 100%;object-fit: contain;">
+                             ${res}
                         </div>
                     </dialog>
                 </td>
@@ -112,8 +119,8 @@ async function editModal(id) {
             <input class="swal2-input" style="flex:1;" placeholder="Deskripsi" name="description" value="${data.description}"> <br/>
         </div>
         <div style="display: flex; align-items: center; margin-bottom: 2rem;">
-            <label style="width: 100px; margin-right: 1rem;">Gambar</label>
-            <input type="file" class="swal1-file" style="width: 330px;" name="file" accept=".jpg,.png" value="${data.file}"> <br/>
+            <label style="width: 100px; margin-right: 1rem;">Slider</label>
+            <input type="file" class="swal1-file" style="width: 330px;" name="file" accept=".jpeg,.png,.jpg,.gif,.svg,.avi,.mpeg,.quicktime,.mp4" value="${data.file}"> <br/>
         </div>
         <input type="hidden" name="_method" value="PUT">
         </form>
