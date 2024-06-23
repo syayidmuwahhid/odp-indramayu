@@ -62,10 +62,12 @@ class SliderController extends Controller
         try {
             // Validate the incoming request data
             $request->validate([
-                'title' => ['required'],
-                'file' => ['required'],
-                'description' => ['required'],
+                'title' => 'required',
+                'file' => 'required|mimes:jpeg,png,jpg,gif,svg,avi,mpeg,quicktime,mp4',
+                'description' => 'required',
             ]);
+
+            $ext = $request->file('file')->extension();
 
             // Prepare the file path
             $path = "storage/slider/";
@@ -82,6 +84,8 @@ class SliderController extends Controller
             //setup data
             $payload = $request->only('title', 'description');
             $payload['location'] = $filename;
+
+            $payload['type'] = $ext == 'png' || $ext == 'jpeg' || $ext == 'jpg' || $ext == 'gif' || $ext == 'svg' ? 'image' : 'video';
 
             // Create a new user in the database
             Slider::create($payload);
@@ -169,9 +173,11 @@ class SliderController extends Controller
 
             // Validate the incoming request data
             $request->validate([
-                'title' => ['required'],
-                'description' => ['required'],
+                'title' => 'required',
+                'description' => 'required',
+                'file' => 'nullable|mimes:jpeg,png,jpg,gif,svg,avi,mpeg,quicktime,mp4',
             ]);
+
 
             // Prepare the data to be updated
             $payload = $request->only('title', 'description');
@@ -181,6 +187,9 @@ class SliderController extends Controller
 
             // If a new file is uploaded
             if ($request->hasFile('file')) {
+                $ext = $request->file('file')->extension();
+                $payload['type'] = $ext == 'png' || $ext == 'jpeg' || $ext == 'jpg' || $ext == 'gif' || $ext == 'svg' ? 'image' : 'video';
+
                 // Generate a unique name for the file
                 $img_name = time(). $request->file('file')->hashName();
 
@@ -190,6 +199,7 @@ class SliderController extends Controller
                 // Prepare the full file path
                 $payload['location'] = $path . $img_name;
             }
+
 
             // Update the slider data
             $slider->fill($payload);

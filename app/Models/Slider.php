@@ -18,7 +18,8 @@ class Slider extends Model
      */
     protected $fillable = [
         'title',
+        'description',
         'location',
-        'description'
+        'type',
     ];
 }
