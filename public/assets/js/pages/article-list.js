@@ -12,22 +12,34 @@ async function getData() {
     try {
         // Fetch article data from the server
         let data = await getRequestData(`${baseL}/api/article`);
-        console.log("ini adalah data article-", data);
+
+        let category = $("#category").val();
 
         let html = "";
         data.data.reverse().forEach((element) => {
+            if (category) {
+                if (element.category_name !== category) {
+                    return;
+                }
+            }
             let string = element.content.substring(0, 100);
             let parser = new DOMParser();
             let doc = parser.parseFromString(string, "text/html");
             let content = doc.body.textContent || "";
             html += `
                 <div class="mb-8 md:col-6 lg:col-4">
-                    <div class="card flex flex-col justify-between h-full cursor-pointer" onclick="window.location.href='${baseL}/article/${element.id}'">
+                    <div class="card flex flex-col justify-between h-full cursor-pointer" onclick="window.location.href='${baseL}/article/${
+                element.id
+            }'">
                         <div>
-                            <img class="card-img h-28 w-full object-cover" src="${baseL}/${element.image}"
+                            <img class="card-img h-28 w-full object-cover" src="${baseL}/${
+                element.image
+            }"
                             alt="" />
                             <div class="card-tags">
-                                <a class="tag" href="odp.indramayu.test">${element.category_name}</a>
+                                <a class="tag" href="${baseL}/article?category=${
+                element.category_name
+            }">${element.category_name}</a>
                             </div>
                             <h3 class="h4 card-title mt-5">
                                     ${element.title}

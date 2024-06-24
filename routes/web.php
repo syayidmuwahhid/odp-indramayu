@@ -34,4 +34,5 @@ Route::get('/article', fn ()  => view('article'))->name('article');
 Route::get('/article/{id}', fn($id) => view('article-id', ['id' => $id]))->name('article.{id}');
 
 Route::get('/about', fn () => view('about'))->name('about');
+Route::get('/contact', fn () => view('contact'))->name('contact');
 

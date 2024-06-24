@@ -4,6 +4,7 @@
 
 @section('content')
     <section class="section pt-0">
+        <input type="hidden" id="category" value="{{ request()->get('category') }}">
         <div class="container">
             <div class="row" id="article-container">
             </div>
