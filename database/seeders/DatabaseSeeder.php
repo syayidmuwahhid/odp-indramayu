@@ -31,18 +31,21 @@ class DatabaseSeeder extends Seeder
 
         Profile::create([
             'id' => 1,
-            'app_name' => 'ODP Indramayu',
-            'title' => 'ODP Indramayu',
-            'banner' => 'assets/img/curved-images/curved1.jpg',
-            'history' => 'Sejarah Indramayu',
+            'app_name' => 'OPD Indramayu',
+            'title' => 'OPD Indramayu',
             'icon' => 'assets/img/favicon.png',
             'description' => 'Deskripsi Indramayu',
-            'keywords' => 'odp indramayu, pemerintahan daerah Indramayu,informasi publik Indramayu,berita Indramayu terkini,layanan publik Indramayu',
-            'tags' => 'ODP, Indramayu',
+            'keywords' => 'opd indramayu, pemerintahan daerah Indramayu,informasi publik Indramayu,berita Indramayu terkini,layanan publik Indramayu',
+            'tags' => 'OPD, Indramayu',
             'facebook' => 'https://www.facebook.com/diskominfo.indramayu',
             'youtube' => 'https://www.youtube.com/@diskominfoindramayu8327',
             'x' => 'https://twitter.com/indramayukab',
             'instagram' => 'https://www.instagram.com/diskominfoindramayu/',
+            'visi' => 'visi',
+            'misi' => 'misi',
+            'history' => 'sejarah',
+            'demografi' => 'demografi',
+            'geografi' => 'geografi',
         ]);
 
     }

@@ -22,7 +22,8 @@
     <input type="hidden" id="baseL" value="{{ url('') }}" />
     <input type="hidden" id="user_id" value="{{ Auth::user()->id }}" />
     <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('assets/img/apple-icon.png') }}" />
-    <link rel="icon" type="image/png" href="{{ asset('assets/img/favicon.png') }}" id="appfavicon"/>
+    <link rel="icon" type="image/png" href="{{ asset('assets/img/favicon.png') }}" class="appfavicon"/>
+    <link rel="shortcut icon" href="" class="appfavicon"/>
     <title>@yield('title')</title>
 
     <!--     Fonts and icons     -->
@@ -214,7 +215,7 @@
         let appData = await getAppData();
         $('#appName').html(appData.app_name);
         $('#appLogo').attr('src', baseL + '/' + appData.icon);
-        $('#appfavicon').attr('href', baseL + '/' + appData.icon);
+        $('.appfavicon').attr('href', baseL + '/' + appData.icon);
     });
   </script>
 

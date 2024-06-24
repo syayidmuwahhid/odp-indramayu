@@ -1,4 +1,4 @@
-let editorInstance, oldBanner, oldIcon;
+let historyInstance, misiInstance, demografiInstance, geografiInstance, oldIcon;
 $(document).ready(async function () {
     var tags = document.getElementById("tags");
     tagifyTag = new Tagify(tags, {
@@ -22,7 +22,55 @@ $(document).ready(async function () {
         },
     });
 
-    ClassicEditor.create(document.querySelector("#history"), {
+    setTextEditor("#history")
+        .then((editor) => {
+            historyInstance = editor;
+        })
+        .catch((error) => {
+            console.error(error);
+        });
+
+    setTextEditor("#misi")
+        .then((editor) => {
+            misiInstance = editor;
+        })
+        .catch((error) => {
+            console.error(error);
+        });
+
+    setTextEditor("#geografi")
+        .then((editor) => {
+            geografiInstance = editor;
+        })
+        .catch((error) => {
+            console.error(error);
+        });
+
+    setTextEditor("#demografi")
+        .then((editor) => {
+            demografiInstance = editor;
+        })
+        .catch((error) => {
+            console.error(error);
+        });
+
+    await getData();
+
+    $("#icon").change(function (e) {
+        let file = e.target.files[0];
+
+        if (file) {
+            $("#img_icon").attr("src", URL.createObjectURL(file));
+        } else {
+            $("#img_icon").attr("src", `${baseL}/${oldIcon}`);
+        }
+    });
+
+    $("#form_submit").submit(submitForm);
+});
+
+function setTextEditor(id) {
+    return ClassicEditor.create(document.querySelector(id), {
         removePlugins: [
             "Image",
             "ImageCaption",
@@ -50,38 +98,8 @@ $(document).ready(async function () {
                 "redo",
             ],
         },
-    })
-        .then((editor) => {
-            editorInstance = editor;
-        })
-        .catch((error) => {
-            console.error(error);
-        });
-
-    await getData();
-
-    $("#banner").change(function (e) {
-        let file = e.target.files[0];
-
-        if (file) {
-            $("#img_banner").attr("src", URL.createObjectURL(file));
-        } else {
-            $("#img_banner").attr("src", `${baseL}/${oldBanner}`);
-        }
     });
-
-    $("#icon").change(function (e) {
-        let file = e.target.files[0];
-
-        if (file) {
-            $("#img_icon").attr("src", URL.createObjectURL(file));
-        } else {
-            $("#img_icon").attr("src", `${baseL}/${oldIcon}`);
-        }
-    });
-
-    $("#form_submit").submit(submitForm);
-});
+}
 
 async function getData() {
     try {
@@ -100,10 +118,12 @@ async function getData() {
         $("#x").val(data.data.x);
         $("#keywords").val(data.data.keywords);
         $("#tags").val(data.data.tags);
-        $("#img_banner").attr("src", `${baseL}/${data.data.banner}`);
         $("#img_icon").attr("src", `${baseL}/${data.data.icon}`);
-        editorInstance.setData(data.data.history);
-        oldBanner = data.data.banner;
+        $("#visi").val(data.data.visi);
+        historyInstance.setData(data.data.history);
+        misiInstance.setData(data.data.misi);
+        demografiInstance.setData(data.data.demografi);
+        geografiInstance.setData(data.data.geografi);
         oldIcon = data.data.icon;
     } catch (error) {
         notif("error", "Galat!", error);
@@ -117,7 +137,10 @@ async function submitForm(e) {
         const method = $(this).attr("method");
         const post_data = new FormData(this);
 
-        post_data.append("history", editorInstance.getData());
+        post_data.append("history", historyInstance.getData());
+        post_data.append("misi", misiInstance.getData());
+        post_data.append("demografi", demografiInstance.getData());
+        post_data.append("geografi", geografiInstance.getData());
 
         let data = await postData(url, post_data, method);
 

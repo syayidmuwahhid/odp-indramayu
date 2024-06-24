@@ -67,14 +67,6 @@
 
                 <div class="grid grid-cols-3 mb-6">
                     <div></div><div></div><div></div>
-                    <label class="flex items-center h-full">Sejarah <span class="text-sm text-red-500">*</span></label>
-                    <div class="col-span-2 align-middle">
-                        <div id="history"></div>
-                    </div>
-                </div>
-
-                <div class="grid grid-cols-3 mb-6">
-                    <div></div><div></div><div></div>
                     <label class="flex items-center h-full">Deskripsi <span class="text-sm text-red-500">*</span></label>
                     <div class="col-span-2 align-middle">
                         <textarea rows="5" name="description" id="description" class="inputan" placeholder="Deskripsi Aplikasi" required></textarea>
@@ -151,11 +143,6 @@
                                 <input type="text" name="tags" id="tags" class="inputan tagify--custom-dropdown" placeholder="Tags Terkait Aplikasi" required>
                             </div>
                         </div>
-
-                        <div class="mt-5 flex justify-end">
-                            <button
-                                class="text-white inline-flex items-center justify-center rounded-xl bg-green-500 py-3 px-6 font-dm text-base font-bold shadow-xl shadow-green-400 transition-transform duration-200 ease-in-out hover:scale-[1.02]">Simpan</button>
-                        </div>
                     </div>
 
                 </div>
@@ -163,6 +150,58 @@
 
             </div>
         </div>
+
+
+        <div class="p-6 min-w-0 mb-6 break-words bg-white border-0 border-transparent border-solid shadow-soft-xl rounded-2xl bg-clip-border">
+            <h5>Data Kabupaten Indramayu</h5>
+            <div class="grid grid-cols-4 mb-6 mt-5">
+                <div></div><div></div><div></div><div></div>
+                <label class="flex items-center h-full">Visi <span class="text-sm text-red-500">*</span></label>
+                <div class="col-span-3 align-middle">
+                    <input type="text" name="visi" id="visi" class="inputan" placeholder="Visi" required>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-4 mb-6">
+                <div></div><div></div><div></div><div></div>
+                <label class="flex items-center h-full">Misi <span class="text-sm text-red-500">*</span></label>
+                <div class="col-span-3 align-middle">
+                    <div id="misi"></div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-4 mb-6">
+                <div></div><div></div><div></div><div></div>
+                <label class="flex items-center h-full">Sejarah <span class="text-sm text-red-500">*</span></label>
+                <div class="col-span-3 align-middle">
+                    <div id="history"></div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-4 mb-6">
+                <div></div><div></div><div></div><div></div>
+                <label class="flex items-center h-full">Demografi <span class="text-sm text-red-500">*</span></label>
+                <div class="col-span-3 align-middle">
+                    <div id="demografi"></div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-4 mb-6">
+                <div></div><div></div><div></div><div></div>
+                <label class="flex items-center h-full">Geografi <span class="text-sm text-red-500">*</span></label>
+                <div class="col-span-3 align-middle">
+                    <div id="geografi"></div>
+                </div>
+            </div>
+
+
+            <div class="mt-5 flex justify-end">
+                <button
+                    class="text-white inline-flex items-center justify-center rounded-xl bg-green-500 py-3 px-6 font-dm text-base font-bold shadow-xl shadow-green-400 transition-transform duration-200 ease-in-out hover:scale-[1.02]">Simpan</button>
+            </div>
+
+        </div>
+
     </form>
 </div>
 
