@@ -2460,7 +2460,21 @@ input#nav-toggle:checked ~ #nav-menu {
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
+
+
+    z-index: 1000;
+    transition: background-color 0.3s, padding 0.3s;
+    top: 0;
 }
+
+.navbar.sticky {
+    position: fixed;
+    background: white;
+    padding: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%;
+}
+
 .navbar-nav {
     text-align: center;
 }
