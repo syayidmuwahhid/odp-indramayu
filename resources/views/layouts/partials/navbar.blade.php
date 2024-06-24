@@ -1,8 +1,9 @@
 <nav class="navbar container">
     <!-- logo -->
     <div class="order-0">
-      <a href="index.html">
-        <img src="{{ asset('assets/img/logo.svg') }}" height="30" width="147" alt="logo" />
+      <a href="{{ url('') }}" class="flex gap-3 items-center">
+        <img src="" height="30" width="30" alt="logo" class="appLogo"/>
+        <span class="text-bold text-xl appName"></span>
       </a>
     </div>
     <!-- navbar toggler -->

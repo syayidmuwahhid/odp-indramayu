@@ -136,6 +136,7 @@ class ArticleController extends Controller
         try {
             // Find the article by its unique identifier
             $article = Article::find($id);
+            $article->User;
             $tags = Tag::select('tag.name', 'article_tag.article_id')
 
                 ->join('article_tag', "article_tag.id", "article_tag_id")

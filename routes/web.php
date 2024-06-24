@@ -6,8 +6,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/login', [AuthController::class, 'index']);
 Route::post('/login', [AuthController::class, 'authenticate'])->name('login');
-Route::get('/register', [AuthController::class, 'register']);
-Route::post('/register', [AuthController::class, 'signup'])->name('register');
+// Route::get('/register', [AuthController::class, 'register']);
+// Route::post('/register', [AuthController::class, 'signup'])->name('register');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::name('admin.')->prefix('admin')->middleware('auth')->group(function () {
