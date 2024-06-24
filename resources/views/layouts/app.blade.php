@@ -10,20 +10,34 @@
 <html lang="zxx">
 
 <head>
+    <meta charset="UTF-8">
     <!-- favicon -->
-    <link rel="shortcut icon" href="images/favicon.png') }}" />
+    <link rel="shortcut icon" href="" id="appIcon"/>
     <!-- theme meta -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <input type="hidden" id="baseL" value="{{ url('') }}" />
+
     <meta name="theme-name" content="Pinwheel" />
     <meta name="msapplication-TileColor" content="#000000" />
     <meta name="theme-color" media="(prefers-color-scheme: light)" content="#fff" />
     <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000" />
     <meta name="generator" content="gulp" />
+
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
     <!-- responsive meta -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="{{ url('') }}">
+
+    <meta property="og:title" content="Your Page Title">
+    <meta property="og:description" content="">
+    <meta property="og:image" content="">
+    <meta property="og:url" content="{{ url('') }}">
 
     <!-- title -->
     <title>@yield('title')</title>
@@ -31,32 +45,6 @@
     <!-- noindex robots -->
     <meta name="robots" content="" />
 
-    <!-- meta-description -->
-    <meta name="description" content="meta description" />
-
-    <!-- author from config.json -->
-    <meta name="author" content="{config.metadata.meta_author}" />
-
-    <!-- og-title -->
-    <meta property="og:title" content="" />
-
-    <!-- og-description -->
-    <meta property="og:description" content="" />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="/" />
-
-    <!-- twitter-title -->
-    <meta name="twitter:title" content="" />
-
-    <!-- twitter-description -->
-    <meta name="twitter:description" content="" />
-
-    <!-- og-image -->
-    <meta property="og:image" content="" />
-
-    <!-- twitter-image -->
-    <meta name="twitter:image" content="" />
-    <meta name="twitter:card" content="summary_large_image" />
 
     <!-- google font css -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -103,6 +91,29 @@
     <!-- Main Script -->
     <script src="{{ asset('assets/js/main.js') }}"></script>
     <script src="{{ asset('assets/js/global.js') }}"></script>
+
+    <script>
+        $(document).ready(async function() {
+            let appData = await getAppData();
+            $('.appName').html(appData.app_name);
+            $('.appDescription').html(appData.description);
+            $('#appIcon').attr('href', baseL + '/' + appData.icon);
+            $('.appLogo').attr('src', baseL + '/' + appData.icon);
+            $('meta[name="description"]').attr('content', appData.description);
+            $('meta[property="og:description"]').attr('content', appData.description);
+            $('meta[property="og:title"]').attr('content', appData.description);
+            $('meta[property="og:image"]').attr('content', baseL + '/' + appData.icon);
+            $('#appFacebook').attr('href', appData.facebook);
+            $('#appX').attr('href', appData.x);
+            $('#appYoutube').attr('href', appData.youtube);
+            $('#appInstagram').attr('href', appData.instagram);
+            let keywords = '';
+            JSON.parse(appData.keywords).forEach(element => {
+                keywords += element.value + ', ';
+            });
+            $('meta[name="keywords"]').attr('content', keywords);
+        });
+    </script>
 
     @stack('js')
 

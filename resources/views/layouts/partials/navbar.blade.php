@@ -3,8 +3,9 @@
 
     <!-- logo -->
     <div class="order-0">
-      <a href="index.html">
-        <img src="{{ asset('assets/img/logo.svg') }}" height="30" width="147" alt="logo" />
+      <a href="{{ url('') }}" class="flex gap-3 items-center">
+        <img src="" height="30" width="30" alt="logo" class="appLogo"/>
+        <span class="text-bold text-xl appName"></span>
       </a>
     </div>
     
@@ -132,9 +133,9 @@
         >
       </li>
     </ul>
-
-    <div class="order-2 ml-auto hidden items-center md:order-2 md:ml-0 lg:flex">
-      <a class="btn btn-white btn-sm" href="{{ route('login') }}">Masuk</a>
+    
+    <div class="order-1 ml-auto hidden items-center md:order-2 md:ml-0 lg:flex">
+      <a class="btn btn-white btn-sm" href="{{ route('login') }}">{{ Auth::check() ? Auth::user()->name : 'Masuk' }}</a>
     </div>
 
   </div>

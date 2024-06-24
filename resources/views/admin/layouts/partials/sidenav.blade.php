@@ -4,9 +4,9 @@
         <i class="absolute top-0 right-0 hidden p-4 opacity-50 cursor-pointer fas fa-times text-slate-400 xl:hidden"
             sidenav-close></i>
         <a class="block px-8 py-6 m-0 text-sm whitespace-nowrap text-slate-700" href="{{ url('') }}" target="_blank">
-            <img src="{{ asset('assets/img/logo-ct.png') }}"
-                class="inline h-full max-w-full transition-all duration-200 ease-nav-brand max-h-8" alt="main_logo" />
-            <span class="ml-1 font-semibold transition-all duration-200 ease-nav-brand">ODP Indramayu</span>
+            <img src="{{ asset('assets/img/favicon.png') }}"
+                class="inline h-full max-w-full transition-all duration-200 ease-nav-brand max-h-8" alt="main_logo" id="appLogo"/>
+            <span class="ml-1 font-semibold transition-all duration-200 ease-nav-brand" id="appName">ODP Indramayu</span>
         </a>
     </div>
 
@@ -79,23 +79,8 @@
                     href="{{ route('admin.user.index') }}">
                     <div
                         class="{{ url()->current() == route('admin.user.index') ? $i_active : '' }} shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5">
-                        <svg width="12px" height="12px" viewBox="0 0 42 42" version="1.1"
-                            xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                            <title>office</title>
-                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                <g transform="translate(-1869.000000, -293.000000)" fill="#FFFFFF" fill-rule="nonzero">
-                                    <g transform="translate(1716.000000, 291.000000)">
-                                        <g transform="translate(153.000000, 2.000000)">
-                                            <path class="fill-slate-800 opacity-60"
-                                                d="M12.25,17.5 L8.75,17.5 L8.75,1.75 C8.75,0.78225 9.53225,0 10.5,0 L31.5,0 C32.46775,0 33.25,0.78225 33.25,1.75 L33.25,12.25 L29.75,12.25 L29.75,3.5 L12.25,3.5 L12.25,17.5 Z">
-                                            </path>
-                                            <path class="fill-slate-800"
-                                                d="M40.25,14 L24.5,14 C23.53225,14 22.75,14.78225 22.75,15.75 L22.75,38.5 L19.25,38.5 L19.25,22.75 C19.25,21.78225 18.46775,21 17.5,21 L1.75,21 C0.78225,21 0,21.78225 0,22.75 L0,40.25 C0,41.21775 0.78225,42 1.75,42 L40.25,42 C41.21775,42 42,41.21775 42,40.25 L42,15.75 C42,14.78225 41.21775,14 40.25,14 Z M12.25,36.75 L7,36.75 L7,33.25 L12.25,33.25 L12.25,36.75 Z M12.25,29.75 L7,29.75 L7,26.25 L12.25,26.25 L12.25,29.75 Z M35,36.75 L29.75,36.75 L29.75,33.25 L35,33.25 L35,36.75 Z M35,29.75 L29.75,29.75 L29.75,26.25 L35,26.25 L35,29.75 Z M35,22.75 L29.75,22.75 L29.75,19.25 L35,19.25 L35,22.75 Z">
-                                            </path>
-                                        </g>
-                                    </g>
-                                </g>
-                            </g>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
+                            <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5.784 6A2.24 2.24 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.3 6.3 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5"/>
                         </svg>
                     </div>
                     <span class="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">User</span>
@@ -135,21 +120,6 @@
                             <rect x="10" y="22" width="8" height="8" class="fill-white"></rect>
                             <rect x="22" y="22" width="8" height="8" class="fill-white"></rect>
                         </svg>
-
-                        {{-- <svg width="12px" height="12px" viewBox="0 0 42 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                <title>box-3d-50</title>
-                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                  <g transform="translate(-2319.000000, -291.000000)" fill="#FFFFFF" fill-rule="nonzero">
-                    <g transform="translate(1716.000000, 291.000000)">
-                      <g transform="translate(603.000000, 0.000000)">
-                        <path class="fill-slate-800" d="M22.7597136,19.3090182 L38.8987031,11.2395234 C39.3926816,10.9925342 39.592906,10.3918611 39.3459167,9.89788265 C39.249157,9.70436312 39.0922432,9.5474453 38.8987261,9.45068056 L20.2741875,0.1378125 L20.2741875,0.1378125 C19.905375,-0.04725 19.469625,-0.04725 19.0995,0.1378125 L3.1011696,8.13815822 C2.60720568,8.38517662 2.40701679,8.98586148 2.6540352,9.4798254 C2.75080129,9.67332903 2.90771305,9.83023153 3.10122239,9.9269862 L21.8652864,19.3090182 C22.1468139,19.4497819 22.4781861,19.4497819 22.7597136,19.3090182 Z"></path>
-                        <path class="fill-slate-800 opacity-60" d="M23.625,22.429159 L23.625,39.8805372 C23.625,40.4328219 24.0727153,40.8805372 24.625,40.8805372 C24.7802551,40.8805372 24.9333778,40.8443874 25.0722402,40.7749511 L41.2741875,32.673375 L41.2741875,32.673375 C41.719125,32.4515625 42,31.9974375 42,31.5 L42,14.241659 C42,13.6893742 41.5522847,13.241659 41,13.241659 C40.8447549,13.241659 40.6916418,13.2778041 40.5527864,13.3472318 L24.1777864,21.5347318 C23.8390024,21.7041238 23.625,22.0503869 23.625,22.429159 Z"></path>
-                        <path class="fill-slate-800 opacity-60" d="M20.4472136,21.5347318 L1.4472136,12.0347318 C0.953235098,11.7877425 0.352562058,11.9879669 0.105572809,12.4819454 C0.0361450918,12.6208008 6.47121774e-16,12.7739139 0,12.929159 L0,30.1875 L0,30.1875 C0,30.6849375 0.280875,31.1390625 0.7258125,31.3621875 L19.5528096,40.7750766 C20.0467945,41.0220531 20.6474623,40.8218132 20.8944388,40.3278283 C20.963859,40.1889789 21,40.0358742 21,39.8806379 L21,22.429159 C21,22.0503869 20.7859976,21.7041238 20.4472136,21.5347318 Z"></path>
-                      </g>
-                    </g>
-                  </g>
-                </g>
-              </svg> --}}
                     </div>
                     <span class="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">Kategori</span>
                 </a>
@@ -164,9 +134,10 @@
                     <div
 
                         class="{{ url()->current() == route('admin.article.index') ? $i_active : '' }}shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5">
-                        <svg width="12px" height="12px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path fill-rule="evenodd" clip-rule="evenodd" d="M2 1.5C2 1.22386 2.22386 1 2.5 1H21.5C21.7761 1 22 1.22386 22 1.5V22.5C22 22.7761 21.7761 23 21.5 23H2.5C2.22386 23 2 22.7761 2 22.5V1.5ZM9 5C9 4.44772 9.44772 4 10 4H19C19.5523 4 20 4.44772 20 5C20 5.55228 19.5523 6 19 6H10C9.44772 6 9 5.55228 9 5ZM5 8C5 7.44772 5.44772 7 6 7H19C19.5523 7 20 7.44772 20 8C20 8.55228 19.5523 9 19 9H6C5.44772 9 5 8.55228 5 8ZM5 11C5 10.4477 5.44772 10 6 10H19C19.5523 10 20 10.4477 20 11C20 11.5523 19.5523 12 19 12H6C5.44772 12 5 11.5523 5 11ZM5 14C5 13.4477 5.44772 13 6 13H19C19.5523 13 20 13.4477 20 14C20 14.5523 19.5523 15 19 15H6C5.44772 15 5 14.5523 5 14ZM5 17C5 16.4477 5.44772 16 6 16H16C16.5523 16 17 16.4477 17 17C17 17.5523 16.5523 18 16 18H6C5.44772 18 5 17.5523 5 17Z" fill="#9E9E9E"/>
-                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-newspaper" viewBox="0 0 16 16">
+                            <path d="M0 2.5A1.5 1.5 0 0 1 1.5 1h11A1.5 1.5 0 0 1 14 2.5v10.528c0 .3-.05.654-.238.972h.738a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 1 1 0v9a1.5 1.5 0 0 1-1.5 1.5H1.497A1.497 1.497 0 0 1 0 13.5zM12 14c.37 0 .654-.211.853-.441.092-.106.147-.279.147-.531V2.5a.5.5 0 0 0-.5-.5h-11a.5.5 0 0 0-.5.5v11c0 .278.223.5.497.5z"/>
+                            <path d="M2 3h10v2H2zm0 3h4v3H2zm0 4h4v1H2zm0 2h4v1H2zm5-6h2v1H7zm3 0h2v1h-2zM7 8h2v1H7zm3 0h2v1h-2zm-3 2h2v1H7zm3 0h2v1h-2zm-3 2h2v1H7zm3 0h2v1h-2z"/>
+                          </svg>
 
                     </div>
                     <span class="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">Artikel</span>

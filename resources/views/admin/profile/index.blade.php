@@ -85,7 +85,7 @@
                     <div></div><div></div><div></div>
                     <label class="flex items-center h-full">Gambar Banner <span class="text-sm text-red-500">*</span></label>
                     <div class="col-span-2 align-middle flex flex-col justify-center items-center">
-                        <img src="" alt="Banner" id="img_banner" style="width: 300px;" class="mb-3"/>
+                        <img src="" alt="Banner" id="img_banner" style="width: 100%;" class="mb-3"/>
                         <input type="file" name="banner" id="banner" class="inputan" accept="image/*">
                     </div>
                 </div>
@@ -94,7 +94,7 @@
                     <div></div><div></div><div></div>
                     <label class="flex items-center h-full">Logo <span class="text-sm text-red-500">*</span></label>
                     <div class="col-span-2 align-middle flex flex-col justify-center items-center">
-                        <img src="" alt="Logo" id="img_icon" style="width: 300px" class="mb-3"/>
+                        <img src="" alt="Logo" id="img_icon" style="width: 100%" class="mb-3"/>
                         <input type="file" name="icon" id="icon" class="inputan" accept="image/*">
                     </div>
                 </div>
