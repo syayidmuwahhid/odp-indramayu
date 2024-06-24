@@ -307,115 +307,12 @@
     <!-- carousel -->
     <div class="carousel">
       <!-- list item -->
-      <div class="list">
-          <div class="item">
-              <img src="{{ asset('assets/img/ac.png') }}">
-              <div class="content">
-                  <div class="author">LUNDEV</div>
-                  <div class="title">DESIGN SLIDER</div>
-                  <div class="topic">ANIMAL</div>
-                  <div class="des">
-                      <!-- lorem 50 -->
-                      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut sequi, rem magnam nesciunt minima placeat, itaque eum neque officiis unde, eaque optio ratione aliquid assumenda facere ab et quasi ducimus aut doloribus non numquam. Explicabo, laboriosam nisi reprehenderit tempora at laborum natus unde. Ut, exercitationem eum aperiam illo illum laudantium?
-                  </div>
-                  <div class="buttons">
-                      <button>SEE MORE</button>
-                      <button>SUBSCRIBE</button>
-                  </div>
-              </div>
-          </div>
-          <div class="item">
-              <img src="{{ asset('assets/img/ac1.jpg') }}">
-              <div class="content">
-                  <div class="author">LUNDEV</div>
-                  <div class="title">DESIGN SLIDER</div>
-                  <div class="topic">ANIMAL</div>
-                  <div class="des">
-                      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut sequi, rem magnam nesciunt minima placeat, itaque eum neque officiis unde, eaque optio ratione aliquid assumenda facere ab et quasi ducimus aut doloribus non numquam. Explicabo, laboriosam nisi reprehenderit tempora at laborum natus unde. Ut, exercitationem eum aperiam illo illum laudantium?
-                  </div>
-                  <div class="buttons">
-                      <button>SEE MORE</button>
-                      <button>SUBSCRIBE</button>
-                  </div>
-              </div>
-          </div>
-          <div class="item">
-            <img src="{{ asset('assets/img/ac2.jpg') }}">
-              <div class="content">
-                  <div class="author">LUNDEV</div>
-                  <div class="title">DESIGN SLIDER</div>
-                  <div class="topic">ANIMAL</div>
-                  <div class="des">
-                      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut sequi, rem magnam nesciunt minima placeat, itaque eum neque officiis unde, eaque optio ratione aliquid assumenda facere ab et quasi ducimus aut doloribus non numquam. Explicabo, laboriosam nisi reprehenderit tempora at laborum natus unde. Ut, exercitationem eum aperiam illo illum laudantium?
-                  </div>
-                  <div class="buttons">
-                      <button>SEE MORE</button>
-                      <button>SUBSCRIBE</button>
-                  </div>
-              </div>
-          </div>
-          <div class="item">
-            <img src="{{ asset('assets/img/ac7.jpg') }}">
-              <div class="content">
-                  <div class="author">LUNDEV</div>
-                  <div class="title">DESIGN SLIDER</div>
-                  <div class="topic">ANIMAL</div>
-                  <div class="des">
-                      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut sequi, rem magnam nesciunt minima placeat, itaque eum neque officiis unde, eaque optio ratione aliquid assumenda facere ab et quasi ducimus aut doloribus non numquam. Explicabo, laboriosam nisi reprehenderit tempora at laborum natus unde. Ut, exercitationem eum aperiam illo illum laudantium?
-                  </div>
-                  <div class="buttons">
-                      <button>SEE MORE</button>
-                      <button>SUBSCRIBE</button>
-                  </div>
-              </div>
-          </div>
+      <div class="list" id="list_slider">
+
       </div>
       <!-- list thumnail -->
-      <div class="thumbnail">
-          <div class="item">
-              <img src="{{ asset('assets/img/ac.png') }}">
-              <div class="content">
-                  <div class="title">
-                      Name Slider
-                  </div>
-                  <div class="description">
-                      Description
-                  </div>
-              </div>
-          </div>
-          <div class="item">
-            <img src="{{ asset('assets/img/ac1.jpg') }}">
-              <div class="content">
-                  <div class="title">
-                      Name Slider
-                  </div>
-                  <div class="description">
-                      Description
-                  </div>
-              </div>
-          </div>
-          <div class="item">
-            <img src="{{ asset('assets/img/ac2.jpg') }}">
-              <div class="content">
-                  <div class="title">
-                      Name Slider
-                  </div>
-                  <div class="description">
-                      Description
-                  </div>
-              </div>
-          </div>
-          <div class="item">
-            <img src="{{ asset('assets/img/ac7.jpg') }}">
-              <div class="content">
-                  <div class="title">
-                      Name Slider
-                  </div>
-                  <div class="description">
-                      Description
-                  </div>
-              </div>
-          </div>
+      <div class="thumbnail" id="thumbnail_slider">
+
       </div>
       <!-- next prev -->
 
@@ -426,7 +323,7 @@
       <!-- time running -->
       <div class="time"></div>
   </div>
-  
+
   </div>
   <img
   class="floating-bubble-1 absolute right-0 top-0 -z-[1]"
