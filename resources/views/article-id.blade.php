@@ -14,8 +14,8 @@
                     </h1>
 
                         <div class="">
-                            <p class="text-dark">Cameron Williamson</p>
-                            <span class="text-sm" id="date"></span>
+                            <p class="text-dark" id="username"></p>
+                            <span class="text-sm flex" id="date"></span>
                         </div>
 
                     <div class="content" id="content">
