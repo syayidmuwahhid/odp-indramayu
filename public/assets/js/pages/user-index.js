@@ -18,9 +18,9 @@ function formModal() {
     html += `<label>Name</label>`;
     html += `<input class="swal2-input" placeholder="name" name="name"> <br/>`;
     html += `<label>Email</label>`;
-    html += `<input class="swal2-input" placeholder="email" name="email"> <br/>`;
+    html += `<input type="email" class="swal2-input" placeholder="email" name="email"> <br/>`;
     html += `<label>Password</label>`;
-    html += `<input class="swal2-input" placeholder="Password" name="password" value="12345678">`;
+    html += `<input type="password" class="swal2-input" placeholder="Password" name="password" value="" >`;
     html += `</form>`;
 
     // Call the modal function to display the form
@@ -51,9 +51,9 @@ async function editModal(id) {
         html += `<label>Name</label>`;
         html += `<input class="swal2-input" placeholder="name" name="name" value="${data.name}"> <br/>`;
         html += `<label>Email</label>`;
-        html += `<input class="swal2-input" placeholder="email" name="email" value="${data.email}"> <br/>`;
+        html += `<input type="email" class="swal2-input" placeholder="email" name="email" value="${data.email}"> <br/>`;
         html += `<label>Password</label>`;
-        html += `<input class="swal2-input" placeholder="Password" name="password">`;
+        html += `<input type="password" class="swal2-input" placeholder="Password" name="password">`;
         html += `<input type="hidden" name="_method" value="PUT">`;
         html += `</form>`;
 
@@ -81,7 +81,7 @@ async function editModal(id) {
 async function getData() {
     try {
         // Fetch user data from the server
-        let data = await getRequestData(`${baseL}/api/user`);
+        let data = await getRequestData(`${baseL}/api/user?user_id=${userID}`);
 
         // Throw an error if the request fails or the response status is not successful
         if (!data.status) {

@@ -63,9 +63,7 @@ class ProfileController extends Controller
             // Validate the incoming request data
             $payload = $request->validate([
                 'app_name' => 'required',
-                'banner' => 'nullable|mimes:jpeg,png,bmp,gif,svg,webp',
                 'facebook' => 'required',
-                'history' => 'required',
                 'icon' => 'nullable|mimes:jpeg,png,bmp,gif,svg,webp',
                 'instagram' => 'required',
                 'description' => 'required',
@@ -74,6 +72,11 @@ class ProfileController extends Controller
                 'title' => 'required',
                 'x' => 'required',
                 'youtube' => 'required',
+                'visi' => 'required',
+                'misi' => 'required',
+                'history' => 'required',
+                'geografi' => 'required',
+                'demografi' => 'required',
             ]);
 
             // Find the slider by its unique identifier
@@ -83,22 +86,12 @@ class ProfileController extends Controller
 
             $profile::where('id', 1)->update($payload);
 
-            if ($request->hasFile('banner')) {
-                $filePath = $request->file('banner')->store('profile', 'public');
-                $profile->banner = 'storage/' . $filePath;
-            }
-
             if ($request->hasFile('icon')) {
                 $filePath = $request->file('icon')->store('profile', 'public');
                 $profile->icon = 'storage/' . $filePath;
             }
 
             $profile->save();
-
-            // If a new file is uploaded and the old file exists, delete the old file
-            if ($request->hasFile('banner') && File::exists($oldBanner)) {
-                File::delete($oldBanner);
-            }
 
             if ($request->hasFile('icon') && File::exists($oldIcon)) {
                 File::delete($oldIcon);

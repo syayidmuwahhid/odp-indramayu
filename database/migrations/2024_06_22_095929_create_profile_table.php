@@ -15,8 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('app_name');
             $table->string('title');
-            $table->string('banner');
-            $table->text('history');
             $table->string('icon');
             $table->text('description');
             $table->string('keywords');
@@ -25,6 +23,11 @@ return new class extends Migration
             $table->string('youtube');
             $table->string('x');
             $table->string('instagram');
+            $table->string('visi');
+            $table->text('misi');
+            $table->text('history');
+            $table->text('demografi');
+            $table->text('geografi');
             $table->timestamps();
         });
     }

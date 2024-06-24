@@ -16,7 +16,7 @@ class UserController extends Controller
      *
      * @throws \Throwable If an error occurs during the database transaction.
      */
-    function index() {
+    function index(Request $request) {
         // Initialize the response data
         $resp = [
             'status' => false,
@@ -26,7 +26,13 @@ class UserController extends Controller
         DB::beginTransaction();
         try {
             // Fetch all users except superadmin
-            $user = User::where('role', '!=', 0)->get();
+            $user = User::where('role', '!=', 0);
+
+            if (!is_null($request->query('user_id'))) {
+                $user = $user->where('id', '!=', $request->query('user_id'));
+            }
+
+            $user = $user->get();
 
             // Prepare the success response data
             $resp['status'] = true;
