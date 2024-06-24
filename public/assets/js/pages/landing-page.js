@@ -12,7 +12,7 @@ $(document).ready(async function () {
     let timeDom = document.querySelector(".carousel .time");
 
     thumbnailBorderDom.appendChild(thumbnailItemsDom[0]);
-    let timeRunning = 3000;
+    let timeRunning = 1000;
     let timeAutoNext = 7000;
 
     nextDom.onclick = function () {
@@ -57,6 +57,11 @@ $(document).ready(async function () {
             next.click();
         }, timeAutoNext);
     }
+    
+    console.log(appData);
+
+    $('.banner-title').html(appData.title);
+    $('#banner-description').html(appData.description);
 });
 
 async function getSlider() {
@@ -66,25 +71,24 @@ async function getSlider() {
         let list = "";
         let thumbnail = "";
         data.forEach((element) => {
+            let resource = `<img src="${baseL}/${element.location}">`;
+            let src = `${baseL}/${element.location}`;
+
+            if (element.type === "video") {
+                resource = `<video src="${baseL}/${element.location}" class="w-full" autoplay loop muted></video>`;
+                src = `https://static.vecteezy.com/system/resources/previews/002/162/107/original/camera-video-illustration-hand-drawing-vector.jpg`;
+            }
+
             list += `<div class="item">
-              <img src="${baseL}/${element.location}">
+              ${resource}
               <div class="content">
-                  <div class="author">LUNDEV</div>
-                  <div class="title">DESIGN SLIDER</div>
-                  <div class="topic">ANIMAL</div>
-                  <div class="des">
-                      <!-- lorem 50 -->
-                      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut sequi, rem magnam nesciunt minima placeat, itaque eum neque officiis unde, eaque optio ratione aliquid assumenda facere ab et quasi ducimus aut doloribus non numquam. Explicabo, laboriosam nisi reprehenderit tempora at laborum natus unde. Ut, exercitationem eum aperiam illo illum laudantium?
-                  </div>
-                  <div class="buttons">
-                      <button>SEE MORE</button>
-                      <button>SUBSCRIBE</button>
-                  </div>
+                  <div class="title">${element.title}</div>
+                  <div class="des">${element.description}</div>
               </div>
           </div>`;
 
             thumbnail += `<div class="item">
-              <img src="${baseL}/${element.location}">
+              <img src="${src}">
               <div class="content">
                   <div class="title">
                       Name Slider

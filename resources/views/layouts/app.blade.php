@@ -93,8 +93,9 @@
     <script src="{{ asset('assets/js/global.js') }}"></script>
 
     <script>
+        let appData;
         $(document).ready(async function() {
-            let appData = await getAppData();
+            appData = await getAppData();
             $('.appName').html(appData.app_name);
             $('.appDescription').html(appData.description);
             $('#appIcon').attr('href', baseL + '/' + appData.icon);

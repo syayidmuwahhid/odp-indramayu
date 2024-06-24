@@ -38,18 +38,30 @@
     color: #fff;
     text-shadow: 0 5px 10px #0004;
 }
-.carousel .list .item .author{
-    font-weight: bold;
-    letter-spacing: 10px;
-}
+
 .carousel .list .item .title,
 .carousel .list .item .topic{
     font-size: 5em;
     font-weight: bold;
     line-height: 1.3em;
 }
+
+.carousel .list .item .title{
+  color: #f1683a;
+  top: -10%;
+  position: absolute;
+}
 .carousel .list .item .topic{
     color: #f1683a;
+}
+
+.carousel .list .item .des{
+    font-size: 1em;
+    font-weight: 300;
+    top: 100px;
+    z-index: 30;
+    position: absolute;
+    width: 50%;
 }
 .carousel .list .item .buttons{
     display: grid;
@@ -73,10 +85,10 @@
 /* thumbail */
 .thumbnail{
     position: absolute;
-    bottom: 50px;
+    bottom: 20px;
     left: 50%;
     width: max-content;
-    z-index: 100;
+    z-index: 20;
     display: flex;
     gap: 20px;
 }
@@ -108,9 +120,9 @@
 /* arrows */
 .arrows{
     position: absolute;
-    top: 80%;
+    top: 90%;
     right: 52%;
-    z-index: 100;
+    z-index: 20;
     width: 300px;
     max-width: 30%;
     display: flex;
@@ -195,7 +207,7 @@
     animation: showThumbnail .5s linear 1 forwards;
 }
 .carousel.prev .list .item img{
-    z-index: 100;
+    z-index: 50;
 }
 @keyframes showThumbnail{
     from{
@@ -217,7 +229,7 @@
 
 .carousel .time{
     position: absolute;
-    z-index: 1000;
+    z-index: 20;
     width: 0%;
     height: 3px;
     background-color: #f1683a;
@@ -322,33 +334,27 @@
       </div>
       <!-- time running -->
       <div class="time"></div>
-  </div>
+    </div>
+    {{-- </div>
+</section> --}}
 
-  </div>
-  <img
-  class="floating-bubble-1 absolute right-0 top-0 -z-[1]"
-  src="{{ asset('assets/img//floating-bubble-1.svg') }}"
-  alt=""
-/>
-</section>
-
+{{-- banner --}}
 <section class="section banner relative">
     <div class="container">
-      <div class="row items-center">
+      <div class="row items-center mt-12">
         <div class="lg:col-6">
-          <h1 class="banner-title">
-            Scale design & dev operations with Avocode Enterprise
-          </h1>
-          <p class="mt-6">
-            A fully integrated suite of authentication & authoriz products,
-            Stytch’s platform removes the headache of.
+          <h4 class="banner-title">
+
+          </h4>
+          <p class="mt-6" id="banner-description">
+
           </p>
-          <a class="btn btn-primary mt-8" href="#">Download The Theme</a>
+          <a class="btn btn-primary mt-8" href="{{ route('about') }}">Selengkapnya</a>
         </div>
         <div class="lg:col-6">
           <img
-            class="w-full object-contain"
-            src="{{ asset('assets/img/banner-img.png') }}"
+            class="w-full object-cover"
+            src="https://indramayukab.go.id/wp-content/uploads/2023/01/indra1.jpeg"
             width="603"
             height="396"
             alt=""
@@ -363,6 +369,102 @@
     />
   </section>
   <!-- ./end Banner -->
+
+  <!-- Reviews -->
+  <section class="reviews">
+    <div class="container">
+      <div class="row justify-between">
+        <div class="lg:col-6">
+          <h2>Our customers have nice things to say about us</h2>
+        </div>
+        <div class="lg:col-4">
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi egestas
+            Werat viverra id et aliquet. vulputate egestas sollicitudin .
+          </p>
+        </div>
+      </div>
+      <div class="row mt-10">
+        <div class="col-12">
+          <div class="swiper reviews-carousel">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <div class="review">
+                  <div class="review-author-avatar bg-gradient">
+                    <img src="{{ asset('assets/img/users/user-5.png') }}" alt="" />
+                  </div>
+                  <h4 class="mb-2">Courtney Henry</h4>
+                  <p class="mb-4 text-[#666]">microsoft corp</p>
+                  <p>
+                    Our platform helps build secure onboarding authentica
+                    experiences & engage your users. We build .
+                  </p>
+                  <div
+                    class="review-rating mt-6 flex items-center justify-center space-x-2.5"
+                  >
+                    <img src="{{ asset('assets/img/icons/star.svg') }}" alt="" />
+                    <img src="{{ asset('assets/img/icons/star.svg') }}" alt="" />
+                    <img src="{{ asset('assets/img/icons/star.svg') }}" alt="" />
+                    <img src="{{ asset('assets/img/icons/star.svg') }}" alt="" />
+                    <img src="{{ asset('assets/img/icons/star-white.svg') }}" alt="" />
+                  </div>
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="review">
+                  <div class="review-author-avatar bg-gradient">
+                    <img src="{{ asset('assets/img/users/user-2.png') }}" alt="" />
+                  </div>
+                  <h4 class="mb-2">Ronald Richards</h4>
+                  <p class="mb-4 text-[#666]">meta limited</p>
+                  <p>
+                    Our platform helps build secure onboarding authentica
+                    experiences & engage your users. We build .
+                  </p>
+                  <div
+                    class="review-rating mt-6 flex items-center justify-center space-x-2.5"
+                  >
+                    <img src="{{ asset('assets/img/icons/star.svg') }}" alt="" />
+                    <img src="{{ asset('assets/img/icons/star.svg') }}" alt="" />
+                    <img src="{{ asset('assets/img/icons/star.svg') }}" alt="" />
+                    <img src="{{ asset('assets/img/icons/star.svg') }}" alt="" />
+                    <img src="{{ asset('assets/img/icons/star-white.svg') }}" alt="" />
+                  </div>
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="review">
+                  <div class="review-author-avatar bg-gradient">
+                    <img src="{{ asset('assets/img/users/user-6.png') }}" alt="" />
+                  </div>
+                  <h4 class="mb-2">Bessie Cooper</h4>
+                  <p class="mb-4 text-[#666]">apple inc ltd</p>
+                  <p>
+                    Our platform helps build secure onboarding authentica
+                    experiences & engage your users. We build .
+                  </p>
+                  <div
+                    class="review-rating mt-6 flex items-center justify-center space-x-2.5"
+                  >
+                    <img src="{{ asset('assets/img/icons/star.svg') }}" alt="" />
+                    <img src="{{ asset('assets/img/icons/star.svg') }}" alt="" />
+                    <img src="{{ asset('assets/img/icons/star.svg') }}" alt="" />
+                    <img src="{{ asset('assets/img/icons/star.svg') }}" alt="" />
+                    <img src="{{ asset('assets/img/icons/star-white.svg') }}" alt="" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- If we need pagination -->
+            <div
+              class="swiper-pagination reviews-carousel-pagination !bottom-0"
+            ></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Reviews -->
 
   <!-- Key features -->
   <section class="section key-feature relative">
@@ -686,101 +788,7 @@
   </section>
   <!-- ./end Services -->
 
-  <!-- Reviews -->
-  <section class="reviews">
-    <div class="container">
-      <div class="row justify-between">
-        <div class="lg:col-6">
-          <h2>Our customers have nice things to say about us</h2>
-        </div>
-        <div class="lg:col-4">
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi egestas
-            Werat viverra id et aliquet. vulputate egestas sollicitudin .
-          </p>
-        </div>
-      </div>
-      <div class="row mt-10">
-        <div class="col-12">
-          <div class="swiper reviews-carousel">
-            <div class="swiper-wrapper">
-              <div class="swiper-slide">
-                <div class="review">
-                  <div class="review-author-avatar bg-gradient">
-                    <img src="{{ asset('assets/img/users/user-5.png') }}" alt="" />
-                  </div>
-                  <h4 class="mb-2">Courtney Henry</h4>
-                  <p class="mb-4 text-[#666]">microsoft corp</p>
-                  <p>
-                    Our platform helps build secure onboarding authentica
-                    experiences & engage your users. We build .
-                  </p>
-                  <div
-                    class="review-rating mt-6 flex items-center justify-center space-x-2.5"
-                  >
-                    <img src="{{ asset('assets/img/icons/star.svg') }}" alt="" />
-                    <img src="{{ asset('assets/img/icons/star.svg') }}" alt="" />
-                    <img src="{{ asset('assets/img/icons/star.svg') }}" alt="" />
-                    <img src="{{ asset('assets/img/icons/star.svg') }}" alt="" />
-                    <img src="{{ asset('assets/img/icons/star-white.svg') }}" alt="" />
-                  </div>
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="review">
-                  <div class="review-author-avatar bg-gradient">
-                    <img src="{{ asset('assets/img/users/user-2.png') }}" alt="" />
-                  </div>
-                  <h4 class="mb-2">Ronald Richards</h4>
-                  <p class="mb-4 text-[#666]">meta limited</p>
-                  <p>
-                    Our platform helps build secure onboarding authentica
-                    experiences & engage your users. We build .
-                  </p>
-                  <div
-                    class="review-rating mt-6 flex items-center justify-center space-x-2.5"
-                  >
-                    <img src="{{ asset('assets/img/icons/star.svg') }}" alt="" />
-                    <img src="{{ asset('assets/img/icons/star.svg') }}" alt="" />
-                    <img src="{{ asset('assets/img/icons/star.svg') }}" alt="" />
-                    <img src="{{ asset('assets/img/icons/star.svg') }}" alt="" />
-                    <img src="{{ asset('assets/img/icons/star-white.svg') }}" alt="" />
-                  </div>
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="review">
-                  <div class="review-author-avatar bg-gradient">
-                    <img src="{{ asset('assets/img/users/user-6.png') }}" alt="" />
-                  </div>
-                  <h4 class="mb-2">Bessie Cooper</h4>
-                  <p class="mb-4 text-[#666]">apple inc ltd</p>
-                  <p>
-                    Our platform helps build secure onboarding authentica
-                    experiences & engage your users. We build .
-                  </p>
-                  <div
-                    class="review-rating mt-6 flex items-center justify-center space-x-2.5"
-                  >
-                    <img src="{{ asset('assets/img/icons/star.svg') }}" alt="" />
-                    <img src="{{ asset('assets/img/icons/star.svg') }}" alt="" />
-                    <img src="{{ asset('assets/img/icons/star.svg') }}" alt="" />
-                    <img src="{{ asset('assets/img/icons/star.svg') }}" alt="" />
-                    <img src="{{ asset('assets/img/icons/star-white.svg') }}" alt="" />
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- If we need pagination -->
-            <div
-              class="swiper-pagination reviews-carousel-pagination !bottom-0"
-            ></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- Reviews -->
+
 
   <!-- Call To action -->
   <section class="px-5 py-20 xl:py-[120px]">
