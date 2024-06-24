@@ -2,22 +2,16 @@
 const baseL = $("#baseL").val();
 const userID = $("#user_id").val();
 
-$(document).ready(function () {
-    //select 2 initially
-    // $(".select2").select2({
-    //     placeholder: "Select an option",
-    // });
-    //data table initially
-    // setDataTable(".dataTable");
-    // new Quill(".editor", {
-    //     debug: "info",
-    //     modules: {
-    //         toolbar: true,
-    //     },
-    //     placeholder: "Compose an epic...",
-    //     theme: "snow",
-    // });
-});
+$(document).ready(async function () {});
+
+async function getAppData() {
+    try {
+        let { data } = await getRequestData(`${baseL}/api/profile`);
+        return data;
+    } catch (error) {
+        notif("error", "Galat!", error);
+    }
+}
 
 function blockUI() {
     $.blockUI({
@@ -69,34 +63,6 @@ function confirm(title, text, callback = () => {}) {
         if (result.isConfirmed) {
             callback();
         }
-    });
-}
-
-function setDataTable(id) {
-    let tb = new DataTable(id, {
-        layout: {
-            topStart: null,
-            topEnd: null,
-            bottomStart: "pageLength",
-            bottomEnd: "paging",
-        },
-        destroy: true,
-    });
-
-    $(".dataTable-search").on("keyup", function () {
-        let searchTerm = $(this).val();
-        tb.search(searchTerm).draw();
-    });
-
-    $(".dataTable-filter").on("change", () => {
-        let value = $(".dataTable-filter option:selected").val();
-        const column = $(".dataTable-filter").data("column");
-
-        if (value === "all") {
-            value = "";
-        }
-
-        tb.column(column).search(value).draw();
     });
 }
 

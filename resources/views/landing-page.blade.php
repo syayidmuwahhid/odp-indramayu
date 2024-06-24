@@ -2,24 +2,359 @@
 
 @section('title', 'Landing Page')
 
+@push('css')
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+/* carousel */
+.carousel{
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    top: 0;
+}
+.carousel .list .item{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    inset: 0 0 0 0;
+}
+.carousel .list .item img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.carousel .list .item .content{
+    position: absolute;
+    top: 20%;
+    width: 1140px;
+    max-width: 80%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding-right: 30%;
+    box-sizing: border-box;
+    color: #fff;
+    text-shadow: 0 5px 10px #0004;
+}
+
+.carousel .list .item .title,
+.carousel .list .item .topic{
+    font-size: 5em;
+    font-weight: bold;
+    line-height: 1.3em;
+}
+
+.carousel .list .item .title{
+  color: #f1683a;
+  top: -10%;
+  position: absolute;
+}
+.carousel .list .item .topic{
+    color: #f1683a;
+}
+
+.carousel .list .item .des{
+    font-size: 1em;
+    font-weight: 300;
+    top: 100px;
+    z-index: 30;
+    position: absolute;
+    width: 50%;
+}
+.carousel .list .item .buttons{
+    display: grid;
+    grid-template-columns: repeat(2, 130px);
+    grid-template-rows: 40px;
+    gap: 5px;
+    margin-top: 20px;
+}
+.carousel .list .item .buttons button{
+    border: none;
+    background-color: #eee;
+    letter-spacing: 3px;
+    font-family: Poppins;
+    font-weight: 500;
+}
+.carousel .list .item .buttons button:nth-child(2){
+    background-color: transparent;
+    border: 1px solid #fff;
+    color: #eee;
+}
+/* thumbail */
+.thumbnail{
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    width: max-content;
+    z-index: 20;
+    display: flex;
+    gap: 20px;
+}
+.thumbnail .item{
+    width: 150px;
+    height: 220px;
+    flex-shrink: 0;
+    position: relative;
+}
+.thumbnail .item img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+}
+.thumbnail .item .content{
+    color: #fff;
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    right: 10px;
+}
+.thumbnail .item .content .title{
+    font-weight: 500;
+}
+.thumbnail .item .content .description{
+    font-weight: 300;
+}
+/* arrows */
+.arrows{
+    position: absolute;
+    top: 90%;
+    right: 52%;
+    z-index: 20;
+    width: 300px;
+    max-width: 30%;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+.arrows button{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #eee4;
+    border: none;
+    color: #fff;
+    font-family: monospace;
+    font-weight: bold;
+    transition: .5s;
+}
+.arrows button:hover{
+    background-color: #fff;
+    color: #000;
+}
+
+/* animation */
+.carousel .list .item:nth-child(1){
+    z-index: 1;
+}
+
+/* animation text in first item */
+
+.carousel .list .item:nth-child(1) .content .author,
+.carousel .list .item:nth-child(1) .content .title,
+.carousel .list .item:nth-child(1) .content .topic,
+.carousel .list .item:nth-child(1) .content .des,
+.carousel .list .item:nth-child(1) .content .buttons
+{
+    transform: translateY(50px);
+    filter: blur(20px);
+    opacity: 0;
+    animation: showContent .5s 1s linear 1 forwards;
+}
+@keyframes showContent{
+    to{
+        transform: translateY(0px);
+        filter: blur(0px);
+        opacity: 1;
+    }
+}
+.carousel .list .item:nth-child(1) .content .title{
+    animation-delay: 1.2s!important;
+}
+.carousel .list .item:nth-child(1) .content .topic{
+    animation-delay: 1.4s!important;
+}
+.carousel .list .item:nth-child(1) .content .des{
+    animation-delay: 1.6s!important;
+}
+.carousel .list .item:nth-child(1) .content .buttons{
+    animation-delay: 1.8s!important;
+}
+/* create animation when next click */
+.carousel.next .list .item:nth-child(1) img{
+    width: 150px;
+    height: 220px;
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    border-radius: 30px;
+    animation: showImage .5s linear 1 forwards;
+}
+@keyframes showImage{
+    to{
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 0;
+    }
+}
+
+.carousel.next .thumbnail .item:nth-last-child(1){
+    overflow: hidden;
+    animation: showThumbnail .5s linear 1 forwards;
+}
+.carousel.prev .list .item img{
+    z-index: 50;
+}
+@keyframes showThumbnail{
+    from{
+        width: 0;
+        opacity: 0;
+    }
+}
+.carousel.next .thumbnail{
+    animation: effectNext .5s linear 1 forwards;
+}
+
+@keyframes effectNext{
+    from{
+        transform: translateX(150px);
+    }
+}
+
+/* running time */
+
+.carousel .time{
+    position: absolute;
+    z-index: 20;
+    width: 0%;
+    height: 3px;
+    background-color: #f1683a;
+    left: 0;
+    top: 0;
+}
+
+.carousel.next .time,
+.carousel.prev .time{
+    animation: runningTime 3s linear 1 forwards;
+}
+@keyframes runningTime{
+    from{ width: 100%}
+    to{width: 0}
+}
+
+
+/* prev click */
+
+.carousel.prev .list .item:nth-child(2){
+    z-index: 2;
+}
+
+.carousel.prev .list .item:nth-child(2) img{
+    animation: outFrame 0.5s linear 1 forwards;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+@keyframes outFrame{
+    to{
+        width: 150px;
+        height: 220px;
+        bottom: 50px;
+        left: 50%;
+        border-radius: 20px;
+    }
+}
+
+.carousel.prev .thumbnail .item:nth-child(1){
+    overflow: hidden;
+    opacity: 0;
+    animation: showThumbnail .5s linear 1 forwards;
+}
+.carousel.next .arrows button,
+.carousel.prev .arrows button{
+    pointer-events: none;
+}
+.carousel.prev .list .item:nth-child(2) .content .author,
+.carousel.prev .list .item:nth-child(2) .content .title,
+.carousel.prev .list .item:nth-child(2) .content .topic,
+.carousel.prev .list .item:nth-child(2) .content .des,
+.carousel.prev .list .item:nth-child(2) .content .buttons
+{
+    animation: contentOut 1.5s linear 1 forwards!important;
+}
+
+@keyframes contentOut{
+    to{
+        transform: translateY(-150px);
+        filter: blur(20px);
+        opacity: 0;
+    }
+}
+@media screen and (max-width: 678px) {
+    .carousel .list .item .content{
+        padding-right: 0;
+    }
+    .carousel .list .item .content .title{
+        font-size: 30px;
+    }
+
+    .thumbnail .item{
+        width: 120px;
+        height: 150px;
+    }
+}
+</style>
+
+@endpush
+
 @section('content')
+
+{{-- <section class="section relative"> --}}
+  {{-- <div class="container"> --}}
+
+    <!-- carousel -->
+    <div class="carousel">
+      <!-- list item -->
+      <div class="list" id="list_slider">
+
+      </div>
+      <!-- list thumnail -->
+      <div class="thumbnail" id="thumbnail_slider">
+
+      </div>
+      <!-- next prev -->
+
+      <div class="arrows">
+          <button id="prev"><</button>
+          <button id="next">></button>
+      </div>
+      <!-- time running -->
+      <div class="time"></div>
+    </div>
+    {{-- </div>
+</section> --}}
+
+{{-- banner --}}
 <section class="section banner relative">
     <div class="container">
-      <div class="row items-center">
+      <div class="row items-center mt-12">
         <div class="lg:col-6">
-          <h1 class="banner-title">
-            Scale design & dev operations with Avocode Enterprise
-          </h1>
-          <p class="mt-6">
-            A fully integrated suite of authentication & authoriz products,
-            Stytch’s platform removes the headache of.
+          <h4 class="banner-title">
+
+          </h4>
+          <p class="mt-6" id="banner-description">
+
           </p>
-          <a class="btn btn-white mt-8" href="#">Download The Theme</a>
+          <a class="btn btn-primary mt-8" href="{{ route('about') }}">Selengkapnya</a>
         </div>
         <div class="lg:col-6">
           <img
-            class="w-full object-contain"
-            src="{{ asset('assets/img/banner-img.png') }}"
+            class="w-full object-cover"
+            src="https://indramayukab.go.id/wp-content/uploads/2023/01/indra1.jpeg"
             width="603"
             height="396"
             alt=""
@@ -34,6 +369,102 @@
     />
   </section>
   <!-- ./end Banner -->
+
+  <!-- Reviews -->
+  <section class="reviews">
+    <div class="container">
+      <div class="row justify-between">
+        <div class="lg:col-6">
+          <h2>Our customers have nice things to say about us</h2>
+        </div>
+        <div class="lg:col-4">
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi egestas
+            Werat viverra id et aliquet. vulputate egestas sollicitudin .
+          </p>
+        </div>
+      </div>
+      <div class="row mt-10">
+        <div class="col-12">
+          <div class="swiper reviews-carousel">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <div class="review">
+                  <div class="review-author-avatar bg-gradient">
+                    <img src="{{ asset('assets/img/users/user-5.png') }}" alt="" />
+                  </div>
+                  <h4 class="mb-2">Courtney Henry</h4>
+                  <p class="mb-4 text-[#666]">microsoft corp</p>
+                  <p>
+                    Our platform helps build secure onboarding authentica
+                    experiences & engage your users. We build .
+                  </p>
+                  <div
+                    class="review-rating mt-6 flex items-center justify-center space-x-2.5"
+                  >
+                    <img src="{{ asset('assets/img/icons/star.svg') }}" alt="" />
+                    <img src="{{ asset('assets/img/icons/star.svg') }}" alt="" />
+                    <img src="{{ asset('assets/img/icons/star.svg') }}" alt="" />
+                    <img src="{{ asset('assets/img/icons/star.svg') }}" alt="" />
+                    <img src="{{ asset('assets/img/icons/star-white.svg') }}" alt="" />
+                  </div>
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="review">
+                  <div class="review-author-avatar bg-gradient">
+                    <img src="{{ asset('assets/img/users/user-2.png') }}" alt="" />
+                  </div>
+                  <h4 class="mb-2">Ronald Richards</h4>
+                  <p class="mb-4 text-[#666]">meta limited</p>
+                  <p>
+                    Our platform helps build secure onboarding authentica
+                    experiences & engage your users. We build .
+                  </p>
+                  <div
+                    class="review-rating mt-6 flex items-center justify-center space-x-2.5"
+                  >
+                    <img src="{{ asset('assets/img/icons/star.svg') }}" alt="" />
+                    <img src="{{ asset('assets/img/icons/star.svg') }}" alt="" />
+                    <img src="{{ asset('assets/img/icons/star.svg') }}" alt="" />
+                    <img src="{{ asset('assets/img/icons/star.svg') }}" alt="" />
+                    <img src="{{ asset('assets/img/icons/star-white.svg') }}" alt="" />
+                  </div>
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="review">
+                  <div class="review-author-avatar bg-gradient">
+                    <img src="{{ asset('assets/img/users/user-6.png') }}" alt="" />
+                  </div>
+                  <h4 class="mb-2">Bessie Cooper</h4>
+                  <p class="mb-4 text-[#666]">apple inc ltd</p>
+                  <p>
+                    Our platform helps build secure onboarding authentica
+                    experiences & engage your users. We build .
+                  </p>
+                  <div
+                    class="review-rating mt-6 flex items-center justify-center space-x-2.5"
+                  >
+                    <img src="{{ asset('assets/img/icons/star.svg') }}" alt="" />
+                    <img src="{{ asset('assets/img/icons/star.svg') }}" alt="" />
+                    <img src="{{ asset('assets/img/icons/star.svg') }}" alt="" />
+                    <img src="{{ asset('assets/img/icons/star.svg') }}" alt="" />
+                    <img src="{{ asset('assets/img/icons/star-white.svg') }}" alt="" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- If we need pagination -->
+            <div
+              class="swiper-pagination reviews-carousel-pagination !bottom-0"
+            ></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Reviews -->
 
   <!-- Key features -->
   <section class="section key-feature relative">
@@ -357,101 +788,7 @@
   </section>
   <!-- ./end Services -->
 
-  <!-- Reviews -->
-  <section class="reviews">
-    <div class="container">
-      <div class="row justify-between">
-        <div class="lg:col-6">
-          <h2>Our customers have nice things to say about us</h2>
-        </div>
-        <div class="lg:col-4">
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi egestas
-            Werat viverra id et aliquet. vulputate egestas sollicitudin .
-          </p>
-        </div>
-      </div>
-      <div class="row mt-10">
-        <div class="col-12">
-          <div class="swiper reviews-carousel">
-            <div class="swiper-wrapper">
-              <div class="swiper-slide">
-                <div class="review">
-                  <div class="review-author-avatar bg-gradient">
-                    <img src="{{ asset('assets/img/users/user-5.png') }}" alt="" />
-                  </div>
-                  <h4 class="mb-2">Courtney Henry</h4>
-                  <p class="mb-4 text-[#666]">microsoft corp</p>
-                  <p>
-                    Our platform helps build secure onboarding authentica
-                    experiences & engage your users. We build .
-                  </p>
-                  <div
-                    class="review-rating mt-6 flex items-center justify-center space-x-2.5"
-                  >
-                    <img src="{{ asset('assets/img/icons/star.svg') }}" alt="" />
-                    <img src="{{ asset('assets/img/icons/star.svg') }}" alt="" />
-                    <img src="{{ asset('assets/img/icons/star.svg') }}" alt="" />
-                    <img src="{{ asset('assets/img/icons/star.svg') }}" alt="" />
-                    <img src="{{ asset('assets/img/icons/star-white.svg') }}" alt="" />
-                  </div>
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="review">
-                  <div class="review-author-avatar bg-gradient">
-                    <img src="{{ asset('assets/img/users/user-2.png') }}" alt="" />
-                  </div>
-                  <h4 class="mb-2">Ronald Richards</h4>
-                  <p class="mb-4 text-[#666]">meta limited</p>
-                  <p>
-                    Our platform helps build secure onboarding authentica
-                    experiences & engage your users. We build .
-                  </p>
-                  <div
-                    class="review-rating mt-6 flex items-center justify-center space-x-2.5"
-                  >
-                    <img src="{{ asset('assets/img/icons/star.svg') }}" alt="" />
-                    <img src="{{ asset('assets/img/icons/star.svg') }}" alt="" />
-                    <img src="{{ asset('assets/img/icons/star.svg') }}" alt="" />
-                    <img src="{{ asset('assets/img/icons/star.svg') }}" alt="" />
-                    <img src="{{ asset('assets/img/icons/star-white.svg') }}" alt="" />
-                  </div>
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="review">
-                  <div class="review-author-avatar bg-gradient">
-                    <img src="{{ asset('assets/img/users/user-6.png') }}" alt="" />
-                  </div>
-                  <h4 class="mb-2">Bessie Cooper</h4>
-                  <p class="mb-4 text-[#666]">apple inc ltd</p>
-                  <p>
-                    Our platform helps build secure onboarding authentica
-                    experiences & engage your users. We build .
-                  </p>
-                  <div
-                    class="review-rating mt-6 flex items-center justify-center space-x-2.5"
-                  >
-                    <img src="{{ asset('assets/img/icons/star.svg') }}" alt="" />
-                    <img src="{{ asset('assets/img/icons/star.svg') }}" alt="" />
-                    <img src="{{ asset('assets/img/icons/star.svg') }}" alt="" />
-                    <img src="{{ asset('assets/img/icons/star.svg') }}" alt="" />
-                    <img src="{{ asset('assets/img/icons/star-white.svg') }}" alt="" />
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- If we need pagination -->
-            <div
-              class="swiper-pagination reviews-carousel-pagination !bottom-0"
-            ></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- Reviews -->
+
 
   <!-- Call To action -->
   <section class="px-5 py-20 xl:py-[120px]">
@@ -478,3 +815,8 @@
     </div>
   </section>
 @endsection
+
+@push('js')
+
+<script src="{{ asset('assets/js/pages/landing-page.js') }}"></script>
+@endpush
