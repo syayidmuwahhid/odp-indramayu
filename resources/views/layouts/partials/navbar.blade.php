@@ -67,24 +67,24 @@
         </svg>
       </label>
       <li class="nav-item">
-        <a href="{{ route('landing-page') }}" class="nav-link {{ url()->current() == route('landing-page') ? 'active' : '' }}">Home</a>
+        <a href="{{ route('landing-page') }}" class="nav-link {{ url()->current() == route('landing-page') ? 'active' : '' }}">Beranda</a>
       </li>
       <li class="nav-item">
-          <a href="{{ route('article') }}" class="nav-link {{ url()->current() == route('article') ? 'active' : '' }}">Article</a>
+          <a href="{{ route('article') }}" class="nav-link {{ url()->current() == route('article') ? 'active' : '' }}">Artikel</a>
         </li>
 
     <li class="nav-item">
-        <a href="{{ route('about') }}" class="nav-link {{ url()->current() == route('about') ? 'active' : '' }}">About</a>
+        <a href="{{ route('about') }}" class="nav-link {{ url()->current() == route('about') ? 'active' : '' }}">Tentang</a>
     </li>
 
       <li class="nav-item">
-        <a href="contact.html" class="nav-link {{ url()->current() == route('contact') ? 'active' : '' }}">Contact</a>
+        <a href="{{ route('contact') }}" class="nav-link {{ url()->current() == route('contact') ? 'active' : '' }}">Kontak</a>
       </li>
-      <li class="nav-item mt-3.5 lg:hidden">
+      {{-- <li class="nav-item mt-3.5 lg:hidden">
         <a class="btn btn-white btn-sm border-border" href="signin.html"
           >Sing Up Now</a
         >
-      </li>
+      </li> --}}
     </ul>
 
     <div class="order-1 ml-auto hidden items-center md:order-2 md:ml-0 lg:flex">

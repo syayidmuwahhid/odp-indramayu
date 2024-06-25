@@ -19,7 +19,7 @@ Route::name('admin.')->prefix('admin')->middleware('auth')->group(function () {
     Route::get('/tag', fn () => view('admin.tag.index'))->name('tag.index');
 
     Route::get('/article', fn () => view('admin.article.index'))->name('article.index');
-    Route::get('/article/form', fn () => view('admin.article..form'))->name('article.form');
+    Route::get('/article/form', fn () => view('admin.article.form'))->name('article.form');
     Route::get('/article/{id}/edit', fn($id) => view('admin.article.update', ['id' => $id]))->name('article.update');
 
 
