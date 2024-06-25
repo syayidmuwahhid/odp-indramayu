@@ -2,117 +2,56 @@
 
 @section('title', 'Landing Page')
 
-@section('content')
-<img
-  class="floating-bubble-1 absolute right-0 top-0 -z-[1]"
-  src="{{ asset('assets/img//floating-bubble-1.svg') }}"
-  alt=""
-/>
-<img
-  class="floating-bubble-2 absolute left-0 top-[387px] -z-[1]"
-  src="{{ asset('assets/img//floating-bubble-2.svg') }}"
-  alt=""
-/>
-<img
-  class="floating-bubble-3 absolute right-0 top-[605px] -z-[1]"
-  src="{{ asset('assets/img//floating-bubble-3.svg') }}"
-  alt=""
-/>
-<!-- ./end floating assets -->
+<style>
+    .grid-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
 
+    .left-column,
+    .right-column {
+        background-color: #f9f9f9;
+        padding: 20px;
+    }
+    #history p {
+        text-indent: 1rem;
+        text-align: justify;
+        margin-bottom: 1rem;
+    }
+</style>
+
+@section('content')
 <!-- Common hero -->
-<section class="page-hero py-16">
+<section class="page-hero pb-16">
   <div class="container">
-    <div class="text-center">
-      <ul
-        class="breadcrumb inline-flex h-8 items-center justify-center space-x-2 rounded-3xl bg-theme-light px-4 py-2"
-      >
-        <li class="leading-none text-dark">
-          <a class="inline-flex items-center text-primary" href="#">
-            <svg
-              class="mr-1.5"
-              width="15"
-              height="15"
-              viewBox="0 0 16 16"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M13.1769 15.0588H10.3533V9.41178H5.64744V15.0588H2.82391V6.58825H1.88274V16H14.118V6.58825H13.1769V15.0588ZM6.58862 15.0588V10.353H9.41215V15.0588H6.58862ZM15.8084 6.09225L15.2512 6.85178L8.00038 1.52472L0.749559 6.8499L0.192383 6.09131L8.00038 0.357666L15.8084 6.09225Z"
-                fill="black"
-              />
-            </svg>
-            <span class="text-sm leading-none">Home</span>
-          </a>
-        </li>
-        <li class="leading-none text-dark">
-          <span class="text-sm leading-none">/ About Us</span>
-        </li>
-      </ul>
-    </div>
     <div class="page-hero-content mx-auto max-w-[768px] text-center">
-      <h1 class="mb-5 mt-8">About our company</h1>
-      <p>
-        Donec sollicitudin molestie malesda. Donec sollitudin molestie
-        malesuada. Mauris pellentesque nec, egestas non nisi. Cras ultricies
-        ligula sed magna dictum porta. Lorem
-      </p>
-      <div class="mt-11 justify-center sm:flex">
-        <a class="btn btn-primary m-3 block sm:inline-block" href="#"
-          >Download The Theme</a
-        >
-        <a
-          class="btn btn-outline-primary m-3 block min-w-[160px] sm:inline-block"
-          href="#"
-          >Learn more</a
-        >
-      </div>
-    </div>
-    <div class="counter mt-16">
-      <div class="row mx-0 rounded-[20px] bg-white px-10 shadow-lg lg:py-10">
-        <div
-          class="border-border px-10 py-10 text-center sm:col-6 lg:col-3 lg:border-r lg:py-0"
-        >
-          <h2>
-            <span class="count">25M</span> <span class="text-[#A3A1FB]">+</span>
-          </h2>
-          <p>Customers</p>
-        </div>
-        <div
-          class="border-border px-10 py-10 text-center sm:col-6 lg:col-3 lg:border-r lg:py-0"
-        >
-          <h2>
-            <span class="count">440M</span>
-            <span class="text-[#5EE2A0]">+</span>
-          </h2>
-          <p>Products sold</p>
-        </div>
-        <div
-          class="border-border px-10 py-10 text-center sm:col-6 lg:col-3 lg:border-r lg:py-0"
-        >
-          <h2>
-            <span class="count">50K</span> <span class="text-primary">+</span>
-          </h2>
-          <p>Online stores</p>
-        </div>
-        <div class="px-10 py-10 text-center sm:col-6 lg:col-3 lg:py-0">
-          <h2>
-            <span class="count">20K</span> <span class="text-[#FEC163]">+</span>
-          </h2>
-          <p>Transactions</p>
-        </div>
-      </div>
+      <h1 class="mb-5 mt-8" id="title">Empowering Entrepreneurs</h1>
+      <p id="description">Our mission is to provide the tools and support needed for entrepreneurs to succeed in their ventures.</p>
     </div>
   </div>
 </section>
 <!-- end Common hero -->
+
+{{-- banner --}}
+<section class="section banner relative bg-gray-300">
+    <div class="container bg-red-500 items-center">
+        <h4 class="text-center mb-8 banner-title">
+            History
+        </h4>
+        <div class="bg-green-300 items-center p-5 w-2/4" id="history">
+
+        </div>
+    </div>
+</section>
+  <!-- ./end Banner -->
 
 <!-- Gallery -->
 <section class="section">
   <div class="container">
     <div class="row justify-center text-center">
       <div class="col-8">
-        <h2>We started with one single goal Empower entrepreneurs</h2>
+        <h2>We started with one single goal: Empower entrepreneurs</h2>
       </div>
     </div>
     <div class="row mt-2.5">
@@ -131,12 +70,12 @@
             class="w-full object-cover"
             width="480"
             height="274"
-            src="images/about/gallery-img-2.png"
+            src="{{ asset('assets/img/about/gallery-img-2.png') }}"
             alt=""
           />
           <img
             class="absolute -bottom-5 -left-5 -z-[1]"
-            src="images/shape-2.svg"
+            src="{{ asset('assets/img/shape-2.svg') }}"
             alt=""
           />
         </div>
@@ -147,12 +86,12 @@
             class="w-full object-cover"
             width="480"
             height="540"
-            src="images/about/gallery-img-3.png"
+            src="{{ asset('assets/img/about/gallery-img-3.png') }}"
             alt=""
           />
           <img
             class="absolute -bottom-4 -right-5 -z-[1] h-16 w-16"
-            src="images/shape.svg"
+            src="{{ asset('assets/img/shape.svg') }}"
             alt=""
           />
         </div>
@@ -168,8 +107,8 @@
     <div class="row items-center justify-between">
       <div class="md:col-5">
         <h2 class="text-center md:text-left">
-          The six core work <br />
-          drive everything do
+          The six core work principles <br />
+          drive everything we do
         </h2>
       </div>
       <div class="mt-6 text-center md:col-3 md:mt-0 md:text-right">
@@ -177,102 +116,24 @@
       </div>
     </div>
     <div class="row mt-14">
+      @foreach(['Accessibility', 'Empowerment', 'Innovation', 'Excellence', 'Team work', 'Responsibility'] as $index => $principle)
       <div class="mb-8 sm:col-6 lg:col-4">
         <div class="rounded-xl bg-white p-6 shadow-lg lg:p-8">
           <div class="gradient-number relative inline-block">
             <span
               class="bg-gradient absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
-              >01</span
+              >0{{ $index + 1 }}</span
             >
-            <img src="images/gradient-number-bg.svg" alt="" />
+            <img src="{{ asset('assets/img/gradient-number-bg.svg') }}" alt="" />
           </div>
-          <h4 class="my-6">Accessibility</h4>
+          <h4 class="my-6">{{ $principle }}</h4>
           <p>
-            Nulla porttitor acmsan tinci dunt. posuere cubilia Cudfrae Donec
-            velit neque, autor sit amet aliuam vel
+            Nulla porttitor acmsan tinci dunt. Posuere cubilia Cudfrae Donec
+            velit neque, auctor sit amet aliquam vel
           </p>
         </div>
       </div>
-      <div class="mb-8 sm:col-6 lg:col-4">
-        <div class="rounded-xl bg-white p-6 shadow-lg lg:p-8">
-          <div class="gradient-number relative inline-block">
-            <span
-              class="bg-gradient absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
-              >02</span
-            >
-            <img src="images/gradient-number-bg.svg" alt="" />
-          </div>
-          <h4 class="my-6">Empowerement</h4>
-          <p>
-            Nulla porttitor acmsan tinci dunt. posuere cubilia Cudfrae Donec
-            velit neque, autor sit amet aliuam vel
-          </p>
-        </div>
-      </div>
-      <div class="mb-8 sm:col-6 lg:col-4">
-        <div class="rounded-xl bg-white p-6 shadow-lg lg:p-8">
-          <div class="gradient-number relative inline-block">
-            <span
-              class="bg-gradient absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
-              >03</span
-            >
-            <img src="images/gradient-number-bg.svg" alt="" />
-          </div>
-          <h4 class="my-6">Innovation</h4>
-          <p>
-            Nulla porttitor acmsan tinci dunt. posuere cubilia Cudfrae Donec
-            velit neque, autor sit amet aliuam vel
-          </p>
-        </div>
-      </div>
-      <div class="mb-8 sm:col-6 lg:col-4">
-        <div class="rounded-xl bg-white p-6 shadow-lg lg:p-8">
-          <div class="gradient-number relative inline-block">
-            <span
-              class="bg-gradient absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
-              >04</span
-            >
-            <img src="images/gradient-number-bg.svg" alt="" />
-          </div>
-          <h4 class="my-6">Excellence</h4>
-          <p>
-            Nulla porttitor acmsan tinci dunt. posuere cubilia Cudfrae Donec
-            velit neque, autor sit amet aliuam vel
-          </p>
-        </div>
-      </div>
-      <div class="mb-8 sm:col-6 lg:col-4">
-        <div class="rounded-xl bg-white p-6 shadow-lg lg:p-8">
-          <div class="gradient-number relative inline-block">
-            <span
-              class="bg-gradient absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
-              >05</span
-            >
-            <img src="images/gradient-number-bg.svg" alt="" />
-          </div>
-          <h4 class="my-6">Team work</h4>
-          <p>
-            Nulla porttitor acmsan tinci dunt. posuere cubilia Cudfrae Donec
-            velit neque, autor sit amet aliuam vel
-          </p>
-        </div>
-      </div>
-      <div class="mb-8 sm:col-6 lg:col-4">
-        <div class="rounded-xl bg-white p-6 shadow-lg lg:p-8">
-          <div class="gradient-number relative inline-block">
-            <span
-              class="bg-gradient absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
-              >06</span
-            >
-            <img src="images/gradient-number-bg.svg" alt="" />
-          </div>
-          <h4 class="my-6">Responsibility</h4>
-          <p>
-            Nulla porttitor acmsan tinci dunt. posuere cubilia Cudfrae Donec
-            velit neque, autor sit amet aliuam vel
-          </p>
-        </div>
-      </div>
+      @endforeach
     </div>
   </div>
 </section>
@@ -285,134 +146,36 @@
       <div class="mx-auto text-center lg:col-6">
         <h2>This is who we are</h2>
         <p class="mt-4">
-          Donec sollicitudin molestie malesda. Donec sollitudin mol estie
-          ultricies ligula sed magna dictum
+          Donec sollicitudin molestie malesuada. Donec sollicitudin molestie ultricies ligula sed magna dictum
         </p>
       </div>
     </div>
     <div class="row mt-12 justify-center">
       <div class="lg:col-10">
         <div class="row">
-          <div
-            class="mb-6 flex flex-col px-6 text-center sm:col-6 lg:col-4 sm:items-center"
-          >
+          @foreach([['Eleanor Pena', 'Co-founder & COO', 'user-1.png'], ['Savannah Nguyen', 'Head of Infrastructure', 'user-2.png'], ['Courtney Henry', 'Head of Brand Marketing', 'user-3.png'], ['Floyd Miles', 'Head of Infrastructure', 'user-4.png'], ['Robert Fox', 'Head of Product Design', 'user-5.png'], ['Darrell Steward', 'Head of People & HR', 'user-6.png']] as $member)
+          <div class="mb-6 flex flex-col px-6 text-center sm:col-6 lg:col-4 sm:items-center">
             <div class="member-avatar inline-flex justify-center">
               <img
-                class="rouded-full h-28 w-28"
-                src="images/users/user-1.png"
-                alt=""
+                class="rounded-full h-28 w-28"
+                src="{{ asset('assets/img/users/' . $member[2]) }}"
+                alt="{{ $member[0] }}"
               />
             </div>
-            <div
-              class="mt-6 w-full flex-1 rounded-xl bg-white py-8 px-4 shadow-lg"
-            >
-              <h5 class="font-primary">Eleanor Pena</h5>
-              <p class="mt-1.5">Co-founder & COO</p>
+            <div class="mt-6 w-full flex-1 rounded-xl bg-white py-8 px-4 shadow-lg">
+              <h5 class="font-primary">{{ $member[0] }}</h5>
+              <p class="mt-1.5">{{ $member[1] }}</p>
             </div>
           </div>
-          <div
-            class="mb-6 flex flex-col px-6 text-center sm:col-6 lg:col-4 sm:items-center"
-          >
-            <div class="member-avatar inline-flex justify-center">
-              <img
-                class="rouded-full h-28 w-28"
-                src="images/users/user-2.png"
-                alt=""
-              />
-            </div>
-            <div
-              class="mt-6 w-full flex-1 rounded-xl bg-white py-8 px-4 shadow-lg"
-            >
-              <h5 class="font-primary">Savannah Nguyen</h5>
-              <p class="mt-1.5">Head of Infrastructure</p>
-            </div>
-          </div>
-          <div
-            class="mb-6 flex flex-col px-6 text-center sm:col-6 lg:col-4 sm:items-center"
-          >
-            <div class="member-avatar inline-flex justify-center">
-              <img
-                class="rouded-full h-28 w-28"
-                src="images/users/user-3.png"
-                alt=""
-              />
-            </div>
-            <div
-              class="mt-6 w-full flex-1 rounded-xl bg-white py-8 px-4 shadow-lg"
-            >
-              <h5 class="font-primary">Courtney Henry</h5>
-              <p class="mt-1.5">Head of Brand Marketing</p>
-            </div>
-          </div>
-          <div
-            class="mb-6 flex flex-col px-6 text-center sm:col-6 lg:col-4 sm:items-center"
-          >
-            <div class="member-avatar inline-flex justify-center">
-              <img
-                class="rouded-full h-28 w-28"
-                src="images/users/user-4.png"
-                alt=""
-              />
-            </div>
-            <div
-              class="mt-6 w-full flex-1 rounded-xl bg-white py-8 px-4 shadow-lg"
-            >
-              <h5 class="font-primary">Floyd Miles</h5>
-              <p class="mt-1.5">Head of Infrastructure</p>
-            </div>
-          </div>
-          <div
-            class="mb-6 flex flex-col px-6 text-center sm:col-6 lg:col-4 sm:items-center"
-          >
-            <div class="member-avatar inline-flex justify-center">
-              <img
-                class="rouded-full h-28 w-28"
-                src="images/users/user-5.png"
-                alt=""
-              />
-            </div>
-            <div
-              class="mt-6 w-full flex-1 rounded-xl bg-white py-8 px-4 shadow-lg"
-            >
-              <h5 class="font-primary">Robert Fox</h5>
-              <p class="mt-1.5">Head of Product Design</p>
-            </div>
-          </div>
-          <div
-            class="mb-6 flex flex-col px-6 text-center sm:col-6 lg:col-4 sm:items-center"
-          >
-            <div class="member-avatar inline-flex justify-center">
-              <img
-                class="rouded-full h-28 w-28"
-                src="images/users/user-6.png"
-                alt=""
-              />
-            </div>
-            <div
-              class="mt-6 w-full flex-1 rounded-xl bg-white py-8 px-4 shadow-lg"
-            >
-              <h5 class="font-primary">Darrell Steward</h5>
-              <p class="mt-1.5">Head of People & HR</p>
-            </div>
-          </div>
+          @endforeach
         </div>
       </div>
     </div>
   </div>
 </section>
-<div
-  class="fixed left-0 top-0 z-50 flex w-[30px] items-center justify-center bg-gray-200 py-[2.5px] text-[12px] uppercase text-black sm:bg-red-200 md:bg-yellow-200 lg:bg-green-200 xl:bg-blue-200 2xl:bg-pink-200"
->
-  <span class="block sm:hidden">all</span>
-  <span class="hidden sm:block md:hidden">sm</span>
-  <span class="hidden md:block lg:hidden">md</span>
-  <span class="hidden lg:block xl:hidden">lg</span>
-  <span class="hidden xl:block 2xl:hidden">xl</span>
-  <span class="hidden 2xl:block">2xl</span>
-</div>
 
 @endsection
 
 @push('js')
-
+    <script src="{{ asset('assets/js/pages/about.js') }}"></script>
 @endpush
