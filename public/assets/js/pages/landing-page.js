@@ -57,8 +57,6 @@ $(document).ready(async function () {
             next.click();
         }, timeAutoNext);
     }
-    
-    console.log(appData);
 
     $('.banner-title').html(appData.title);
     $('#banner-description').html(appData.description);
