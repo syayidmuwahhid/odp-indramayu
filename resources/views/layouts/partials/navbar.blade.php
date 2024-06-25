@@ -1,11 +1,11 @@
 <nav class="navbar">
-  <div class="container mx-auto flex items-center justify-between px-4 py-2">
+  <div class="container mx-auto flex items-center justify-between px-4">
 
     <!-- logo -->
     <div class="order-0">
       <a href="{{ url('') }}" class="flex gap-3 items-center">
-        <img src="" height="30" width="30" alt="logo" class="appLogo"/>
-        <span class="text-bold text-xl appName"></span>
+        <img src="" height="50" width="50" alt="logo" class="appLogo"/>
+        <span class="text-bold text-2xl appName text-orange-600 font-semibold"></span>
       </a>
     </div>
 
@@ -87,7 +87,7 @@
       </li> --}}
     </ul>
 
-    <div class="order-1 ml-auto hidden items-center md:order-2 md:ml-0 lg:flex">
+    <div class="order-1 ml-auto hidden items-center md:order-2 md:ml-0 lg:flex nav-button">
       <a class="btn btn-white btn-sm" href="{{ route('login') }}">{{ Auth::check() ? Auth::user()->name : 'Masuk' }}</a>
     </div>
 

@@ -58,6 +58,7 @@ $(document).ready(async function () {
             next.click();
         }, timeAutoNext);
     }
+    
 
 
     $('.banner-title').html(appData.title);
