@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Document;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 
 class DocumentController extends Controller
 {
@@ -45,14 +46,6 @@ class DocumentController extends Controller
 
         // Return the response as a JSON response
         return response()->json($resp, $code);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -109,15 +102,36 @@ class DocumentController extends Controller
      */
     public function show(string $id)
     {
-        //
-    }
+        // Initialize the response data
+        $resp = [
+            'status' => false,
+        ];
+        $code = 500;
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
+        DB::beginTransaction();
+
+        try {
+            // Fetch all categories from the database
+            $document = Document::find($id);
+
+            // Prepare the success response data
+            $resp['status'] = true;
+            $resp['message'] = 'Berhasil Mengambil data';
+            $resp['data'] = $document;
+            $code = 200;
+
+            // Commit the database transaction
+            DB::commit();
+        } catch (\Throwable $th) {
+            // Prepare the error response data
+            $resp['message'] = $th->getMessage();
+
+            // Rollback the database transaction in case of any error
+            DB::rollBack();
+        }
+
+        // Return the response as a JSON response
+        return response()->json($resp, $code);
     }
 
     /**
@@ -125,7 +139,53 @@ class DocumentController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $resp = [
+            'status' => false,
+        ];
+        $code = 500;
+        DB::beginTransaction();
+
+        try {
+            $payload = $request->validate([
+                'title' => 'required',
+                'date' => 'required|date',
+                'author' => 'required',
+                'type' => 'required',
+                'file' => 'nullable|mimes:pdf',
+                'link' => 'nullable',
+            ]);
+
+            $document = Document::find($id);
+            $oldFile = $document->location;
+            $document->fill($payload);
+
+            if ($payload['type'] == 'Upload' && $request->hasFile('file')) {
+                $filePath = $request->file('file')->store('documents/'.$document->id, 'public');
+                $document->location = 'storage/' . $filePath;
+            }
+
+            if ($payload['type'] == 'Link'){
+                $document->location = $payload['link'];
+            }
+
+            if ($payload['type'] == 'Upload' && $request->hasFile('file') && File::exists($oldFile)) {
+                File::delete($oldFile);
+            }
+
+            $document->save();
+
+            $resp['status'] = true;
+            $resp['message'] = 'Berhasil merubah data';
+            $code = 200;
+            DB::commit();
+        } catch (\Throwable $th) {
+            // Prepare the error response data
+            $resp['message'] = $th->getMessage();
+
+            // Rollback the database transaction
+            DB::rollBack();
+        }
+        return response()->json($resp, $code);
     }
 
     /**
@@ -133,6 +193,43 @@ class DocumentController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        // Start a database transaction
+        DB::beginTransaction();
+
+        // Initialize the response data
+        $resp = [
+            'status' => false,
+        ];
+        $code = 500;
+
+        try {
+            // Find the user by its unique identifier
+            $document = Document::find($id);
+
+            // Delete the user
+            $document->delete();
+
+            // Check if the file exists and delete it
+            if (File::exists($document->location)) {
+                File::delete($document->location);
+            }
+
+            // Prepare the success response data
+            $resp['status'] = true;
+            $resp['message'] = 'data berhasil dihapus';
+            $code = 200;
+
+            // Commit the database transaction
+            DB::commit();
+        } catch (\Throwable $th) {
+            // Prepare the error response data
+            $resp['message'] = $th->getMessage();
+
+            // Rollback the database transaction
+            DB::rollBack();
+        }
+
+        // Return the response as a JSON response
+        return response()->json($resp, $code);
     }
 }
