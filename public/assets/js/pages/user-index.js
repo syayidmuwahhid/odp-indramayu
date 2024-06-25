@@ -51,7 +51,7 @@ async function editModal(id) {
         html += `<label>Name</label>`;
         html += `<input class="swal2-input" placeholder="name" name="name" value="${data.name}"> <br/>`;
         html += `<label>Email</label>`;
-        html += `<input type="email" class="swal2-input" placeholder="email" name="email" value="${data.email}"> <br/>`;
+        html += `<input type="email" class="swal2-input" placeholder="email" name="email" value="${data.email}" readonly> <br/>`;
         html += `<label>Password</label>`;
         html += `<input type="password" class="swal2-input" placeholder="Password" name="password">`;
         html += `<input type="hidden" name="_method" value="PUT">`;
