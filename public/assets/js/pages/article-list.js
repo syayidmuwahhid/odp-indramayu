@@ -29,17 +29,17 @@ async function getData() {
             html += `
                 <div class="mb-8 md:col-6 lg:col-4">
                     <div class="card flex flex-col justify-between h-full cursor-pointer" onclick="window.location.href='${baseL}/article/${
-                element.id
-            }'">
+                        element.id
+                    }'">
                         <div>
                             <img class="card-img h-28 w-full object-cover" src="${baseL}/${
-                element.image
-            }"
+                                element.image
+                            }"
                             alt="" />
                             <div class="card-tags">
                                 <a class="tag" href="${baseL}/article?category=${
-                element.category_name
-            }">${element.category_name}</a>
+                                    element.category_name
+                                }">${element.category_name}</a>
                             </div>
                             <h3 class="h4 card-title mt-5">
                                     ${element.title}

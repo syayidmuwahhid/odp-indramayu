@@ -241,7 +241,7 @@ class TagsController extends Controller
                 ->join('article_tag', 'article_tag.id', 'article_tag_id')
                 ->join('article', 'article_id', 'article.id')
                 ->join('category', 'category.id', 'category_id')
-                ->having('category.id', $idCategory)
+                ->where('category.id', $idCategory)
                 ->get();
 
             $resp['status'] = true;

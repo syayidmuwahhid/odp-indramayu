@@ -65,9 +65,9 @@ async function getData() {
                 <td class="text-center p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">${++i}</td>
                 <td class="py-4">
 
-                    <img src="${src}" alt="${
+                <img src="${src}" alt="${
                 value.description
-            }" class="max-w-full max-h-full p-2  bg-cover object-cover bg-center cursor-pointer" onclick="myModal${i}.showModal()">
+                }" class="max-w-full max-h-full p-2  bg-cover object-cover bg-center cursor-pointer" onclick="myModal${i}.showModal()">
 
                     <dialog id="myModal${i}" class="modal" style="width: 100vh; max-width: 800px; background-color: transparent; border: none; padding: 0; overflow: hidden;" onclick="closeDialog(event, 'myModal${i}')">
                         <div class="modal-box" style="padding: 0; display: flex; justify-content: center; align-items: center; background-color: transparent;">
