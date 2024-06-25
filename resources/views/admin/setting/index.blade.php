@@ -1,5 +1,5 @@
 @extends('admin.layouts.app')
-@section('title', 'Profil Sistem')
+@section('title', 'Pengaturan Sistem')
 
 @push('css')
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
@@ -211,5 +211,5 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify"></script>
     <script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.polyfills.min.js"></script>
-    <script src="{{ asset('assets/js/pages/profile-index.js') }}"></script>
+    <script src="{{ asset('assets/js/pages/setting-index.js') }}"></script>
 @endpush

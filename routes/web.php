@@ -14,7 +14,7 @@ Route::name('admin.')->prefix('admin')->middleware('auth')->group(function () {
     Route::get('/', fn() => view('admin.dashboard'))->name('dashboard');
 
     Route::get('/user', fn () => view('admin.user.index'))->name('user.index');
-    Route::get('/profile', fn () => view('admin.profile.index'))->name('profile.index');
+    Route::get('/setting', fn () => view('admin.setting.index'))->name('setting.index');
     Route::get('/category', fn () => view('admin.category.index'))->name('category.index');
     Route::get('/tag', fn () => view('admin.tag.index'))->name('tag.index');
 
@@ -22,9 +22,11 @@ Route::name('admin.')->prefix('admin')->middleware('auth')->group(function () {
     Route::get('/article/form', fn () => view('admin.article.form'))->name('article.form');
     Route::get('/article/{id}/edit', fn($id) => view('admin.article.update', ['id' => $id]))->name('article.update');
 
+    Route::get('/slider', fn () => view('admin.slider.index'))->name('slider.index');
 
-    Route::get('/slider', fn () => view('admin.slider.index'))->name('slider');
-    Route::get('/video', fn () => view('admin.video.index'))->name('video');
+    Route::get('/document', fn () => view('admin.document.index'))->name('document.index');
+    Route::get('/document/form', fn () => view('admin.document.form'))->name('document.form');
+
 });
 
 

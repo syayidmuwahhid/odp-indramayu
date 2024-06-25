@@ -28,7 +28,7 @@
           </div>
         </div>
         <div class="md:col-6 md:order-1">
-          <form class="lg:max-w-[484px]" action="/api/send-email" method="POST" id="contact-form">
+          <form class="lg:max-w-[484px]" action="mailto:recipient@example.com" method="POST" id="contact-form">
             <div class="form-group mb-5">
               <label class="form-label" for="name">Nama Lengkap</label>
               <input
@@ -73,5 +73,5 @@
 @endsection
 
 @push('js')
-<script src="{{ asset('assets/js/pages/contact.js') }}"></script>
+{{-- <script src="{{ asset('assets/js/pages/contact.js') }}"></script> --}}
 @endpush

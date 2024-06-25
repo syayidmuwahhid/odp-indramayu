@@ -46,10 +46,10 @@
 
             {{-- PROFILE --}}
             <li class="mt-0.5 w-full">
-                <a class="{{ url()->current() == route('admin.profile.index') ? $a_active : '' }} py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-4 transition-colors"
-                    href="{{ route('admin.profile.index') }}">
+                <a class="{{ url()->current() == route('admin.setting.index') ? $a_active : '' }} py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-4 transition-colors"
+                    href="{{ route('admin.setting.index') }}">
                     <div
-                        class="{{ url()->current() == route('admin.profile.index') ? $i_active : '' }} shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5">
+                        class="{{ url()->current() == route('admin.setting.index') ? $i_active : '' }} shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5">
                         <svg width="12px" height="12px" viewBox="0 0 42 42" version="1.1"
                             xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                             <title>office</title>
@@ -69,7 +69,7 @@
                             </g>
                         </svg>
                     </div>
-                    <span class="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">Profil</span>
+                    <span class="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">Pengaturan</span>
                 </a>
             </li>
 
@@ -89,10 +89,10 @@
 
             {{-- SLIDER --}}
             <li class="mt-0.5 w-full">
-                <a class="{{ url()->current() == route('admin.slider') ? $a_active : '' }} py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-4 transition-colors"
-                    href="{{ route('admin.slider') }}">
+                <a class="{{ url()->current() == route('admin.slider.index') ? $a_active : '' }} py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-4 transition-colors"
+                    href="{{ route('admin.slider.index') }}">
                     <div
-                        class="{{ url()->current() == route('admin.slider') ? $i_active : '' }} shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center fill-current stroke-0 text-center xl:p-2.5">
+                        class="{{ url()->current() == route('admin.slider.index') ? $i_active : '' }} shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center fill-current stroke-0 text-center xl:p-2.5">
                         <svg class="w-10 h-10" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <rect width="40" height="40" rx="5" class="fill-slate-800 opacity-60"></rect>
                             <rect x="5" y="5" width="30" height="20" class="fill-white"></rect>
@@ -141,6 +141,19 @@
 
                     </div>
                     <span class="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">Artikel</span>
+                </a>
+            </li>
+
+            {{-- DOCUMENT --}}
+            <li class="mt-0.5 w-full">
+                <a class="{{ url()->current() == route('admin.document.index') ? $a_active : '' }} py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-4 transition-colors"
+                    href="{{ route('admin.document.index') }}">
+                    <div class="{{ url()->current() == route('admin.document.index') ? $i_active : '' }}shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-arrow-up-fill" viewBox="0 0 16 16">
+                            <path d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0M9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1M6.354 9.854a.5.5 0 0 1-.708-.708l2-2a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 8.707V12.5a.5.5 0 0 1-1 0V8.707z"/>
+                        </svg>
+                    </div>
+                    <span class="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">Document</span>
                 </a>
             </li>
 
