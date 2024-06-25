@@ -54,6 +54,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700;900&display=swap" rel="stylesheet" />
 
     <!-- styles -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
 
     <!-- Swiper slider -->
     <link rel="stylesheet" href="{{ asset('assets/js/plugins/swiper/swiper-bundle.css') }}" />
@@ -113,6 +114,8 @@
     <!-- Swiper JS -->
     <script src="{{ asset('assets/js/plugins/swiper/swiper-bundle.js') }}"></script>
     <script src="{{ asset('assets/js/plugins/shufflejs/shuffle.js') }}"></script>
+    
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
     <!-- Main Script -->
     <script src="{{ asset('assets/js/main.js') }}"></script>

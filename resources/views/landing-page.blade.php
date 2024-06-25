@@ -307,6 +307,7 @@
         height: 150px;
     }
 }
+
 </style>
 
 @endpush
@@ -340,125 +341,64 @@
 
 {{-- banner --}}
 <section class="section banner relative">
-    <div class="container">
-      <div class="row items-center mt-12">
+    <div class="container mx-auto px-4 py-16 flex flex-col-reverse lg:flex-row items-center justify-between">
+      <div class="row items-center">
         <div class="lg:col-6">
-          <h4 class="banner-title">
+          <h3 class="banner-title">
 
-          </h4>
+          </h3>
           <p class="mt-6" id="banner-description">
 
           </p>
           <a class="btn btn-primary mt-8" href="{{ route('about') }}">Selengkapnya</a>
         </div>
-        <div class="lg:col-6">
-          <img
+        <div class="lg:col-6 lg:w-1/2 flex justify-center">
+          <div class="col col-md-3 p-8 animate-box fadeInUp animated" data-animate-effect="fadeInUp">
+            <img decoding="async" src="https://anugrahhotel.com/wp-content/uploads/2023/07/Anugrah-Hotel-1.jpg" alt="" class="w-[60vh] mt-90 mb-30">
+          </div>
+          <div class=" col col-md-3 animate-box fadeInUp animated" data-animate-effect="fadeInUp">
+              <img decoding="async" src="https://anugrahhotel.com/wp-content/uploads/2023/07/Anugrah-Hotel-3.jpg" alt="" class="w-[60vh] mt-90 mb-30">
+          </div>
+          {{-- <img
             class="w-full object-cover"
             src="https://indramayukab.go.id/wp-content/uploads/2023/01/indra1.jpeg"
             width="603"
             height="396"
             alt=""
-          />
+          /> --}}
         </div>
       </div>
     </div>
-    <img
+    {{-- <img
       class="banner-shape absolute -top-28 right-0 -z-[1] w-full max-w-[30%]"
       src="{{ asset('assets/img/banner-shape.svg') }}"
       alt=""
-    />
+    /> --}}
   </section>
   <!-- ./end Banner -->
 
   <!-- Reviews -->
-  <section class="reviews">
+  <section class="reviews mt-8">
     <div class="container">
       <div class="row justify-between">
-        <div class="lg:col-6">
-          <h2>Our customers have nice things to say about us</h2>
+        <div class="lg:col-6 mb-6">
+          <h2>Artikel Terbaru</h2>
         </div>
-        <div class="lg:col-4">
+        {{-- <div class="lg:col-4">
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi egestas
             Werat viverra id et aliquet. vulputate egestas sollicitudin .
           </p>
-        </div>
+        </div> --}}
       </div>
-      <div class="row mt-10">
+      <div class="row">
         <div class="col-12">
-          <div class="swiper reviews-carousel">
-            <div class="swiper-wrapper">
-              <div class="swiper-slide">
-                <div class="review">
-                  <div class="review-author-avatar bg-gradient">
-                    <img src="{{ asset('assets/img/users/user-5.png') }}" alt="" />
-                  </div>
-                  <h4 class="mb-2">Courtney Henry</h4>
-                  <p class="mb-4 text-[#666]">microsoft corp</p>
-                  <p>
-                    Our platform helps build secure onboarding authentica
-                    experiences & engage your users. We build .
-                  </p>
-                  <div
-                    class="review-rating mt-6 flex items-center justify-center space-x-2.5"
-                  >
-                    <img src="{{ asset('assets/img/icons/star.svg') }}" alt="" />
-                    <img src="{{ asset('assets/img/icons/star.svg') }}" alt="" />
-                    <img src="{{ asset('assets/img/icons/star.svg') }}" alt="" />
-                    <img src="{{ asset('assets/img/icons/star.svg') }}" alt="" />
-                    <img src="{{ asset('assets/img/icons/star-white.svg') }}" alt="" />
-                  </div>
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="review">
-                  <div class="review-author-avatar bg-gradient">
-                    <img src="{{ asset('assets/img/users/user-2.png') }}" alt="" />
-                  </div>
-                  <h4 class="mb-2">Ronald Richards</h4>
-                  <p class="mb-4 text-[#666]">meta limited</p>
-                  <p>
-                    Our platform helps build secure onboarding authentica
-                    experiences & engage your users. We build .
-                  </p>
-                  <div
-                    class="review-rating mt-6 flex items-center justify-center space-x-2.5"
-                  >
-                    <img src="{{ asset('assets/img/icons/star.svg') }}" alt="" />
-                    <img src="{{ asset('assets/img/icons/star.svg') }}" alt="" />
-                    <img src="{{ asset('assets/img/icons/star.svg') }}" alt="" />
-                    <img src="{{ asset('assets/img/icons/star.svg') }}" alt="" />
-                    <img src="{{ asset('assets/img/icons/star-white.svg') }}" alt="" />
-                  </div>
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="review">
-                  <div class="review-author-avatar bg-gradient">
-                    <img src="{{ asset('assets/img/users/user-6.png') }}" alt="" />
-                  </div>
-                  <h4 class="mb-2">Bessie Cooper</h4>
-                  <p class="mb-4 text-[#666]">apple inc ltd</p>
-                  <p>
-                    Our platform helps build secure onboarding authentica
-                    experiences & engage your users. We build .
-                  </p>
-                  <div
-                    class="review-rating mt-6 flex items-center justify-center space-x-2.5"
-                  >
-                    <img src="{{ asset('assets/img/icons/star.svg') }}" alt="" />
-                    <img src="{{ asset('assets/img/icons/star.svg') }}" alt="" />
-                    <img src="{{ asset('assets/img/icons/star.svg') }}" alt="" />
-                    <img src="{{ asset('assets/img/icons/star.svg') }}" alt="" />
-                    <img src="{{ asset('assets/img/icons/star-white.svg') }}" alt="" />
-                  </div>
-                </div>
-              </div>
+          <div class="reviews-carousel">
+            <div class="swiper-wrapper" id="artikel_container">
+
             </div>
             <!-- If we need pagination -->
-            <div
-              class="swiper-pagination reviews-carousel-pagination !bottom-0"
-            ></div>
+            {{-- <div class="swiper-pagination reviews-carousel-pagination !bottom-0"></div> --}}
           </div>
         </div>
       </div>
