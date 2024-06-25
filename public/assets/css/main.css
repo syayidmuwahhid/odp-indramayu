@@ -2470,7 +2470,7 @@ input#nav-toggle:checked ~ #nav-menu {
 .navbar.sticky {
     position: fixed;
     background: white;
-    padding: 1.5rem;
+    padding: 0.7rem;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     width: 100%;
 }

@@ -147,7 +147,7 @@ class ArticleController extends Controller
             $tags = Tag::select('tag.name', 'article_tag.article_id')
 
                 ->join('article_tag', "article_tag.id", "article_tag_id")
-                ->having("article_tag.article_id", $id)
+                ->where("article_tag.article_id", $id)
                 ->get();
             $article['tags'] =  $tags;
 
