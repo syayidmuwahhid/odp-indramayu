@@ -186,11 +186,12 @@ class UserController extends Controller
         try {
             // Validate the incoming request data
             $request->validate([
-                'email' => ['email'],
+                'name' => ['required'],
+                'password' => ['nullable', 'min:8'],
             ]);
 
             // Prepare the payload for updating the user
-            $payload = $request->only('name', 'email', 'password');
+            $payload = $request->only('name', 'password');
 
             // If password is provided, validate it
             if ($request->password) {

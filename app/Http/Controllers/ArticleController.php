@@ -27,15 +27,22 @@ class ArticleController extends Controller
 
         try {
             // Fetch all categories from the database
-            $article = Article::select('article.*', 'category.name as category_name', 'users.name as user_name', 'users.email as user_email')
+            $articles = Article::select('article.*', 'category.name as category_name', 'users.name as user_name', 'users.email as user_email')
                 ->join('category', 'category.id', 'category_id')
                 ->join('users', 'users.id', 'user_id')
                 ->get();
 
+            foreach($articles as $article) {
+                $article['tags'] = Tag::select('tag.name', 'article_tag.article_id')
+                    ->join('article_tag', "article_tag.id", "article_tag_id")
+                    ->having("article_tag.article_id", $article->id)
+                    ->get();
+            }
+
             // Prepare the success response data
             $resp['status'] = true;
             $resp['message'] = 'Berhasil Mengambil data';
-            $resp['data'] = $article;
+            $resp['data'] = $articles;
             $code = 200;
 
             // Commit the database transaction
@@ -68,7 +75,7 @@ class ArticleController extends Controller
                 'category_id' => 'required|integer',
                 'date' => 'required|date',
                 'image' => 'nullable|mimes:jpeg,png,jpg,gif,svg',
-                'video' => 'nullable|mimetypes:avi,mpeg,quicktime,mp4',
+                'video' => 'nullable|mimes:avi,mpeg,quicktime,mp4',
                 'tags' => 'required',
                 'title' => 'required|string|max:255',
                 'content' => 'required|string',
