@@ -34,7 +34,7 @@
               <input
                 class="form-control"
                 type="text"
-                name="name"
+                id="name"
                 placeholder="Nama Lengkap"
                 required
               />

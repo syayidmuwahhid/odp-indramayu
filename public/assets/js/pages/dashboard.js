@@ -21,7 +21,7 @@ async function getData() {
         $("#category_count").html(data.category_count);
         $("#document_count").html(data.document_count);
 
-        if (data.last_article.length > 0) {
+        if (data.last_article !== null) {
             $("#article_title").html(data.last_article.title);
             let string = data.last_article.content.substring(0, 500);
             let parser = new DOMParser();
@@ -174,7 +174,9 @@ function chart2() {
                     borderWidth: 3,
                     backgroundColor: gradientStroke1,
                     fill: true,
-                    data: [50, 40, 300, 220, 500, 250, 400, 230, 500],
+                    data: [
+                        50, 40, 300, 220, 500, 250, 400, 230, 500, 0, 100, 190,
+                    ],
                     maxBarThickness: 6,
                 },
                 {
@@ -186,7 +188,9 @@ function chart2() {
                     borderWidth: 3,
                     backgroundColor: gradientStroke2,
                     fill: true,
-                    data: [30, 90, 40, 140, 290, 290, 340, 230, 400],
+                    data: [
+                        30, 90, 40, 140, 290, 290, 340, 230, 400, 410, 380, 100,
+                    ],
                     maxBarThickness: 6,
                 },
             ],
