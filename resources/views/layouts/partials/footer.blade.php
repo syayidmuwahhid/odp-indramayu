@@ -4,7 +4,7 @@
       <div class="col-12 mt-12 md:col-6 lg:col-3">
         <a href="{{ url('') }}" class="flex gap-3 items-center">
           <img src="" height="30" width="30" alt="logo" class="appLogo"/>
-          <span class="text-bold text-xl appName"></span>
+          <span class="text-bold text-xl appName text-orange-600"></span>
         </a>
         <p class="mt-6 appDescription">
 

@@ -35,7 +35,7 @@ class ArticleController extends Controller
             foreach($articles as $article) {
                 $article['tags'] = Tag::select('tag.name', 'article_tag.article_id')
                     ->join('article_tag', "article_tag.id", "article_tag_id")
-                    ->having("article_tag.article_id", $article->id)
+                    ->where("article_tag.article_id", $article->id)
                     ->get();
             }
 
