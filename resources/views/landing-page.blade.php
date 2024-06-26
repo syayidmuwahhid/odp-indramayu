@@ -30,7 +30,7 @@
     position: absolute;
     top: 20%;
     width: 1140px;
-    max-width: 80%;
+    max-width: 90%;
     left: 50%;
     transform: translateX(-50%);
     padding-right: 30%;
@@ -41,7 +41,7 @@
 
 .carousel .list .item .title,
 .carousel .list .item .topic{
-    font-size: 5em;
+    font-size: 3em;
     font-weight: bold;
     line-height: 1.3em;
 }
@@ -56,12 +56,12 @@
 }
 
 .carousel .list .item .des{
-    font-size: 1em;
-    font-weight: 300;
-    top: 100px;
+    font-size: 1.3em;
+    font-weight: 400;
+    top: 60px;
     z-index: 30;
     position: absolute;
-    width: 50%;
+    width: 60%;
 }
 .carousel .list .item .buttons{
     display: grid;
@@ -86,15 +86,15 @@
 .thumbnail{
     position: absolute;
     bottom: 20px;
-    left: 50%;
+    left: 55%;
     width: max-content;
     z-index: 20;
     display: flex;
     gap: 20px;
 }
 .thumbnail .item{
-    width: 150px;
-    height: 220px;
+    width: 100px;
+    height: 170px;
     flex-shrink: 0;
     position: relative;
 }
@@ -113,6 +113,7 @@
 }
 .thumbnail .item .content .title{
     font-weight: 500;
+    font-size: 0.7rem;
 }
 .thumbnail .item .content .description{
     font-weight: 300;
@@ -133,7 +134,7 @@
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background-color: #eee4;
+    background-color: #DA6220;
     border: none;
     color: #fff;
     font-family: monospace;
@@ -344,17 +345,17 @@
     <div class="container mx-auto px-4 py-16 flex flex-col-reverse lg:flex-row items-center justify-between">
       <div class="row items-center">
         <div class="lg:col-6">
-          <h3 class="banner-title">
+          <h2 class="banner-title text-orange-600">
 
-          </h3>
+          </h2>
           <p class="mt-6" id="banner-description">
 
           </p>
-          <a class="btn btn-primary mt-8" href="{{ route('about') }}">Selengkapnya</a>
+          <a class="btn bg-orange-600 hover:bg-red-400 text-white font-bold rounded-full mt-8" href="{{ route('about') }}">Selengkapnya</a>
         </div>
         <div class="lg:col-6 lg:w-1/2 flex justify-center">
           <div class="col col-md-3 p-8 animate-box fadeInUp animated" data-animate-effect="fadeInUp">
-            <img decoding="async" src="https://anugrahhotel.com/wp-content/uploads/2023/07/Anugrah-Hotel-1.jpg" alt="" class="w-[60vh] mt-90 mb-30">
+            <img decoding="async" src="https://anugrahhotel.com/wp-content/uploads/2023/07/Anugrah-Hotel-1.jpg" alt="" class="w-[60vh] mt-90 mb-30 ">
           </div>
           <div class=" col col-md-3 animate-box fadeInUp animated" data-animate-effect="fadeInUp">
               <img decoding="async" src="https://anugrahhotel.com/wp-content/uploads/2023/07/Anugrah-Hotel-3.jpg" alt="" class="w-[60vh] mt-90 mb-30">

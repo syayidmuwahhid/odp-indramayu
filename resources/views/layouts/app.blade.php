@@ -72,6 +72,9 @@
 
 
     <style>
+        /* body {
+            color: black;
+        } */
         #loading-bar-spinner.spinner {
             left: 50%;
             margin-left: -20px;
