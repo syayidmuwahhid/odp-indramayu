@@ -37,7 +37,7 @@
 
 {{-- banner --}}
 <section class="section banner relative">
-    <div class="container mx-auto px-4 py-16 flex flex-col-reverse lg:flex-row items-center justify-between">
+    <div class="container px-4 py-16 flex flex-col-reverse lg:flex-row items-center justify-between">
       <div class="row items-center">
         <div class="lg:col-6">
           <h2 class="banner-title text-orange-600">
