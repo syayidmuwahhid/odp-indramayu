@@ -41,7 +41,7 @@ function setArticle() {
         let tags = `<div class="flex gap-3">`;
         let count = 0;
         element.tags.forEach((tag) => {
-            tags += `<a href="/article?tag=${tag.name}" class="btn btn-xs">${tag.name}</a>`;
+            tags += `<a href="/article?tag=${tag.name}" class="tag-card">${tag.name}</a>`;
             if (tagArticle) {
                 if (tag.name === tagArticle) {
                     count++;
