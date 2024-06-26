@@ -1,19 +1,14 @@
-let html;
+let table;
 $(document).ready(function () {
-    getData(); // get data
+    getData();
+
     table = $("#table_container").html();
 });
 
-/**
- * Function to fetch and display article data in the table.
- *
- * @returns {Promise<void>}
- * @throws Will throw an error if the request fails or the response status is not successful.
- */
 async function getData() {
     try {
-        // Fetch article data from the server
-        let data = await getRequestData(`${baseL}/api/article`);
+        // Fetch document data from the server
+        let data = await getRequestData(`${baseL}/api/document`);
 
         // Throw an error if the request fails or the response status is not successful
         if (!data.status) {
@@ -25,6 +20,10 @@ async function getData() {
 
         // Iterate over the fetched data and generate HTML for each row
         data.data.forEach((value, i) => {
+            let linkFile =
+                value.type == "Link"
+                    ? value.location
+                    : baseL + "/" + value.location;
             let html = `<tr>
                 <td class="text-center p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">${++i}</td>
                 <td class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">${
@@ -34,25 +33,23 @@ async function getData() {
                     value.date
                 )}</td>
                 <td class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">${
-                    value.category_name
+                    value.author
                 }</td>
                 <td class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
                     <div class="flex flex-col">
                         <span>${value.user_name}</span>
                         <span class="text-xs">${value.user_email}</span>
-                    </div>
-                </td>
-                <td class=" align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
-                    <a href="/article/${value.id}" target="_blank"
+                    </div></td>
+                <td class="align-middle bg-transparent whitespace-nowrap shadow-transparent">
+                    <a href="${linkFile}" target="_blank"
                         class="inline-block px-2 py-2 mt-2 mb-2 font-bold text-center align-middle transition-all bg-transparent border border-solid rounded-lg shadow-none cursor-pointer active:opacity-85 leading-pro text-xs ease-soft-in tracking-tight-soft bg-150 bg-x-25 hover:scale-102 active:shadow-soft-xs border-yellow-500 text-yellow-500 hover:text-yellow-900 hover:opacity-75 hover:shadow-none active:scale-100 active:border-yellow-900 active:bg-yellow-900 active:text-yellow hover:active:border-yellow-900 hover:active:bg-transparent hover:active:text-yellow-900 hover:active:opacity-75"
                         style="border-color: #166BAC; color: #166BAC;"
                         >
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-richtext" viewBox="0 0 16 16">
-                                <path d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5zm-3 0A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5z"/>
-                                <path d="M4.5 12.5A.5.5 0 0 1 5 12h3a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5m0-2A.5.5 0 0 1 5 10h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5m1.639-3.708 1.33.886 1.854-1.855a.25.25 0 0 1 .289-.047l1.888.974V8.5a.5.5 0 0 1-.5.5H5a.5.5 0 0 1-.5-.5V8s1.54-1.274 1.639-1.208M6.25 6a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5"/>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-filetype-pdf" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M14 4.5V14a2 2 0 0 1-2 2h-1v-1h1a1 1 0 0 0 1-1V4.5h-2A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v9H2V2a2 2 0 0 1 2-2h5.5zM1.6 11.85H0v3.999h.791v-1.342h.803q.43 0 .732-.173.305-.175.463-.474a1.4 1.4 0 0 0 .161-.677q0-.375-.158-.677a1.2 1.2 0 0 0-.46-.477q-.3-.18-.732-.179m.545 1.333a.8.8 0 0 1-.085.38.57.57 0 0 1-.238.241.8.8 0 0 1-.375.082H.788V12.48h.66q.327 0 .512.181.185.183.185.522m1.217-1.333v3.999h1.46q.602 0 .998-.237a1.45 1.45 0 0 0 .595-.689q.196-.45.196-1.084 0-.63-.196-1.075a1.43 1.43 0 0 0-.589-.68q-.396-.234-1.005-.234zm.791.645h.563q.371 0 .609.152a.9.9 0 0 1 .354.454q.118.302.118.753a2.3 2.3 0 0 1-.068.592 1.1 1.1 0 0 1-.196.422.8.8 0 0 1-.334.252 1.3 1.3 0 0 1-.483.082h-.563zm3.743 1.763v1.591h-.79V11.85h2.548v.653H7.896v1.117h1.606v.638z"/>
                             </svg>
                         </a>
-                    <a href="/admin/article/${value.id}/edit"
+                    <a href="/admin/document/${value.id}/edit"
                         class="inline-block px-2 py-2 mt-2 mb-2 ml-2 font-bold text-center align-middle transition-all bg-transparent border border-solid rounded-lg shadow-none cursor-pointer active:opacity-85 leading-pro text-xs ease-soft-in tracking-tight-soft bg-150 bg-x-25 hover:scale-102 active:shadow-soft-xs border-yellow-500 text-yellow-500 hover:text-yellow-900 hover:opacity-75 hover:shadow-none active:scale-100 active:border-yellow-900 active:bg-yellow-900 active:text-yellow hover:active:border-yellow-900 hover:active:bg-transparent hover:active:text-yellow-900 hover:active:opacity-75"
                         style="border-color: #f1c40f; color: #f1c40f;"
                         >
@@ -60,7 +57,7 @@ async function getData() {
                                 <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.5.5 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11z"/>
                             </svg>
                         </a>
-                   <button class="inline-block px-2 py-2 mt-2 mb-2 ml-2 font-bold text-center uppercase align-middle transition-all bg-transparent border border-solid rounded-lg shadow-none cursor-pointer active:opacity-85 leading-pro text-xs ease-soft-in tracking-tight-soft bg-150 bg-x-25 hover:scale-102 active:shadow-soft-xs hover:opacity-75 hover:shadow-none active:scale-100 hover:active:border-red-900 hover:active:bg-transparent hover:active:text-red-900 hover:active:opacity-75"
+                    <button class="inline-block px-2 py-2 mt-2 mb-2 ml-2 font-bold text-center uppercase align-middle transition-all bg-transparent border border-solid rounded-lg shadow-none cursor-pointer active:opacity-85 leading-pro text-xs ease-soft-in tracking-tight-soft bg-150 bg-x-25 hover:scale-102 active:shadow-soft-xs hover:opacity-75 hover:shadow-none active:scale-100 hover:active:border-red-900 hover:active:bg-transparent hover:active:text-red-900 hover:active:opacity-75"
                         style="border-color: #ef4444; color: #ef4444;"
                         onclick="hapusData(${value.id})">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
@@ -81,20 +78,13 @@ async function getData() {
     }
 }
 
-/**
- * Function to handle category deletion.
- * It shows a confirmation dialog, sends a DELETE request to the server, and refreshes the article data table.
- *
- * @param {number} id - The unique identifier of the category to be deleted.
- * @returns {void}
- */
 function hapusData(id) {
     try {
         // Show a confirmation dialog
         confirm("Hapus?", "Yakin menghapus data?", async function () {
             // Send a DELETE request to the server
             let data = await postData(
-                `${baseL}/api/article/${id}`,
+                `${baseL}/api/document/${id}`,
                 null,
                 "DELETE"
             );
@@ -108,7 +98,7 @@ function hapusData(id) {
             // Show a success notification
             notif("success", "Berhasil", data.message);
 
-            // Refresh the article data table
+            // Refresh the document data table
             getData();
         });
     } catch (error) {

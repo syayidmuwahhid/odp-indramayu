@@ -85,7 +85,7 @@
 
     <main class="ease-soft-in-out xl:ml-68.5 relative h-full max-h-screen rounded-xl transition-all duration-200">
       <!-- Navbar -->
-      @include('admin.layouts.partials.navbar')
+      @include('admin.layouts.partials.navbar-tes')
 
       <!-- end Navbar -->
 
@@ -165,15 +165,14 @@
   <script src="{{ asset('assets/js/plugins/perfect-scrollbar.min.js') }}" async></script>
   <!-- github button -->
   <script async defer src="https://buttons.github.io/buttons.js"></script>
-<!-- Alpine.js -->
-<script src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js"></script>
-  <!-- main script file  -->
-  {{-- <script src="{{ asset('assets/js/soft-ui-dashboard-tailwind.js?v=1.0.5') }}" async></script> --}}
+  <!-- Alpine.js -->
+  <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js"></script>
   {{-- <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> --}}
   {{-- <script src="https://cdn.datatables.net/v/dt/dt-2.0.8/b-3.0.2/fc-5.0.1/fh-4.0.1/kt-2.12.1/r-3.0.2/sc-2.4.3/sb-1.7.1/sp-2.3.1/datatables.min.js"></script> --}}
   {{-- <script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script> --}}
 
   <script src="{{ asset('assets/js/global.js') }}"></script>
+  <script src="{{ asset('assets/js/soft-ui-dashboard-tailwind.js?v=1.0.5') }}" async></script>
 
   <script>
     $('#pengaturan_menu').click(async function() {
@@ -213,8 +212,10 @@
 
     $(document).ready(async function() {
         let appData = await getAppData();
-        $('#appName').html(appData.app_name);
-        $('#appLogo').attr('src', baseL + '/' + appData.icon);
+        $('.appName').html(appData.app_name);
+        $('.appTitle').html(appData.title);
+        $('.appDescription').html(appData.description);
+        $('.appLogo').attr('src', baseL + '/' + appData.icon);
         $('.appfavicon').attr('href', baseL + '/' + appData.icon);
     });
   </script>
