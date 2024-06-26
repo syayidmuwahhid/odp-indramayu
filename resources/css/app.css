@@ -13,3 +13,11 @@
 .tag-card {
     @apply text-xs text-gray-800 border border-gray-500 px-3 py-1 rounded hover:bg-gray-200;
 }
+
+.small-left-minus {
+    @apply -translate-x-full;
+}
+
+.margin-left {
+    @apply lg:ml-[17.5rem];
+}

@@ -17,7 +17,7 @@
         </div>
 
         <ul class="flex flex-row justify-end pl-0 mb-0 list-none md-max:w-full">
-          <li class="flex items-center pl-4 xl:hidden">
+          <li class="flex items-center pl-4 lg:hidden">
             <a href="javascript:;" class="block p-0 text-sm transition-all ease-nav-brand text-slate-500" sidenav-trigger>
               <div class="w-4.5 overflow-hidden">
                 <i class="ease-soft mb-0.75 relative block h-0.5 rounded-sm bg-slate-500 transition-all"></i>
@@ -31,20 +31,20 @@
 
           <li class="relative flex items-center pr-2 ml-3">
             <p class="hidden transform-dropdown-show"></p>
-            <a href="javascript:;" class="block p-0 text-sm transition-all ease-nav-brand text-slate-500 flex items-center gap-1" dropdown-trigger aria-expanded="false">
-                <i class="cursor-pointer fa fa-user xl:hidden"></i>
+            <a href="javascript:;" class=" p-0 text-sm transition-all ease-nav-brand text-slate-500 flex items-center gap-1" dropdown-trigger aria-expanded="false">
+                <i class="cursor-pointer fa fa-user lg:hidden"></i>
 
-                <div class="flex items-center gap-1 hidden sm:inline">
+                <div class="items-center gap-1 hidden lg:flex">
                     <div class="flex flex-col items-end">
                         <span class="text-xs">{{ Auth::user()->name }}</span>
                         <span class="text-[10px]">{{ Auth::user()->email }}</span>
-                      </div>
-                      {{-- <svg class="-mr-1 h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"
-                          aria-hidden="true">
-                          <path fill-rule="evenodd"
-                              d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
-                              clip-rule="evenodd" />
-                      </svg> --}}
+                    </div>
+                    <svg class="-mr-1 h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"
+                        aria-hidden="true">
+                        <path fill-rule="evenodd"
+                        d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+                        clip-rule="evenodd" />
+                    </svg>
                 </div>
             </a>
 

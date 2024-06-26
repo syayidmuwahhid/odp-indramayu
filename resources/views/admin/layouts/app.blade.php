@@ -72,6 +72,7 @@
         0%   { transform: rotate(0deg);   transform: rotate(0deg); }
         100% { transform: rotate(360deg); transform: rotate(360deg); }
         }
+
     </style>
 
     @stack('css')
@@ -83,7 +84,7 @@
 
     <!-- end sidenav -->
 
-    <main class="ease-soft-in-out xl:ml-68.5 relative h-full max-h-screen rounded-xl transition-all duration-200">
+    <main class="ease-soft-in-out margin-left relative h-full max-h-screen rounded-xl transition-all duration-200">
       <!-- Navbar -->
       @include('admin.layouts.partials.navbar-tes')
 
