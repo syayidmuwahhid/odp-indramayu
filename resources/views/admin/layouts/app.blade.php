@@ -211,8 +211,9 @@
         }
     });
 
+    let appData;
     $(document).ready(async function() {
-        let appData = await getAppData();
+        appData = await getAppData();
         $('.appName').html(appData.app_name);
         $('.appTitle').html(appData.title);
         $('.appDescription').html(appData.description);
