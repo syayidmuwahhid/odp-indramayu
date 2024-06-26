@@ -20,6 +20,14 @@
 
                     <div class="content" id="content">
                 </div>
+                <div class="flex gap-3" id="tags">
+                    Tag :
+                </div>
+                <div class="mt-10 flex justify-center items-center">
+                    <video class="media w-full" id="video" controls>
+                        <source type="video/mp4">
+                    </video>
+                </div>
             </div>`
         </div>
     </section>
@@ -27,5 +35,5 @@
 @endsection
 
 @push('js')
-    <script src="{{ asset('assets/js/pages/article-id.js') }}"></script>
+    <script src="{{ asset('assets/js/pages/article-detail.js') }}"></script>
 @endpush

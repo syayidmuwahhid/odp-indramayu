@@ -39,7 +39,7 @@
 <section class="section banner relative">
     <div class="flex flex-col justify-center items-center">
         <h4 class="text-center text-4xl mb-8 banner-title">
-            History
+            Sejarah
         </h4>
         <div class=" w-4/5 shadow-lg px-16 py-12" id="history">
 
