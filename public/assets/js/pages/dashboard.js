@@ -21,21 +21,23 @@ async function getData() {
         $("#category_count").html(data.category_count);
         $("#document_count").html(data.document_count);
 
-        $("#article_title").html(data.last_article.title);
-        let string = data.last_article.content.substring(0, 500);
-        let parser = new DOMParser();
-        let doc = parser.parseFromString(string, "text/html");
-        let content = doc.body.textContent || "";
+        if (data.last_article.length > 0) {
+            $("#article_title").html(data.last_article.title);
+            let string = data.last_article.content.substring(0, 500);
+            let parser = new DOMParser();
+            let doc = parser.parseFromString(string, "text/html");
+            let content = doc.body.textContent || "";
 
-        $("#article_content").html(content + "...");
-        $("#article_image").attr(
-            "style",
-            `background-image: url('${data.last_article.image}')`
-        );
-        $("#article_link").attr(
-            "href",
-            baseL + "/article/" + data.last_article.id
-        );
+            $("#article_content").html(content + "...");
+            $("#article_image").attr(
+                "style",
+                `background-image: url('${data.last_article.image}')`
+            );
+            $("#article_link").attr(
+                "href",
+                baseL + "/article/" + data.last_article.id
+            );
+        }
 
         data.monthly_article.forEach((element) => {
             c1_data[element.month - 1] = element.total_count;

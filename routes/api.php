@@ -57,7 +57,7 @@ Route::get('dashboard', function (Request $request) {
             'article_count' => Article::count(),
             'category_count' => Category::count(),
             'document_count' => Document::count(),
-            'last_article' => Article::orderBy('id', 'desc')->first(),
+            'last_article' => Article::orderBy('id', 'desc')->first() ? Article::orderBy('id', 'desc')->first() : [],
             'monthly_article' => Article::select(DB::raw('count(id) as total_count'), DB::raw('MONTH(date) as month'))
                         ->whereYear('date', now()->year)
                         ->groupBy(DB::raw('MONTH(date)'))
