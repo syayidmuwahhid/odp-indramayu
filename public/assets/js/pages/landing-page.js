@@ -59,9 +59,8 @@ $(document).ready(async function () {
         }, timeAutoNext);
     }
 
-
-    $('.banner-title').html(appData.title);
-    $('#banner-description').html(appData.description);
+    $(".banner-title").html(appData.title);
+    $("#banner-description").html(appData.description);
 });
 
 async function getSlider() {
@@ -109,7 +108,7 @@ async function getArticle() {
         let { data } = await getRequestData(`${baseL}/api/article`);
 
         let count = 0;
-        let html = '';
+        let html = "";
 
         data.reverse().forEach((element) => {
             count++;
@@ -120,11 +119,17 @@ async function getArticle() {
             html += `
             <div class="swiper-slide">
 
-                    <div class="card flex flex-col justify-between h-40 border border-gray-200 rounded-lg overflow-hidden shadow-lg" onclick="window.location.href='${baseL}/article/${element.id}'">
+                    <div class="card flex flex-col justify-between h-40 border border-gray-200 rounded-lg overflow-hidden shadow-lg" onclick="window.location.href='${baseL}/article/${
+                element.id
+            }'">
                         <div>
-                            <img class="card-img h-28 w-full object-cover cursor-pointer" src="${baseL}/${element.image}" alt="${element.title}" />
+                            <img class="card-img h-28 w-full object-cover cursor-pointer" src="${baseL}/${
+                element.image
+            }" alt="${element.title}" />
                             <div class="card-tags p-2">
-                                <a class="tag text-sm bg-orange-200 text-orange-600 rounded-full px-2 py-1" href="${baseL}/article?category=${element.category_name}">${element.category_name}</a>
+                                <a class="tag text-sm bg-orange-200 text-orange-600 rounded-full px-2 py-1" href="${baseL}/article?category=${
+                element.category_name
+            }">${element.category_name}</a>
                             </div>
                             <h4 class="mb-2 mt-5 text-lg font-semibold cursor-pointer text-gray-800">
                                 ${element.title}
@@ -153,7 +158,7 @@ async function getArticle() {
             `;
         });
 
-        $('#artikel_container').append(html);
+        $("#artikel_container").append(html);
 
         // Initialize Swiper after articles have been appended
         // var swiper = new Swiper('.reviews-carousel', {
@@ -167,7 +172,6 @@ async function getArticle() {
         //         clickable: true,
         //     },
         // });
-
     } catch (error) {
         notif("error", "Galat!", error);
     }
