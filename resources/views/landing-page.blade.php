@@ -351,7 +351,7 @@
           <p class="mt-6" id="banner-description">
 
           </p>
-          <a class="btn btn-primary mt-8" href="{{ route('about') }}">Selengkapnya</a>
+          <a class="btn bg-orange-600 hover:bg-red-400 text-white font-bold rounded-full mt-8" href="{{ route('about') }}">Selengkapnya</a>
         </div>
         <div class="lg:col-6 lg:w-1/2 flex justify-center">
           <div class="col col-md-3 p-8 animate-box fadeInUp animated" data-animate-effect="fadeInUp">
