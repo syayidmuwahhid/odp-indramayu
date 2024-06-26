@@ -243,29 +243,29 @@
   <script src="{{ asset('assets/js/soft-ui-dashboard-tailwind.js?v=1.0.5') }}" async></script>
 
   <script>
-const togglePassword = document.getElementById('togglePassword');
-const togglePasswordSlash = document.getElementById('togglePasswordSlash');
-const password = document.querySelector('#password');
+    const togglePassword = document.getElementById('togglePassword');
+    const togglePasswordSlash = document.getElementById('togglePasswordSlash');
+    const password = document.querySelector('#password');
 
-togglePassword.addEventListener('click', function () {
-  // toggle the type attribute
-  const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
-  password.setAttribute('type', type);
+    togglePassword.addEventListener('click', function () {
+      // toggle the type attribute
+      const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+      password.setAttribute('type', type);
 
-  // toggle the icons
-  togglePassword.classList.toggle('hidden');
-  togglePasswordSlash.classList.toggle('hidden');
-});
+      // toggle the icons
+      togglePassword.classList.toggle('hidden');
+      togglePasswordSlash.classList.toggle('hidden');
+    });
 
-togglePasswordSlash.addEventListener('click', function () {
-  // toggle the type attribute
-  const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
-  password.setAttribute('type', type);
+    togglePasswordSlash.addEventListener('click', function () {
+      // toggle the type attribute
+      const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+      password.setAttribute('type', type);
 
-  // toggle the icons
-  togglePassword.classList.toggle('hidden');
-  togglePasswordSlash.classList.toggle('hidden');
-});
+      // toggle the icons
+      togglePassword.classList.toggle('hidden');
+      togglePasswordSlash.classList.toggle('hidden');
+    });
 
   </script>
 </html>

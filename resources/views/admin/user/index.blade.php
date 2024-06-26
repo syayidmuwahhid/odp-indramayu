@@ -1,5 +1,5 @@
 @extends('admin.layouts.app')
-@section('title', 'Manajemen User')
+@section('title', 'Manajemen Pengguna')
 
 @section('content')
     <div class="w-full px-6 py-6 mx-auto">
