@@ -15,7 +15,7 @@ $(document).ready(function () {
 function formModal() {
     // Prepare the HTML for the form
     let html = `<form id="formModal">`;
-    html += `<label>Name</label>`;
+    html += `<label>Nama</label>`;
     html += `<input class="swal2-input mr-3" placeholder="name" name="name"> <br/>`;
     html += `<label>Email</label>`;
     html += `<input type="email" class="swal2-input mr-3" placeholder="email" name="email"> <br/>`;

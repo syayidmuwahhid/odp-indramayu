@@ -2458,7 +2458,7 @@ input#nav-toggle:checked ~ #nav-menu {
 }
 @media (min-width: 1024px) {
     .header {
-        background-color: transparent;
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.767), rgba(0, 0, 0, 0));
     }
 }
 .header-sticky {
@@ -2492,8 +2492,17 @@ input#nav-toggle:checked ~ #nav-menu {
     width: 100%;
 }
 
+.navbar.sticky a{
+    color: black;
+}
+
 .navbar-nav {
     text-align: center;
+}
+
+.nav-item a {
+    color: white;
+    font-weight: 500;
 }
 
 .nav-button {
@@ -2512,8 +2521,8 @@ input#nav-toggle:checked ~ #nav-menu {
     text-decoration: none;
     text-transform: uppercase;
     color: black;
-    font-family: 'Quicksand', sans-serif;
-    font-weight: 500;
+
+    font-weight: 600;
 }
 .nav-button:hover {
     border: 3px solid #DA6220;
@@ -2555,11 +2564,28 @@ input#nav-toggle:checked ~ #nav-menu {
     --tw-text-opacity: 1;
     color: rgb(254 96 25 / var(--tw-text-opacity));
 }
+
+@media (max-width: 900px) {
+    .nav-item a {
+        color: black;
+        font-weight: 500;
+    }
+}
+
+@media (max-width: 500px) {
+    .nav-item a {
+        color: black;
+        font-weight: 500;
+    }
+}
+
 @media (min-width: 768px) {
     .nav-link {
         padding-left: 0.5rem;
         padding-right: 0.5rem;
     }
+    
+
 }
 @media (min-width: 1024px) {
     .nav-link {

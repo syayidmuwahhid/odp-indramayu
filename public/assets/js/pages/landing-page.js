@@ -141,7 +141,7 @@ async function getArticle() {
             html += `<div class="swiper-slide">`;
             html += `<div class="mb-8" style="height:600px">`;
             html += `<div class="card flex flex-col justify-between cursor-pointer" onclick="window.location.href='${baseL}/article/${element.id}'">`;
-            html += `<div><img class="card-img w-full object-cover" style="height:200px" src="${baseL}/${element.image}" alt="" />`;
+            html += `<div><img class="card-img w-full object-cover" style="height:220px" src="${baseL}/${element.image}" alt="" />`;
             html += `<div class="card-tags"><a class="tag" href="${baseL}/article?category=${element.category_name}">${element.category_name}</a></div>
                         <h3 class="h4 card-title mt-5">${element.title}</h3>
                         <p">${content}...</p>

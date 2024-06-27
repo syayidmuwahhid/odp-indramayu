@@ -79,16 +79,16 @@
         <h6 class="text-slate-500">Quick Links</h6>
         <ul>
           <li>
-            <a href="about.html">Home</a>
+            <a href="{{ route('landing-page') }}">Home</a>
           </li>
           <li>
-            <a href="#">Article</a>
+            <a href="{{ route('article') }}" >Article</a>
           </li>
           <li>
-            <a href="#">About</a>
+            <a href="{{ route('about') }}">About</a>
           </li>
           <li>
-            <a href="contact.html">Contact</a>
+            <a href="{{ route('contact') }}">Contact</a>
           </li>
         </ul>
       </div>
