@@ -1,27 +1,22 @@
 //define url root apps
 const baseL = $("#baseL").val();
+const userID = $("#user_id").val();
 
-$(document).ready(function () {
-    //select 2 initially
-    // $(".select2").select2({
-    //     placeholder: "Select an option",
-    // });
-    //data table initially
-    // setDataTable(".dataTable");
-    // new Quill(".editor", {
-    //     debug: "info",
-    //     modules: {
-    //         toolbar: true,
-    //     },
-    //     placeholder: "Compose an epic...",
-    //     theme: "snow",
-    // });
-});
+$(document).ready(async function () {});
+
+async function getAppData() {
+    try {
+        let { data } = await getRequestData(`${baseL}/api/profile`);
+        return data;
+    } catch (error) {
+        notif("error", "Galat!", error);
+    }
+}
 
 function blockUI() {
     $.blockUI({
         css: {
-            border: 'transparent'
+            border: "transparent",
         },
         message: `<div id="loading-bar-spinner" class="spinner"><div class="spinner-icon"></div></div>`,
     });
@@ -41,7 +36,9 @@ function notif(type, title, message) {
         icon: type,
         title: title,
         text: message,
+        timer: 3000,
     });
+    $.unblockUI();
 }
 
 /**
@@ -61,39 +58,12 @@ function confirm(title, text, callback = () => {}) {
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
-        confirmButtonText: "Yes",
+        confirmButtonText: "Iya",
+        cancelButtonText: "Batal",
     }).then((result) => {
         if (result.isConfirmed) {
             callback();
         }
-    });
-}
-
-function setDataTable(id) {
-    let tb = new DataTable(id, {
-        layout: {
-            topStart: null,
-            topEnd: null,
-            bottomStart: "pageLength",
-            bottomEnd: "paging",
-        },
-        destroy: true,
-    });
-
-    $(".dataTable-search").on("keyup", function () {
-        let searchTerm = $(this).val();
-        tb.search(searchTerm).draw();
-    });
-
-    $(".dataTable-filter").on("change", () => {
-        let value = $(".dataTable-filter option:selected").val();
-        const column = $(".dataTable-filter").data("column");
-
-        if (value === "all") {
-            value = "";
-        }
-
-        tb.column(column).search(value).draw();
     });
 }
 
@@ -124,6 +94,7 @@ async function modal({
         focusConfirm: false,
         showCancelButton: true,
         confirmButtonText: "Simpan",
+        cancelButtonText: "Batal",
         showLoaderOnConfirm: true,
         confirmButtonColor: "#22C55E",
         cancelButtonColor: "#d33",
@@ -194,7 +165,7 @@ async function getRequestData(url) {
  *   .then(data => console.log(data))
  *   .catch(error => console.error(error));
  */
-async function postData(url, formData, method) {
+async function postData(url, formData, method = "POST") {
     blockUI();
     let response = await fetch(url, {
         method,
@@ -221,4 +192,16 @@ function inputValidate(id, title = "") {
     if (!data) {
         throw new Error(`${title} Inputan Wajib diisi!`);
     }
+}
+
+function convertDate(d) {
+    const date = new Date(d);
+
+    const day = String(date.getDate()).padStart(2, "0");
+    const monthLong = date.toLocaleString("default", { month: "long" });
+    const year = date.getFullYear();
+
+    const formattedDateLong = `${day} ${monthLong} ${year}`;
+
+    return formattedDateLong;
 }

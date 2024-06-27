@@ -17,7 +17,11 @@ class AuthController extends Controller
      */
     public function index()
     {
-        return view('auth.login');
+        if (Auth::check()) {
+            return redirect()->route('admin.dashboard');
+        }
+
+        return view('admin.auth.login');
     }
 
 
@@ -58,7 +62,7 @@ class AuthController extends Controller
 
     public function register()
     {
-        return view('auth.register');
+        return view('admin.auth.register');
     }
 
     public function signup(Request $request)

@@ -27,12 +27,22 @@ class ArticleController extends Controller
 
         try {
             // Fetch all categories from the database
-            $article = Article::all();
+            $articles = Article::select('article.*', 'category.name as category_name', 'users.name as user_name', 'users.email as user_email')
+                ->join('category', 'category.id', 'category_id')
+                ->join('users', 'users.id', 'user_id')
+                ->get();
+
+            foreach($articles as $article) {
+                $article['tags'] = Tag::select('tag.name', 'article_tag.article_id')
+                    ->join('article_tag', "article_tag.id", "article_tag_id")
+                    ->where("article_tag.article_id", $article->id)
+                    ->get();
+            }
 
             // Prepare the success response data
             $resp['status'] = true;
             $resp['message'] = 'Berhasil Mengambil data';
-            $resp['data'] = $article;
+            $resp['data'] = $articles;
             $code = 200;
 
             // Commit the database transaction
@@ -65,7 +75,7 @@ class ArticleController extends Controller
                 'category_id' => 'required|integer',
                 'date' => 'required|date',
                 'image' => 'nullable|mimes:jpeg,png,jpg,gif,svg',
-                'video' => 'nullable|mimetypes:video/avi,video/mpeg,video/quicktime,video/mp4',
+                'video' => 'nullable|mimes:avi,mpeg,quicktime,mp4',
                 'tags' => 'required',
                 'title' => 'required|string|max:255',
                 'content' => 'required|string',
@@ -78,12 +88,12 @@ class ArticleController extends Controller
 
             if ($request->hasFile('image')) {
                 $filePath = $request->file('image')->store('articles/'.$article->id, 'public');
-                $article->image = $filePath;
+                $article->image = 'storage/' . $filePath;
             }
 
             if ($request->hasFile('video')) {
                 $filePath = $request->file('video')->store('articles/'.$article->id, 'public');
-                $article->video = $filePath;
+                $article->video = 'storage/' . $filePath;
             }
 
             $article->save();
@@ -133,10 +143,11 @@ class ArticleController extends Controller
         try {
             // Find the article by its unique identifier
             $article = Article::find($id);
+            $article->User;
             $tags = Tag::select('tag.name', 'article_tag.article_id')
 
                 ->join('article_tag', "article_tag.id", "article_tag_id")
-                ->having("article_tag.article_id", $id)
+                ->where("article_tag.article_id", $id)
                 ->get();
             $article['tags'] =  $tags;
 
@@ -165,69 +176,76 @@ class ArticleController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        {
-            $resp = [
-                'status' => false,
-            ];
-            $code = 500;
-            DB::beginTransaction();
+        $resp = [
+            'status' => false,
+        ];
+        $code = 500;
+        DB::beginTransaction();
 
-            try {
-                $payload = $request->validate([
-                    'category_id' => 'required|integer',
-                    'date' => 'required|date',
-                    'image' => 'nullable|mimes:jpeg,png,jpg,gif,svg',
-                    'video' => 'nullable|mimetypes:video/avi,video/mpeg,video/quicktime,video/mp4',
-                    'tags' => 'required',
-                    'title' => 'required|string|max:255',
-                    'content' => 'required|string',
-                ]);
+        try {
+            $payload = $request->validate([
+                'category_id' => 'required|integer',
+                'date' => 'required|date',
+                'image' => 'nullable|mimes:jpeg,png,jpg,gif,svg',
+                'video' => 'nullable|mimetypes:avi,mpeg,quicktime,mp4',
+                'tags' => 'required',
+                'title' => 'required|string|max:255',
+                'content' => 'required|string',
+            ]);
 
-                $payload['user_id'] = $request->user_id;
+            $article = Article::find($id);
+            $oldImg = $article->image;
+            $oldVideo = $article->video;
 
-                $article = Article::where('id', $id)->update($payload);
+            $article->fill($payload);
 
-                if ($request->hasFile('image')) {
-                    $filePath = $request->file('image')->store('articles/'.$article->id, 'public');
-                    $article->image = $filePath;
-                }
-
-                if ($request->hasFile('video')) {
-                    $filePath = $request->file('video')->store('articles/'.$article->id, 'public');
-                    $article->video = $filePath;
-                }
-
-                $article->save();
-
-                //article tag
-                $articleTag = ArticleTag::where('article_id', $id)->first('id');
-
-                //tags
-                $tags = explode(',', $request->tags);
-
-                //remove last tags
-                Tag::where('article_tag_id', $articleTag->id)->delete();
-
-                foreach($tags as $tag) {
-                    $tagModel = new Tag();
-                    $tagModel->name = $tag;
-                    $tagModel->article_tag_id = $articleTag->id;
-                    $tagModel->save();
-                }
-
-                $resp['status'] = true;
-                $resp['message'] = 'Berhasil merubah data';
-                $code = 200;
-                DB::commit();
-            } catch (\Throwable $th) {
-                // Prepare the error response data
-                $resp['message'] = $th->getMessage();
-
-                // Rollback the database transaction
-                DB::rollBack();
+            if ($request->hasFile('image')) {
+                $filePath = $request->file('image')->store('articles/'.$article->id, 'public');
+                $article->image = 'storage/' . $filePath;
             }
-            return response()->json($resp, $code);
+
+            if ($request->hasFile('video')) {
+                $filePath = $request->file('video')->store('articles/'.$article->id, 'public');
+                $article->video = 'storage/' . $filePath;
+            }
+
+            if ($request->hasFile('image') && File::exists($oldImg)) {
+                File::delete($oldImg);
+            }
+
+            if ($request->hasFile('video') && File::exists($oldVideo)) {
+                File::delete($oldVideo);
+            }
+
+            $article->save();
+
+            //article tag
+            $articleTag = ArticleTag::where('article_id', $article->id)->first();
+
+            //tags
+            $tags = explode(',', $request->tags);
+
+            Tag::where('article_tag_id', $articleTag->id)->delete();
+
+            foreach($tags as $tag) {
+                $tagModel = new Tag();
+                $tagModel->name = $tag;
+                $tagModel->article_tag_id = $articleTag->id;
+                $tagModel->save();
+            }
+
+            $resp['status'] = true;
+            $resp['message'] = 'Berhasil update data';
+            $code = 200;
+            DB::commit();
+        } catch (\Throwable $th) {
+            // Prepare the error response data
+            $resp['message'] = $th->getMessage();
+
+            // Rollback the database transaction
+            DB::rollBack();
         }
+        return response()->json($resp, $code);
     }
 
     /**
@@ -259,6 +277,12 @@ class ArticleController extends Controller
             if (File::exists($article->video)) {
                 File::delete($article->video);
             }
+
+            $articleTag = ArticleTag::where('article_id', $article->id)->first();
+
+            Tag::where('article_tag_id', $articleTag->id)->delete();
+
+            ArticleTag::where('article_id', $article->id)->delete();
 
             // Prepare the success response data
             $resp['status'] = true;

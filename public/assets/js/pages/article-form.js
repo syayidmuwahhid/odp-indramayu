@@ -2,29 +2,35 @@ let editorInstance;
 let tags = [];
 let tagfy;
 
-
 $(document).ready(async function () {
     ClassicEditor.create(document.querySelector("#editor"), {
         removePlugins: [
-            'Image',
-            'ImageCaption',
-            'ImageStyle',
-            'ImageToolbar',
-            'ImageUpload',
-            'EasyImage',
-            'Base64UploadAdapter',
-            'CKFinder',
-            'CKFinderUploadAdapter'
+            "Image",
+            "ImageCaption",
+            "ImageStyle",
+            "ImageToolbar",
+            "ImageUpload",
+            "EasyImage",
+            "Base64UploadAdapter",
+            "CKFinder",
+            "CKFinderUploadAdapter",
         ],
         toolbar: {
             items: [
-            'undo', 'redo', '|' ,
-                'heading', '|',
-                'bold', 'italic', 'link', '|',
-                'bulletedList', 'numberedList', 'blockQuote', '|',
-                'undo', 'redo'
-            ]
-        }
+                "heading",
+                "|",
+                "bold",
+                "italic",
+                "link",
+                "|",
+                "bulletedList",
+                "numberedList",
+                "blockQuote",
+                "|",
+                "undo",
+                "redo",
+            ],
+        },
     })
         .then((editor) => {
             editorInstance = editor;
@@ -38,8 +44,6 @@ $(document).ready(async function () {
     var input = document.getElementById("tag-input");
     tagify = new Tagify(input, {
         whitelist: [],
-        backspace: "edit", // Aksi saat menekan tombol backspace
-        placeholder: "Masukan Tag Artikel",
         dropdown: {
             maxItems: 20, // <- mixumum allowed rendered suggestions
             classname: "tags-look", // <- custom classname for this dropdown, so it could be targeted
@@ -101,7 +105,7 @@ async function submitForm(e) {
             throw new Error("Isi Artikel tidak boleh Kosong");
         }
 
-          post_data.append("content", editorData);
+        post_data.append("content", editorData);
 
         let data = await postData(url, post_data, method);
 
