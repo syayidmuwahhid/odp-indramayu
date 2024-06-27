@@ -5,13 +5,13 @@ $(document).ready(function () {
 async function formSubmit(e) {
     try {
         e.preventDefault();
-        const url = baseL + $(this).attr("action");
-        const method = $(this).attr("method");
-        const post_data = new FormData(this);
+        const subject = $('input[name="subject"]').val();
+        const email = $('input[name="email"]').val();
+        const body = $('textarea[name="body"]').val();
+        const myEmail = $(this).data("email");
 
-        let data = await postData(url, post_data, method);
-        console.log(data);
+        window.location.href = `mailto:${myEmail}?subject=${subject} dari ${email}&body=${body}`;
     } catch (error) {
-        notif("error", "Galat!", error);
+        console.log("error", "Galat!", error);
     }
 }
