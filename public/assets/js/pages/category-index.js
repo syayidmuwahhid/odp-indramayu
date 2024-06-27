@@ -20,7 +20,7 @@ function formModal() {
 
     // Call the modal function to display the form
     modal({
-        title: "Form Tambah category",
+        title: "Form Tambah Kategori",
         formId: "formModal",
         method: "POST",
         url: "/api/category",
@@ -50,7 +50,7 @@ async function editModal(id) {
 
         // Call the modal function to display the form
         modal({
-            title: "Form Edit category",
+            title: "Form Edit Kategori",
             formId: "editModal",
             method: "POST",
             url: `/api/category/${id}`,

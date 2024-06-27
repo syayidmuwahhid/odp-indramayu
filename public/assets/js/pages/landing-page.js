@@ -60,9 +60,8 @@ $(document).ready(async function () {
     }
     
 
-
-    $('.banner-title').html(appData.title);
-    $('#banner-description').html(appData.description);
+    $(".banner-title").html(appData.title);
+    $("#banner-description").html(appData.description);
 });
 
 async function getSlider() {
@@ -110,7 +109,7 @@ async function getArticle() {
         let { data } = await getRequestData(`${baseL}/api/article`);
 
         let count = 0;
-        let html = '';
+        let html = "";
 
         data.reverse().forEach((element) => {
             count++;
@@ -169,10 +168,9 @@ async function getArticle() {
             html += `</div>`;
             html += `</div>`;
             html += `</div>`;
-
         });
 
-        $('#artikel_container').append(html);
+        $("#artikel_container").append(html);
 
         // Initialize Swiper after articles have been appended
         // var swiper = new Swiper('.reviews-carousel', {
@@ -186,7 +184,6 @@ async function getArticle() {
         //         clickable: true,
         //     },
         // });
-
     } catch (error) {
         notif("error", "Galat!", error);
     }

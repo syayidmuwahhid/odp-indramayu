@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CounterController;
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SliderController;
@@ -11,9 +12,12 @@ use App\Http\Controllers\VideoController;
 use App\Mail\ContactMail;
 use App\Models\Article;
 use App\Models\Category;
+use App\Models\Counter;
 use App\Models\Document;
 use App\Models\User;
+use Carbon\Month;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
@@ -39,6 +43,8 @@ Route::apiResource('slider', SliderController::class);
 
 Route::apiResource('document', DocumentController::class);
 
+Route::apiResource('counter', CounterController::class)->only('store');
+
 Route::get('dashboard', function (Request $request) {
     $resp = [
         'status' => false,
@@ -51,7 +57,11 @@ Route::get('dashboard', function (Request $request) {
             'article_count' => Article::count(),
             'category_count' => Category::count(),
             'document_count' => Document::count(),
-            'last_article' => Article::orderBy('id', 'desc')->first()
+            'last_article' => Article::orderBy('id', 'desc')->first() ? Article::orderBy('id', 'desc')->first() : [],
+            'monthly_article' => Article::select(DB::raw('count(id) as total_count'), DB::raw('MONTH(date) as month'))
+                        ->whereYear('date', now()->year)
+                        ->groupBy(DB::raw('MONTH(date)'))
+                        ->get()
         ];
 
         $resp['status'] = true;

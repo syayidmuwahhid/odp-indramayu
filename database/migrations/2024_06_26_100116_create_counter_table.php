@@ -11,12 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('slider', function (Blueprint $table) {
+        Schema::create('counter', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->text('description');
-            $table->enum('type', ['image', 'video']);
-            $table->string('location');
+            $table->unsignedBigInteger('table_id');
+            $table->enum('table_name', ['article']);
             $table->timestamps();
         });
     }
@@ -26,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('slider');
+        Schema::dropIfExists('counter');
     }
 };
