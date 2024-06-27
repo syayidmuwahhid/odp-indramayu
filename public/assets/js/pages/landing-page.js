@@ -58,7 +58,7 @@ $(document).ready(async function () {
             next.click();
         }, timeAutoNext);
     }
-    
+
 
     $(".banner-title").html(appData.title);
     $("#banner-description").html(appData.description);
@@ -117,19 +117,19 @@ async function getArticle() {
                 return;
             }
 
-            let tags = `<div class="flex gap-3">`;
+            let tags = `<div class="flex flex-wrap gap-1">`;
             element.tags.forEach((tag) => {
                 tags += `<a href="/article?tag=${tag.name}" class="tag-card">${tag.name}</a>`;
             });
             tags += `</div>`;
-        
+
             let string = element.content.substring(0, 200);
 
 
             let parser = new DOMParser();
             let doc = parser.parseFromString(string, "text/html");
             let content = doc.body.textContent || "";
-            
+
             // let content = element.content;
             // let doc = document.createElement("div");
 
@@ -137,9 +137,8 @@ async function getArticle() {
 
             // console.log(doc.innerHTML);
 
-            html += `<div class="swiper-slide">`;
-            html += `<div class="mb-8" style="height:34rem">`;
-            html += `<div class="card flex flex-col justify-between cursor-pointer" onclick="window.location.href='${baseL}/article/${element.id}'">`;
+            html += `<div class="swiper-slide mb-8 md:col-6 lg:col-4">`;
+            html += `<div class="card flex flex-col justify-between h-full cursor-pointer" onclick="window.location.href='${baseL}/article/${element.id}'">`;
             html += `<div><img class="card-img w-full object-cover" style="height:170px" src="${baseL}/${element.image}" alt="" />`;
             html += `<div class="card-tags"><a class="tag" href="${baseL}/article?category=${element.category_name}">${element.category_name}</a></div>
                         <h3 class="h4 card-title mt-5">${element.title}</h3>
@@ -163,7 +162,6 @@ async function getArticle() {
                             </svg>
                         <p class="pl-1">${element.user_name}</p>
                     </span>`;
-            html += `</div>`;
             html += `</div>`;
             html += `</div>`;
             html += `</div>`;

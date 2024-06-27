@@ -36,74 +36,54 @@
 </section> --}}
 
 {{-- banner --}}
-<section class="section banner relative">
-    <div class="container px-4 py-16 flex flex-col-reverse lg:flex-row items-center justify-between">
-      <div class="row items-center">
-        <div class="lg:col-6">
-          <h2 class="banner-title text-orange-600">
-
-          </h2>
-          <p class="mt-6 text-black text-lg" id="banner-description">
-
-          </p>
-          <a class="btn bg-orange-600 hover:bg-red-400 text-white font-bold rounded-full mt-8" href="{{ route('about') }}">Selengkapnya</a>
-        </div>
-        <div class="lg:col-6 lg:w-1/2 flex justify-center object-cover">
-          <div class="col col-md-3 p-8 animate-box fadeInUp animated" data-animate-effect="fadeInUp">
-            <img src="{{ asset('assets/img/sawah.jpg') }}" alt="" class="w-[60vh] mt-90 mb-30 ">
-          </div>
-          <div class=" col col-md-3 animate-box fadeInUp animated" data-animate-effect="fadeInUp">
-              <img src="{{ asset('assets/img/sawah1.jpg') }}" alt="" class="w-[60vh] mt-90 mb-30">
-          </div>
-          {{-- <img
-            class="w-full object-cover"
-            src="https://indramayukab.go.id/wp-content/uploads/2023/01/indra1.jpeg"
-            width="603"
-            height="396"
-            alt=""
-          /> --}}
-        </div>
-      </div>
-    </div>
-    {{-- <img
-      class="banner-shape absolute -top-28 right-0 -z-[1] w-full max-w-[30%]"
-      src="{{ asset('assets/img/banner-shape.svg') }}"
-      alt=""
-    /> --}}
-  </section>
-  <!-- ./end Banner -->
-
-  <!-- Reviews -->
-  <section class="reviews mt-8">
-    <div class="container">
-      <div class="row justify-between">
-        <div class="lg:col-6 mb-6">
-          <h2 class="text-orange-600">Artikel Terbaru</h2>
-        </div>
-        {{-- <div class="lg:col-4">
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi egestas
-            Werat viverra id et aliquet. vulputate egestas sollicitudin .
-          </p>
-        </div> --}}
-      </div>
-      <div class="row">
-        <div class="col-12">
-          <div class="reviews-carousel">
-            <div class="swiper-wrapper" id="artikel_container">
-
+    <section class="section banner relative">
+        <div class="container px-4 py-16 flex flex-col-reverse lg:flex-row items-center justify-between">
+            <div class="row items-center">
+                <div class="lg:col-6">
+                    <h2 class="banner-title text-orange-600">
+                    </h2>
+                    <p class="mt-6 text-black text-lg" id="banner-description">
+                    </p>
+                    <a class="btn bg-orange-600 hover:bg-red-400 text-white font-bold rounded-full mt-8" href="{{ route('about') }}">Selengkapnya</a>
+                </div>
+                <div class="lg:col-6 lg:w-1/2 flex justify-center object-cover">
+                    <div class="col col-md-3 p-8 animate-box fadeInUp animated" data-animate-effect="fadeInUp">
+                        <img src="{{ asset('assets/img/sawah.jpg') }}" alt="" class="w-[60vh] mt-90 mb-30 ">
+                    </div>
+                    <div class=" col col-md-3 animate-box fadeInUp animated" data-animate-effect="fadeInUp">
+                        <img src="{{ asset('assets/img/sawah1.jpg') }}" alt="" class="w-[60vh] mt-90 mb-30">
+                    </div>
+                </div>
             </div>
-            <!-- If we need pagination -->
-            {{-- <div class="swiper-pagination reviews-carousel-pagination !bottom-0"></div> --}}
-          </div>
         </div>
-      </div>
-    </div>
-  </section>
+    </section>
+    <!-- ./end Banner -->
+
+<!-- Reviews -->
+    <section class="reviews mt-8">
+        <div class="container">
+            <div class="row justify-between">
+                <div class="lg:col-6 mb-6">
+                <h2 class="text-orange-600">Artikel Terbaru</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                <div class="reviews-carousel">
+                    <div class="swiper-wrapper" id="artikel_container">
+
+                    </div>
+                    <!-- If we need pagination -->
+                    {{-- <div class="swiper-pagination reviews-carousel-pagination !bottom-0"></div> --}}
+                </div>
+                </div>
+            </div>
+        </div>
+    </section>
   <!-- Reviews -->
 
   <!-- Key features -->
-  <section class="section key-feature relative">
+  {{-- <section class="section key-feature relative">
     <img
       class="absolute left-0 top-0 -z-[1] -translate-y-1/2"
       src="{{ asset('assets/img/icons/feature-shape.svg') }}"
@@ -276,11 +256,11 @@
         </div>
       </div>
     </div>
-  </section>
+  </section> --}}
   <!-- ./end Key features -->
 
   <!-- Services -->
-  <section class="section services">
+  {{-- <section class="section services">
     <div class="container">
       <div class="tab row gx-5 items-center" data-tab-group="integration-tab">
         <div class="lg:col-7 lg:order-2">
@@ -421,13 +401,13 @@
         </div>
       </div>
     </div>
-  </section>
+  </section> --}}
   <!-- ./end Services -->
 
 
 
   <!-- Call To action -->
-  <section class="px-5 py-20 xl:py-[120px]">
+  {{-- <section class="px-5 py-20 xl:py-[120px]">
     <div class="container">
       <div
         class="bg-gradient row justify-center rounded-b-[80px] rounded-t-[20px] px-[30px] pb-[75px] pt-16"
@@ -449,7 +429,7 @@
         </div>
       </div>
     </div>
-  </section>
+  </section> --}}
 @endsection
 
 @push('js')
