@@ -2,7 +2,21 @@
 
 @section('title', 'Artikel')
 
+@push('css')
+
+<link rel="stylesheet" href="{{ asset('assets/css/landing-page.css') }}">
+
+@endpush
+
 @section('content')
+
+    <div class="jumbotronArticle">
+        <div class="jumbotron-article-description" data-aos="fade-up" data-aos-duration="1200">
+            <h5></h5>
+            <h1>Artikel</h1>
+        </div>
+    </div>
+
     <section class="page-hero pt-16 pb-6 mt-10" data-aos="fade-up" data-aos-duration="1500">
         <div class="container">
         <div class="page-hero-content mx-auto max-w-[768px] text-center">

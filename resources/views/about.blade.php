@@ -2,6 +2,10 @@
 
 @section('title', 'Landing Page')
 
+@push('css')
+
+<link rel="stylesheet" href="{{ asset('assets/css/landing-page.css') }}">
+
 <style>
     .grid-container {
         display: grid;
@@ -21,9 +25,19 @@
     }
 </style>
 
+@endpush
+
 @section('content')
+
+<div class="jumbotronAbout">
+    <div class="jumbotron-about-description" data-aos="fade-up" data-aos-duration="5200">
+        <h1 id="title"> </h1>
+        <h5 id="description"></h5>
+    </div>
+</div>
+
 <!-- Common hero -->
-<section class="page-hero pb-16 mt-40" data-aos="fade-up" data-aos-duration="1500">
+{{-- <section class="page-hero pb-16 mt-40" data-aos="fade-up" data-aos-duration="1500">
   <div class="container">
     <div class="page-hero-content mx-auto max-w-[768px] text-center">
       <h1 class="mb-5 mt-8" id="title"> </h1>
@@ -32,7 +46,7 @@
       </p>
     </div>
   </div>
-</section>
+</section> --}}
 <!-- end Common hero -->
 
 {{-- History --}}

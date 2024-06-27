@@ -11,20 +11,14 @@
 @section('content')
 
 <div class="jumbotronDokumen">
-    <div class="jumbotron-dokumen-description">
-        <h5>DISCOVER YOUR STAY EXPERIENCE WITH US !</h5>
+    <div class="jumbotron-dokumen-description" data-aos="fade-up" data-aos-duration="1200">
+        <h5></h5>
         <h1>Dokumen</h1>
     </div>
 </div>
-{{-- 
-<section class="section relative">
-    <div class="dokumen-description">
-        <h1>Tabel Dokumen</h1>
-    </div>
-</section> --}}
 
 <section class="section document relative">
-    <div class="container mx-auto my-6">
+    <div class="container mx-auto my-6" data-aos="fade-up" data-aos-duration="1200">
         <div class="overflow-x-auto">
             <div class="min-w-screen bg-white flex items-center justify-center font-sans overflow-hidden">
                 <div class="w-full lg:w-5/6">
