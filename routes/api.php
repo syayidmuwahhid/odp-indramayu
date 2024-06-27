@@ -52,6 +52,50 @@ Route::get('dashboard', function (Request $request) {
     $code = 500;
 
     try {
+        $topRate = Counter::select(
+            DB::raw('MONTH(counter.created_at) AS bulan'),
+            DB::raw('(
+                SELECT COUNT(sub.table_id)
+                FROM counter AS sub
+                WHERE MONTH(sub.created_at) = MONTH(counter.created_at)
+                GROUP BY sub.table_id
+                ORDER BY COUNT(sub.table_id) DESC
+                LIMIT 1
+            ) as jumlah_pembaca'),
+            DB::raw('(
+                SELECT table_id
+                FROM counter AS sub2
+                WHERE MONTH(sub2.created_at) = MONTH(counter.created_at)
+                GROUP BY sub2.table_id
+                ORDER BY COUNT(sub2.table_id) DESC
+                LIMIT 1
+            ) as table_id_2'),
+            'table_name',
+            // 'article.title'
+        )
+        // ->join('article', 'article.id', 'table_id')
+        ->groupBy('bulan', 'jumlah_pembaca', 'table_name', 'table_id_2')
+        ->having('table_name', 'article')
+        ->whereYear('counter.created_at', now()->year)
+        ->get();
+
+        $result = [];
+        $seen_months = [];
+
+        foreach ($topRate as $entry) {
+            if (!in_array($entry['bulan'], $seen_months)) {
+                $result[] = $entry;
+                $seen_months[] = $entry['bulan'];
+            }
+        }
+
+        for ($i=0; $i<count($result); $i++) {
+            $result[$i]['article_title'] = Article::select('article.title')
+                ->where('id', $result[$i]->table_id_2)
+                ->first()->title;
+        }
+
+
         $data = [
             'user_count' => User::count() - 1,
             'article_count' => Article::count(),
@@ -61,7 +105,9 @@ Route::get('dashboard', function (Request $request) {
             'monthly_article' => Article::select(DB::raw('count(id) as total_count'), DB::raw('MONTH(date) as month'))
                         ->whereYear('date', now()->year)
                         ->groupBy(DB::raw('MONTH(date)'))
-                        ->get()
+                        ->get(),
+            'top_rate_article' => $result
+
         ];
 
         $resp['status'] = true;
