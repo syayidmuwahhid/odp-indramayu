@@ -28,7 +28,7 @@
                 </div>
             </div>
             <div class="md:col-6 md:order-1">
-                <form class="lg:max-w-[484px]" action="mailto:recipient@example.com" method="GET" id="contact-form">
+                <form class="lg:max-w-[484px]" data-email="{{ env('MAIL_USERNAME') }}" method="GET" id="contact-form">
                     <input type="hidden" name="subject" value="Masukan untuk Aplikasi OPD Indramayu"/>
                     <div class="form-group mb-5">
                         <label class="form-label" for="name">Nama Lengkap</label>
@@ -74,5 +74,5 @@
 @endsection
 
 @push('js')
-{{-- <script src="{{ asset('assets/js/pages/contact.js') }}"></script> --}}
+<script src="{{ asset('assets/js/pages/contact.js') }}"></script>
 @endpush
