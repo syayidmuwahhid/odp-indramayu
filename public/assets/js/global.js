@@ -165,7 +165,7 @@ async function getRequestData(url) {
  *   .then(data => console.log(data))
  *   .catch(error => console.error(error));
  */
-async function postData(url, formData, method) {
+async function postData(url, formData, method = "POST") {
     blockUI();
     let response = await fetch(url, {
         method,

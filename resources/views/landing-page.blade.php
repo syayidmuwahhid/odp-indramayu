@@ -37,8 +37,10 @@
 
 {{-- banner --}}
 <section class="section banner relative">
+
     <div class="container mx-auto px-4 py-16 flex flex-col-reverse lg:flex-row items-center justify-between">
       <div class="row items-center" data-aos="fade-up"data-aos-duration="1500">
+
         <div class="lg:col-6">
           <h2 class="banner-title text-orange-600">
 
