@@ -74,9 +74,9 @@
         </li>
 
         <li class="nav-item">
-          <a href="{{ route('dokumen') }}" class="nav-link {{ url()->current() == route('contact') ? 'active' : '' }}">Dokumen</a>
+          <a href="{{ route('dokumen') }}" class="nav-link {{ url()->current() == route('dokumen') ? 'active' : '' }}">Dokumen</a>
         </li>
-        
+
     <li class="nav-item">
         <a href="{{ route('about') }}" class="nav-link {{ url()->current() == route('about') ? 'active' : '' }}">Tentang</a>
     </li>

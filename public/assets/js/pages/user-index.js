@@ -92,7 +92,7 @@ async function getData() {
         $("#table_container").empty().html(table);
 
         // Iterate over the fetched data and generate HTML for each row
-        data.data.forEach((value, i) => {
+        data.data.reverse().forEach((value, i) => {
             let html = `<tr>
                 <td class="text-center p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">${++i}</td>
                 <td class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">${

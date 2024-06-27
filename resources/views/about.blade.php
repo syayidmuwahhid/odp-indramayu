@@ -32,7 +32,7 @@
 <div class="jumbotronAbout">
     <div class="jumbotron-about-description" data-aos="fade-up" data-aos-duration="2500">
         <h1 id="title"> </h1>
-        <h5 id="description"></h5>
+        <h5 id="description"> </h5>
     </div>
 </div>
 

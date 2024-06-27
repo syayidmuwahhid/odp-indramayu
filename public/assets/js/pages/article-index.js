@@ -24,7 +24,7 @@ async function getData() {
         $("#table_container").empty().html(table);
 
         // Iterate over the fetched data and generate HTML for each row
-        data.data.forEach((value, i) => {
+        data.data.reverse().forEach((value, i) => {
             let html = `<tr>
                 <td class="text-center p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">${++i}</td>
                 <td class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">${
@@ -71,10 +71,13 @@ async function getData() {
             </tr>`;
 
             // Append the generated HTML to the table body
-            $("#tbody_data").append(html);
+            const table = $("#tbody_data").append(html);
+            console.log("table", table);
         });
 
-        $("#table_data").dataTable();
+        $("#table_data").dataTable( {
+            columnDefs: [{ width: 60, targets: 0 }],
+        });
     } catch (error) {
         // Display an error notification
         notif("error", "Galat!", error.message);

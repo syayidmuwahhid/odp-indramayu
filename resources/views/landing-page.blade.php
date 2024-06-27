@@ -36,70 +36,49 @@
 </section> --}}
 
 {{-- banner --}}
-<section class="section banner relative">
-    <div class="container mx-auto px-4 py-16 flex flex-col-reverse lg:flex-row items-center justify-between">
-      <div class="row items-center" data-aos="fade-up"data-aos-duration="1500">
-        <div class="lg:col-6">
-          <h2 class="banner-title text-orange-600">
-
-          </h2>
-          <p class="mt-6 text-black text-lg" id="banner-description">
-
-          </p>
-          <a class="btn bg-orange-600 hover:bg-red-400 text-white font-bold rounded-full mt-8" href="{{ route('about') }}">Selengkapnya</a>
-        </div>
-        <div class="lg:col-6 lg:w-1/2 flex justify-center object-cover">
-          <div class="col col-md-3 p-8 animate-box fadeInUp animated" data-animate-effect="fadeInUp">
-            <img src="{{ asset('assets/img/sawah.jpg') }}" alt="" class="w-[60vh] mt-90 mb-30 ">
-          </div>
-          <div class=" col col-md-3 animate-box fadeInUp animated" data-animate-effect="fadeInUp">
-              <img src="{{ asset('assets/img/sawah1.jpg') }}" alt="" class="w-[60vh] mt-90 mb-30">
-          </div>
-          {{-- <img
-            class="w-full object-cover"
-            src="https://indramayukab.go.id/wp-content/uploads/2023/01/indra1.jpeg"
-            width="603"
-            height="396"
-            alt=""
-          /> --}}
-        </div>
-      </div>
-    </div>
-    {{-- <img
-      class="banner-shape absolute -top-28 right-0 -z-[1] w-full max-w-[30%]"
-      src="{{ asset('assets/img/banner-shape.svg') }}"
-      alt=""
-    /> --}}
-  </section>
-  <!-- ./end Banner -->
-
-  <!-- Reviews -->
-  <section class="reviews mt-8">
-    <div class="container">
-      <div class="row justify-between">
-        <div class="lg:col-6 mb-6">
-          <h2 class="text-orange-600" data-aos="fade-up" data-aos-duration="1200">Artikel Terbaru</h2>
-        </div>
-        {{-- <div class="lg:col-4">
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi egestas
-            Werat viverra id et aliquet. vulputate egestas sollicitudin .
-          </p>
-        </div> --}}
-      </div>
-      <div class="row">
-        <div class="col-12">
-          <div class="reviews-carousel" data-aos="fade-left" data-aos-duration="1200">
-            <div class="swiper-wrapper" id="artikel_container">
-
+    <section class="section banner relative">
+        <div class="container px-4 py-16 flex flex-col-reverse lg:flex-row items-center justify-between">
+            <div class="row items-center">
+                <div class="lg:col-6">
+                    <h2 class="banner-title text-orange-600">
+                    </h2>
+                    <p class="mt-6 text-black text-lg" id="banner-description">
+                    </p>
+                    <a class="btn bg-orange-600 hover:bg-red-400 text-white font-bold rounded-full mt-8" href="{{ route('about') }}">Selengkapnya</a>
+                </div>
+                <div class="lg:col-6 lg:w-1/2 flex justify-center object-cover">
+                    <div class="col col-md-3 p-8 animate-box fadeInUp animated" data-animate-effect="fadeInUp">
+                        <img src="{{ asset('assets/img/sawah.jpg') }}" alt="" class="w-[60vh] mt-90 mb-30 ">
+                    </div>
+                    <div class=" col col-md-3 animate-box fadeInUp animated" data-animate-effect="fadeInUp">
+                        <img src="{{ asset('assets/img/sawah1.jpg') }}" alt="" class="w-[60vh] mt-90 mb-30">
+                    </div>
+                </div>
             </div>
-            <!-- If we need pagination -->
-            <div class="swiper-pagination reviews-carousel-pagination !bottom-0"></div>
-          </div>
         </div>
-      </div>
-    </div>
-  </section>
+    </section>
+    <!-- ./end Banner -->
+
+<!-- Reviews -->
+    <section class="reviews mt-8">
+        <div class="container">
+            <div class="row justify-between">
+                <div class="lg:col-6 mb-6">
+                <h2 class="text-orange-600">Artikel Terbaru</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                <div class="reviews-carousel">
+                    <div class="swiper-wrapper" id="artikel_container">
+                    </div>
+                    <!-- If we need pagination -->
+                    {{-- <div class="swiper-pagination reviews-carousel-pagination !bottom-0"></div> --}}
+                </div>
+                </div>
+            </div>
+        </div>
+    </section>
   <!-- Reviews -->
 
   <!-- Key features -->
