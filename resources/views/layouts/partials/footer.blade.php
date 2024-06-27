@@ -4,14 +4,14 @@
       <div class="col-12 mt-12 md:col-6 lg:col-3">
         <a href="{{ url('') }}" class="flex gap-3 items-center">
           <img src="" height="30" width="30" alt="logo" class="appLogo"/>
-          <span class="text-bold text-xl appName text-orange-600"></span>
+          <span class="text-bold font-bold text-xl appName text-orange-600"></span>
         </a>
         <p class="mt-6 appDescription">
 
         </p>
       </div>
       <div class="col-12 mt-12 md:col-6 lg:col-3">
-        <h6 class="text-gray-500">Socials</h6>
+        <h6 class="text-orange-600">Socials</h6>
         {{-- <p>themefisher@gmail.com</p> --}}
         <ul class="social-icons mt-4 lg:mt-6">
           <li>
@@ -76,13 +76,16 @@
         </ul>
       </div>
       <div class="col-12 mt-12 md:col-6 lg:col-3">
-        <h6 class="text-slate-500">Quick Links</h6>
+        <h6 class="text-orange-600">Quick Links</h6>
         <ul>
           <li>
             <a href="{{ route('landing-page') }}">Home</a>
           </li>
           <li>
             <a href="{{ route('article') }}" >Article</a>
+          </li>
+          <li>
+            <a href="{{ route('dokumen') }}">Dokumen</a>
           </li>
           <li>
             <a href="{{ route('about') }}">About</a>
@@ -93,7 +96,7 @@
         </ul>
       </div>
       <div class="col-12 mt-12 md:col-6 lg:col-3">
-        <h6 class="text-slate-500">Location & Contact</h6>
+        <h6 class="text-orange-600">Location & Contact</h6>
         <p>2118 Thornridge Cir. Syracuse, Connecticut 35624</p>
         <p>(704) 555-0127</p>
       </div>

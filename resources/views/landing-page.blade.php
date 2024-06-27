@@ -94,7 +94,7 @@
 
             </div>
             <!-- If we need pagination -->
-            {{-- <div class="swiper-pagination reviews-carousel-pagination !bottom-0"></div> --}}
+            <div class="swiper-pagination reviews-carousel-pagination !bottom-0"></div>
           </div>
         </div>
       </div>
@@ -103,7 +103,7 @@
   <!-- Reviews -->
 
   <!-- Key features -->
-  <section class="section key-feature relative">
+  {{-- <section class="section key-feature relative">
     <img
       class="absolute left-0 top-0 -z-[1] -translate-y-1/2"
       src="{{ asset('assets/img/icons/feature-shape.svg') }}"
@@ -286,11 +286,11 @@
         </div>
       </div>
     </div>
-  </section>
+  </section> --}}
   <!-- ./end Key features -->
 
   <!-- Services -->
-  <section class="section services">
+  {{-- <section class="section services">
     <div class="container">
       <div class="tab row gx-5 items-center" data-tab-group="integration-tab">
         <div class="lg:col-7 lg:order-2">
@@ -431,13 +431,13 @@
         </div>
       </div>
     </div>
-  </section>
+  </section> --}}
   <!-- ./end Services -->
 
 
 
   <!-- Call To action -->
-  <section class="px-5 py-20 xl:py-[120px]">
+  {{-- <section class="px-5 py-20 xl:py-[120px]">
     <div class="container">
       <div
         class="bg-gradient row justify-center rounded-b-[80px] rounded-t-[20px] px-[30px] pb-[75px] pt-16"
@@ -460,7 +460,7 @@
         </div>
       </div>
     </div>
-  </section>
+  </section> --}}
 @endsection
 
 @push('js')
