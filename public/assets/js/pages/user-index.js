@@ -15,17 +15,17 @@ $(document).ready(function () {
 function formModal() {
     // Prepare the HTML for the form
     let html = `<form id="formModal">`;
-    html += `<label>Name</label>`;
-    html += `<input class="swal2-input" placeholder="name" name="name"> <br/>`;
+    html += `<label>Nama</label>`;
+    html += `<input class="swal2-input mr-3" placeholder="name" name="name"> <br/>`;
     html += `<label>Email</label>`;
-    html += `<input type="email" class="swal2-input" placeholder="email" name="email"> <br/>`;
+    html += `<input type="email" class="swal2-input mr-3" placeholder="email" name="email"> <br/>`;
     html += `<label>Password</label>`;
     html += `<input type="password" class="swal2-input" placeholder="Password" name="password" value="" >`;
     html += `</form>`;
 
     // Call the modal function to display the form
     modal({
-        title: "Form Tambah User",
+        title: "Form Tambah Pengguna",
         formId: "formModal",
         method: "POST",
         url: "/api/user",
@@ -59,7 +59,7 @@ async function editModal(id) {
 
         // Call the modal function to display the form
         modal({
-            title: "Form Edit User",
+            title: "Form Edit Pengguna",
             formId: "editModal",
             method: "POST",
             url: `/api/user/${id}`,

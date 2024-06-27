@@ -3,7 +3,7 @@
 @section('title', 'Artikel')
 
 @section('content')
-    <section class="page-hero pt-16 pb-6">
+    <section class="page-hero pt-16 pb-6 mt-10" data-aos="fade-up" data-aos-duration="1500">
         <div class="container">
         <div class="page-hero-content mx-auto max-w-[768px] text-center">
             <h1 class="mb-5 mt-8">
@@ -18,7 +18,7 @@
         </div>
     </section>
 
-    <section class="section pt-0">
+    <section class="section pt-0" data-aos="fade-up" data-aos-duration="1500">
         <input type="hidden" id="category" value="{{ request()->get('category') }}">
         <input type="hidden" id="tag" value="{{ request()->get('tag') }}">
         <div class="container">
