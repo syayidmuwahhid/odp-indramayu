@@ -23,7 +23,7 @@
 
 @section('content')
 <!-- Common hero -->
-<section class="page-hero pb-16">
+<section class="page-hero pb-16 mt-40" data-aos="fade-up" data-aos-duration="1500">
   <div class="container">
     <div class="page-hero-content mx-auto max-w-[768px] text-center">
       <h1 class="mb-5 mt-8" id="title"> </h1>
@@ -36,7 +36,7 @@
 <!-- end Common hero -->
 
 {{-- History --}}
-<section class="section banner relative">
+<section class="section banner relative" data-aos="fade-up" data-aos-duration="1500">
     <div class="flex flex-col justify-center items-center">
         <h4 class="text-center text-4xl mb-8 banner-title">
             Sejarah
@@ -50,7 +50,7 @@
 
 
 {{-- Visi --}}
-<section class="section banner relative">
+<section class="section banner relative" data-aos="fade-up" data-aos-duration="1500">
     <div class="flex flex-col items-center">
         <h4 class="text-center text-4xl mb-8 banner-title">
             Visi
@@ -65,7 +65,7 @@
 
 
 {{-- Misi --}}
-<section class="section banner relative">
+<section class="section banner relative" data-aos="fade-up" data-aos-duration="1500">
     <div class="flex flex-col items-center">
         <h4 class="text-center text-4xl mb-8 banner-title">
             Misi
@@ -78,7 +78,7 @@
 <!-- ./end Misi -->
 
 {{-- Geografi --}}
-<section class="section banner relative">
+<section class="section banner relative" data-aos="fade-up" data-aos-duration="1500">
     <div class="flex flex-col items-center">
         <h4 class="text-center text-4xl mb-8 banner-title">
             Geografi
@@ -92,7 +92,7 @@
 <!-- ./end Geografi -->
 
 {{-- Demografi --}}
-<section class="section banner relative">
+<section class="section banner relative" data-aos="fade-up" data-aos-duration="1500">
     <div class="flex flex-col items-center">
         <h4 class="text-center text-4xl mb-8 banner-title">
             Demografi

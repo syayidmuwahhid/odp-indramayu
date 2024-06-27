@@ -51,7 +51,7 @@ async function getData() {
 
         $("#table_container").empty().html(table);
 
-        data.data.forEach((value, i) => {
+        data.data.reverse().forEach((value, i) => {
             let src = baseL + "/" + value.location;
             let res = `<img src="${baseL}/${value.location}" alt="${value.description}" class="modal-image" style="width: 100%; height: 90vh; max-width: 100%;object-fit: contain;">`;
 

@@ -38,4 +38,4 @@ Route::get('/article/{id}', fn($id) => view('article-detail', ['id' => $id]))->n
 
 Route::get('/about', fn () => view('about'))->name('about');
 Route::get('/contact', fn () => view('contact'))->name('contact');
-
+Route::get('/dokumen', fn () => view('dokumen'))->name('dokumen');

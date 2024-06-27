@@ -171,17 +171,21 @@ async function getArticle() {
         $("#artikel_container").append(html);
 
         // Initialize Swiper after articles have been appended
-        // var swiper = new Swiper('.reviews-carousel', {
-        //     loop: true,
-        //     autoplay: {
-        //         delay: 3000,
-        //         disableOnInteraction: false,
-        //     },
-        //     pagination: {
-        //         el: '.swiper-pagination',
-        //         clickable: true,
-        //     },
-        // });
+
+        var swiper = new Swiper('.reviews-carousel', {
+            loop: true,
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            slidesPerView: 3,
+            spaceBetween: 40,
+        });
+
     } catch (error) {
         notif("error", "Galat!", error);
     }

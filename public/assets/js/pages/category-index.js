@@ -14,7 +14,7 @@ $(document).ready(function () {
 function formModal() {
     // Prepare the HTML for the form
     let html = `<form id="formModal">`;
-    html += `<label>Name</label>`;
+    html += `<label>Nama</label>`;
     html += `<input class="swal2-input" placeholder="name" name="name" onkeydown="if(event.key === 'Enter') event.preventDefault();"> <br/>`;
     html += `</form>`;
 
@@ -43,7 +43,7 @@ async function editModal(id) {
 
         // Prepare the HTML for the form with category data
         let html = `<form id="editModal">`;
-        html += `<label>Name</label>`;
+        html += `<label>Nama</label>`;
         html += `<input class="swal2-input" placeholder="name" name="name" value="${data.name}"> <br/>`;
         html += `<input type="hidden" name="_method" value="PUT">`;
         html += `</form>`;
@@ -84,7 +84,7 @@ async function getData() {
         $("#table_container").empty().html(table);
 
         // Iterate over the fetched data and generate HTML for each row
-        data.data.forEach((value, i) => {
+        data.data.reverse().forEach((value, i) => {
             let html = `<tr>
                 <td class="text-center p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">${++i}</td>
                 <td class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">${

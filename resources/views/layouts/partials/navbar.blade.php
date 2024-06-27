@@ -5,7 +5,7 @@
     <div class="order-0">
       <a href="{{ url('') }}" class="flex gap-3 items-center">
         <img src="" height="50" width="50" alt="logo" class="appLogo"/>
-        <span class="text-bold text-2xl appName text-orange-600 font-semibold"></span>
+        <span class="text-bold text-2xl appName text-orange-600 font-bold"></span>
       </a>
     </div>
 
@@ -73,6 +73,10 @@
           <a href="{{ route('article') }}" class="nav-link {{ url()->current() == route('article') ? 'active' : '' }}">Artikel</a>
         </li>
 
+        <li class="nav-item">
+          <a href="{{ route('dokumen') }}" class="nav-link {{ url()->current() == route('contact') ? 'active' : '' }}">Dokumen</a>
+        </li>
+        
     <li class="nav-item">
         <a href="{{ route('about') }}" class="nav-link {{ url()->current() == route('about') ? 'active' : '' }}">Tentang</a>
     </li>
@@ -80,6 +84,7 @@
       <li class="nav-item">
         <a href="{{ route('contact') }}" class="nav-link {{ url()->current() == route('contact') ? 'active' : '' }}">Kontak</a>
       </li>
+
       {{-- <li class="nav-item mt-3.5 lg:hidden">
         <a class="btn btn-white btn-sm border-border" href="signin.html"
           >Sing Up Now</a

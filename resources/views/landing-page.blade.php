@@ -71,7 +71,6 @@
                 <div class="col-12">
                 <div class="reviews-carousel">
                     <div class="swiper-wrapper" id="artikel_container">
-
                     </div>
                     <!-- If we need pagination -->
                     {{-- <div class="swiper-pagination reviews-carousel-pagination !bottom-0"></div> --}}
@@ -90,7 +89,7 @@
       alt=""
     />
     <div class="container">
-      <div class="row justify-between text-center lg:text-start">
+      <div class="row justify-between text-center lg:text-start" data-aos="fade-up"data-aos-duration="1500">
         <div class="lg:col-5">
           <h2 class="text-orange-600">The Highlighting Part Of Our Solution</h2>
         </div>
@@ -106,6 +105,7 @@
       >
         <div
           class="flex flex-col justify-between rounded-lg bg-white p-5 shadow-lg"
+          data-aos="flip-up" data-aos-duration="1500"
         >
           <div>
             <h3 class="h4 text-xl lg:text-2xl">Live Caption</h3>
@@ -121,6 +121,7 @@
         </div>
         <div
           class="flex flex-col justify-between rounded-lg bg-white p-5 shadow-lg"
+          data-aos="flip-up" data-aos-duration="1500"
         >
           <div>
             <h3 class="h4 text-xl lg:text-2xl">Smart Reply</h3>
@@ -136,6 +137,7 @@
         </div>
         <div
           class="flex flex-col justify-between rounded-lg bg-white p-5 shadow-lg"
+          data-aos="flip-up" data-aos-duration="1500"
         >
           <div>
             <h3 class="h4 text-xl lg:text-2xl">Sound Amplifier</h3>
@@ -151,6 +153,7 @@
         </div>
         <div
           class="flex flex-col justify-between rounded-lg bg-white p-5 shadow-lg"
+          data-aos="flip-up" data-aos-duration="1500"
         >
           <div>
             <h3 class="h4 text-xl lg:text-2xl">Gesture Navigation</h3>
@@ -166,6 +169,7 @@
         </div>
         <div
           class="flex flex-col justify-between rounded-lg bg-white p-5 shadow-lg"
+          data-aos="flip-up" data-aos-duration="1500"
         >
           <div>
             <h3 class="h4 text-xl lg:text-2xl">Dark Theme</h3>
@@ -181,6 +185,7 @@
         </div>
         <div
           class="flex flex-col justify-between rounded-lg bg-white p-5 shadow-lg"
+          data-aos="flip-up" data-aos-duration="1500"
         >
           <div>
             <h3 class="h4 text-xl lg:text-2xl">Privacy Controls</h3>
@@ -196,6 +201,7 @@
         </div>
         <div
           class="flex flex-col justify-between rounded-lg bg-white p-5 shadow-lg"
+          data-aos="flip-up" data-aos-duration="1500"
         >
           <div>
             <h3 class="h4 text-xl lg:text-2xl">Location Controls</h3>
@@ -211,6 +217,7 @@
         </div>
         <div
           class="flex flex-col justify-between rounded-lg bg-white p-5 shadow-lg"
+          data-aos="flip-up" data-aos-duration="1500"
         >
           <div>
             <h3 class="h4 text-xl lg:text-2xl">Security Updates</h3>
@@ -226,6 +233,7 @@
         </div>
         <div
           class="flex flex-col justify-between rounded-lg bg-white p-5 shadow-lg"
+          data-aos="flip-up" data-aos-duration="1500"
         >
           <div>
             <h3 class="h4 text-xl lg:text-2xl">Focus Mode</h3>
@@ -241,6 +249,7 @@
         </div>
         <div
           class="flex flex-col justify-between rounded-lg bg-white p-5 shadow-lg"
+          data-aos="flip-up" data-aos-duration="1500"
         >
           <div>
             <h3 class="h4 text-xl lg:text-2xl">Family Link</h3>
@@ -264,7 +273,7 @@
     <div class="container">
       <div class="tab row gx-5 items-center" data-tab-group="integration-tab">
         <div class="lg:col-7 lg:order-2">
-          <div class="tab-content" data-tab-content>
+          <div class="tab-content" data-tab-content data-aos="flip-up" data-aos-duration="1500">
             <div class="tab-content-panel active" data-tab-panel="0">
               <img
                 class="w-full object-contain"
@@ -282,7 +291,7 @@
             </div>
           </div>
         </div>
-        <div class="mt-6 lg:col-5 lg:order-1 lg:mt-0">
+        <div class="mt-6 lg:col-5 lg:order-1 lg:mt-0" data-aos="fade-right" data-aos-duration="1500">
           <div class="text-container">
             <h2 class="lg:text-4xl text-orange-600">
               Prevent failure from to impacting your reputation
@@ -292,7 +301,7 @@
               experiences that retain and engage your users. We build the
               infrastructure, you can.
             </p>
-            <ul class="tab-nav -ml-4 mt-8 border-b-0" data-tab-nav>
+            <ul class="tab-nav -ml-4 mt-8 border-b-0" data-tab-nav data-aos="flip-up" data-aos-duration="1500">
               <li class="tab-nav-item active" data-tab="0">
                 <img class="mr-3" src="{{ asset('assets/img/icons/drop.svg') }}" alt="" />
                 Habit building essential choose habit
@@ -311,7 +320,7 @@
       </div>
       <div class="row gx-5 mt-12 items-center lg:mt-0">
         <div class="lg:col-7">
-          <div class="relative">
+          <div class="relative" data-aos="flip-up" data-aos-duration="1500">
             <img class="w-full object-contain" src="{{ asset('assets/img/collaboration.png') }}" />
             <img
               class="absolute bottom-6 left-1/2 -z-[1] -translate-x-1/2"
@@ -321,7 +330,7 @@
           </div>
         </div>
         <div class="mt-6 lg:col-5 lg:mt-0">
-          <div class="text-container">
+          <div class="text-container" data-aos="fade-left" data-aos-duration="1500">
             <h2 class="lg:text-4xl text-orange-600">
               Accept payments any country in this whole universe
             </h2>
@@ -361,7 +370,7 @@
       </div>
       <div class="row gx-5 mt-12 items-center lg:mt-0">
         <div class="lg:col-7 lg:order-2">
-          <div class="video pb-5 pr-9">
+          <div class="video pb-5 pr-9" data-aos="fade-left" data-aos-duration="1500">
             <div class="video-thumbnail overflow-hidden rounded-2xl">
               <img
                 class="w-full object-contain"
@@ -389,7 +398,7 @@
           </div>
         </div>
         <div class="mt-6 lg:col-5 lg:order-1 lg:mt-0">
-          <div class="text-container">
+          <div class="text-container" data-aos="fade-right" data-aos-duration="1500">
             <h2 class="lg:text-4xl text-orange-600">Accountability that works for you</h2>
             <p class="mt-4">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi
@@ -411,6 +420,7 @@
     <div class="container">
       <div
         class="bg-gradient row justify-center rounded-b-[80px] rounded-t-[20px] px-[30px] pb-[75px] pt-16"
+        data-aos="fade-up" data-aos-duration="1500"
       >
         <div class="lg:col-11">
           <div class="row">
