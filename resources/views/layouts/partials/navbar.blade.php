@@ -5,7 +5,7 @@
     <div class="order-0">
       <a href="{{ url('') }}" class="flex gap-3 items-center">
         <img src="" height="50" width="50" alt="logo" class="appLogo"/>
-        <span class="text-bold text-2xl appName text-orange-600 font-semibold"></span>
+        <span class="text-bold text-2xl appName text-orange-600 font-bold"></span>
       </a>
     </div>
 

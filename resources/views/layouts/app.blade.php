@@ -56,6 +56,8 @@
     <!-- styles -->
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+
     <!-- Swiper slider -->
     <link rel="stylesheet" href="{{ asset('assets/js/plugins/swiper/swiper-bundle.css') }}" />
 
@@ -103,7 +105,7 @@
     @stack('css')
 </head>
 
-<header class="header">
+<header class="header absolute w-full">
     @include('layouts.partials.navbar')
 </header>
 
@@ -147,7 +149,10 @@
             $('meta[name="keywords"]').attr('content', keywords);
         });
     </script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
     @stack('js')
 
 </body>

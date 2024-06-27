@@ -58,7 +58,8 @@ function confirm(title, text, callback = () => {}) {
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
-        confirmButtonText: "Yes",
+        confirmButtonText: "Iya",
+        cancelButtonText: "Batal",
     }).then((result) => {
         if (result.isConfirmed) {
             callback();
@@ -93,6 +94,7 @@ async function modal({
         focusConfirm: false,
         showCancelButton: true,
         confirmButtonText: "Simpan",
+        cancelButtonText: "Batal",
         showLoaderOnConfirm: true,
         confirmButtonColor: "#22C55E",
         cancelButtonColor: "#d33",
