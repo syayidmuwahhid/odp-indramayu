@@ -5,22 +5,22 @@
 @section('content')
     <section class="section blog-single">
         <div class="container" id="container" data-id="{{ $id }}" >
-            <div class="row justify-center" class="">
+            <div class="row justify-center">
                 <div class="lg:col-10">
                     <img src="" alt="" id="article-image" class="mx-auto shadow-lg"/>
                 </div>
                 <div class="mt-10 max-w-[810px] lg:col-9">
-                    <h1 class="h2" id="title">
-                    </h1>
-
-                        <div class="">
-                            <p class="text-dark" id="username"></p>
-                            <span class="text-sm flex" id="date"></span>
-                        </div>
-
-                    <div class="content" id="content">
-                </div>
-                <div class="flex gap-3" id="tags">
+                    {{-- title --}}
+                    <h1 class="h2" id="title"></h1>
+                    <div class="">
+                        {{-- username --}}
+                        <p class="text-dark" id="username"></p>
+                        {{-- date --}}
+                        <span class="text-sm flex" id="date"></span>
+                    </div>
+                    {{-- content --}}
+                    <div class="content" id="content"></div>
+                <div class="flex flex-wrap gap-1" id="tags">
                     Tag :
                 </div>
                 <div class="mt-10 flex justify-center items-center">

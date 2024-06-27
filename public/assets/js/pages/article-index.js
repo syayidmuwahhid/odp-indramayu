@@ -71,10 +71,13 @@ async function getData() {
             </tr>`;
 
             // Append the generated HTML to the table body
-            $("#tbody_data").append(html);
+            const table = $("#tbody_data").append(html);
+            console.log("table", table);
         });
 
-        $("#table_data").dataTable();
+        $("#table_data").dataTable( {
+            columnDefs: [{ width: 60, targets: 0 }],
+        });
     } catch (error) {
         // Display an error notification
         notif("error", "Galat!", error.message);
