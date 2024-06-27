@@ -17,7 +17,7 @@
 <section class="section pt-0">
     <div class="container">
         <div class="row">
-            <div class="mb-10 text-center md:col-6 md:order-2 md:mb-0 md:pt-9">
+            <div class="mb-10 text-center md:col-6 md:order-2 md:mb-0 md:pt-9" data-aos="fade-left" data-aos-duration="1500">
                 <div class="contact-img relative inline-flex pl-5 pb-5">
                     <img src="{{ asset('assets/img/contact-img.png') }}" alt="" />
                     <img
@@ -27,7 +27,7 @@
                     />
                 </div>
             </div>
-            <div class="md:col-6 md:order-1">
+            <div class="md:col-6 md:order-1" data-aos="fade-right" data-aos-duration="1500">
                 <form class="lg:max-w-[484px]" data-email="{{ env('MAIL_USERNAME') }}" method="GET" id="contact-form">
                     <input type="hidden" name="subject" value="Masukan untuk Aplikasi OPD Indramayu"/>
                     <div class="form-group mb-5">

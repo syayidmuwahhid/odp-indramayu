@@ -113,7 +113,7 @@ async function getArticle() {
 
         data.reverse().forEach((element) => {
             count++;
-            if (count > 3) {
+            if (count > 5) {
                 return;
             }
 
@@ -139,7 +139,6 @@ async function getArticle() {
 
             html += `<div class="swiper-slide mb-8 md:col-6 lg:col-4">`;
             html += `<div class="card-1 flex flex-col justify-between cursor-pointer" onclick="window.location.href='${baseL}/article/${element.id}'">`;
-
             html += `<div><img class="card-img w-full object-cover" style="height:170px" src="${baseL}/${element.image}" alt="" />`;
             html += `<div class="card-tags"><a class="tag" href="${baseL}/article?category=${element.category_name}">${element.category_name}</a></div>
                         <h3 class="h4 card-title mt-5">${element.title}</h3>
@@ -173,19 +172,19 @@ async function getArticle() {
 
         // Initialize Swiper after articles have been appended
 
-        // var swiper = new Swiper('.reviews-carousel', {
-        //     loop: true,
-        //     autoplay: {
-        //         delay: 3000,
-        //         disableOnInteraction: false,
-        //     },
-        //     pagination: {
-        //         el: '.swiper-pagination',
-        //         clickable: true,
-        //     },
-        //     slidesPerView: 3,
-        //     spaceBetween: 40,
-        // });
+        var swiper = new Swiper('.reviews-carousel', {
+            loop: true,
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            slidesPerView: 3,
+            spaceBetween: 40,
+        });
 
     } catch (error) {
         notif("error", "Galat!", error);
