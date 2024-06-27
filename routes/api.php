@@ -53,7 +53,7 @@ Route::get('dashboard', function (Request $request) {
 
     try {
         $topRate = Counter::select(
-            DB::raw('MONTH(counter.created_at) AS bulan'),
+            DB::raw('MONTH(counter.created_at) AS month'),
             DB::raw('(
                 SELECT COUNT(sub.table_id)
                 FROM counter AS sub
@@ -61,7 +61,7 @@ Route::get('dashboard', function (Request $request) {
                 GROUP BY sub.table_id
                 ORDER BY COUNT(sub.table_id) DESC
                 LIMIT 1
-            ) as jumlah_pembaca'),
+            ) as visit'),
             DB::raw('(
                 SELECT table_id
                 FROM counter AS sub2
@@ -74,7 +74,7 @@ Route::get('dashboard', function (Request $request) {
             // 'article.title'
         )
         // ->join('article', 'article.id', 'table_id')
-        ->groupBy('bulan', 'jumlah_pembaca', 'table_name', 'table_id_2')
+        ->groupBy('month', 'visit', 'table_name', 'table_id_2')
         ->having('table_name', 'article')
         ->whereYear('counter.created_at', now()->year)
         ->get();
@@ -83,9 +83,9 @@ Route::get('dashboard', function (Request $request) {
         $seen_months = [];
 
         foreach ($topRate as $entry) {
-            if (!in_array($entry['bulan'], $seen_months)) {
+            if (!in_array($entry['month'], $seen_months)) {
                 $result[] = $entry;
-                $seen_months[] = $entry['bulan'];
+                $seen_months[] = $entry['month'];
             }
         }
 
@@ -106,7 +106,12 @@ Route::get('dashboard', function (Request $request) {
                         ->whereYear('date', now()->year)
                         ->groupBy(DB::raw('MONTH(date)'))
                         ->get(),
-            'top_rate_article' => $result
+            'top_rate_article' => $result,
+            'articles' => Article::select('article.*', 'users.name as user_name', 'category.name as category_name')
+                ->join('users', 'users.id', 'user_id')
+                ->join('category', 'category.id', 'category_id')
+                ->orderBy('id', 'desc')->orderBy('date', 'desc')->limit(5)->get(),
+            'documents' => Document::orderBy('id', 'desc')->orderBy('date', 'desc')->limit(5)->get(),
 
         ];
 
@@ -119,28 +124,3 @@ Route::get('dashboard', function (Request $request) {
     }
     return response()->json($resp, $code);
 });
-
-// Route::post('/send-email', function (Request $request) {
-//     $resp = [
-//         'status' => false,
-//     ];
-//     $code = 500;
-
-//     try {
-//         $data = [
-//             'name' => $request->input('name'),
-//             'email' => $request->input('email'),
-//             'message' => $request->input('message'),
-//         ];
-
-//         Mail::to('muwahhidsyayid@gmail.com')->send(new ContactMail($data));
-
-//         $resp['data'] = $request->all();
-//         $resp['status'] = true;
-//         $resp['message'] = 'Berhasil Mengirim Pesan!';
-//         $code = 200;
-//     } catch (\Throwable $th) {
-//         $resp['message'] = $th->getMessage();
-//     }
-//     return response()->json($resp, $code);
-// });

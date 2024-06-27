@@ -1,16 +1,42 @@
-let c1_data = ["0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"];
+let c1_data = [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+];
+let defData = [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+];
 $(document).ready(async function () {
     await getData();
 
     //set desc app data
-    let string = appData.description.substring(0, 200);
+    let string = appData.description.substring(0, 150);
     let parser = new DOMParser();
     let doc = parser.parseFromString(string, "text/html");
     let content = doc.body.textContent || "";
     $("#dashboard_desc").html(content);
 
     chart1(c1_data);
-    chart2();
 });
 
 async function getData() {
@@ -23,7 +49,7 @@ async function getData() {
 
         if (data.last_article !== null) {
             $("#article_title").html(data.last_article.title);
-            let string = data.last_article.content.substring(0, 500);
+            let string = data.last_article.content.substring(0, 300);
             let parser = new DOMParser();
             let doc = parser.parseFromString(string, "text/html");
             let content = doc.body.textContent || "";
@@ -42,6 +68,12 @@ async function getData() {
         data.monthly_article.forEach((element) => {
             c1_data[element.month - 1] = element.total_count;
         });
+
+        chart2(data.top_rate_article);
+
+        setTableArticle(data.articles);
+
+        setDocument(data.documents);
     } catch (error) {
         notif("error", "Galat!", error);
     }
@@ -130,8 +162,7 @@ function chart1(data) {
     });
 }
 
-let color;
-function chart2() {
+function chart2(data) {
     // chart 2
 
     var ctx2 = document.getElementById("chart-line").getContext("2d");
@@ -169,6 +200,327 @@ function chart2() {
         gradients.push(gradient);
     }
 
+    let datasets = [
+        {
+            label: "",
+            tension: 0.4,
+            borderWidth: 0,
+            pointRadius: 5,
+            borderColor: "#cb0c9f",
+            borderWidth: 3,
+            backgroundColor: gradients[0],
+            fill: true,
+            data: [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+            ],
+            maxBarThickness: 6,
+        },
+        {
+            label: "",
+            tension: 0.4,
+            borderWidth: 0,
+            pointRadius: 5,
+            borderColor: "#3A416F",
+            borderWidth: 3,
+            backgroundColor: gradients[1],
+            fill: true,
+            data: [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+            ],
+            maxBarThickness: 6,
+        },
+        {
+            label: "",
+            tension: 0.4,
+            borderWidth: 0,
+            pointRadius: 5,
+            borderColor: "#ff6384",
+            borderWidth: 3,
+            backgroundColor: gradients[2],
+            fill: true,
+            data: [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+            ],
+            maxBarThickness: 6,
+        },
+        {
+            label: "",
+            tension: 0.4,
+            borderWidth: 0,
+            pointRadius: 5,
+            borderColor: "#ffcd56",
+            borderWidth: 3,
+            backgroundColor: gradients[3],
+            fill: true,
+            data: [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+            ],
+            maxBarThickness: 6,
+        },
+        {
+            label: "",
+            tension: 0.4,
+            borderWidth: 0,
+            pointRadius: 5,
+            borderColor: "#4bc0c0",
+            borderWidth: 3,
+            backgroundColor: gradients[4],
+            fill: true,
+            data: [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+            ],
+            maxBarThickness: 6,
+        },
+        {
+            label: "",
+            tension: 0.4,
+            borderWidth: 0,
+            pointRadius: 5,
+            borderColor: "#9966ff",
+            borderWidth: 3,
+            backgroundColor: gradients[5],
+            fill: true,
+            data: [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+            ],
+            maxBarThickness: 6,
+        },
+        {
+            label: "",
+            tension: 0.4,
+            borderWidth: 0,
+            pointRadius: 5,
+            borderColor: "#36a2eb",
+            borderWidth: 3,
+            backgroundColor: gradients[6],
+            fill: true,
+            data: [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+            ],
+            maxBarThickness: 6,
+        },
+        {
+            label: "",
+            tension: 0.4,
+            borderWidth: 0,
+            pointRadius: 5,
+            borderColor: "#ff9f40",
+            borderWidth: 3,
+            backgroundColor: gradients[7],
+            fill: true,
+            data: [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+            ],
+            maxBarThickness: 6,
+        },
+        {
+            label: "",
+            tension: 0.4,
+            borderWidth: 0,
+            pointRadius: 5,
+            borderColor: "#e74c3c",
+            borderWidth: 3,
+            backgroundColor: gradients[8],
+            fill: true,
+            data: [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+            ],
+            maxBarThickness: 6,
+        },
+        {
+            label: "",
+            tension: 0.4,
+            borderWidth: 0,
+            pointRadius: 5,
+            borderColor: "#2ecc71",
+            borderWidth: 3,
+            backgroundColor: gradients[9],
+            fill: true,
+            data: [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+            ],
+            maxBarThickness: 6,
+        },
+        {
+            label: "",
+            tension: 0.4,
+            borderWidth: 0,
+            pointRadius: 5,
+            borderColor: "#3498db",
+            borderWidth: 3,
+            backgroundColor: gradients[10],
+            fill: true,
+            data: [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+            ],
+            maxBarThickness: 6,
+        },
+        {
+            label: "",
+            tension: 0.4,
+            borderWidth: 0,
+            pointRadius: 5,
+            borderColor: "#8e44ad",
+            borderWidth: 3,
+            backgroundColor: gradients[11],
+            fill: true,
+            data: [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+            ],
+            maxBarThickness: 6,
+        },
+    ];
+
+    let position = 0;
+    data.forEach((el) => {
+        if (position === 0) {
+            datasets[position].label = el.article_title;
+            datasets[position].data[el.month - 1] = el.visit;
+            position++;
+        }
+
+        if (datasets[position - 1].label == el.article_title) {
+            datasets[--position].data[el.month - 1] = el.visit;
+            position++;
+        } else {
+            datasets[position].label = el.article_title;
+            datasets[position].data[el.month - 1] = el.visit;
+            position++;
+        }
+    });
+
     new Chart(ctx2, {
         type: "line",
         data: {
@@ -186,177 +538,7 @@ function chart2() {
                 "Nov",
                 "Dec",
             ],
-            datasets: [
-                {
-                    label: "Dataset 1",
-                    tension: 0.4,
-                    borderWidth: 0,
-                    pointRadius: 0,
-                    borderColor: "#cb0c9f",
-                    borderWidth: 3,
-                    backgroundColor: gradients[0],
-                    fill: true,
-                    data: [
-                        50, 40, 300, 220, 500, 250, 400, 230, 500, 0, 100, 190,
-                    ],
-                    maxBarThickness: 6,
-                },
-                {
-                    label: "Dataset 2",
-                    tension: 0.4,
-                    borderWidth: 0,
-                    pointRadius: 0,
-                    borderColor: "#3A416F",
-                    borderWidth: 3,
-                    backgroundColor: gradients[1],
-                    fill: true,
-                    data: [
-                        30, 90, 40, 140, 290, 290, 340, 230, 400, 410, 380, 100,
-                    ],
-                    maxBarThickness: 6,
-                },
-                {
-                    label: "Dataset 3",
-                    tension: 0.4,
-                    borderWidth: 0,
-                    pointRadius: 0,
-                    borderColor: "#ff6384",
-                    borderWidth: 3,
-                    backgroundColor: gradients[2],
-                    fill: true,
-                    data: [
-                        40, 60, 80, 120, 200, 240, 180, 210, 250, 300, 350, 400,
-                    ],
-                    maxBarThickness: 6,
-                },
-                {
-                    label: "Dataset 4",
-                    tension: 0.4,
-                    borderWidth: 0,
-                    pointRadius: 0,
-                    borderColor: "#ffcd56",
-                    borderWidth: 3,
-                    backgroundColor: gradients[3],
-                    fill: true,
-                    data: [
-                        60, 50, 90, 130, 230, 170, 290, 260, 300, 350, 400, 450,
-                    ],
-                    maxBarThickness: 6,
-                },
-                {
-                    label: "Dataset 5",
-                    tension: 0.4,
-                    borderWidth: 0,
-                    pointRadius: 0,
-                    borderColor: "#4bc0c0",
-                    borderWidth: 3,
-                    backgroundColor: gradients[4],
-                    fill: true,
-                    data: [
-                        20, 70, 60, 110, 190, 210, 250, 300, 320, 360, 380, 410,
-                    ],
-                    maxBarThickness: 6,
-                },
-                {
-                    label: "Dataset 6",
-                    tension: 0.4,
-                    borderWidth: 0,
-                    pointRadius: 0,
-                    borderColor: "#9966ff",
-                    borderWidth: 3,
-                    backgroundColor: gradients[5],
-                    fill: true,
-                    data: [
-                        30, 80, 70, 100, 180, 240, 260, 270, 310, 340, 370, 420,
-                    ],
-                    maxBarThickness: 6,
-                },
-                {
-                    label: "Dataset 7",
-                    tension: 0.4,
-                    borderWidth: 0,
-                    pointRadius: 0,
-                    borderColor: "#36a2eb",
-                    borderWidth: 3,
-                    backgroundColor: gradients[6],
-                    fill: true,
-                    data: [
-                        40, 50, 80, 90, 150, 160, 170, 190, 210, 220, 250, 280,
-                    ],
-                    maxBarThickness: 6,
-                },
-                {
-                    label: "Dataset 8",
-                    tension: 0.4,
-                    borderWidth: 0,
-                    pointRadius: 0,
-                    borderColor: "#ff9f40",
-                    borderWidth: 3,
-                    backgroundColor: gradients[7],
-                    fill: true,
-                    data: [
-                        20, 60, 70, 80, 130, 140, 150, 170, 200, 210, 230, 250,
-                    ],
-                    maxBarThickness: 6,
-                },
-                {
-                    label: "Dataset 9",
-                    tension: 0.4,
-                    borderWidth: 0,
-                    pointRadius: 0,
-                    borderColor: "#e74c3c",
-                    borderWidth: 3,
-                    backgroundColor: gradients[8],
-                    fill: true,
-                    data: [
-                        50, 70, 100, 140, 170, 200, 230, 250, 280, 300, 320,
-                        350,
-                    ],
-                    maxBarThickness: 6,
-                },
-                {
-                    label: "Dataset 10",
-                    tension: 0.4,
-                    borderWidth: 0,
-                    pointRadius: 0,
-                    borderColor: "#2ecc71",
-                    borderWidth: 3,
-                    backgroundColor: gradients[9],
-                    fill: true,
-                    data: [
-                        30, 60, 90, 110, 140, 160, 180, 200, 220, 240, 260, 280,
-                    ],
-                    maxBarThickness: 6,
-                },
-                {
-                    label: "Dataset 11",
-                    tension: 0.4,
-                    borderWidth: 0,
-                    pointRadius: 0,
-                    borderColor: "#3498db",
-                    borderWidth: 3,
-                    backgroundColor: gradients[10],
-                    fill: true,
-                    data: [
-                        40, 50, 70, 90, 120, 150, 170, 200, 220, 250, 270, 300,
-                    ],
-                    maxBarThickness: 6,
-                },
-                {
-                    label: "Dataset 12",
-                    tension: 0.4,
-                    borderWidth: 0,
-                    pointRadius: 0,
-                    borderColor: "#8e44ad",
-                    borderWidth: 3,
-                    backgroundColor: gradients[11],
-                    fill: true,
-                    data: [
-                        60, 80, 90, 200, 150, 120, 110, 140, 170, 210, 230, 260,
-                    ],
-                    maxBarThickness: 6,
-                },
-            ],
+            datasets,
         },
         options: {
             responsive: true,
@@ -416,4 +598,47 @@ function chart2() {
     });
 
     // end chart 2
+}
+
+function setTableArticle(data) {
+    let html = ``;
+    data.forEach((element) => {
+        html += `<tr onclick="window.location.href='${baseL}/article/${element.id}'" class="cursor-pointer">`;
+        html += `<td class="p-2 align-middle bg-transparent border-b whitespace-nowrap">`;
+        html += `<div class="flex px-2 py-1">`;
+        html += `<div><img src="${baseL}/${element.image}" class="inline-flex items-center justify-center mr-4 text-sm text-white transition-all duration-200 ease-soft-in-out h-9 w-9 rounded-xl" alt="xd" /></div>`;
+        html += `<div class="flex flex-col justify-center"><h6 class="mb-0 text-sm leading-normal">${element.title}</h6></div>`;
+        html += `</div>`;
+        html += `</td>`;
+        html += `<td class="p-2 text-sm leading-normal text-center align-middle bg-transparent border-b whitespace-nowrap">${element.category_name}</td>`;
+        html += `<td class="p-2 align-middle bg-transparent border-b whitespace-nowrap">${element.user_name}</td>`;
+        html += `</tr>`;
+    });
+
+    $("#tbody_article").append(html);
+}
+
+function setDocument(data) {
+    let html = "";
+    data.forEach((element) => {
+        html += `<div class="relative mb-4 mt-0 after:clear-both after:table after:content-['']">`;
+        html += `<span class="w-6.5 h-6.5 text-base absolute left-4 z-10 inline-flex -translate-x-1/2 items-center justify-center rounded-full bg-white text-center font-semibold">
+                    <i class="relative z-10 leading-none text-transparent fa fa-file-pdf-o leading-pro bg-gradient-to-tl from-red-500 to-yellow-400 bg-clip-text fill-transparent"></i>
+                </span>`;
+        let linkFile =
+            element.type == "Link"
+                ? element.location
+                : baseL + "/" + element.location;
+        html += `<div class="ml-11.252 pt-1.4 lg:max-w-120 relative -top-1.5 w-auto">
+                    <h6 class="mb-0 text-sm font-semibold leading-normal text-slate-700 cursor-pointer" onclick="window.location.href='${linkFile}'">${
+            element.title
+        }</h6>
+                    <p class="mt-1 mb-0 text-xs font-semibold leading-tight text-slate-400">${convertDate(
+                        element.date
+                    )}</p>
+                </div>`;
+        html += `</div>`;
+    });
+
+    $("#doc_container").append(html);
 }
