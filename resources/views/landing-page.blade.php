@@ -92,6 +92,25 @@
           <div class="reviews-carousel" data-aos="fade-left" data-aos-duration="1200">
             <div class="swiper-wrapper" id="artikel_container">
 
+
+<!-- Reviews -->
+    <section class="reviews mt-8">
+        <div class="container">
+            <div class="row justify-between">
+                <div class="lg:col-6 mb-6">
+                <h2 class="text-orange-600">Artikel Terbaru</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                <div class="reviews-carousel">
+                    <div class="row" id="artikel_container">
+                    </div>
+                    <!-- If we need pagination -->
+                    {{-- <div class="swiper-pagination reviews-carousel-pagination !bottom-0"></div> --}}
+                </div>
+                </div>
+
             </div>
             <!-- If we need pagination -->
             <div class="swiper-pagination reviews-carousel-pagination !bottom-0"></div>
