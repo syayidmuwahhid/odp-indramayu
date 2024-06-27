@@ -448,7 +448,7 @@
 .jumbotron-about-description h1 {
     font-size: 60px; 
     color: white;
-    text-align: left;
+    text-align: center;
     text-transform: uppercase;
     /* font-family: 'Gilda Display', serif; */
     font-weight: 500; 
