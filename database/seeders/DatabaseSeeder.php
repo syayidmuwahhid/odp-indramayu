@@ -32,7 +32,7 @@ class DatabaseSeeder extends Seeder
         Profile::create([
             'id' => 1,
             'app_name' => 'OPD Indramayu',
-            'title' => 'OPD Indramayu',
+            'title' => 'Organisasi Pemerintah Daerah Indramayu',
             'icon' => 'assets/img/favicon.png',
             'description' => 'Deskripsi Indramayu',
             'keywords' => 'opd indramayu, pemerintahan daerah Indramayu,informasi publik Indramayu,berita Indramayu terkini,layanan publik Indramayu',

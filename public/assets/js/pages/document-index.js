@@ -19,7 +19,7 @@ async function getData() {
         $("#table_container").empty().html(table);
 
         // Iterate over the fetched data and generate HTML for each row
-        data.data.forEach((value, i) => {
+        data.data.reverse().forEach((value, i) => {
             let linkFile =
                 value.type == "Link"
                     ? value.location
