@@ -70,7 +70,7 @@
             <div class="row">
                 <div class="col-12">
                 <div class="reviews-carousel">
-                    <div class="swiper-wrapper" id="artikel_container">
+                    <div class="row" id="artikel_container">
                     </div>
                     <!-- If we need pagination -->
                     {{-- <div class="swiper-pagination reviews-carousel-pagination !bottom-0"></div> --}}
