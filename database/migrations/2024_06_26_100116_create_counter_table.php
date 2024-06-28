@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('counter', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('table_id');
-            $table->enum('table_name', ['article']);
+            $table->enum('table_name', ['article', 'app']);
             $table->timestamps();
         });
     }

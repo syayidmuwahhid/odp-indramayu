@@ -95,6 +95,15 @@ Route::get('dashboard', function (Request $request) {
                 ->first()->title;
         }
 
+        $articles = Article::select('article.*', 'users.name as user_name', 'users.email as user_email', 'category.name as category_name')
+            ->join('users', 'users.id', 'user_id')
+            ->join('category', 'category.id', 'category_id')
+            ->orderBy('id', 'desc')->orderBy('date', 'desc')->limit(5)->get();
+
+        foreach($articles as $article) {
+            $article['visit'] = Counter::where('table_id', $article->id)->groupBy('table_id')->count();
+        }
+
 
         $data = [
             'user_count' => User::count() - 1,
@@ -107,11 +116,12 @@ Route::get('dashboard', function (Request $request) {
                         ->groupBy(DB::raw('MONTH(date)'))
                         ->get(),
             'top_rate_article' => $result,
-            'articles' => Article::select('article.*', 'users.name as user_name', 'category.name as category_name')
-                ->join('users', 'users.id', 'user_id')
-                ->join('category', 'category.id', 'category_id')
-                ->orderBy('id', 'desc')->orderBy('date', 'desc')->limit(5)->get(),
+            'articles' => $articles,
             'documents' => Document::orderBy('id', 'desc')->orderBy('date', 'desc')->limit(5)->get(),
+            'visitor' => Counter::select(DB::raw('DAY(created_at) as day'), DB::raw('WEEKDAY(created_at) as day_of_week'), DB::raw('count(table_id) as visitor'), 'table_name')
+                ->groupBy('day', 'day_of_week', 'table_name')
+                ->having('table_name', 'app')
+                ->get()
 
         ];
 
