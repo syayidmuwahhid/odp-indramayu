@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Landing Page')
+@section('title', 'Artikel | ')
 
 @section('content')
     <section class="section blog-single">

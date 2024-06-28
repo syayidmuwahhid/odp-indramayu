@@ -4,15 +4,6 @@ const userID = $("#user_id").val();
 
 $(document).ready(async function () {});
 
-async function getAppData() {
-    try {
-        let { data } = await getRequestData(`${baseL}/api/profile`);
-        return data;
-    } catch (error) {
-        notif("error", "Galat!", error);
-    }
-}
-
 function blockUI() {
     $.blockUI({
         css: {
@@ -114,7 +105,6 @@ async function modal({
 
         try {
             let data = await postData(url, formData, method);
-
             notif("success", "Berhasil!", data.message);
             callback();
         } catch (error) {
@@ -167,6 +157,29 @@ async function getRequestData(url) {
  */
 async function postData(url, formData, method = "POST") {
     blockUI();
+
+    if (formData) {
+        for (let entry of formData.entries()) {
+            let value = entry[1];
+
+            // Memeriksa apakah nilai entry adalah instance dari File
+            if (value instanceof File) {
+                // Memeriksa ukuran file dalam bytes
+                let fileSizeInBytes = value.size;
+
+                // Mengkonversi ukuran file ke megabytes (MB)
+                let fileSizeInMB = fileSizeInBytes / (1024 * 1024);
+
+                // Memeriksa apakah ukuran file lebih besar dari 10MB
+                if (fileSizeInMB > 8) {
+                    throw new Error(
+                        `File "${value.name}" Lebih besar dari 10MB.`
+                    );
+                }
+            }
+        }
+    }
+
     let response = await fetch(url, {
         method,
         body: formData,

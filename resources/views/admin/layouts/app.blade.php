@@ -22,8 +22,6 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <input type="hidden" id="baseL" value="{{ url('') }}" />
     <input type="hidden" id="user_id" value="{{ Auth::user()->id }}" />
-    <link rel="apple-touch-icon" sizes="76x76" href="{{ asset($appData->icon) }}" />
-    <link rel="icon" type="image/png" href="{{ asset($appData->icon) }}"/>
     <link rel="shortcut icon" href="{{ asset($appData->icon) }}"/>
     <title>@yield('title') | {{ $appData->app_name }}</title>
 

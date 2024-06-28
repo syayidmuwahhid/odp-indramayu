@@ -114,7 +114,12 @@ async function getArticle() {
             }
 
             let tags = `<div class="flex flex-wrap gap-1">`;
+            let tag_count = 0;
             element.tags.forEach((tag) => {
+                tag_count++;
+                if (tag_count > 3) {
+                    return;
+                }
                 tags += `<a href="/article?tag=${tag.name}" class="tag-card">${tag.name}</a>`;
             });
             tags += `</div>`;

@@ -1,31 +1,5 @@
-let c1_data = [
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-];
-let defData = [
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-];
+let c1_data = [];
+let c2_data = [];
 $(document).ready(async function () {
     await getData();
 
@@ -85,7 +59,10 @@ async function getData() {
         });
 
         // Generate the chart for top-rated articles
-        chart2(data.top_rate_article);
+        data.visitor.forEach((element) => {
+            c2_data[element.day - 1] = element.visitor;
+        });
+        chart2(c2_data);
 
         // Set the table for articles
         setTableArticle(data.articles);
@@ -186,378 +163,80 @@ function chart2(data) {
 
     var ctx2 = document.getElementById("chart-line").getContext("2d");
 
-    var gradients = [];
-    var colors = [
-        ["rgba(203,12,159,0.2)", "rgba(72,72,176,0.0)", "rgba(203,12,159,0)"],
-        ["rgba(255,99,132,0.2)", "rgba(54,162,235,0.0)", "rgba(255,99,132,0)"],
-        ["rgba(255,206,86,0.2)", "rgba(75,192,192,0.0)", "rgba(255,206,86,0)"],
-        [
-            "rgba(153,102,255,0.2)",
-            "rgba(255,159,64,0.0)",
-            "rgba(153,102,255,0)",
-        ],
-        [
-            "rgba(201,203,207,0.2)",
-            "rgba(123,239,178,0.0)",
-            "rgba(201,203,207,0)",
-        ],
-        ["rgba(210,77,87,0.2)", "rgba(142,68,173,0.0)", "rgba(210,77,87,0)"],
-        ["rgba(46,204,113,0.2)", "rgba(52,152,219,0.0)", "rgba(46,204,113,0)"],
-        ["rgba(243,156,18,0.2)", "rgba(44,62,80,0.0)", "rgba(243,156,18,0)"],
-        ["rgba(41,128,185,0.2)", "rgba(241,196,15,0.0)", "rgba(41,128,185,0)"],
-        ["rgba(39,174,96,0.2)", "rgba(192,57,43,0.0)", "rgba(39,174,96,0)"],
-        ["rgba(142,68,173,0.2)", "rgba(243,156,18,0.0)", "rgba(142,68,173,0)"],
-        ["rgba(241,196,15,0.2)", "rgba(46,204,113,0.0)", "rgba(241,196,15,0)"],
-    ];
+    var gradientStroke1 = ctx2.createLinearGradient(0, 230, 0, 50);
 
-    // Generate gradients
-    for (var i = 0; i < 12; i++) {
-        var gradient = ctx2.createLinearGradient(0, 230, 0, 50);
-        gradient.addColorStop(1, colors[i][0]);
-        gradient.addColorStop(0.2, colors[i][1]);
-        gradient.addColorStop(0, colors[i][2]);
-        gradients.push(gradient);
-    }
+    gradientStroke1.addColorStop(1, "rgba(203,12,159,0.2)");
+    gradientStroke1.addColorStop(0.2, "rgba(72,72,176,0.0)");
+    gradientStroke1.addColorStop(0, "rgba(203,12,159,0)"); //purple colors
 
-    let datasets = [
-        {
-            label: "",
-            tension: 0.4,
-            borderWidth: 0,
-            pointRadius: 5,
-            borderColor: "#cb0c9f",
-            borderWidth: 3,
-            backgroundColor: gradients[0],
-            fill: true,
-            data: [
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-            ],
-            maxBarThickness: 6,
-        },
-        {
-            label: "",
-            tension: 0.4,
-            borderWidth: 0,
-            pointRadius: 5,
-            borderColor: "#3A416F",
-            borderWidth: 3,
-            backgroundColor: gradients[1],
-            fill: true,
-            data: [
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-            ],
-            maxBarThickness: 6,
-        },
-        {
-            label: "",
-            tension: 0.4,
-            borderWidth: 0,
-            pointRadius: 5,
-            borderColor: "#ff6384",
-            borderWidth: 3,
-            backgroundColor: gradients[2],
-            fill: true,
-            data: [
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-            ],
-            maxBarThickness: 6,
-        },
-        {
-            label: "",
-            tension: 0.4,
-            borderWidth: 0,
-            pointRadius: 5,
-            borderColor: "#ffcd56",
-            borderWidth: 3,
-            backgroundColor: gradients[3],
-            fill: true,
-            data: [
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-            ],
-            maxBarThickness: 6,
-        },
-        {
-            label: "",
-            tension: 0.4,
-            borderWidth: 0,
-            pointRadius: 5,
-            borderColor: "#4bc0c0",
-            borderWidth: 3,
-            backgroundColor: gradients[4],
-            fill: true,
-            data: [
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-            ],
-            maxBarThickness: 6,
-        },
-        {
-            label: "",
-            tension: 0.4,
-            borderWidth: 0,
-            pointRadius: 5,
-            borderColor: "#9966ff",
-            borderWidth: 3,
-            backgroundColor: gradients[5],
-            fill: true,
-            data: [
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-            ],
-            maxBarThickness: 6,
-        },
-        {
-            label: "",
-            tension: 0.4,
-            borderWidth: 0,
-            pointRadius: 5,
-            borderColor: "#36a2eb",
-            borderWidth: 3,
-            backgroundColor: gradients[6],
-            fill: true,
-            data: [
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-            ],
-            maxBarThickness: 6,
-        },
-        {
-            label: "",
-            tension: 0.4,
-            borderWidth: 0,
-            pointRadius: 5,
-            borderColor: "#ff9f40",
-            borderWidth: 3,
-            backgroundColor: gradients[7],
-            fill: true,
-            data: [
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-            ],
-            maxBarThickness: 6,
-        },
-        {
-            label: "",
-            tension: 0.4,
-            borderWidth: 0,
-            pointRadius: 5,
-            borderColor: "#e74c3c",
-            borderWidth: 3,
-            backgroundColor: gradients[8],
-            fill: true,
-            data: [
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-            ],
-            maxBarThickness: 6,
-        },
-        {
-            label: "",
-            tension: 0.4,
-            borderWidth: 0,
-            pointRadius: 5,
-            borderColor: "#2ecc71",
-            borderWidth: 3,
-            backgroundColor: gradients[9],
-            fill: true,
-            data: [
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-            ],
-            maxBarThickness: 6,
-        },
-        {
-            label: "",
-            tension: 0.4,
-            borderWidth: 0,
-            pointRadius: 5,
-            borderColor: "#3498db",
-            borderWidth: 3,
-            backgroundColor: gradients[10],
-            fill: true,
-            data: [
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-            ],
-            maxBarThickness: 6,
-        },
-        {
-            label: "",
-            tension: 0.4,
-            borderWidth: 0,
-            pointRadius: 5,
-            borderColor: "#8e44ad",
-            borderWidth: 3,
-            backgroundColor: gradients[11],
-            fill: true,
-            data: [
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-            ],
-            maxBarThickness: 6,
-        },
-    ];
+    // let position = 0;
+    // data.forEach((el) => {
+    //     if (position === 0) {
+    //         datasets[position].label = el.article_title;
+    //         datasets[position].data[el.month - 1] = el.visit;
+    //         position++;
+    //     }
 
-    let position = 0;
-    data.forEach((el) => {
-        if (position === 0) {
-            datasets[position].label = el.article_title;
-            datasets[position].data[el.month - 1] = el.visit;
-            position++;
-        }
-
-        if (datasets[position - 1].label == el.article_title) {
-            datasets[--position].data[el.month - 1] = el.visit;
-            position++;
-        } else {
-            datasets[position].label = el.article_title;
-            datasets[position].data[el.month - 1] = el.visit;
-            position++;
-        }
-    });
+    //     if (datasets[position - 1].label == el.article_title) {
+    //         datasets[--position].data[el.month - 1] = el.visit;
+    //         position++;
+    //     } else {
+    //         datasets[position].label = el.article_title;
+    //         datasets[position].data[el.month - 1] = el.visit;
+    //         position++;
+    //     }
+    // });
 
     new Chart(ctx2, {
         type: "line",
         data: {
             labels: [
-                "Jan",
-                "Feb",
-                "Mar",
-                "Apr",
-                "May",
-                "Jun",
-                "Jul",
-                "Aug",
-                "Sep",
-                "Oct",
-                "Nov",
-                "Dec",
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10",
+                "11",
+                "12",
+                "13",
+                "14",
+                "15",
+                "16",
+                "17",
+                "18",
+                "19",
+                "20",
+                "21",
+                "22",
+                "23",
+                "24",
+                "25",
+                "26",
+                "27",
+                "28",
+                "29",
+                "30",
+                "31",
             ],
-            datasets,
+            datasets: [
+                {
+                    label: "Kunjungan",
+                    tension: 0.4,
+                    borderWidth: 0,
+                    pointRadius: 0,
+                    borderColor: "#cb0c9f",
+                    borderWidth: 3,
+                    backgroundColor: gradientStroke1,
+                    fill: true,
+                    data,
+                    maxBarThickness: 6,
+                },
+            ],
         },
         options: {
             responsive: true,
@@ -629,8 +308,14 @@ function setTableArticle(data) {
         html += `<div class="flex flex-col justify-center"><h6 class="mb-0 text-sm leading-normal">${element.title}</h6></div>`;
         html += `</div>`;
         html += `</td>`;
-        html += `<td class="p-2 text-sm leading-normal text-center align-middle bg-transparent border-b whitespace-nowrap">${element.category_name}</td>`;
-        html += `<td class="p-2 align-middle bg-transparent border-b whitespace-nowrap">${element.user_name}</td>`;
+        html += `<td class="p-2 text-sm leading-normal text-center align-middle bg-transparent border-b">${element.category_name}</td>`;
+        html += `<td class="p-2 align-middle bg-transparent border-b">
+                    <div class="flex flex-col">
+                        <span>${element.user_name}</span>
+                        <span class="text-xs">${element.user_email}</span>
+                    </div>
+            </td>`;
+        html += `<td class="p-2 text-sm leading-normal text-center align-middle bg-transparent border-b">${element.visit} Kali</td>`;
         html += `</tr>`;
     });
 

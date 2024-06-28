@@ -22,11 +22,11 @@ function formModal() {
     </div>
     <div style="display: flex; align-items: center; margin-bottom: 3rem;">
         <label>Deskripsi</label>
-        <input class="swal2-input" style="flex:1;" placeholder="Deskripsi" name="description"> <br/>
+        <textarea class="swal2-textarea" style="flex:1;" placeholder="Deskripsi" name="description"></textarea>
     </div>
     <div style="display: flex; align-items: center; margin-bottom: 2rem;">
-        <label style="width: 100px; margin-right: 1rem;">Slider</label>
-        <input type="file" class="swal1-file" style="width: 330px;" name="file" accept=".jpeg,.png,.jpg,.gif,.svg,.avi,.mpeg,.quicktime,.mp4"> <br/>
+        <label style="width: 90px; margin-right: 1rem;">Slider</label>
+        <input type="file" class="swal2-file" style="width: 280px;" name="file" accept=".jpeg,.png,.jpg,.gif,.svg,.avi,.mpeg,.quicktime,.mp4"> <br/>
     </div>
     </form>
     `;
@@ -116,11 +116,11 @@ async function editModal(id) {
         </div>
         <div style="display: flex; align-items: center; margin-bottom: 3rem;">
             <label>Deskripsi</label>
-            <input class="swal2-input" style="flex:1;" placeholder="Deskripsi" name="description" value="${data.description}"> <br/>
+            <textarea class="swal2-textarea" style="flex:1;" placeholder="Deskripsi" name="description">${data.description}</textarea>
         </div>
         <div style="display: flex; align-items: center; margin-bottom: 2rem;">
-            <label style="width: 100px; margin-right: 1rem;">Slider</label>
-            <input type="file" class="swal1-file" style="width: 330px;" name="file" accept=".jpeg,.png,.jpg,.gif,.svg,.avi,.mpeg,.quicktime,.mp4" value="${data.file}"> <br/>
+            <label style="width: 90px; margin-right: 1rem;">Slider</label>
+            <input type="file" class="swal2-file" style="width: 280px;" name="file" accept=".jpeg,.png,.jpg,.gif,.svg,.avi,.mpeg,.quicktime,.mp4" value="${data.file}"> <br/>
         </div>
         <input type="hidden" name="_method" value="PUT">
         </form>

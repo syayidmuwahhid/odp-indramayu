@@ -125,29 +125,22 @@
     <script src="{{ asset('assets/js/main.js') }}"></script>
     <script src="{{ asset('assets/js/global.js') }}"></script>
 
-    {{-- <script>
-        let appData;
+    <script>
         $(document).ready(async function() {
-            appData = await getAppData();
-            $('.appName').html(appData.app_name);
-            $('.appDescription').html(appData.description);
-            $('#appIcon').attr('href', baseL + '/' + appData.icon);
-            $('.appLogo').attr('src', baseL + '/' + appData.icon);
-            $('meta[name="description"]').attr('content', appData.description);
-            $('meta[property="og:description"]').attr('content', appData.description);
-            $('meta[property="og:title"]').attr('content', appData.description);
-            $('meta[property="og:image"]').attr('content', baseL + '/' + appData.icon);
-            $('#appFacebook').attr('href', appData.facebook);
-            $('#appX').attr('href', appData.x);
-            $('#appYoutube').attr('href', appData.youtube);
-            $('#appInstagram').attr('href', appData.instagram);
-            let keywords = '';
-            JSON.parse(appData.keywords).forEach(element => {
-                keywords += element.value + ', ';
-            });
-            $('meta[name="keywords"]').attr('content', keywords);
+            try {
+                let post_data = new FormData();
+                post_data.append("table_id", 0);
+                post_data.append("table_name", "app");
+                let data = await postData(`${baseL}/api/counter`, post_data);
+
+                if (!data.status) {
+                    throw new Error(data.message);
+                }
+            } catch (error) {
+                console.log("Galat!", error);
+            }
         });
-    </script> --}}
+    </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script>
         AOS.init();
