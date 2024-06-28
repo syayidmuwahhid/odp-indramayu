@@ -77,7 +77,7 @@ async function getData() {
                 </td>
                 <td class="px-4">${value.title}</td>
                 <td class="px-4">${value.description}</td>
-                <td class="text-center">
+                <td class="whitespace-nowrap">
                     <button class="inline-block px-2 py-2 mt-2 mb-2 font-bold text-center align-middle transition-all bg-transparent border border-solid rounded-lg shadow-none cursor-pointer active:opacity-85 leading-pro text-xs ease-soft-in tracking-tight-soft bg-150 bg-x-25 hover:scale-102 active:shadow-soft-xs border-yellow-500 text-yellow-500 hover:text-yellow-900 hover:opacity-75 hover:shadow-none active:scale-100 active:border-yellow-900 active:bg-yellow-900 active:text-yellow hover:active:border-yellow-900 hover:active:bg-transparent hover:active:text-yellow-900 hover:active:opacity-75"
                         style="border-color: #f1c40f; color: #f1c40f;" onclick="editModal(${
                             value.id
