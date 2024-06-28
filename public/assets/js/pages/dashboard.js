@@ -30,7 +30,7 @@ $(document).ready(async function () {
     await getData();
 
     //set desc app data
-    let string = appData.description.substring(0, 150);
+    let string = $("#dashboard_desc").html().substring(0, 150);
     let parser = new DOMParser();
     let doc = parser.parseFromString(string, "text/html");
     let content = doc.body.textContent || "";
@@ -623,7 +623,7 @@ function setTableArticle(data) {
     let html = ``;
     data.forEach((element) => {
         html += `<tr onclick="window.location.href='${baseL}/article/${element.id}'" class="cursor-pointer">`;
-        html += `<td class="p-2 align-middle bg-transparent border-b whitespace-nowrap">`;
+        html += `<td class="p-2 align-middle bg-transparent border-b">`;
         html += `<div class="flex px-2 py-1">`;
         html += `<div><img src="${baseL}/${element.image}" class="inline-flex items-center justify-center mr-4 text-sm text-white transition-all duration-200 ease-soft-in-out h-9 w-9 rounded-xl" alt="xd" /></div>`;
         html += `<div class="flex flex-col justify-center"><h6 class="mb-0 text-sm leading-normal">${element.title}</h6></div>`;

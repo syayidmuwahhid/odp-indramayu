@@ -26,23 +26,23 @@ async function getData() {
         // Iterate over the fetched data and generate HTML for each row
         data.data.reverse().forEach((value, i) => {
             let html = `<tr>
-                <td class="text-center p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">${++i}</td>
-                <td class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">${
+                <td class="text-center p-2 align-middle bg-transparent border-b shadow-transparent">${++i}</td>
+                <td class="p-2 align-middle bg-transparent border-b shadow-transparent">${
                     value.title
                 }</td>
-                <td class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">${convertDate(
+                <td class="p-2 align-middle bg-transparent border-b shadow-transparent">${convertDate(
                     value.date
                 )}</td>
-                <td class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">${
+                <td class="p-2 align-middle bg-transparent border-b shadow-transparent">${
                     value.category_name
                 }</td>
-                <td class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
+                <td class="p-2 align-middle bg-transparent border-b shadow-transparent">
                     <div class="flex flex-col">
                         <span>${value.user_name}</span>
                         <span class="text-xs">${value.user_email}</span>
                     </div>
                 </td>
-                <td class=" align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
+                <td class=" align-middle bg-transparent border-b shadow-transparent text-center">
                     <a href="/article/${value.id}" target="_blank"
                         class="inline-block px-2 py-2 mt-2 mb-2 font-bold text-center align-middle transition-all bg-transparent border border-solid rounded-lg shadow-none cursor-pointer active:opacity-85 leading-pro text-xs ease-soft-in tracking-tight-soft bg-150 bg-x-25 hover:scale-102 active:shadow-soft-xs border-yellow-500 text-yellow-500 hover:text-yellow-900 hover:opacity-75 hover:shadow-none active:scale-100 active:border-yellow-900 active:bg-yellow-900 active:text-yellow hover:active:border-yellow-900 hover:active:bg-transparent hover:active:text-yellow-900 hover:active:opacity-75"
                         style="border-color: #166BAC; color: #166BAC;"
@@ -76,7 +76,7 @@ async function getData() {
         });
 
         $("#table_data").dataTable({
-            columnDefs: [{ width: 60, targets: 0 }],
+            columnDefs: [{ width: 250, targets: 1 }],
         });
     } catch (error) {
         // Display an error notification

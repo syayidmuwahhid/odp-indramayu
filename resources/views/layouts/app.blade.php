@@ -10,9 +10,10 @@
 <html lang="zxx">
 
 <head>
+    @php ($appData = \App\Helpers\Anyhelpers::AppInfo())
     <meta charset="UTF-8">
     <!-- favicon -->
-    <link rel="shortcut icon" href="" id="appIcon"/>
+    <link rel="shortcut icon" href="{{ asset($appData->icon) }}" />
     <!-- theme meta -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <input type="hidden" id="baseL" value="{{ url('') }}" />
@@ -28,22 +29,20 @@
     <!-- responsive meta -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
 
-    <meta name="description" content="">
-    <meta name="keywords" content="">
+    <meta name="description" content="{{ $appData->description }}">
+    <meta name="keywords" content="{{ $appData->keywords }},{{ $appData->tags }}">
+    <meta name="author" content="Kabupaten Indramayu">
 
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="{{ url('') }}">
 
-    <meta property="og:title" content="Your Page Title">
-    <meta property="og:description" content="">
-    <meta property="og:image" content="">
+    <meta property="og:title" content="{{ $appData->app_name }}">
+    <meta property="og:description" content="{{ $appData->description }}">
+    <meta property="og:image" content="{{ asset($appData->icon) }}">
     <meta property="og:url" content="{{ url('') }}">
 
     <!-- title -->
-    <title>@yield('title')</title>
-
-    <!-- noindex robots -->
-    <meta name="robots" content="" />
+    <title>@yield('title') {{ $appData->app_name }}</title>
 
 
     <!-- google font css -->
@@ -119,14 +118,14 @@
     <!-- Swiper JS -->
     <script src="{{ asset('assets/js/plugins/swiper/swiper-bundle.js') }}"></script>
     <script src="{{ asset('assets/js/plugins/shufflejs/shuffle.js') }}"></script>
-    
+
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
     <!-- Main Script -->
     <script src="{{ asset('assets/js/main.js') }}"></script>
     <script src="{{ asset('assets/js/global.js') }}"></script>
 
-    <script>
+    {{-- <script>
         let appData;
         $(document).ready(async function() {
             appData = await getAppData();
@@ -148,12 +147,12 @@
             });
             $('meta[name="keywords"]').attr('content', keywords);
         });
-    </script>
+    </script> --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script>
         AOS.init();
     </script>
-    
+
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
     @stack('js')

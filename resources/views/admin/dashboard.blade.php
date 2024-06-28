@@ -113,19 +113,19 @@
                     <div class="flex flex-wrap -mx-3">
                         <div class="max-w-full px-3 lg:w-1/2 lg:flex-none">
                             <div class="flex flex-col h-full">
-                                <h5 class="font-bold appTitle"></h5>
-                                <p class="mb-12" id="dashboard_desc"></p>
+                                <h5 class="font-bold">{{ \App\Helpers\AnyHelpers::AppInfo()->title }}</h5>
+                                <p class="mb-6" id="dashboard_desc">{{ \App\Helpers\AnyHelpers::AppInfo()->description }}</p>
                                 <a class="mt-auto mb-0 text-sm font-semibold leading-normal group text-slate-500" href="{{ route('about') }}">
                                     Selengkapnya
                                     <i class="fas fa-arrow-right ease-bounce text-sm group-hover:translate-x-1.25 ml-1 leading-normal transition-all duration-200"></i>
                                 </a>
                             </div>
                         </div>
-                        <div class="max-w-full px-3 mt-12 ml-auto text-center lg:mt-0 lg:w-5/12 lg:flex-none">
-                            <div class="h-full bg-gradient-to-tl from-purple-700 to-pink-500 rounded-xl">
-                                <img src="./assets/img/shapes/waves-white.svg" class="absolute top-0 hidden w-1/2 h-full lg:block" alt="waves" />
+                        <div class="max-w-full px-3 mt-6 ml-auto text-center lg:mt-0 lg:w-5/12 lg:flex-none">
+                            <div class="h-full rounded-xl">
+                                <img src="{{ asset('assets/img/shapes/waves-white.svg') }}" class="absolute top-0 hidden w-1/2 h-full lg:block" alt="waves" />
                                 <div class="relative flex items-center justify-center h-full">
-                                    <img class="relative z-20 w-full pt-6 appLogo" src="" alt="rocket" />
+                                    <img class="relative z-20 w-full pt-6" src="{{ \App\Helpers\AnyHelpers::AppInfo()->icon }}" alt="rocket" />
                                 </div>
                             </div>
                         </div>
@@ -139,7 +139,7 @@
                     <h5 class="font-bold">Artikel dibuat</h5>
                     <div class="py-4 pr-1 bg-gradient-to-tl from-gray-900 to-slate-800 rounded-xl">
                         <div>
-                            <canvas id="chart-bars" height="145"></canvas>
+                            <canvas id="chart-bars" height="200"></canvas>
                         </div>
                     </div>
                 </div>
@@ -196,9 +196,9 @@
             </div>
             </div>
         </div>
-        <div class="flex-auto p-6 px-0 pb-2">
-            <div class="overflow-x-auto">
-            <table class="items-center w-full mb-0 align-top border-gray-200 text-slate-500 p-3">
+        <div class="flex-auto px-0 pt-0 pb-2">
+            <div class="px-10 overflow-x-auto">
+            <table class="items-center w-full mb-0 align-top border-gray-200 text-slate-500">
                 <thead class="align-bottom">
                 <tr>
                     <th class="px-6 py-3 font-bold tracking-normal text-left uppercase align-middle bg-transparent border-b letter border-b-solid text-xxs whitespace-nowrap border-b-gray-200 text-slate-400 opacity-70">Judul Artikel</th>
