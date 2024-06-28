@@ -4,8 +4,8 @@
     <!-- logo -->
     <div class="order-0">
       <a href="{{ url('') }}" class="flex gap-3 items-center">
-        <img src="" height="50" width="50" alt="logo" class="appLogo"/>
-        <span class="text-bold text-2xl appName text-orange-600 font-bold"></span>
+        <img src="{{ asset($appData->icon) }}" height="50" width="50" alt="logo"/>
+        <span class="text-bold text-2xl text-orange-600 font-bold">{{ $appData->app_name }}</span>
       </a>
     </div>
 

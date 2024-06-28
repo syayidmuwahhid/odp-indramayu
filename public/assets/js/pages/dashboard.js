@@ -30,7 +30,7 @@ $(document).ready(async function () {
     await getData();
 
     //set desc app data
-    let string = appData.description.substring(0, 150);
+    let string = $("#dashboard_desc").html().substring(0, 150);
     let parser = new DOMParser();
     let doc = parser.parseFromString(string, "text/html");
     let content = doc.body.textContent || "";

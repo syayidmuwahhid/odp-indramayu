@@ -58,10 +58,6 @@ $(document).ready(async function () {
             next.click();
         }, timeAutoNext);
     }
-
-
-    $(".banner-title").html(appData.title);
-    $("#banner-description").html(appData.description);
 });
 
 async function getSlider() {
@@ -125,7 +121,6 @@ async function getArticle() {
 
             let string = element.content.substring(0, 200);
 
-
             let parser = new DOMParser();
             let doc = parser.parseFromString(string, "text/html");
             let content = doc.body.textContent || "";
@@ -172,20 +167,19 @@ async function getArticle() {
 
         // Initialize Swiper after articles have been appended
 
-        var swiper = new Swiper('.reviews-carousel', {
+        var swiper = new Swiper(".reviews-carousel", {
             loop: true,
             autoplay: {
                 delay: 3000,
                 disableOnInteraction: false,
             },
             pagination: {
-                el: '.swiper-pagination',
+                el: ".swiper-pagination",
                 clickable: true,
             },
             slidesPerView: 3,
             spaceBetween: 40,
         });
-
     } catch (error) {
         notif("error", "Galat!", error);
     }
