@@ -31,6 +31,17 @@
                         <input type="author" name="author" id="author" class="inputan" placeholder="Pembuat Dokumen" required>
                     </div>
                 </div>
+
+                <div class="grid grid-cols-3 mb-6">
+                    <div></div><div></div><div></div>
+                    <label class="flex items-center h-full">Status <span class="text-sm text-red-500">*</span></label>
+                    <div class="col-span-2 align-middle">
+                        <select class="inputan" name="status" id="status">
+                            <option>Publik</option>
+                            <option>Rahasia</option>
+                        </select>
+                    </div>
+                </div>
             </div>
 
             <div class="grid grid-row mb-6 min-w-0 break-words bg-white border-0 border-transparent border-solid shadow-soft-xl rounded-2xl bg-clip-border">

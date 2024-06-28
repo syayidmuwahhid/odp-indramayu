@@ -16,6 +16,7 @@ class Document extends Model
         'date',
         'author',
         'type',
+        'status',
         'location',
         'user_id',
     ];
