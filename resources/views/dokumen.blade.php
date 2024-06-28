@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Dokumen')
+@section('title', 'Dokumen | ')
 
 @push('css')
 <link rel="stylesheet" href="{{ asset('assets/css/landing-page.css') }}">

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Kontak');
+@section('title', 'Kontak | ');
 
 @section('content')
 <section class="page-hero pt-16 pb-6" data-aos="fade-up" data-aos-duration="1500">
