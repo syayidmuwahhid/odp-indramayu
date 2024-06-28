@@ -4,15 +4,6 @@ const userID = $("#user_id").val();
 
 $(document).ready(async function () {});
 
-// async function getAppData() {
-//     try {
-//         let { data } = await getRequestData(`${baseL}/api/profile`);
-//         return data;
-//     } catch (error) {
-//         notif("error", "Galat!", error);
-//     }
-// }
-
 function blockUI() {
     $.blockUI({
         css: {
