@@ -6,7 +6,7 @@
     <section class="section blog-single">
         <div class="container" id="container" data-id="{{ $id }}" >
             <div class="row justify-center">
-                <div class="lg:col-10">
+                <div class="lg:col-10 mt-14">
                     <img src="" alt="" id="article-image" class="mx-auto shadow-lg"/>
                 </div>
                 <div class="mt-10 max-w-[810px] lg:col-9">

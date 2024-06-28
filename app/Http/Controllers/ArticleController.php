@@ -187,7 +187,7 @@ class ArticleController extends Controller
                 'category_id' => 'required|integer',
                 'date' => 'required|date',
                 'image' => 'nullable|mimes:jpeg,png,jpg,gif,svg',
-                'video' => 'nullable|mimetypes:avi,mpeg,quicktime,mp4',
+                'video' => 'nullable|mimes:avi,mpeg,quicktime,mp4',
                 'tags' => 'required',
                 'title' => 'required|string|max:255',
                 'content' => 'required|string',
