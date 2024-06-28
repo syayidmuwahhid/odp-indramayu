@@ -196,9 +196,9 @@
             </div>
             </div>
         </div>
-        <div class="flex-auto p-6 px-0 pb-2">
-            <div class="overflow-x-auto">
-            <table class="items-center w-full mb-0 align-top border-gray-200 text-slate-500 p-3">
+        <div class="flex-auto px-0 pt-0 pb-2">
+            <div class="px-10 overflow-x-auto">
+            <table class="items-center w-full mb-0 align-top border-gray-200 text-slate-500">
                 <thead class="align-bottom">
                 <tr>
                     <th class="px-6 py-3 font-bold tracking-normal text-left uppercase align-middle bg-transparent border-b letter border-b-solid text-xxs whitespace-nowrap border-b-gray-200 text-slate-400 opacity-70">Judul Artikel</th>
