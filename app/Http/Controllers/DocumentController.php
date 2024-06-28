@@ -67,7 +67,7 @@ class DocumentController extends Controller
                 'author' => 'required',
                 'type' => 'required',
                 'status' => 'required',
-                'file' => 'nullable|mimes:pdf',
+                'file' => 'nullable|mimes:pdf|file|max:8192',
                 'link' => 'nullable',
             ]);
 
@@ -154,7 +154,7 @@ class DocumentController extends Controller
                 'author' => 'required',
                 'type' => 'required',
                 'status' => 'required',
-                'file' => 'nullable|mimes:pdf',
+                'file' => 'nullable|mimes:pdf|file|max:8192',
                 'link' => 'nullable',
             ]);
 

@@ -64,7 +64,7 @@ class ProfileController extends Controller
             $payload = $request->validate([
                 'app_name' => 'required',
                 'facebook' => 'required',
-                'icon' => 'nullable|mimes:jpeg,png,bmp,gif,svg,webp',
+                'icon' => 'nullable|mimes:jpeg,png,bmp,gif,svg,webp|file|max:8192',
                 'instagram' => 'required',
                 'description' => 'required',
                 'keywords' => 'required',
