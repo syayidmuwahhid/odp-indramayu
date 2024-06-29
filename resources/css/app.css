@@ -21,3 +21,7 @@
 .margin-left {
     @apply lg:ml-[17.5rem];
 }
+
+.kiw {
+    @apply text-center bg-green-300;
+}

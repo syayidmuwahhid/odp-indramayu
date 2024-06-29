@@ -121,6 +121,7 @@ async function submitForm(e) {
         window.location.href = "/admin/article/";
     } catch (error) {
         notif("error", "Galat!", error);
+        window.location.reload();
     }
 }
 

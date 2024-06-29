@@ -74,8 +74,8 @@ class ArticleController extends Controller
             $payload = $request->validate([
                 'category_id' => 'required|integer',
                 'date' => 'required|date',
-                'image' => 'nullable|mimes:jpeg,png,jpg,gif,svg',
-                'video' => 'nullable|mimes:avi,mpeg,quicktime,mp4',
+                'image' => 'nullable|mimes:jpeg,png,jpg,gif,svg|file|max:8192',
+                'video' => 'nullable|mimes:avi,mpeg,quicktime,mp4|file|max:8192',
                 'tags' => 'required',
                 'title' => 'required|string|max:255',
                 'content' => 'required|string',
@@ -186,8 +186,8 @@ class ArticleController extends Controller
             $payload = $request->validate([
                 'category_id' => 'required|integer',
                 'date' => 'required|date',
-                'image' => 'nullable|mimes:jpeg,png,jpg,gif,svg',
-                'video' => 'nullable|mimetypes:avi,mpeg,quicktime,mp4',
+                'image' => 'nullable|mimes:jpeg,png,jpg,gif,svg|file|max:8192',
+                'video' => 'nullable|mimes:avi,mpeg,quicktime,mp4|file|max:8192',
                 'tags' => 'required',
                 'title' => 'required|string|max:255',
                 'content' => 'required|string',

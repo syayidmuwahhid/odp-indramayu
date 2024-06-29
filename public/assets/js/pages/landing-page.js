@@ -58,10 +58,6 @@ $(document).ready(async function () {
             next.click();
         }, timeAutoNext);
     }
-
-
-    $(".banner-title").html(appData.title);
-    $("#banner-description").html(appData.description);
 });
 
 async function getSlider() {
@@ -119,13 +115,17 @@ async function getArticle() {
             }
 
             let tags = `<div class="flex flex-wrap gap-1">`;
+            let tag_count = 0;
             element.tags.forEach((tag) => {
+                tag_count++;
+                if (tag_count > 3) {
+                    return;
+                }
                 tags += `<a href="/article?tag=${tag.name}" class="tag-card">${tag.name}</a>`;
             });
             tags += `</div>`;
 
             let string = element.content.substring(0, 200);
-
 
             let parser = new DOMParser();
             let doc = parser.parseFromString(string, "text/html");
@@ -173,20 +173,19 @@ async function getArticle() {
 
         // Initialize Swiper after articles have been appended
 
-        var swiper = new Swiper('.reviews-carousel', {
+        var swiper = new Swiper(".reviews-carousel", {
             loop: true,
             autoplay: {
                 delay: 3000,
                 disableOnInteraction: false,
             },
             pagination: {
-                el: '.swiper-pagination',
+                el: ".swiper-pagination",
                 clickable: true,
             },
             slidesPerView: 3,
             spaceBetween: 40,
         });
-
     } catch (error) {
         notif("error", "Galat!", error);
     }

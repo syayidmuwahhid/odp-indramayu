@@ -29,6 +29,7 @@ async function getData() {
         $("#date").val(data.date);
         $("#author").val(data.author);
         $("#type").val(data.type);
+        $("#status").val(data.status);
 
         if (data.type === "Link") {
             $("#link").val(data.location);

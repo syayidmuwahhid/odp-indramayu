@@ -22,11 +22,11 @@ function formModal() {
     </div>
     <div style="display: flex; align-items: center; margin-bottom: 3rem;">
         <label>Deskripsi</label>
-        <input class="swal2-input" style="flex:1;" placeholder="Deskripsi" name="description"> <br/>
+        <textarea class="swal2-textarea" style="flex:1;" placeholder="Deskripsi" name="description"></textarea>
     </div>
     <div style="display: flex; align-items: center; margin-bottom: 2rem;">
-        <label style="width: 100px; margin-right: 1rem;">Slider</label>
-        <input type="file" class="swal1-file" style="width: 330px;" name="file" accept=".jpeg,.png,.jpg,.gif,.svg,.avi,.mpeg,.quicktime,.mp4"> <br/>
+        <label style="width: 90px; margin-right: 1rem;">Slider</label>
+        <input type="file" class="swal2-file" style="width: 280px;" name="file" accept=".jpeg,.png,.jpg,.gif,.svg,.avi,.mpeg,.quicktime,.mp4"> <br/>
     </div>
     </form>
     `;
@@ -77,14 +77,13 @@ async function getData() {
                 </td>
                 <td class="px-4">${value.title}</td>
                 <td class="px-4">${value.description}</td>
-                <td class="text-center">
+                <td class="whitespace-nowrap">
                     <button class="inline-block px-2 py-2 mt-2 mb-2 font-bold text-center align-middle transition-all bg-transparent border border-solid rounded-lg shadow-none cursor-pointer active:opacity-85 leading-pro text-xs ease-soft-in tracking-tight-soft bg-150 bg-x-25 hover:scale-102 active:shadow-soft-xs border-yellow-500 text-yellow-500 hover:text-yellow-900 hover:opacity-75 hover:shadow-none active:scale-100 active:border-yellow-900 active:bg-yellow-900 active:text-yellow hover:active:border-yellow-900 hover:active:bg-transparent hover:active:text-yellow-900 hover:active:opacity-75"
                         style="border-color: #f1c40f; color: #f1c40f;" onclick="editModal(${
                             value.id
                         })">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 inline-block text-orange-500">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.232 5.232a1.5 1.5 0 112.121 2.121L8.49 16.215a4.5 4.5 0 01-1.086 1.086l-2.768 1.384a.75.75 0 01-1.05-1.05l1.384-2.768a4.5 4.5 0 011.086-1.086l8.803-8.803z" />
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 11.25h-5.25a1.5 1.5 0 00-1.5 1.5v5.25" />
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                        <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325"/>
                         </svg>
                     </button>
                     <button class="inline-block px-2 py-2 mt-2 mb-2 ml-2 font-bold text-center uppercase align-middle transition-all bg-transparent border border-solid rounded-lg shadow-none cursor-pointer active:opacity-85 leading-pro text-xs ease-soft-in tracking-tight-soft bg-150 bg-x-25 hover:scale-102 active:shadow-soft-xs hover:opacity-75 hover:shadow-none active:scale-100 hover:active:border-red-900 hover:active:bg-transparent hover:active:text-red-900 hover:active:opacity-75"
@@ -117,11 +116,11 @@ async function editModal(id) {
         </div>
         <div style="display: flex; align-items: center; margin-bottom: 3rem;">
             <label>Deskripsi</label>
-            <input class="swal2-input" style="flex:1;" placeholder="Deskripsi" name="description" value="${data.description}"> <br/>
+            <textarea class="swal2-textarea" style="flex:1;" placeholder="Deskripsi" name="description">${data.description}</textarea>
         </div>
         <div style="display: flex; align-items: center; margin-bottom: 2rem;">
-            <label style="width: 100px; margin-right: 1rem;">Slider</label>
-            <input type="file" class="swal1-file" style="width: 330px;" name="file" accept=".jpeg,.png,.jpg,.gif,.svg,.avi,.mpeg,.quicktime,.mp4" value="${data.file}"> <br/>
+            <label style="width: 90px; margin-right: 1rem;">Slider</label>
+            <input type="file" class="swal2-file" style="width: 280px;" name="file" accept=".jpeg,.png,.jpg,.gif,.svg,.avi,.mpeg,.quicktime,.mp4" value="${data.file}"> <br/>
         </div>
         <input type="hidden" name="_method" value="PUT">
         </form>

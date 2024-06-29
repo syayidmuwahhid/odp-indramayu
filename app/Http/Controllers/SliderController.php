@@ -63,7 +63,7 @@ class SliderController extends Controller
             // Validate the incoming request data
             $request->validate([
                 'title' => 'required',
-                'file' => 'required|mimes:jpeg,png,jpg,gif,svg,avi,mpeg,quicktime,mp4',
+                'file' => 'required|mimes:jpeg,png,jpg,gif,svg,avi,mpeg,quicktime,mp4|file|max:8192',
                 'description' => 'required',
             ]);
 
@@ -175,7 +175,7 @@ class SliderController extends Controller
             $request->validate([
                 'title' => 'required',
                 'description' => 'required',
-                'file' => 'nullable|mimes:jpeg,png,jpg,gif,svg,avi,mpeg,quicktime,mp4',
+                'file' => 'nullable|mimes:jpeg,png,jpg,gif,svg,avi,mpeg,quicktime,mp4|file|max:8192',
             ]);
 
 

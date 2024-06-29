@@ -6,6 +6,7 @@ use App\Models\Document;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class DocumentController extends Controller
 {
@@ -65,7 +66,8 @@ class DocumentController extends Controller
                 'date' => 'required|date',
                 'author' => 'required',
                 'type' => 'required',
-                'file' => 'nullable|mimes:pdf',
+                'status' => 'required',
+                'file' => 'nullable|mimes:pdf|file|max:8192',
                 'link' => 'nullable',
             ]);
 
@@ -151,7 +153,8 @@ class DocumentController extends Controller
                 'date' => 'required|date',
                 'author' => 'required',
                 'type' => 'required',
-                'file' => 'nullable|mimes:pdf',
+                'status' => 'required',
+                'file' => 'nullable|mimes:pdf|file|max:8192',
                 'link' => 'nullable',
             ]);
 
@@ -231,5 +234,13 @@ class DocumentController extends Controller
 
         // Return the response as a JSON response
         return response()->json($resp, $code);
+    }
+
+    public function getDocument(Request $request)
+    {
+        if (File::exists($request->file)) {
+            return response()->file($request->file);
+        }
+        abort(404, 'File not found.');
     }
 }
