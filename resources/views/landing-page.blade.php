@@ -74,7 +74,7 @@
   <!-- ./end Banner -->
 
   <!-- Reviews -->
-  <section class="reviews mt-8">
+  <section class="reviews mt-8 mb-8">
     <div class="container">
       <div class="row justify-between">
         <div class="lg:col-6 mb-6">
