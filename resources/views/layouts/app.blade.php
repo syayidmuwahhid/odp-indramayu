@@ -57,6 +57,9 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
 
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnH/4D6JEtIjb0d+OlnH13PQdFfKo1AG5IqO/Zdmb4d+Zs5UGy5l5+qUerDs2myt9cU+/dO2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <!-- Swiper slider -->
     <link rel="stylesheet" href="{{ asset('assets/js/plugins/swiper/swiper-bundle.css') }}" />
 
@@ -108,7 +111,7 @@
     @include('layouts.partials.navbar')
 </header>
 
-<body><!-- Banner -->
+<body class="dark:bg-gray-900 dark:text-white"><!-- Banner -->
     @yield('content')
 
     @include('layouts.partials.footer')

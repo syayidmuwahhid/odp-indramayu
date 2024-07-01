@@ -11,15 +11,15 @@
                 </div>
                 <div class="mt-10 max-w-[810px] lg:col-9">
                     {{-- title --}}
-                    <h1 class="h2" id="title"></h1>
+                    <h1 class="h2 dark:text-white" id="title"></h1>
                     <div class="">
                         {{-- username --}}
-                        <p class="text-dark" id="username"></p>
+                        <p class="text-dark dark:text-white" id="username"></p>
                         {{-- date --}}
                         <span class="text-sm flex" id="date"></span>
                     </div>
                     {{-- content --}}
-                    <div class="content" id="content"></div>
+                    <div class="content dark:text-white" id="content"></div>
                 <div class="flex flex-wrap gap-1" id="tags">
                     Tag :
                 </div>

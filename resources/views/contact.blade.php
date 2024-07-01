@@ -31,17 +31,17 @@
                 <form class="lg:max-w-[484px]" data-email="{{ env('MAIL_USERNAME') }}" method="GET" id="contact-form">
                     <input type="hidden" name="subject" value="Masukan untuk Aplikasi OPD Indramayu"/>
                     <div class="form-group mb-5">
-                        <label class="form-label" for="name">Nama Lengkap</label>
-              <input
-                class="form-control"
-                type="text"
-                id="name"
-                placeholder="Nama Lengkap"
-                required
-              />
-            </div>
+                        <label class="form-label dark:text-white" for="name">Nama Lengkap</label>
+                      <input
+                        class="form-control"
+                        type="text"
+                        id="name"
+                        placeholder="Nama Lengkap"
+                        required
+                      />
+                    </div>
             <div class="form-group mb-5">
-              <label class="form-label" for="eamil">Email</label>
+              <label class="form-label  dark:text-white" for="eamil">Email</label>
               <input
                 class="form-control"
                 type="text"
@@ -51,7 +51,7 @@
               />
             </div>
             <div class="form-group mb-5">
-              <label class="form-label" for="message">Pesan</label>
+              <label class="form-label  dark:text-white" for="message">Pesan</label>
               <textarea
                 class="form-control h-[150px]"
                 name="body"

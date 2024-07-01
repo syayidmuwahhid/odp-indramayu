@@ -37,12 +37,12 @@
 
 
 {{-- banner --}}
-<section class="section banner relative">
+<section class="section banner relative ">
     <div class="container mx-auto px-4 py-16 flex flex-col-reverse lg:flex-row items-center justify-between">
       <div class="row items-center" data-aos="fade-up"data-aos-duration="1500">
         <div class="lg:col-6">
           <h2 class="text-orange-600">{{ \App\Helpers\Anyhelpers::AppInfo()->title }}</h2>
-          <p class="mt-6 text-black text-lg">{{ \App\Helpers\Anyhelpers::AppInfo()->description }}</p>
+          <p class="mt-6 text-black text-lg dark:text-white">{{ \App\Helpers\Anyhelpers::AppInfo()->description }}</p>
           <a class="btn bg-orange-600 hover:bg-red-400 text-white font-bold rounded-full mt-8" href="{{ route('about') }}">Selengkapnya</a>
         </div>
         <div class="lg:col-6 lg:w-1/2 flex justify-center object-cover floating-image">
