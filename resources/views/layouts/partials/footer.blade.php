@@ -10,7 +10,7 @@
       </div>
       <div class="col-12 mt-12 md:col-6 lg:col-3">
         <h6 class="text-orange-600">Socials</h6>
-        {{-- <p>themefisher@gmail.com</p> --}}
+        <p>diskominfo@indramayukab.go.id</p>
         <ul class="social-icons mt-4 lg:mt-6">
           <li>
             <a href="{{ $appData->facebook }}" target="_blank">
@@ -74,29 +74,29 @@
         </ul>
       </div>
       <div class="col-12 mt-12 md:col-6 lg:col-3">
-        <h6 class="text-orange-600">Quick Links</h6>
+        <h6 class="text-orange-600">Links</h6>
         <ul>
           <li>
-            <a href="{{ route('landing-page') }}">Home</a>
+            <a href="{{ route('landing-page') }}">Beranda</a>
           </li>
           <li>
-            <a href="{{ route('article') }}" >Article</a>
+            <a href="{{ route('article') }}" >Artikel</a>
           </li>
           <li>
             <a href="{{ route('dokumen') }}">Dokumen</a>
           </li>
           <li>
-            <a href="{{ route('about') }}">About</a>
+            <a href="{{ route('about') }}">Tentang</a>
           </li>
           <li>
-            <a href="{{ route('contact') }}">Contact</a>
+            <a href="{{ route('contact') }}">Kontak</a>
           </li>
         </ul>
       </div>
       <div class="col-12 mt-12 md:col-6 lg:col-3">
-        <h6 class="text-orange-600">Location & Contact</h6>
-        <p>2118 Thornridge Cir. Syracuse, Connecticut 35624</p>
-        <p>(704) 555-0127</p>
+        <h6 class="text-orange-600">Lokasi</h6>
+        <p>Jl. R.A. Kartini No. 01 Indramayu, Jawa Barat 45211</p>
+        {{-- <p>(704) 555-0127</p> --}}
       </div>
     </div>
   </div>
@@ -104,7 +104,8 @@
     <div
       class="footer-copyright mx-auto border-t border-border pb-10 pt-7 text-center"
     >
-      <p>Designed And Developed by <a href="https://themefisher.com" target="_blank">Themefisher</a></p>
+      {{-- <p>Designed And Developed by <a href="https://themefisher.com" target="_blank">Themefisher</a></p> --}}
+      <p>Designed And Developed by Team 10 JDA</p>
     </div>
   </div>
 </footer>

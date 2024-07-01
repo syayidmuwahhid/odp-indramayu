@@ -138,7 +138,7 @@ async function getArticle() {
 
             // console.log(doc.innerHTML);
 
-            html += `<div class="swiper-slide mb-8 md:col-6 lg:col-4">`;
+            html += `<div class="swiper-slide mb-10 md:col-6 lg:col-4">`;
             html += `<div class="card-1 flex flex-col justify-between cursor-pointer" onclick="window.location.href='${baseL}/article/${element.id}'">`;
             html += `<div><img class="card-img w-full object-cover" style="height:170px" src="${baseL}/${element.image}" alt="" />`;
             html += `<div class="card-tags"><a class="tag" href="${baseL}/article?category=${element.category_name}">${element.category_name}</a></div>
@@ -185,6 +185,23 @@ async function getArticle() {
             },
             slidesPerView: 3,
             spaceBetween: 40,
+            breakpoints: {
+                // when window width is >= 640px
+                640: {
+                    slidesPerView: 1,
+                    spaceBetween: 20
+                },
+                // when window width is >= 768px
+                768: {
+                    slidesPerView: 2,
+                    spaceBetween: 30
+                },
+                // when window width is >= 1024px
+                1024: {
+                    slidesPerView: 3,
+                    spaceBetween: 30
+                }
+            }
         });
     } catch (error) {
         notif("error", "Galat!", error);

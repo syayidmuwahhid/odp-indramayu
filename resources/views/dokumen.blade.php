@@ -19,9 +19,9 @@
 <section class="section document relative">
     <div class="container mx-auto my-6" data-aos="fade-up" data-aos-duration="1200">
         <div class="overflow-x-auto">
-            <div class="min-w-screen bg-white flex items-center justify-center font-sans overflow-hidden">
+            <div class="min-w-screen bg-white flex items-center justify-center font-sans overflow-hidden p-4">
                 <div class="w-full lg:w-5/6">
-                    <div class="bg-white shadow-md rounded my-6">
+                    <div class="bg-white  rounded my-6">
                         <div class="overflow-x-auto">
                             <table class="min-w-max w-full table-auto" id="document_table">
                                 <thead>
