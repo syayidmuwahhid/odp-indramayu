@@ -133,7 +133,7 @@ async function getArticle() {
             let content = doc.body.textContent || "";
 
             html += `<div class="swiper-slide mb-10 md:col-6 lg:col-4">`;
-            html += `<div class="card-1 flex flex-col justify-between cursor-pointer" onclick="window.location.href='${baseL}/article/${element.id}'">`;
+            html += `<div class="card-1 flex flex-col justify-between cursor-pointer" onclick="window.location.href='${baseL}/article/${element.slug}'">`;
             html += `<div><img class="card-img w-full object-cover" style="height:170px" src="${baseL}/${element.image}" alt="" />`;
             html += `<div class="card-tags"><a class="tag" href="${baseL}/article?category=${element.category_name}">${element.category_name}</a></div>
                         <h3 class="h4 card-title mt-5">${element.title}</h3>
@@ -216,7 +216,7 @@ async function getArticlePopular() {
             let content = doc.body.textContent || "";
 
             html += `<div class="mb-8 md:col-6">`;
-            html += `<div class="card cursor-pointer" onclick="window.location.href='${baseL}/article/${element.table_id}'"><img class="card-img" width="235" height="304" src="${baseL}/${element.image}" alt=""/>`;
+            html += `<div class="card cursor-pointer" onclick="window.location.href='${baseL}/article/${element.slug}'"><img class="card-img" width="235" height="304" src="${baseL}/${element.image}" alt=""/>`;
             html += `<div class="card-content">`;
             html += `<div class="card-tags"><a class="tag" href="${baseL}/article?category=${element.category_name}">${element.category_name}</a></div>`;
             html += `<h3 class="h4 card-title">${element.title}</h3>`;

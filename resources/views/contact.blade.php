@@ -28,7 +28,7 @@
                 </div>
             </div>
             <div class="md:col-6 md:order-1" data-aos="fade-right" data-aos-duration="1500">
-                <form class="lg:max-w-[484px]" data-email="{{ env('MAIL_USERNAME') }}" method="GET" id="contact-form">
+                <form class="lg:max-w-[484px]" data-email="diskominfo@indramayukab.go.id" method="GET" id="contact-form">
                     <input type="hidden" name="subject" value="Masukan untuk Aplikasi OPD Indramayu"/>
                     <div class="form-group mb-5">
                         <label class="form-label" for="name">Nama Lengkap</label>
