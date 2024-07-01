@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('title');
             $table->date('date');
             $table->enum('type', ['Link', 'Upload']);
-            $table->enum('status', ['Public', 'Rahasia']);
+            $table->enum('status', ['Publik', 'Rahasia']);
             $table->string('location');
             $table->string('author');
             $table->unsignedBigInteger('user_id');

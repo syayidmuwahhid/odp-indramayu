@@ -103,7 +103,7 @@ function setTextEditor(id) {
 
 async function getData() {
     try {
-        let data = await getRequestData(`${baseL}/api/profile`);
+        let data = await getRequestData(`${baseL}/api/setting`);
 
         if (!data.status) {
             throw new Error(data.message);
