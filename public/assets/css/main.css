@@ -54,7 +54,7 @@ body::-webkit-scrollbar-thumb {
 */
 
 html,
-:host {
+:host { 
     line-height: 1.5; /* 1 */
     -webkit-text-size-adjust: 100%; /* 2 */
     -moz-tab-size: 4; /* 3 */
@@ -2059,7 +2059,7 @@ select:invalid {
 }
 .card-1 {
     position: relative;
-    height: 35em;
+    height: 33em;
     border-radius: 0.75rem;
     --tw-bg-opacity: 1;
     background-color: rgb(255 255 255 / var(--tw-bg-opacity));
@@ -2072,6 +2072,25 @@ select:invalid {
         var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
     box-shadow: 0px 15px 34px rgba(0, 0, 0, 0.1);
 }
+
+@media (max-width: 768px) {
+    .swiper-slide {
+        width: 100% !important;
+    }
+    .card-1 {
+        height: 600px; /* atau tentukan tinggi yang sesuai */
+    }
+}
+
+@media (max-width: 640px) {
+    .swiper-slide {
+        width: 100% !important;
+    }
+    .card-1 {
+        height: 600px; /* atau tentukan tinggi yang sesuai */
+    }
+}
+
 .card-img {
     width: 100%;
 }
@@ -2505,6 +2524,7 @@ input#nav-toggle:checked ~ #nav-menu {
     padding: 0.7rem;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     width: 100%;
+    max-width: 1372px;
 }
 
 .navbar.sticky a{
