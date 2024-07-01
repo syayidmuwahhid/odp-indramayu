@@ -8,7 +8,7 @@
     <!-- row 1 -->
     <div class="flex flex-wrap -mx-3">
         <!-- card4 -->
-        <div class="w-full max-w-full px-3 sm:w-1/2 sm:flex-none xl:w-1/4">
+        <div class="w-full max-w-full px-3 mb-6 sm:w-1/2 sm:flex-none xl:w-1/4">
             <div class="relative flex flex-col min-w-0 break-words bg-white shadow-soft-xl rounded-2xl bg-clip-border">
                 <div class="flex-auto p-4">
                     <div class="flex flex-row -mx-3">
