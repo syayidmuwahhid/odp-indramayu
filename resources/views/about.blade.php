@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Landing Page')
+@section('title', 'Tentang | ')
 
 @push('css')
 
@@ -23,6 +23,24 @@
         text-align: justify;
         margin-bottom: 1rem;
     }
+
+@media (max-width: 768px) {
+        #history p, #misi p, #demografi p {
+        text-indent: 0;
+        text-align: center;
+        margin-bottom: 1rem;
+        width: 100%;
+    }
+}
+
+@media (max-width: 640px) {
+    #history p, #misi p, #demografi p{
+        text-indent: 0;
+        text-align: center;
+        margin-bottom: 1rem;
+        width: 100%;
+    }
+}
 </style>
 
 @endpush
@@ -52,7 +70,7 @@
 {{-- History --}}
 <section class="section banner relative" data-aos="fade-up" data-aos-duration="1500">
     <div class="flex flex-col justify-center items-center">
-        <h4 class="text-center text-4xl mb-8 banner-title">
+        <h4 class="text-center text-4xl mb-8 banner-title text-orange-600">
             Sejarah
         </h4>
         <div class=" w-4/5 shadow-lg px-16 py-12" id="history">
@@ -66,7 +84,7 @@
 {{-- Visi --}}
 <section class="section banner relative" data-aos="fade-up" data-aos-duration="1500">
     <div class="flex flex-col items-center">
-        <h4 class="text-center text-4xl mb-8 banner-title">
+        <h4 class="text-center text-4xl mb-8 banner-title text-orange-600">
             Visi
         </h4>
         <div class="w-4/5">
@@ -81,7 +99,7 @@
 {{-- Misi --}}
 <section class="section banner relative" data-aos="fade-up" data-aos-duration="1500">
     <div class="flex flex-col items-center">
-        <h4 class="text-center text-4xl mb-8 banner-title">
+        <h4 class="text-center text-4xl mb-8 banner-title text-orange-600">
             Misi
         </h4>
         <div class="w-4/5 shadow-lg px-16 py-12" id="misi">
@@ -94,7 +112,7 @@
 {{-- Geografi --}}
 <section class="section banner relative" data-aos="fade-up" data-aos-duration="1500">
     <div class="flex flex-col items-center">
-        <h4 class="text-center text-4xl mb-8 banner-title">
+        <h4 class="text-center text-4xl mb-8 banner-title text-orange-600">
             Geografi
         </h4>
         <div class="w-4/5">
@@ -108,7 +126,7 @@
 {{-- Demografi --}}
 <section class="section banner relative" data-aos="fade-up" data-aos-duration="1500">
     <div class="flex flex-col items-center">
-        <h4 class="text-center text-4xl mb-8 banner-title">
+        <h4 class="text-center text-4xl mb-8 banner-title text-orange-600">
             Demografi
         </h4>
         <div class="w-4/5 shadow-lg px-16 py-12" id="demografi">

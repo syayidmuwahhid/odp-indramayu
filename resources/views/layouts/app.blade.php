@@ -10,9 +10,10 @@
 <html lang="zxx">
 
 <head>
+    @php ($appData = \App\Helpers\Anyhelpers::AppInfo())
     <meta charset="UTF-8">
     <!-- favicon -->
-    <link rel="shortcut icon" href="" id="appIcon"/>
+    <link rel="shortcut icon" href="{{ asset($appData->icon) }}" />
     <!-- theme meta -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <input type="hidden" id="baseL" value="{{ url('') }}" />
@@ -28,22 +29,20 @@
     <!-- responsive meta -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
 
-    <meta name="description" content="">
-    <meta name="keywords" content="">
+    <meta name="description" content="{{ $appData->description }}">
+    <meta name="keywords" content="{{ $appData->keywords }},{{ $appData->tags }}">
+    <meta name="author" content="Kabupaten Indramayu">
 
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="{{ url('') }}">
 
-    <meta property="og:title" content="Your Page Title">
-    <meta property="og:description" content="">
-    <meta property="og:image" content="">
+    <meta property="og:title" content="{{ $appData->app_name }}">
+    <meta property="og:description" content="{{ $appData->description }}">
+    <meta property="og:image" content="{{ asset($appData->icon) }}">
     <meta property="og:url" content="{{ url('') }}">
 
     <!-- title -->
-    <title>@yield('title')</title>
-
-    <!-- noindex robots -->
-    <meta name="robots" content="" />
+    <title>@yield('title') {{ $appData->app_name }}</title>
 
 
     <!-- google font css -->
@@ -119,7 +118,7 @@
     <!-- Swiper JS -->
     <script src="{{ asset('assets/js/plugins/swiper/swiper-bundle.js') }}"></script>
     <script src="{{ asset('assets/js/plugins/shufflejs/shuffle.js') }}"></script>
-    
+
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
     <!-- Main Script -->
@@ -127,33 +126,26 @@
     <script src="{{ asset('assets/js/global.js') }}"></script>
 
     <script>
-        let appData;
         $(document).ready(async function() {
-            appData = await getAppData();
-            $('.appName').html(appData.app_name);
-            $('.appDescription').html(appData.description);
-            $('#appIcon').attr('href', baseL + '/' + appData.icon);
-            $('.appLogo').attr('src', baseL + '/' + appData.icon);
-            $('meta[name="description"]').attr('content', appData.description);
-            $('meta[property="og:description"]').attr('content', appData.description);
-            $('meta[property="og:title"]').attr('content', appData.description);
-            $('meta[property="og:image"]').attr('content', baseL + '/' + appData.icon);
-            $('#appFacebook').attr('href', appData.facebook);
-            $('#appX').attr('href', appData.x);
-            $('#appYoutube').attr('href', appData.youtube);
-            $('#appInstagram').attr('href', appData.instagram);
-            let keywords = '';
-            JSON.parse(appData.keywords).forEach(element => {
-                keywords += element.value + ', ';
-            });
-            $('meta[name="keywords"]').attr('content', keywords);
+            try {
+                let post_data = new FormData();
+                post_data.append("table_id", 0);
+                post_data.append("table_name", "app");
+                let data = await postData(`${baseL}/api/counter`, post_data);
+
+                if (!data.status) {
+                    throw new Error(data.message);
+                }
+            } catch (error) {
+                console.log("Galat!", error);
+            }
         });
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script>
         AOS.init();
     </script>
-    
+
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
     @stack('js')

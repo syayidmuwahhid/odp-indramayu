@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
-@section('title', 'Kontak');
+@section('title', 'Kontak | ');
 
 @section('content')
 <section class="page-hero pt-16 pb-6" data-aos="fade-up" data-aos-duration="1500">
     <div class="container">
       <div class="page-hero-content mx-auto max-w-[768px] text-center">
-        <h1 class="mb-5 mt-8">
+        <h1 class="mb-5 mt-8 text-orange-600">
           Hubungi Kami
         </h1>
     </div>

@@ -1,7 +1,5 @@
 @extends('layouts.app')
 
-@section('title', 'Landing Page')
-
 @push('css')
 
 <link rel="stylesheet" href="{{ asset('assets/css/landing-page.css') }}">
@@ -35,20 +33,19 @@
     {{-- </div>
 </section> --}}
 
+
+
+
 {{-- banner --}}
 <section class="section banner relative">
     <div class="container mx-auto px-4 py-16 flex flex-col-reverse lg:flex-row items-center justify-between">
       <div class="row items-center" data-aos="fade-up"data-aos-duration="1500">
         <div class="lg:col-6">
-          <h2 class="banner-title text-orange-600">
-
-          </h2>
-          <p class="mt-6 text-black text-lg" id="banner-description">
-
-          </p>
+          <h2 class="text-orange-600">{{ \App\Helpers\Anyhelpers::AppInfo()->title }}</h2>
+          <p class="mt-6 text-black text-lg">{{ \App\Helpers\Anyhelpers::AppInfo()->description }}</p>
           <a class="btn bg-orange-600 hover:bg-red-400 text-white font-bold rounded-full mt-8" href="{{ route('about') }}">Selengkapnya</a>
         </div>
-        <div class="lg:col-6 lg:w-1/2 flex justify-center object-cover">
+        <div class="lg:col-6 lg:w-1/2 flex justify-center object-cover floating-image">
           <div class="col col-md-3 p-8 animate-box fadeInUp animated" data-animate-effect="fadeInUp">
             <img src="{{ asset('assets/img/sawah.jpg') }}" alt="" class="w-[60vh] mt-90 mb-30 ">
           </div>
@@ -73,8 +70,21 @@
   </section>
   <!-- ./end Banner -->
 
+{{-- artikel populer --}}
+<section class="section pt-0">
+    <div class="container">
+        <h2 class="text-orange-600 mb-3" data-aos="fade-up" data-aos-duration="1200">Artikel Popular</h2>
+      <div class="featured-posts row floating-image" id="article_popular_container"  data-aos="fade-up"data-aos-duration="1500">
+
+      </div>
+
+    </div>
+  </section>
+
+{{-- end article populer --}}
+
   <!-- Reviews -->
-  <section class="reviews mt-8">
+  <section class="reviews mt-8 mb-8">
     <div class="container">
       <div class="row justify-between">
         <div class="lg:col-6 mb-6">

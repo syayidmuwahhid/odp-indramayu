@@ -1,22 +1,32 @@
 $(document).ready(async function () {
-    await getData();
+    getData();
 });
 
+/**
+ * Fetches and processes data from the server to populate the webpage.
+ *
+ * @async
+ * @returns {void}
+ */
 async function getData() {
     try {
-        const data = await getAppData();
-        $('#title').html(data.title);
-        $('#description').html(data.description);
-        $('#history').html(data.history);
-        $('#visi').html(data.visi);
-        $('#misi').html(data.misi);
-        $('#geografi').html(data.geografi);
-        $('#demografi').html(data.demografi);
+        // Fetch data from the server using the getRequestData function
+        const { data } = await getRequestData(`${baseL}/api/profile`);
 
+        // Populate the webpage with the fetched data
+        $("#title").html(data.title);
+        $("#description").html(data.description);
+        $("#history").html(data.history);
+        $("#visi").html(data.visi);
+        $("#misi").html(data.misi);
+        $("#geografi").html(data.geografi);
+        $("#demografi").html(data.demografi);
+
+        // Log the fetched geografi and demografi data to the console
         console.log("data geografi", data.geografi);
         console.log("data demografi", data.demografi);
-
     } catch (error) {
-        notif('e-rror', 'Galat!', error);
+        // Display an error notification if the data fetching fails
+        notif("e-rror", "Galat!", error);
     }
 }

@@ -10,12 +10,12 @@
             <div
                 class="relative flex flex-col min-w-0 mb-6 break-words bg-white border-0 border-transparent border-solid shadow-soft-xl rounded-2xl bg-clip-border">
                 <div
-                    class="p-6 pb-0 mb-7 flex justify-between bg-white border-b-0 border-b-solid rounded-t-2xl border-b-transparent">
+                    class="p-6 pb-0 mb-7 md:flex md:items-center md:justify-between bg-white border-b-0 border-b-solid rounded-t-2xl border-b-transparent">
                     <h6>Tabel Dokumen</h6>
 
                     {{-- button modal --}}
                     <a href="{{ route("admin.document.form") }}"
-                        class="inline-block px-8 py-2 font-bold text-center uppercase align-middle transition-all bg-transparent border border-solid rounded-lg shadow-none cursor-pointer active:opacity-85 leading-pro text-xs ease-soft-in tracking-tight-soft bg-150 bg-x-25 hover:scale-102 active:shadow-soft-xs border-green-500 text-green-500 hover:text-green-900 hover:opacity-75 hover:shadow-none active:scale-100 active:border-green-900 active:bg-green-900 active:text-white hover:active:border-green-900 hover:active:bg-transparent hover:active:text-green-900 hover:active:opacity-75">Tambah</a>
+                        class="inline-block px-3 py-1 font-bold text-center uppercase align-middle transition-all bg-transparent border border-solid rounded-lg shadow-none cursor-pointer active:opacity-85 leading-pro text-xs ease-soft-in tracking-tight-soft bg-150 bg-x-25 hover:scale-102 active:shadow-soft-xs border-green-500 text-green-500 hover:text-green-900 hover:opacity-75 hover:shadow-none active:scale-100 active:border-green-900 active:bg-green-900 active:text-white hover:active:border-green-900 hover:active:bg-transparent hover:active:text-green-900 hover:active:opacity-75">Tambah</a>
                 </div>
                 <div class="flex-auto px-0 pt-0 pb-2">
                     <div class="px-10 overflow-x-auto" id="table_container">

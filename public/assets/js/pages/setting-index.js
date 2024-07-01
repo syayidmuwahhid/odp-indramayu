@@ -142,6 +142,15 @@ async function submitForm(e) {
         post_data.append("demografi", demografiInstance.getData());
         post_data.append("geografi", geografiInstance.getData());
 
+        let tags_input = JSON.parse($("#tags").val());
+        post_data.append("tags", tags_input.map((v) => v.value).join(","));
+
+        let keywords_input = JSON.parse($("#keywords").val());
+        post_data.append(
+            "keywords",
+            keywords_input.map((v) => v.value).join(",")
+        );
+
         let data = await postData(url, post_data, method);
 
         if (!data.status) {

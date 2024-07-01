@@ -15,9 +15,13 @@
 }
 
 .small-left-minus {
-    @apply -translate-x-full;
+    @apply -translate-x-full z-50;
 }
 
 .margin-left {
     @apply lg:ml-[17.5rem];
+}
+
+.kiw {
+    @apply text-red-500;
 }

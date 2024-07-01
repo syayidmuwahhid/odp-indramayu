@@ -1,84 +1,140 @@
-let c1_data = [
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-];
-let defData = [
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-];
-$(document).ready(async function () {
-    await getData();
+let c1_data = [];
+let c2_data = [];
+$(document).ready(
+    /**
+     * Fetches data from the dashboard API and updates the UI elements accordingly.
+     * @returns {Promise<void>}
+     */
+    async function getData() {
+        try {
+            // Fetch data from the API
+            let { data } = await getRequestData(`${baseL}/api/dashboard`);
 
-    //set desc app data
-    let string = appData.description.substring(0, 150);
-    let parser = new DOMParser();
-    let doc = parser.parseFromString(string, "text/html");
-    let content = doc.body.textContent || "";
-    $("#dashboard_desc").html(content);
+            // Update UI elements with the fetched data
+            $("#user_count").html(data.user_count);
+            $("#article_count").html(data.article_count);
+            $("#category_count").html(data.category_count);
+            $("#document_count").html(data.document_count);
 
-    chart1(c1_data);
-});
+            // Handle the last article data
+            if (data.last_article !== null) {
+                $("#article_title").html(data.last_article.title);
 
+                // Truncate the article content and parse HTML
+                let string = data.last_article.content.substring(0, 300);
+                let parser = new DOMParser();
+                let doc = parser.parseFromString(string, "text/html");
+                let content = doc.body.textContent || "";
+
+                $("#article_content").html(content + "...");
+
+                // Set the article image background
+                $("#article_image").attr(
+                    "style",
+                    `background-image: url('${data.last_article.image}')`
+                );
+
+                // Set the article link
+                $("#article_link").attr(
+                    "href",
+                    baseL + "/article/" + data.last_article.id
+                );
+            }
+
+            // Update the monthly article data
+            data.monthly_article.forEach((element) => {
+                c1_data[element.month - 1] = element.total_count;
+            });
+
+            // Generate the chart for top-rated articles
+            data.visitor.forEach((element) => {
+                c2_data[element.day - 1] = element.visitor;
+            });
+            chart2(c2_data);
+
+            // Set the table for articles
+            setTableArticle(data.articles);
+
+            // Set the document container
+            setDocument(data.documents);
+        } catch (error) {
+            // Display an error notification
+            notif("error", "Galat!", error);
+        }
+    }
+);
+
+/**
+ * Fetches data from the dashboard API and updates the UI elements accordingly.
+ * @returns {Promise<void>}
+ */
 async function getData() {
     try {
+        // Fetch data from the API
         let { data } = await getRequestData(`${baseL}/api/dashboard`);
+
+        // Update UI elements with the fetched data
         $("#user_count").html(data.user_count);
         $("#article_count").html(data.article_count);
         $("#category_count").html(data.category_count);
         $("#document_count").html(data.document_count);
 
+        // Handle the last article data
         if (data.last_article !== null) {
             $("#article_title").html(data.last_article.title);
+
+            // Truncate the article content and parse HTML
             let string = data.last_article.content.substring(0, 300);
             let parser = new DOMParser();
             let doc = parser.parseFromString(string, "text/html");
             let content = doc.body.textContent || "";
 
             $("#article_content").html(content + "...");
+
+            // Set the article image background
             $("#article_image").attr(
                 "style",
                 `background-image: url('${data.last_article.image}')`
             );
+
+            // Set the article link
             $("#article_link").attr(
                 "href",
                 baseL + "/article/" + data.last_article.id
             );
         }
 
+        // Update the monthly article data
         data.monthly_article.forEach((element) => {
             c1_data[element.month - 1] = element.total_count;
         });
 
-        chart2(data.top_rate_article);
+        // Generate the chart for top-rated articles
+        data.visitor.forEach((element) => {
+            c2_data[element.day - 1] = element.visitor;
+        });
+        chart2(c2_data);
 
+        // Set the table for articles
         setTableArticle(data.articles);
 
+        // Set the document container
         setDocument(data.documents);
     } catch (error) {
+        // Display an error notification
         notif("error", "Galat!", error);
     }
 }
 
+/**
+ * Function to generate a bar chart using Chart.js library.
+ * This function is used to display the monthly article count.
+ *
+ * @param {Array} data - An array of integers representing the monthly article count.
+ * The array should have 12 elements, one for each month.
+ *
+ * @returns {void}
+ */
 function chart1(data) {
     var ctx = document.getElementById("chart-bars").getContext("2d");
 
@@ -162,383 +218,80 @@ function chart1(data) {
     });
 }
 
+/**
+ * Function to generate a line chart using Chart.js library.
+ * This function is used to display the daily visitor count.
+ *
+ * @param {Array} data - An array of integers representing the daily visitor count.
+ * The array should have 31 elements, one for each day of the month.
+ *
+ * @returns {void}
+ */
 function chart2(data) {
     // chart 2
 
+    // Get the canvas element for the chart
     var ctx2 = document.getElementById("chart-line").getContext("2d");
 
-    var gradients = [];
-    var colors = [
-        ["rgba(203,12,159,0.2)", "rgba(72,72,176,0.0)", "rgba(203,12,159,0)"],
-        ["rgba(255,99,132,0.2)", "rgba(54,162,235,0.0)", "rgba(255,99,132,0)"],
-        ["rgba(255,206,86,0.2)", "rgba(75,192,192,0.0)", "rgba(255,206,86,0)"],
-        [
-            "rgba(153,102,255,0.2)",
-            "rgba(255,159,64,0.0)",
-            "rgba(153,102,255,0)",
-        ],
-        [
-            "rgba(201,203,207,0.2)",
-            "rgba(123,239,178,0.0)",
-            "rgba(201,203,207,0)",
-        ],
-        ["rgba(210,77,87,0.2)", "rgba(142,68,173,0.0)", "rgba(210,77,87,0)"],
-        ["rgba(46,204,113,0.2)", "rgba(52,152,219,0.0)", "rgba(46,204,113,0)"],
-        ["rgba(243,156,18,0.2)", "rgba(44,62,80,0.0)", "rgba(243,156,18,0)"],
-        ["rgba(41,128,185,0.2)", "rgba(241,196,15,0.0)", "rgba(41,128,185,0)"],
-        ["rgba(39,174,96,0.2)", "rgba(192,57,43,0.0)", "rgba(39,174,96,0)"],
-        ["rgba(142,68,173,0.2)", "rgba(243,156,18,0.0)", "rgba(142,68,173,0)"],
-        ["rgba(241,196,15,0.2)", "rgba(46,204,113,0.0)", "rgba(241,196,15,0)"],
-    ];
+    // Create a linear gradient for the chart
+    var gradientStroke1 = ctx2.createLinearGradient(0, 230, 0, 50);
 
-    // Generate gradients
-    for (var i = 0; i < 12; i++) {
-        var gradient = ctx2.createLinearGradient(0, 230, 0, 50);
-        gradient.addColorStop(1, colors[i][0]);
-        gradient.addColorStop(0.2, colors[i][1]);
-        gradient.addColorStop(0, colors[i][2]);
-        gradients.push(gradient);
-    }
+    // Add color stops to the gradient
+    gradientStroke1.addColorStop(1, "rgba(203,12,159,0.2)");
+    gradientStroke1.addColorStop(0.2, "rgba(72,72,176,0.0)");
+    gradientStroke1.addColorStop(0, "rgba(203,12,159,0)"); //purple colors
 
-    let datasets = [
-        {
-            label: "",
-            tension: 0.4,
-            borderWidth: 0,
-            pointRadius: 5,
-            borderColor: "#cb0c9f",
-            borderWidth: 3,
-            backgroundColor: gradients[0],
-            fill: true,
-            data: [
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-            ],
-            maxBarThickness: 6,
-        },
-        {
-            label: "",
-            tension: 0.4,
-            borderWidth: 0,
-            pointRadius: 5,
-            borderColor: "#3A416F",
-            borderWidth: 3,
-            backgroundColor: gradients[1],
-            fill: true,
-            data: [
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-            ],
-            maxBarThickness: 6,
-        },
-        {
-            label: "",
-            tension: 0.4,
-            borderWidth: 0,
-            pointRadius: 5,
-            borderColor: "#ff6384",
-            borderWidth: 3,
-            backgroundColor: gradients[2],
-            fill: true,
-            data: [
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-            ],
-            maxBarThickness: 6,
-        },
-        {
-            label: "",
-            tension: 0.4,
-            borderWidth: 0,
-            pointRadius: 5,
-            borderColor: "#ffcd56",
-            borderWidth: 3,
-            backgroundColor: gradients[3],
-            fill: true,
-            data: [
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-            ],
-            maxBarThickness: 6,
-        },
-        {
-            label: "",
-            tension: 0.4,
-            borderWidth: 0,
-            pointRadius: 5,
-            borderColor: "#4bc0c0",
-            borderWidth: 3,
-            backgroundColor: gradients[4],
-            fill: true,
-            data: [
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-            ],
-            maxBarThickness: 6,
-        },
-        {
-            label: "",
-            tension: 0.4,
-            borderWidth: 0,
-            pointRadius: 5,
-            borderColor: "#9966ff",
-            borderWidth: 3,
-            backgroundColor: gradients[5],
-            fill: true,
-            data: [
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-            ],
-            maxBarThickness: 6,
-        },
-        {
-            label: "",
-            tension: 0.4,
-            borderWidth: 0,
-            pointRadius: 5,
-            borderColor: "#36a2eb",
-            borderWidth: 3,
-            backgroundColor: gradients[6],
-            fill: true,
-            data: [
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-            ],
-            maxBarThickness: 6,
-        },
-        {
-            label: "",
-            tension: 0.4,
-            borderWidth: 0,
-            pointRadius: 5,
-            borderColor: "#ff9f40",
-            borderWidth: 3,
-            backgroundColor: gradients[7],
-            fill: true,
-            data: [
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-            ],
-            maxBarThickness: 6,
-        },
-        {
-            label: "",
-            tension: 0.4,
-            borderWidth: 0,
-            pointRadius: 5,
-            borderColor: "#e74c3c",
-            borderWidth: 3,
-            backgroundColor: gradients[8],
-            fill: true,
-            data: [
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-            ],
-            maxBarThickness: 6,
-        },
-        {
-            label: "",
-            tension: 0.4,
-            borderWidth: 0,
-            pointRadius: 5,
-            borderColor: "#2ecc71",
-            borderWidth: 3,
-            backgroundColor: gradients[9],
-            fill: true,
-            data: [
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-            ],
-            maxBarThickness: 6,
-        },
-        {
-            label: "",
-            tension: 0.4,
-            borderWidth: 0,
-            pointRadius: 5,
-            borderColor: "#3498db",
-            borderWidth: 3,
-            backgroundColor: gradients[10],
-            fill: true,
-            data: [
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-            ],
-            maxBarThickness: 6,
-        },
-        {
-            label: "",
-            tension: 0.4,
-            borderWidth: 0,
-            pointRadius: 5,
-            borderColor: "#8e44ad",
-            borderWidth: 3,
-            backgroundColor: gradients[11],
-            fill: true,
-            data: [
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-            ],
-            maxBarThickness: 6,
-        },
-    ];
-
-    let position = 0;
-    data.forEach((el) => {
-        if (position === 0) {
-            datasets[position].label = el.article_title;
-            datasets[position].data[el.month - 1] = el.visit;
-            position++;
-        }
-
-        if (datasets[position - 1].label == el.article_title) {
-            datasets[--position].data[el.month - 1] = el.visit;
-            position++;
-        } else {
-            datasets[position].label = el.article_title;
-            datasets[position].data[el.month - 1] = el.visit;
-            position++;
-        }
-    });
-
+    // Create a new Chart instance
     new Chart(ctx2, {
         type: "line",
         data: {
             labels: [
-                "Jan",
-                "Feb",
-                "Mar",
-                "Apr",
-                "May",
-                "Jun",
-                "Jul",
-                "Aug",
-                "Sep",
-                "Oct",
-                "Nov",
-                "Dec",
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10",
+                "11",
+                "12",
+                "13",
+                "14",
+                "15",
+                "16",
+                "17",
+                "18",
+                "19",
+                "20",
+                "21",
+                "22",
+                "23",
+                "24",
+                "25",
+                "26",
+                "27",
+                "28",
+                "29",
+                "30",
+                "31",
             ],
-            datasets,
+            datasets: [
+                {
+                    label: "Kunjungan",
+                    tension: 0.4,
+                    borderWidth: 0,
+                    pointRadius: 0,
+                    borderColor: "#cb0c9f",
+                    borderWidth: 3,
+                    backgroundColor: gradientStroke1,
+                    fill: true,
+                    data,
+                    maxBarThickness: 6,
+                },
+            ],
         },
         options: {
             responsive: true,
@@ -600,35 +353,81 @@ function chart2(data) {
     // end chart 2
 }
 
+/**
+ * Function to set the table for articles in the dashboard.
+ *
+ * @param {Array} data - An array of article objects. Each object contains properties like id, title, category_name, user_name, user_email, and visit.
+ *
+ * @returns {void}
+ */
 function setTableArticle(data) {
+    // Initialize an empty string to store the HTML content
     let html = ``;
+
+    // Loop through each article object in the data array
     data.forEach((element) => {
+        // Create a new table row with an onclick event to navigate to the article detail page
         html += `<tr onclick="window.location.href='${baseL}/article/${element.id}'" class="cursor-pointer">`;
-        html += `<td class="p-2 align-middle bg-transparent border-b whitespace-nowrap">`;
+
+        // Add a table data cell for the article image and title
+        html += `<td class="p-2 align-middle bg-transparent border-b">`;
         html += `<div class="flex px-2 py-1">`;
         html += `<div><img src="${baseL}/${element.image}" class="inline-flex items-center justify-center mr-4 text-sm text-white transition-all duration-200 ease-soft-in-out h-9 w-9 rounded-xl" alt="xd" /></div>`;
         html += `<div class="flex flex-col justify-center"><h6 class="mb-0 text-sm leading-normal">${element.title}</h6></div>`;
         html += `</div>`;
         html += `</td>`;
-        html += `<td class="p-2 text-sm leading-normal text-center align-middle bg-transparent border-b whitespace-nowrap">${element.category_name}</td>`;
-        html += `<td class="p-2 align-middle bg-transparent border-b whitespace-nowrap">${element.user_name}</td>`;
+
+        // Add a table data cell for the article category name
+        html += `<td class="p-2 text-sm leading-normal text-center align-middle bg-transparent border-b">${element.category_name}</td>`;
+
+        // Add a table data cell for the article author's name and email
+        html += `<td class="p-2 align-middle bg-transparent border-b">
+                    <div class="flex flex-col">
+                        <span>${element.user_name}</span>
+                        <span class="text-xs">${element.user_email}</span>
+                    </div>
+            </td>`;
+
+        // Add a table data cell for the article visit count
+        html += `<td class="p-2 text-sm leading-normal text-center align-middle bg-transparent border-b">${element.visit} Kali</td>`;
+
+        // Close the table row
         html += `</tr>`;
     });
 
+    // Append the generated HTML content to the table body
     $("#tbody_article").append(html);
 }
 
+/**
+ * Function to set the document container in the dashboard.
+ * This function dynamically generates HTML elements to display document information.
+ *
+ * @param {Array} data - An array of document objects. Each object contains properties like id, title, type, location, and date.
+ *
+ * @returns {void}
+ */
 function setDocument(data) {
+    // Initialize an empty string to store the HTML content
     let html = "";
+
+    // Loop through each document object in the data array
     data.forEach((element) => {
+        // Start a new div element with appropriate classes and attributes
         html += `<div class="relative mb-4 mt-0 after:clear-both after:table after:content-['']">`;
+
+        // Add a span element for the document icon
         html += `<span class="w-6.5 h-6.5 text-base absolute left-4 z-10 inline-flex -translate-x-1/2 items-center justify-center rounded-full bg-white text-center font-semibold">
                     <i class="relative z-10 leading-none text-transparent fa fa-file-pdf-o leading-pro bg-gradient-to-tl from-red-500 to-yellow-400 bg-clip-text fill-transparent"></i>
                 </span>`;
+
+        // Determine the link for the document based on its type
         let linkFile =
             element.type == "Link"
                 ? element.location
                 : baseL + "/" + element.location;
+
+        // Add a div element for the document title and date
         html += `<div class="ml-11.252 pt-1.4 lg:max-w-120 relative -top-1.5 w-auto">
                     <h6 class="mb-0 text-sm font-semibold leading-normal text-slate-700 cursor-pointer" onclick="window.location.href='${linkFile}'">${
             element.title
@@ -637,8 +436,11 @@ function setDocument(data) {
                         element.date
                     )}</p>
                 </div>`;
+
+        // Close the div element
         html += `</div>`;
     });
 
+    // Append the generated HTML content to the document container
     $("#doc_container").append(html);
 }

@@ -12,6 +12,8 @@ class SliderController extends Controller
 {
     /**
      * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\JsonResponse
      */
     function index() {
         // Initialize the response data
@@ -20,14 +22,16 @@ class SliderController extends Controller
         ];
         $code = 500;
 
+        // Start a database transaction
         DB::beginTransaction();
+
         try {
-            // Fetch all users except superadmin
+            // Fetch all sliders
             $slider = Slider::all();
 
             // Prepare the success response data
             $resp['status'] = true;
-            $resp['message'] = 'Berhasil Mengambil Data';
+            $resp['message'] = 'Successfully fetched data';
             $resp['data'] = $slider;
             $code = 200;
 
@@ -47,6 +51,10 @@ class SliderController extends Controller
 
     /**
      * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Throwable
      */
     public function store(Request $request)
     {
@@ -63,7 +71,7 @@ class SliderController extends Controller
             // Validate the incoming request data
             $request->validate([
                 'title' => 'required',
-                'file' => 'required|mimes:jpeg,png,jpg,gif,svg,avi,mpeg,quicktime,mp4',
+                'file' => 'required|mimes:jpeg,png,jpg,gif,svg,avi,mpeg,quicktime,mp4|file|max:8192',
                 'description' => 'required',
             ]);
 
@@ -111,6 +119,10 @@ class SliderController extends Controller
 
     /**
      * Display the specified resource.
+     *
+     * @param string $id The unique identifier of the slider to be displayed.
+     * @return \Illuminate\Http\JsonResponse The response containing the status, message, and data of the slider.
+     * @throws \Throwable If any error occurs during the database transaction.
      */
     public function show(string $id)
     {
@@ -120,11 +132,12 @@ class SliderController extends Controller
         ];
         $code = 500;
 
+        // Start a database transaction
         DB::beginTransaction();
 
         try {
-            // Find the category by its unique identifier
-            $slider= Slider::find($id);
+            // Find the slider by its unique identifier
+            $slider = Slider::find($id);
 
             // Prepare the success response data
             $resp['status'] = true;
@@ -149,9 +162,10 @@ class SliderController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  string  $id
-     * @return \Illuminate\Http\JsonResponse
+     * @param  \Illuminate\Http\Request  $request The incoming request containing the updated data.
+     * @param  string  $id The unique identifier of the slider to be updated.
+     * @return \Illuminate\Http\JsonResponse The response containing the status, message, and updated data.
+     * @throws \Throwable If any error occurs during the database transaction.
      */
     public function update(Request $request, string $id)
     {
@@ -175,9 +189,8 @@ class SliderController extends Controller
             $request->validate([
                 'title' => 'required',
                 'description' => 'required',
-                'file' => 'nullable|mimes:jpeg,png,jpg,gif,svg,avi,mpeg,quicktime,mp4',
+                'file' => 'nullable|mimes:jpeg,png,jpg,gif,svg,avi,mpeg,quicktime,mp4|file|max:8192',
             ]);
-
 
             // Prepare the data to be updated
             $payload = $request->only('title', 'description');
@@ -199,7 +212,6 @@ class SliderController extends Controller
                 // Prepare the full file path
                 $payload['location'] = $path . $img_name;
             }
-
 
             // Update the slider data
             $slider->fill($payload);
@@ -232,6 +244,10 @@ class SliderController extends Controller
 
     /**
      * Remove the specified resource from storage.
+     *
+     * @param string $id The unique identifier of the slider to be deleted.
+     * @return \Illuminate\Http\JsonResponse The response containing the status, message, and deletion result.
+     * @throws \Throwable If any error occurs during the database transaction.
      */
     public function destroy(string $id)
     {
@@ -245,10 +261,10 @@ class SliderController extends Controller
         $code = 500;
 
         try {
-            // Find the user by its unique identifier
+            // Find the slider by its unique identifier
             $slider = Slider::find($id);
 
-            // Delete the user
+            // Delete the slider
             $slider->delete();
 
             // Check if the file exists and delete it
