@@ -5,6 +5,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CounterController;
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SettingController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\TagsController;
 use App\Http\Controllers\UserController;
@@ -30,7 +31,7 @@ Route::apiResource('user', UserController::class);
 Route::get('/article/popular', [ArticleController::class, 'popular']);
 Route::apiResource('article', ArticleController::class);
 
-Route::apiResource('profile', ProfileController::class)->only('index', 'update');
+Route::apiResource('setting', SettingController::class)->only('index', 'update');
 
 Route::get('/tags/list/category', [TagsController::class, 'listByCategory'])->name('tags.list.category');
 Route::apiResource('tags', TagsController::class);
@@ -42,7 +43,6 @@ Route::apiResource('video', VideoController::class);
 
 Route::apiResource('slider', SliderController::class);
 
-Route::get('/document/get', [DocumentController::class, 'getDocument']);
 Route::apiResource('document', DocumentController::class);
 
 Route::apiResource('counter', CounterController::class)->only('store');
@@ -120,9 +120,10 @@ Route::get('dashboard', function (Request $request) {
             // 'top_rate_article' => $result,
             'articles' => $articles,
             'documents' => Document::orderBy('id', 'desc')->orderBy('date', 'desc')->limit(5)->get(),
-            'visitor' => Counter::select(DB::raw('DAY(created_at) as day'), DB::raw('WEEKDAY(created_at) as day_of_week'), DB::raw('count(table_id) as visitor'), 'table_name')
-                ->groupBy('day', 'day_of_week', 'table_name')
+            'visitor' => Counter::select(DB::raw('DAY(created_at) as day'), DB::raw('WEEKDAY(created_at) as day_of_week'), DB::raw('count(table_id) as visitor'), 'table_name', DB::raw('MONTH(created_at) as month'))
+                ->groupBy('day', 'day_of_week', 'table_name', 'month')
                 ->having('table_name', 'app')
+                ->having('month', now()->month)
                 ->get()
 
         ];

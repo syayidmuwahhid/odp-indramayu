@@ -3,8 +3,8 @@
     <div class="row gx-5 pb-10 pt-[52px]">
       <div class="col-12 mt-12 md:col-6 lg:col-3">
         <a href="{{ url('') }}" class="flex gap-3 items-center">
-          <img src="{{ asset($appData->icon) }}" height="30" width="30" alt="logo"/>
-          <span class="text-bold font-bold text-xl text-orange-600">{{ $appData->app_name }}</span>
+          <img src="{{ asset($appData->icon) }}" height="200" width="250" alt="logo" style="object-fit: cover;"/>
+          {{-- <span class="text-bold font-bold text-xl text-orange-600">{{ $appData->app_name }}</span> --}}
         </a>
         <p class="mt-6">{{ $appData->description }}</p>
       </div>

@@ -6,7 +6,7 @@
         <a class="block px-8 py-6 m-0 text-sm whitespace-nowrap text-slate-700" href="{{ url('') }}">
             <img src="{{ asset($appData->icon) }}"
                 class="inline h-full max-w-full transition-all duration-200 ease-nav-brand max-h-8" alt="main_logo" />
-            <span class="ml-1 font-semibold transition-all duration-200 ease-nav-brand hidden">{{ $appData->app_name }}</span>
+            {{-- <span class="ml-1 font-semibold transition-all duration-200 ease-nav-brand ">{{ $appData->app_name }}</span> --}}
         </a>
     </div>
 
