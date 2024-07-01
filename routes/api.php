@@ -27,6 +27,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::apiResource('user', UserController::class);
 
+Route::get('/article/popular', [ArticleController::class, 'popular']);
 Route::apiResource('article', ArticleController::class);
 
 Route::apiResource('profile', ProfileController::class)->only('index', 'update');

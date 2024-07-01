@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use App\Models\ArticleTag;
+use App\Models\Counter;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -283,6 +284,55 @@ class ArticleController extends Controller
             Tag::where('article_tag_id', $articleTag->id)->delete();
 
             ArticleTag::where('article_id', $article->id)->delete();
+
+            // Prepare the success response data
+            $resp['status'] = true;
+            $resp['message'] = 'data berhasil dihapus';
+            $code = 200;
+
+            // Commit the database transaction
+            DB::commit();
+        } catch (\Throwable $th) {
+            // Prepare the error response data
+            $resp['message'] = $th->getMessage();
+
+            // Rollback the database transaction
+            DB::rollBack();
+        }
+
+        // Return the response as a JSON response
+        return response()->json($resp, $code);
+    }
+
+    public function popular()
+    {
+        // Start a database transaction
+        DB::beginTransaction();
+
+        // Initialize the response data
+        $resp = [
+            'status' => false,
+        ];
+        $code = 500;
+
+        try {
+            $counter = Counter::select(DB::raw('COUNT(table_id) as visitor'), 'table_id', 'article.title', 'article.content', 'user_id', 'date', 'category_id', 'category.name as category_name', 'users.name as user_name', 'users.email as user_email')
+                ->join('article', 'table_id', 'article.id')
+                ->join('category', 'category.id', 'category_id')
+                ->join('users', 'users.id', 'user_id')
+                ->groupBy('table_id', 'table_name')
+                ->having('table_name', 'article')
+                ->orderBy('visitor', 'desc')
+                ->limit(4)
+                ->get();
+
+            foreach($counter as $article) {
+                $article['tags'] = Tag::select('tag.name', 'article_tag.article_id')
+                    ->join('article_tag', "article_tag.id", "article_tag_id")
+                    ->where("article_tag.article_id", $article->table_id)
+                    ->get();
+            }
+            $resp['data'] = $counter;
 
             // Prepare the success response data
             $resp['status'] = true;
