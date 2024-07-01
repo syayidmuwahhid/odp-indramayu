@@ -320,7 +320,7 @@ class ArticleController extends Controller
                 ->join('article', 'table_id', 'article.id')
                 ->join('category', 'category.id', 'category_id')
                 ->join('users', 'users.id', 'user_id')
-                ->groupBy('table_id', 'table_name')
+                ->groupBy('table_id', 'table_name', 'article.title', 'article.content', 'article.image', 'user_id', 'date', 'category_id', 'category.name', 'users.name', 'users.email')
                 ->having('table_name', 'article')
                 ->orderBy('visitor', 'desc')
                 ->limit(4)
