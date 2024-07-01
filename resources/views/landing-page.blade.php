@@ -45,7 +45,7 @@
           <p class="mt-6 text-black text-lg">{{ \App\Helpers\Anyhelpers::AppInfo()->description }}</p>
           <a class="btn bg-orange-600 hover:bg-red-400 text-white font-bold rounded-full mt-8" href="{{ route('about') }}">Selengkapnya</a>
         </div>
-        <div class="lg:col-6 lg:w-1/2 flex justify-center object-cover">
+        <div class="lg:col-6 lg:w-1/2 flex justify-center object-cover floating-image">
           <div class="col col-md-3 p-8 animate-box fadeInUp animated" data-animate-effect="fadeInUp">
             <img src="{{ asset('assets/img/sawah.jpg') }}" alt="" class="w-[60vh] mt-90 mb-30 ">
           </div>
