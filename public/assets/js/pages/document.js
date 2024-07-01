@@ -27,7 +27,7 @@ async function getData() {
                             ${convertDate(element.date)}
                         </td>
                         <td class="py-3 px-6 text-center">
-                            <a href="${linkFile}" target="_blank" class="bg-blue-500 text-white px-4 py-2 rounded">Download</a>
+                            <a href="${linkFile}" target="_blank" class="text-white px-4 py-2 rounded" style="background-color: #da6220">Download</a>
                         </td>
                     </tr>`;
             }
