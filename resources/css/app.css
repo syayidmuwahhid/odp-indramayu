@@ -23,5 +23,5 @@
 }
 
 .kiw {
-    @apply text-center bg-green-300;
+    @apply text-red-500;
 }
