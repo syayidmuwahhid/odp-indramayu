@@ -3,7 +3,7 @@ namespace App\Helpers;
 
 use App\Models\Profile;
 
-class Anyhelpers
+class AnyHelpers
 {
     static function AppInfo() {
         return Profile::first();

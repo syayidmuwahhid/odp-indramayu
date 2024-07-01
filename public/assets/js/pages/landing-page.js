@@ -125,18 +125,11 @@ async function getArticle() {
             });
             tags += `</div>`;
 
-            let string = element.content.substring(0, 200);
+            let string = element.content.substring(0, 100);
 
             let parser = new DOMParser();
             let doc = parser.parseFromString(string, "text/html");
             let content = doc.body.textContent || "";
-
-            // let content = element.content;
-            // let doc = document.createElement("div");
-
-            // doc.innerHTML = content;
-
-            // console.log(doc.innerHTML);
 
             html += `<div class="swiper-slide mb-10 md:col-6 lg:col-4">`;
             html += `<div class="card-1 flex flex-col justify-between cursor-pointer" onclick="window.location.href='${baseL}/article/${element.id}'">`;
@@ -189,19 +182,19 @@ async function getArticle() {
                 // when window width is >= 640px
                 640: {
                     slidesPerView: 1,
-                    spaceBetween: 20
+                    spaceBetween: 20,
                 },
                 // when window width is >= 768px
                 768: {
                     slidesPerView: 2,
-                    spaceBetween: 30
+                    spaceBetween: 30,
                 },
                 // when window width is >= 1024px
                 1024: {
                     slidesPerView: 3,
-                    spaceBetween: 30
-                }
-            }
+                    spaceBetween: 30,
+                },
+            },
         });
     } catch (error) {
         notif("error", "Galat!", error);

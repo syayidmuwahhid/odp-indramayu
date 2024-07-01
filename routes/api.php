@@ -120,9 +120,10 @@ Route::get('dashboard', function (Request $request) {
             // 'top_rate_article' => $result,
             'articles' => $articles,
             'documents' => Document::orderBy('id', 'desc')->orderBy('date', 'desc')->limit(5)->get(),
-            'visitor' => Counter::select(DB::raw('DAY(created_at) as day'), DB::raw('WEEKDAY(created_at) as day_of_week'), DB::raw('count(table_id) as visitor'), 'table_name')
-                ->groupBy('day', 'day_of_week', 'table_name')
+            'visitor' => Counter::select(DB::raw('DAY(created_at) as day'), DB::raw('WEEKDAY(created_at) as day_of_week'), DB::raw('count(table_id) as visitor'), 'table_name', DB::raw('MONTH(created_at) as month'))
+                ->groupBy('day', 'day_of_week', 'table_name', 'month')
                 ->having('table_name', 'app')
+                ->having('month', now()->month)
                 ->get()
 
         ];
