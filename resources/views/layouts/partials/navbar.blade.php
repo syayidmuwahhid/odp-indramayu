@@ -94,8 +94,8 @@
   <!-- logo -->
   <div class="order-0">
     <a href="{{ url('') }}" class="flex gap-3 items-center">
-      <img src="{{ asset($appData->icon) }}" height="200" width="250" alt="logo"/>
-      <span class="text-bold text-2xl text-orange-600 font-bold hidden">{{ $appData->app_name }}</span>
+      <img src="{{ asset($appData->icon) }}" height="200" width="250" alt="logo" style="object-fit: cover;"/>
+      {{-- <span class="text-bold text-2xl text-orange-600 font-bold ">{{ $appData->app_name }}</span> --}}
     </a>
   </div>
   <!-- navbar toggler -->

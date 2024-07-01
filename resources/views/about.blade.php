@@ -23,6 +23,24 @@
         text-align: justify;
         margin-bottom: 1rem;
     }
+
+@media (max-width: 768px) {
+        #history p, #misi p, #demografi p {
+        text-indent: 0;
+        text-align: center;
+        margin-bottom: 1rem;
+        width: 100%;
+    }
+}
+
+@media (max-width: 640px) {
+    #history p, #misi p, #demografi p{
+        text-indent: 0;
+        text-align: center;
+        margin-bottom: 1rem;
+        width: 100%;
+    }
+}
 </style>
 
 @endpush
