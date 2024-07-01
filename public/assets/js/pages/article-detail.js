@@ -19,7 +19,7 @@ async function getData() {
 
         // Make a GET request to fetch article data
         let { data } = await getRequestData(
-            `${baseL}/api/article/${articleID}`
+            `${baseL}/api/article/${articleID}/slug`
         );
 
         // Generate HTML for tags
@@ -54,6 +54,7 @@ async function getData() {
     } catch (error) {
         // Show error notification
         notif("error", "Galat!", error.message);
+        window.location.href = "/article";
     }
 }
 

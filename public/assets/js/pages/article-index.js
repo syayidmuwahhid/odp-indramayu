@@ -27,15 +27,9 @@ async function getData() {
         data.data.reverse().forEach((value, i) => {
             let html = `<tr>
                 <td class="">${++i}</td>
-                <td class="">${
-                    value.title
-                }</td>
-                <td class="">${convertDate(
-                    value.date
-                )}</td>
-                <td class="">${
-                    value.category_name
-                }</td>
+                <td class="">${value.title}</td>
+                <td class="">${convertDate(value.date)}</td>
+                <td class="">${value.category_name}</td>
                 <td class="">
                     <div class="flex flex-col">
                         <span>${value.user_name}</span>
@@ -43,7 +37,7 @@ async function getData() {
                     </div>
                 </td>
                 <td class="whitespace-nowrap">
-                    <a href="/article/${value.id}" target="_blank"
+                    <a href="/article/${value.slug}" target="_blank"
                         class="inline-block p-2 my-2 font-bold text-center align-middle transition-all bg-transparent border border-solid rounded-lg shadow-none cursor-pointer active:opacity-85 leading-pro text-xs ease-soft-in tracking-tight-soft bg-150 bg-x-25 hover:scale-102 active:shadow-soft-xs border-yellow-500 text-yellow-500 hover:text-yellow-900 hover:opacity-75 hover:shadow-none active:scale-100 active:border-yellow-900 active:bg-yellow-900 active:text-yellow hover:active:border-yellow-900 hover:active:bg-transparent hover:active:text-yellow-900 hover:active:opacity-75"
                         style="border-color: #166BAC; color: #166BAC;"
                         >
@@ -78,7 +72,7 @@ async function getData() {
             columnDefs: [
                 { width: 250, targets: [1] },
                 { width: 140, targets: [5] },
-                { classname: "text-center", targets: [0, 1,2,3,4,5]},
+                { classname: "text-center", targets: [0, 1, 2, 3, 4, 5] },
             ],
         });
     } catch (error) {

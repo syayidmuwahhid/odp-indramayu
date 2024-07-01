@@ -10,6 +10,9 @@ $(document).ready(
      * @returns {Promise<void>}
      */
     async function () {
+        //slug
+        $("#title").keyup(generateSlug);
+
         // Create a new instance of the ClassicEditor
         ClassicEditor.create(document.querySelector("#editor"), {
             removePlugins: [
@@ -204,9 +207,6 @@ async function getData() {
         // Fetch the article data from the server using the article ID
         let data = await getRequestData(`${baseL}/api/article/${id}`);
 
-        // Log the fetched data for debugging purposes
-        console.log(data);
-
         // Populate the form fields with the fetched data
         $("#title").val(data.data.title); // Set the title input field value
         $("#select_category").val(data.data.category_id); // Set the category dropdown value
@@ -223,8 +223,18 @@ async function getData() {
 
         // Set the editor content with the fetched article content
         editorInstance.setData(data.data.content);
+
+        //set slug
+        $("#slug").val(data.data.slug);
     } catch (error) {
         // Display an error notification if the request fails or the response status is not successful
         notif("error", "Galat!", error);
     }
+}
+
+function generateSlug() {
+    slug = "";
+    let val = $(this).val();
+    slug = val.toLowerCase().replace(/\s+/g, "-");
+    $("#slug").val(slug);
 }

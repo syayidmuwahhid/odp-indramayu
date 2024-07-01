@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('title');
             $table->date('date');
             $table->text('content');
+            $table->string('slug');
             $table->string('video')->nullable();
             $table->string('image')->nullable();
             $table->unsignedBigInteger('user_id');

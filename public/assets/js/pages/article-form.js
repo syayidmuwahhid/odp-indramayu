@@ -10,6 +10,9 @@ $(document).ready(
      * @returns {Promise<void>}
      */
     async function () {
+        //slug
+        $("#title").keyup(generateSlug);
+
         // Create a new instance of the ClassicEditor
         ClassicEditor.create(document.querySelector("#editor"), {
             removePlugins: [
@@ -174,4 +177,11 @@ async function submitForm(e) {
         // Display an error notification
         notif("error", "Galat!", error);
     }
+}
+
+function generateSlug() {
+    slug = "";
+    let val = $(this).val();
+    slug = val.toLowerCase().replace(/\s+/g, "-");
+    $("#slug").val(slug);
 }
