@@ -9,23 +9,26 @@ use Illuminate\Support\Facades\DB;
 class TagsController extends Controller
 {
     /**
-    * Display a listing of the resource.
-    *
-    * @return \Illuminate\Http\JsonResponse
-    */
-   public function index()
-   {
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function index()
+    {
         // Initialize the response data
         $resp = [
             'status' => false,
         ];
         $code = 500;
 
+        // Start a database transaction
         DB::beginTransaction();
 
         try {
-            // Fetch all categories from the database
+            // Fetch all tags from the database
             $tags = Tag::all();
+
+            // Eager load related models to optimize the query
             foreach ($tags as $tag) {
                 $tag->ArticleTag->Article;
             }
@@ -48,57 +51,66 @@ class TagsController extends Controller
 
         // Return the response as a JSON response
         return response()->json($resp, $code);
-   }
-
-   /**
-    * Store a newly created resource in storage.
-    */
-   public function store(Request $request)
-   {
-    return response()->json($request->all());
-       // Start a database transaction
-       DB::beginTransaction();
-
-       // Initialize the response data
-       $resp = [
-           'status' => false,
-       ];
-       $code = 500;
-
-       try {
-           // Validate the incoming request data
-           $request->validate([
-               'name' => ['required']
-           ]);
-
-           // Prepare the payload for creating a new data
-           $payload = $request->only('name');
-
-           // Create a new user in the database
-           Tag::create($payload);
-
-           // Prepare the success response data
-           $resp['status'] = true;
-           $resp['message'] = 'Berhasil Menambah data';
-           $code = 200;
-
-           // Commit the database transaction
-           DB::commit();
-       } catch (\Throwable $th) {
-           // Prepare the error response data
-           $resp['message'] = $th->getMessage();
-
-           // Rollback the database transaction
-           DB::rollBack();
-       }
-
-       // Return the response as a JSON response
-       return response()->json($resp, $code);
-   }
+    }
 
     /**
-    * Display the specified resource.
-    */
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function store(Request $request)
+    {
+        // Return the incoming request data as JSON response for testing purposes
+        return response()->json($request->all());
+
+        // Start a database transaction to ensure data integrity
+        DB::beginTransaction();
+
+        // Initialize the response data
+        $resp = [
+            'status' => false,
+        ];
+        $code = 500;
+
+        try {
+            // Validate the incoming request data
+            $request->validate([
+                'name' => ['required']
+            ]);
+
+            // Prepare the payload for creating a new Tag
+            $payload = $request->only('name');
+
+            // Create a new Tag in the database
+            Tag::create($payload);
+
+            // Prepare the success response data
+            $resp['status'] = true;
+            $resp['message'] = 'Berhasil Menambah data';
+            $code = 200;
+
+            // Commit the database transaction
+            DB::commit();
+        } catch (\Throwable $th) {
+            // Prepare the error response data
+            $resp['message'] = $th->getMessage();
+
+            // Rollback the database transaction in case of any error
+            DB::rollBack();
+        }
+
+        // Return the response as a JSON response
+        return response()->json($resp, $code);
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param string $id The unique identifier of the Tag to be displayed.
+     * @return \Illuminate\Http\JsonResponse The response containing the status, message, and data of the Tag.
+     * @throws \Throwable If any error occurs during the database transaction.
+     */
     public function show(string $id)
     {
         // Initialize the response data
@@ -107,10 +119,11 @@ class TagsController extends Controller
         ];
         $code = 500;
 
+        // Start a database transaction
         DB::beginTransaction();
 
         try {
-            // Find the user by its unique identifier
+            // Find the Tag by its unique identifier
             $tag = Tag::find($id);
 
             // Prepare the success response data
