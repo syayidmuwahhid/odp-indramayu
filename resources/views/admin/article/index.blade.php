@@ -25,7 +25,6 @@
                                         <th
                                             class="uppercase text-xxs opacity-70">
                                             No</th>
-
                                         <th
                                             class="uppercase text-xxs opacity-70">
                                             Judul</th>
