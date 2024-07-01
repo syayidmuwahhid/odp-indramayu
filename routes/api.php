@@ -5,6 +5,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CounterController;
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SettingController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\TagsController;
 use App\Http\Controllers\UserController;
@@ -30,7 +31,7 @@ Route::apiResource('user', UserController::class);
 Route::get('/article/popular', [ArticleController::class, 'popular']);
 Route::apiResource('article', ArticleController::class);
 
-Route::apiResource('profile', ProfileController::class)->only('index', 'update');
+Route::apiResource('setting', SettingController::class)->only('index', 'update');
 
 Route::get('/tags/list/category', [TagsController::class, 'listByCategory'])->name('tags.list.category');
 Route::apiResource('tags', TagsController::class);
@@ -42,7 +43,6 @@ Route::apiResource('video', VideoController::class);
 
 Route::apiResource('slider', SliderController::class);
 
-Route::get('/document/get', [DocumentController::class, 'getDocument']);
 Route::apiResource('document', DocumentController::class);
 
 Route::apiResource('counter', CounterController::class)->only('store');

@@ -7,10 +7,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 
-class ProfileController extends Controller
+class SettingController extends Controller
 {
     /**
      * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\JsonResponse
      */
     public function index()
     {
@@ -20,9 +22,11 @@ class ProfileController extends Controller
         ];
         $code = 500;
 
+        // Start a database transaction
         DB::beginTransaction();
+
         try {
-            // Fetch all users except superadmin
+            // Fetch the first profile record
             $profile = Profile::first();
 
             // Prepare the success response data
@@ -47,6 +51,10 @@ class ProfileController extends Controller
 
     /**
      * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  string  $id
+     * @return \Illuminate\Http\JsonResponse
      */
     public function update(Request $request, string $id)
     {
@@ -84,15 +92,19 @@ class ProfileController extends Controller
             $oldBanner = $profile->banner;
             $oldIcon = $profile->icon;
 
+            // Update the profile record
             $profile::where('id', 1)->update($payload);
 
+            // If a new icon is provided, store it and update the profile record
             if ($request->hasFile('icon')) {
                 $filePath = $request->file('icon')->store('profile', 'public');
                 $profile->icon = 'storage/' . $filePath;
             }
 
+            // Save the profile record
             $profile->save();
 
+            // If a new icon is provided and the old icon exists, delete the old icon
             if ($request->hasFile('icon') && File::exists($oldIcon)) {
                 File::delete($oldIcon);
             }
@@ -115,13 +127,5 @@ class ProfileController extends Controller
 
         // Return the response as a JSON response
         return response()->json($resp, $code);
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
     }
 }
