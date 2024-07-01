@@ -316,7 +316,7 @@ class ArticleController extends Controller
         $code = 500;
 
         try {
-            $counter = Counter::select(DB::raw('COUNT(table_id) as visitor'), 'table_id', 'article.title', 'article.content', 'user_id', 'date', 'category_id', 'category.name as category_name', 'users.name as user_name', 'users.email as user_email')
+            $counter = Counter::select(DB::raw('COUNT(table_id) as visitor'), 'table_id', 'article.title', 'article.content', 'article.image', 'user_id', 'date', 'category_id', 'category.name as category_name', 'users.name as user_name', 'users.email as user_email')
                 ->join('article', 'table_id', 'article.id')
                 ->join('category', 'category.id', 'category_id')
                 ->join('users', 'users.id', 'user_id')
