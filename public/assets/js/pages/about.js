@@ -11,7 +11,7 @@ $(document).ready(async function () {
 async function getData() {
     try {
         // Fetch data from the server using the getRequestData function
-        const { data } = await getRequestData(`${baseL}/api/profile`);
+        const { data } = await getRequestData(`${baseL}/api/setting`);
 
         // Populate the webpage with the fetched data
         $("#title").html(data.title);

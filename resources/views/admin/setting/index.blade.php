@@ -43,7 +43,7 @@
 @section('content')
 
 <div class="w-full px-6 py-6 mx-auto">
-    <form action="/api/profile/1" class="h-full flex flex-col" method="post" id="form_submit" enctype="multipart/form-data">
+    <form action="/api/setting/1" class="h-full flex flex-col" method="post" id="form_submit" enctype="multipart/form-data">
         <input type="hidden" name="_method" value="PUT" />
 
         <div class="grid xl:grid-cols-2 grid-cols-1 gap-6">

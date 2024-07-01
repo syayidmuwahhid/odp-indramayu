@@ -1,68 +1,9 @@
 let c1_data = [];
 let c2_data = [];
-$(document).ready(
-    /**
-     * Fetches data from the dashboard API and updates the UI elements accordingly.
-     * @returns {Promise<void>}
-     */
-    async function getData() {
-        try {
-            // Fetch data from the API
-            let { data } = await getRequestData(`${baseL}/api/dashboard`);
-
-            // Update UI elements with the fetched data
-            $("#user_count").html(data.user_count);
-            $("#article_count").html(data.article_count);
-            $("#category_count").html(data.category_count);
-            $("#document_count").html(data.document_count);
-
-            // Handle the last article data
-            if (data.last_article !== null) {
-                $("#article_title").html(data.last_article.title);
-
-                // Truncate the article content and parse HTML
-                let string = data.last_article.content.substring(0, 300);
-                let parser = new DOMParser();
-                let doc = parser.parseFromString(string, "text/html");
-                let content = doc.body.textContent || "";
-
-                $("#article_content").html(content + "...");
-
-                // Set the article image background
-                $("#article_image").attr(
-                    "style",
-                    `background-image: url('${data.last_article.image}')`
-                );
-
-                // Set the article link
-                $("#article_link").attr(
-                    "href",
-                    baseL + "/article/" + data.last_article.id
-                );
-            }
-
-            // Update the monthly article data
-            data.monthly_article.forEach((element) => {
-                c1_data[element.month - 1] = element.total_count;
-            });
-
-            // Generate the chart for top-rated articles
-            data.visitor.forEach((element) => {
-                c2_data[element.day - 1] = element.visitor;
-            });
-            chart2(c2_data);
-
-            // Set the table for articles
-            setTableArticle(data.articles);
-
-            // Set the document container
-            setDocument(data.documents);
-        } catch (error) {
-            // Display an error notification
-            notif("error", "Galat!", error);
-        }
-    }
-);
+$(document).ready(async function () {
+    await getData();
+    chart1(c2_data);
+});
 
 /**
  * Fetches data from the dashboard API and updates the UI elements accordingly.
