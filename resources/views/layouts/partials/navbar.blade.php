@@ -130,8 +130,9 @@
   >
     <input id="nav-toggle" type="checkbox" class="hidden" />
     @foreach($menus as $menu)
+    @php($currenUrl = request()->path() == "/" ? request()->path() : '/'.request()->path())
     <li class="nav-item">
-      <a href="{{ $menu->url }}" class="nav-link {{ request()->path() == $menu->url ? 'active' : '' }}">{{ $menu->title }}</a>
+      <a href="{{ $menu->url }}" class="nav-link {{ $currenUrl == $menu->url ? 'active' : '' }}">{{ $menu->title }}</a>
     </li>
     @endforeach
 
@@ -171,7 +172,7 @@
       document.documentElement.classList.toggle('dark');
       const isDarkMode = document.documentElement.classList.contains('dark');
       localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
-      
+
       const iconSun = document.querySelector('#dark-mode-toggle .fa-sun');
       const iconMoon = document.querySelector('#dark-mode-toggle .fa-moon');
       iconSun.classList.toggle('hidden');
@@ -182,7 +183,7 @@
       document.documentElement.classList.toggle('dark');
       const isDarkMode = document.documentElement.classList.contains('dark');
       localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
-      
+
       const iconSun = document.querySelector('#dark-mode-toggle1 .fa-sun');
       const iconMoon = document.querySelector('#dark-mode-toggle1 .fa-moon');
       iconSun.classList.toggle('hidden');

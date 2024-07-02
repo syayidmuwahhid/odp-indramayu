@@ -14,7 +14,7 @@ $(document).ready(function () {
 function formModal() {
     // Prepare the HTML for the form
     let html = `<form id="formModal">`;
-    html += `<label>Nama</label>`;
+    html += `<label>Nama <span class="text-sm text-red-500">*</span></label>`;
     html += `<input class="swal2-input" placeholder="name" name="name" onkeydown="if(event.key === 'Enter') event.preventDefault();"> <br/>`;
     html += `</form>`;
 
@@ -43,7 +43,7 @@ async function editModal(id) {
 
         // Prepare the HTML for the form with category data
         let html = `<form id="editModal">`;
-        html += `<label>Nama</label>`;
+        html += `<label>Nama <span class="text-sm text-red-500">*</span></label>`;
         html += `<input class="swal2-input" placeholder="name" name="name" value="${data.name}"> <br/>`;
         html += `<input type="hidden" name="_method" value="PUT">`;
         html += `</form>`;
@@ -87,9 +87,7 @@ async function getData() {
         data.data.reverse().forEach((value, i) => {
             let html = `<tr>
                 <td class="text-center ">${++i}</td>
-                <td class="">${
-                    value.name
-                }</td>
+                <td class="">${value.name}</td>
                 <td class="">
                     <button class="inline-block px-2 py-2 mt-2 mb-2 font-bold text-center align-middle transition-all bg-transparent border border-solid rounded-lg shadow-none cursor-pointer active:opacity-85 leading-pro text-xs ease-soft-in tracking-tight-soft bg-150 bg-x-25 hover:scale-102 active:shadow-soft-xs border-yellow-500 text-yellow-500 hover:text-yellow-900 hover:opacity-75 hover:shadow-none active:scale-100 active:border-yellow-900 active:bg-yellow-900 active:text-yellow hover:active:border-yellow-900 hover:active:bg-transparent hover:active:text-yellow-900 hover:active:opacity-75"
                         style="border-color: #f1c40f; color: #f1c40f;" onclick="editModal(${
@@ -114,9 +112,7 @@ async function getData() {
         });
 
         $("#table_data").dataTable({
-            columnDefs: [
-                { width: 50, targets: [0] },
-            ],
+            columnDefs: [{ width: 50, targets: [0] }],
         });
     } catch (error) {
         // Display an error notification

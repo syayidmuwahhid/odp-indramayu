@@ -143,7 +143,6 @@ function setCategory() {
 
         // Generate HTML for the current category and append it to the HTML string
         html += `<li><a class="dark:text-white filter-btn btn btn-sm ${active}" href="/article?category=${el}">${el}</a></li>`;
-
     });
 
     // Append the generated HTML to the category container

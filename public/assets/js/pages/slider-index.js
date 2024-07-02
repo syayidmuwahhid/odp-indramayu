@@ -16,16 +16,16 @@ function closeDialog(event, id) {
 function formModal() {
     let html = `
     <form id="formModal" enctype="multipart/form-data">
-    <div style="display: flex; align-items: center; margin: 2rem 2.1rem; width: 420px;">
-        <label>Judul</label>
+    <div style="display: flex; align-items: center; margin: 1rem 2.1rem; width: 420px;">
+        <label>Judul <span class="text-sm text-red-500">*</span></label>
         <input class="swal2-input" style="flex:1;" placeholder="Judul" name="title"> <br/>
     </div>
-    <div style="display: flex; align-items: center; margin-bottom: 3rem;">
-        <label>Deskripsi</label>
+    <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+        <label>Deskripsi <span class="text-sm text-red-500">*</span></label>
         <textarea class="swal2-textarea" style="flex:1;" placeholder="Deskripsi" name="description"></textarea>
     </div>
-    <div style="display: flex; align-items: center; margin-bottom: 2rem;">
-        <label style="width: 90px; margin-right: 1rem;">Slider</label>
+    <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+        <label style="width: 90px; margin-right: 1rem;">Slider <span class="text-sm text-red-500">*</span></label>
         <input type="file" class="swal2-file" style="width: 280px;" name="file" accept=".jpeg,.png,.jpg,.gif,.svg,.avi,.mpeg,.quicktime,.mp4"> <br/>
     </div>
     </form>
@@ -110,15 +110,15 @@ async function editModal(id) {
 
         let html = `
         <form id="editModal" enctype="multipart/form-data">
-        <div style="display: flex; align-items: center; margin: 2rem 2.1rem; width: 420px;">
-            <label>Judul</label>
+        <div style="display: flex; align-items: center; margin: 1rem 2.1rem; width: 420px;">
+            <label>Judul <span class="text-sm text-red-500">*</span></label>
             <input class="swal2-input" style="flex:1;" placeholder="Judul" name="title" value="${data.title}"> <br/>
         </div>
-        <div style="display: flex; align-items: center; margin-bottom: 3rem;">
-            <label>Deskripsi</label>
+        <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+            <label>Deskripsi <span class="text-sm text-red-500">*</span></label>
             <textarea class="swal2-textarea" style="flex:1;" placeholder="Deskripsi" name="description">${data.description}</textarea>
         </div>
-        <div style="display: flex; align-items: center; margin-bottom: 2rem;">
+        <div style="display: flex; align-items: center; margin-bottom: 1rem;">
             <label style="width: 90px; margin-right: 1rem;">Slider</label>
             <input type="file" class="swal2-file" style="width: 280px;" name="file" accept=".jpeg,.png,.jpg,.gif,.svg,.avi,.mpeg,.quicktime,.mp4" value="${data.file}"> <br/>
         </div>

@@ -186,17 +186,14 @@ async function getArticle() {
 //article populer
 async function getArticle() {
     try {
-        let { data } = await getRequestData(`${baseL}/api/article/populer`);
-
+        let { data } = await getRequestData(`${baseL}/api/article/popular`);
         let count = 0;
         let html = "";
-
         data.reverse().forEach((element) => {
             count++;
             if (count > 5) {
                 return;
             }
-
             let tags = `<div class="flex flex-wrap gap-1">`;
             let tag_count = 0;
             element.tags.forEach((tag) => {
@@ -207,9 +204,7 @@ async function getArticle() {
                 tags += `<a href="/article?tag=${tag.name}" class="tag-card">${tag.name}</a>`;
             });
             tags += `</div>`;
-
             let string = element.content.substring(0, 200);
-
             let parser = new DOMParser();
             let doc = parser.parseFromString(string, "text/html");
             let content = doc.body.textContent || "";
@@ -221,30 +216,27 @@ async function getArticle() {
             html += `<p class="dark:text-slate-800">${content}...</p>`;
             html += `<div class="card-footer mt-6 flex space-x-4">`;
             html += `<span class="inline-flex items-center text-xs text-[#666]">
-                        <svg class="mr-1.5" width="14" height="16" viewBox="0 0 14 16"
-                            fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M12.5 2H11V0.375C11 0.16875 10.8313 0 10.625 0H9.375C9.16875 0 9 0.16875 9 0.375V2H5V0.375C5 0.16875 4.83125 0 4.625 0H3.375C3.16875 0 3 0.16875 3 0.375V2H1.5C0.671875 2 0 2.67188 0 3.5V14.5C0 15.3281 0.671875 16 1.5 16H12.5C13.3281 16 14 15.3281 14 14.5V3.5C14 2.67188 13.3281 2 12.5 2ZM12.3125 14.5H1.6875C1.58438 14.5 1.5 14.4156 1.5 14.3125V5H12.5V14.3125C12.5 14.4156 12.4156 14.5 12.3125 14.5Z"
-                                fill="#939393" />
-                        </svg>
-                        ${convertDate(element.date)}
-                    </span>`;
-            html += `<span class="inline-flex items-center text-xs text-[#666]">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
-                            <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+                            <svg class="mr-1.5" width="14" height="16" viewBox="0 0 14 16"
+                                fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M12.5 2H11V0.375C11 0.16875 10.8313 0 10.625 0H9.375C9.16875 0 9 0.16875 9 0.375V2H5V0.375C5 0.16875 4.83125 0 4.625 0H3.375C3.16875 0 3 0.16875 3 0.375V2H1.5C0.671875 2 0 2.67188 0 3.5V14.5C0 15.3281 0.671875 16 1.5 16H12.5C13.3281 16 14 15.3281 14 14.5V3.5C14 2.67188 13.3281 2 12.5 2ZM12.3125 14.5H1.6875C1.58438 14.5 1.5 14.4156 1.5 14.3125V5H12.5V14.3125C12.5 14.4156 12.4156 14.5 12.3125 14.5Z"
+                                    fill="#939393" />
                             </svg>
-                        <p class="pl-1">${element.user_name}</p>
-                    </span>`;
+                            ${convertDate(element.date)}
+                        </span>`;
+            html += `<span class="inline-flex items-center text-xs text-[#666]">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+                                <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+                                </svg>
+                            <p class="pl-1">${element.user_name}</p>
+                        </span>`;
             html += `</div>`;
             html += `</div>`;
             html += `</div>`;
             html += `</div>`;
         });
-
         $("#artikel_container").append(html);
-
         // Initialize Swiper after articles have been appended
-
         var swiper = new Swiper(".reviews-carousel", {
             loop: true,
             autoplay: {
