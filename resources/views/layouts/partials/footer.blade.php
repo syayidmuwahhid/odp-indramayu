@@ -9,7 +9,7 @@
         <p class="mt-6">{{ $appData->description }}</p>
       </div>
       <div class="col-12 mt-12 md:col-6 lg:col-3">
-        <h6 class="text-orange-600">Socials</h6>
+        <h6 class="text-orange-600">Social Media</h6>
         <p>diskominfo@indramayukab.go.id</p>
         <ul class="social-icons mt-4 lg:mt-6">
           <li>
@@ -74,7 +74,7 @@
         </ul>
       </div>
       <div class="col-12 mt-12 md:col-6 lg:col-3">
-        <h6 class="text-orange-600">Links</h6>
+        <h6 class="text-orange-600">Tautan</h6>
         <ul>
           <li>
             <a href="{{ route('landing-page') }}">Beranda</a>
@@ -105,7 +105,7 @@
       class="footer-copyright mx-auto border-t border-border pb-10 pt-7 text-center"
     >
       {{-- <p>Designed And Developed by <a href="https://themefisher.com" target="_blank">Themefisher</a></p> --}}
-      <p>Designed And Developed by Team 10 JDA</p>
+      <p>&copy; 2024, Organisasi Pemerintah Daerah Indramyu</p>
     </div>
   </div>
 </footer>

@@ -18,8 +18,13 @@
         background-color: #f9f9f9;
         padding: 20px;
     }
-    #history p, #misi p {
+    #history p{
         text-indent: 2rem;
+        text-align: justify;
+        margin-bottom: 1rem;
+    }
+
+    #misi p {
         text-align: justify;
         margin-bottom: 1rem;
     }
@@ -73,7 +78,7 @@
         <h4 class="text-center text-4xl mb-8 banner-title text-orange-600">
             Sejarah
         </h4>
-        <div class=" w-4/5 shadow-lg px-16 py-12" id="history">
+        <div class=" w-4/5 shadow-lg px-8 py-12" id="history">
 
         </div>
     </div>
@@ -102,7 +107,7 @@
         <h4 class="text-center text-4xl mb-8 banner-title text-orange-600">
             Misi
         </h4>
-        <div class="w-4/5 shadow-lg px-16 py-12" id="misi">
+        <div class="w-4/5 shadow-lg px-8 py-12" id="misi">
 
         </div>
     </div>
@@ -116,7 +121,7 @@
             Geografi
         </h4>
         <div class="w-4/5">
-            <p class="text-center" id="geografi">
+            <p class="text-left" id="geografi">
             </p>
         </div>
     </div>
@@ -129,7 +134,7 @@
         <h4 class="text-center text-4xl mb-8 banner-title text-orange-600">
             Demografi
         </h4>
-        <div class="w-4/5 shadow-lg px-16 py-12" id="demografi">
+        <div class="w-4/5 shadow-lg px-8 py-12" id="demografi">
 
         </div>
     </div>
