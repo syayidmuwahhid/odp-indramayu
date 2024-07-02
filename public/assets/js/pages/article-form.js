@@ -102,16 +102,14 @@ async function getCategoryList() {
     // Fetch the category list from the server using the getRequestData function
     let { data } = await getRequestData(`${baseL}/api/category/list`);
 
-    // Use jQuery to select the category dropdown element
+    // Use jQuery to select the category dropdown element\
     $("#select_category")
         // Initialize Select2 with the fetched category data
         .select2({
             placeholder: "pilih kategori",
             // allowclear: true, // Uncomment this line to enable the "clear selection" option
             data, // Assign the fetched category data to the Select2 data option
-        })
-        // Add a custom classname to the category dropdown element
-        .addClass("inputan");
+        });
 }
 
 /**

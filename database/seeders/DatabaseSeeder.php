@@ -68,28 +68,28 @@ class DatabaseSeeder extends Seeder
             [
                 'title' => 'Artikel',
                 'Description' => 'Halaman List Artikel',
-                'url' => 'article',
+                'url' => '/article',
                 'status' => 'active',
                 'created_at' => now()
             ],
             [
                 'title' => 'Dokumen',
                 'Description' => 'Halaman List Dokumen',
-                'url' => 'dokumen',
+                'url' => '/dokumen',
                 'status' => 'active',
                 'created_at' => now()
             ],
             [
                 'title' => 'Tentang',
                 'Description' => 'Halaman Tentang Aplikasi dan Profil',
-                'url' => 'about',
+                'url' => '/about',
                 'status' => 'active',
                 'created_at' => now()
             ],
             [
                 'title' => 'Kontak',
                 'Description' => 'Halaman Kontak Masukan',
-                'url' => 'contact',
+                'url' => '/contact',
                 'status' => 'active',
                 'created_at' => now()
             ],

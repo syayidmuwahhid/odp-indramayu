@@ -6,6 +6,10 @@
     {{-- tagify --}}
     <link href="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.css" rel="stylesheet" type="text/css" />
     <style>
+        .select2-container .select2-selection--single {
+            height: 40px; /* Adjust the height as needed */
+        }
+
         .tags-look .tagify__dropdown__item{
             display: inline-block;
             vertical-align: middle;
@@ -100,9 +104,9 @@
                                     <input type="file" name="video" id="video" class="inputan" accept="video/*">
                                 </div>
                                 {{-- slug --}}
-                                <div class="col-span-6 sm:col-span-3">
+                                <div class="col-span-6 sm:col-span-3 hidden">
                                     <label for="slug" class="text-sm font-medium text-gray-900 block mb-2">Slug</label>
-                                    <input type="text" name="slug" id="slug" class="inputan">
+                                    <input type="hidden" name="slug" id="slug" class="inputan">
                                 </div>
                                 <input type="hidden" name="user_id" value="{{ Auth::user()->id }}" />
                             </div>

@@ -15,11 +15,11 @@ $(document).ready(function () {
 function formModal() {
     // Prepare the HTML for the form
     let html = `<form id="formModal">`;
-    html += `<label>Nama</label>`;
+    html += `<label>Nama <span class="text-sm text-red-500">*</span></label>`;
     html += `<input class="swal2-input mr-3" placeholder="name" name="name"> <br/>`;
-    html += `<label>Email</label>`;
+    html += `<label>Email <span class="text-sm text-red-500">*</span></label>`;
     html += `<input type="email" class="swal2-input mr-3" placeholder="email" name="email"> <br/>`;
-    html += `<label>Password</label>`;
+    html += `<label>Password <span class="text-sm text-red-500">*</span></label>`;
     html += `<input type="password" class="swal2-input" placeholder="Password" name="password" value="" >`;
     html += `</form>`;
 
@@ -48,9 +48,9 @@ async function editModal(id) {
 
         // Prepare the HTML for the form with user data
         let html = `<form id="editModal">`;
-        html += `<label>Name</label>`;
+        html += `<label>Name <span class="text-sm text-red-500">*</span></label>`;
         html += `<input class="swal2-input" placeholder="name" name="name" value="${data.name}"> <br/>`;
-        html += `<label>Email</label>`;
+        html += `<label>Email <span class="text-sm text-red-500">*</span></label>`;
         html += `<input type="email" class="swal2-input" placeholder="email" name="email" value="${data.email}" readonly> <br/>`;
         html += `<label>Password</label>`;
         html += `<input type="password" class="swal2-input" placeholder="Password" name="password">`;

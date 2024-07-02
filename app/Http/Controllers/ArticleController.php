@@ -428,9 +428,9 @@ class ArticleController extends Controller
             // Fetch tags for each article
             foreach($counter as $article) {
                 $article['tags'] = Tag::select('tag.name', 'article_tag.article_id')
-                    ->join('article_tag', "article_tag.id", "article_tag_id")
-                    ->where("article_tag.article_id", $article->table_id)
-                    ->get();
+                ->join('article_tag', "article_tag.id", "article_tag_id")
+                ->where("article_tag.article_id", $article->table_id)
+                ->get();
             }
 
             // Attach the fetched tags to the articles
