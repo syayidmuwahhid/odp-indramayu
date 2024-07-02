@@ -18,8 +18,6 @@ async function getData() {
             throw new Error(data.message);
         }
 
-        console.log(data);
-
         // Clear the table body
         $("#tbody_data").empty();
 
