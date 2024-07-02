@@ -131,18 +131,19 @@ function setArticle() {
  */
 function setCategory() {
     // Determine the active class for the "All" category
-    let active = !category ? "filter-btn-active" : "";
+    let active = !category ? "filter-btn-active" : "dark:text-white ";
 
     // Initialize the HTML string for the category list
-    let html = `<li><a class="dark:text-slate-800 filter-btn btn btn-sm ${active}" href="/article">Semua</a></li>`;
+    let html = `<li><a class=" filter-btn btn btn-sm ${active}" href="/article">Semua</a></li>`;
 
     // Iterate over the category list
     categoryList.forEach((el) => {
         // Determine the active class for the current category
-        active = category === el ? `filter-btn-active` : ``;
+        active = category === el ? `filter-btn-active` : `dark:text-white `;
 
         // Generate HTML for the current category and append it to the HTML string
-        html += `<li><a class="dark:text-white filter-btn btn btn-sm ${active}" href="/article?category=${el}">${el}</a></li>`;
+        html += `<li><a class="filter-btn btn btn-sm ${active}" href="/article?category=${el}">${el}</a></li>`;
+
     });
 
     // Append the generated HTML to the category container

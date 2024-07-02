@@ -316,9 +316,10 @@
         font-size: 30px;
         top: 45%;
     }
-    .carousel .list .item .des{
-        font-size: 20px;
+    .carousel .list .item .content .des{
+        font-size: 17px;
         width: 70%;
+        top: 70px;
     }
 
     .thumbnail .item{
