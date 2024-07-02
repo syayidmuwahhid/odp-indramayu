@@ -204,9 +204,6 @@ async function getData() {
         // Fetch the article data from the server using the article ID
         let data = await getRequestData(`${baseL}/api/article/${id}`);
 
-        // Log the fetched data for debugging purposes
-        console.log(data);
-
         // Populate the form fields with the fetched data
         $("#title").val(data.data.title); // Set the title input field value
         $("#select_category").val(data.data.category_id); // Set the category dropdown value

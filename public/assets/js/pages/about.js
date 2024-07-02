@@ -21,10 +21,6 @@ async function getData() {
         $("#misi").html(data.misi);
         $("#geografi").html(data.geografi);
         $("#demografi").html(data.demografi);
-
-        // Log the fetched geografi and demografi data to the console
-        console.log("data geografi", data.geografi);
-        console.log("data demografi", data.demografi);
     } catch (error) {
         // Display an error notification if the data fetching fails
         notif("e-rror", "Galat!", error);
