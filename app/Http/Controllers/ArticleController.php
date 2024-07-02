@@ -6,6 +6,7 @@ use App\Models\Article;
 use App\Models\ArticleTag;
 use App\Models\Counter;
 use App\Models\Tag;
+use Error;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -96,6 +97,13 @@ class ArticleController extends Controller
                 'content' => 'required|string',
                 'slug' => 'required|string',
             ]);
+
+            //check duplicate article
+            $dup = Article::where('title', $payload['title'])->count();
+
+            if ($dup > 0) {
+                throw new Error("Judul sudah digunakan!");
+            }
 
             // Assign the user_id from the request to the payload
             $payload['user_id'] = $request->user_id;
@@ -242,6 +250,16 @@ class ArticleController extends Controller
 
             // Find the article by its unique identifier
             $article = Article::find($id);
+            $oldTitle = $article->title;
+
+            if ($oldTitle != $payload['title']) {
+                //check duplicate article
+                $dup = Article::where('title', $payload['title'])->count();
+
+                if ($dup > 0) {
+                    throw new Error("Judul sudah digunakan!");
+                }
+            }
 
             // Store the old image and video paths for deletion
             $oldImg = $article->image;
