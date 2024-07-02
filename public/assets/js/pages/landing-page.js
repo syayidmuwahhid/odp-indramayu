@@ -77,6 +77,7 @@ async function getSlider() {
             }
 
             list += `<div class="item">
+            <div class="overlay"></div>
             ${resource}
             <div class="content">
                 <div class="title">${element.title}</div>
