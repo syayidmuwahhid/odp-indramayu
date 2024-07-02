@@ -26,6 +26,7 @@ class Article extends Model
         'image',
         'category_id',
         'user_id',
+        'slug',
     ];
 
     public function User(): BelongsTo

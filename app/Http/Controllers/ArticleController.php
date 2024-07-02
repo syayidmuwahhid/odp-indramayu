@@ -94,6 +94,7 @@ class ArticleController extends Controller
                 'tags' => 'required',
                 'title' => 'required|string|max:255',
                 'content' => 'required|string',
+                'slug' => 'required|string',
             ]);
 
             // Assign the user_id from the request to the payload
@@ -236,6 +237,7 @@ class ArticleController extends Controller
                 'tags' => 'required',
                 'title' => 'required|string|max:255',
                 'content' => 'required|string',
+                'slug' => 'required|string',
             ]);
 
             // Find the article by its unique identifier
@@ -395,11 +397,11 @@ class ArticleController extends Controller
             // Fetch the most visited articles by joining the Counter, Article, Category, and Users tables
             // Group by table_id and table_name, having table_name as 'article'
             // Order by visitor count in descending order and limit the result to 4
-            $counter = Counter::select(DB::raw('COUNT(table_id) as visitor'), 'table_id', 'article.title', 'article.content', 'article.image', 'user_id', 'date', 'category_id', 'category.name as category_name', 'users.name as user_name', 'users.email as user_email')
+            $counter = Counter::select(DB::raw('COUNT(table_id) as visitor'), 'table_id', 'article.title', 'article.content', 'article.image', 'user_id', 'date', 'category_id', 'category.name as category_name', 'users.name as user_name', 'users.email as user_email', 'slug')
                 ->join('article', 'table_id', 'article.id')
                 ->join('category', 'category.id', 'category_id')
                 ->join('users', 'users.id', 'user_id')
-                ->groupBy('table_id', 'table_name', 'article.title', 'article.content', 'article.image', 'user_id', 'date', 'category_id', 'category.name', 'users.name', 'users.email')
+                ->groupBy('table_id', 'table_name', 'article.title', 'article.content', 'article.image', 'user_id', 'date', 'category_id', 'category.name', 'users.name', 'users.email', 'slug')
                 ->having('table_name', 'article')
                 ->orderBy('visitor', 'desc')
                 ->limit(4)
@@ -419,6 +421,59 @@ class ArticleController extends Controller
             // Prepare the success response data
             $resp['status'] = true;
             $resp['message'] = 'Data berhasil dihapus';
+            $code = 200;
+
+            // Commit the database transaction
+            DB::commit();
+        } catch (\Throwable $th) {
+            // Prepare the error response data
+            $resp['message'] = $th->getMessage();
+
+            // Rollback the database transaction in case of any error
+            DB::rollBack();
+        }
+
+        // Return the response as a JSON response
+        return response()->json($resp, $code);
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param string $id The unique identifier of the article to be displayed.
+     * @return \Illuminate\Http\JsonResponse The response containing the status, message, and data of the article.
+     *
+     * @throws \Exception In case of any database transaction errors.
+     */
+    public function showSlug(string $slug)
+    {
+        // Initialize the response data
+        $resp = [
+            'status' => false,
+        ];
+        $code = 500;
+
+        // Start a database transaction
+        DB::beginTransaction();
+
+        try {
+            // Find the article by its unique identifier
+            $article = Article::where('slug', $slug)->first();
+            $article->User; // Eager loading the related user data
+
+            // Fetch tags for the article
+            $tags = Tag::select('tag.name', 'article_tag.article_id')
+                ->join('article_tag', "article_tag.id", "article_tag_id")
+                ->where("article_tag.article_id", $article->id)
+                ->get();
+
+            // Attach the fetched tags to the article
+            $article['tags'] =  $tags;
+
+            // Prepare the success response data
+            $resp['status'] = true;
+            $resp['message'] = 'Berhasil Mengambil data';
+            $resp['data'] = $article;
             $code = 200;
 
             // Commit the database transaction

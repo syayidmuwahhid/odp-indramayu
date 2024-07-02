@@ -308,7 +308,7 @@ function setTableArticle(data) {
     // Loop through each article object in the data array
     data.forEach((element) => {
         // Create a new table row with an onclick event to navigate to the article detail page
-        html += `<tr onclick="window.location.href='${baseL}/article/${element.id}'" class="cursor-pointer">`;
+        html += `<tr onclick="window.location.href='${baseL}/article/${element.slug}'" class="cursor-pointer">`;
 
         // Add a table data cell for the article image and title
         html += `<td class="p-2 align-middle bg-transparent border-b">`;

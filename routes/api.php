@@ -4,6 +4,7 @@ use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CounterController;
 use App\Http\Controllers\DocumentController;
+use App\Http\Controllers\MenuController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\SliderController;
@@ -29,6 +30,7 @@ use Illuminate\Support\Facades\Route;
 Route::apiResource('user', UserController::class);
 
 Route::get('/article/popular', [ArticleController::class, 'popular']);
+Route::get('/article/{slug}/slug', [ArticleController::class, 'showSlug']);
 Route::apiResource('article', ArticleController::class);
 
 Route::apiResource('setting', SettingController::class)->only('index', 'update');
@@ -46,6 +48,8 @@ Route::apiResource('slider', SliderController::class);
 Route::apiResource('document', DocumentController::class);
 
 Route::apiResource('counter', CounterController::class)->only('store');
+
+Route::apiResource('menu', MenuController::class);
 
 Route::get('dashboard', function (Request $request) {
     $resp = [

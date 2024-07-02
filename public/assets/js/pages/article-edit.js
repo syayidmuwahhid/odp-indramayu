@@ -10,6 +10,9 @@ $(document).ready(
      * @returns {Promise<void>}
      */
     async function () {
+        //slug
+        $("#title").keyup(generateSlug);
+
         // Create a new instance of the ClassicEditor
         ClassicEditor.create(document.querySelector("#editor"), {
             removePlugins: [
@@ -220,8 +223,18 @@ async function getData() {
 
         // Set the editor content with the fetched article content
         editorInstance.setData(data.data.content);
+
+        //set slug
+        $("#slug").val(data.data.slug);
     } catch (error) {
         // Display an error notification if the request fails or the response status is not successful
         notif("error", "Galat!", error);
     }
+}
+
+function generateSlug() {
+    slug = "";
+    let val = $(this).val();
+    slug = val.toLowerCase().replace(/\s+/g, "-");
+    $("#slug").val(slug);
 }

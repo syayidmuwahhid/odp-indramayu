@@ -99,6 +99,11 @@
                                     <label for="video" class="text-sm font-medium text-gray-900 block mb-2">Video</label>
                                     <input type="file" name="video" id="video" class="inputan" accept="video/*">
                                 </div>
+                                {{-- slug --}}
+                                <div class="col-span-6 sm:col-span-3">
+                                    <label for="slug" class="text-sm font-medium text-gray-900 block mb-2">Slug</label>
+                                    <input type="text" name="slug" id="slug" class="inputan">
+                                </div>
                                 <input type="hidden" name="user_id" value="{{ Auth::user()->id }}" />
                             </div>
                             <div class="mt-5 flex justify-end">
