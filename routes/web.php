@@ -28,6 +28,7 @@ Route::name('admin.')->prefix('admin')->middleware('auth')->group(function () {
     Route::get('/document/form', fn () => view('admin.document.form'))->name('document.form');
     Route::get('/document/{id}/edit', fn ($id) => view('admin.document.edit', ['id' => $id]))->name('document.edit');
 
+    Route::get('/menu', fn () => view('admin.menu.index'))->name('menu.index');
 });
 
 

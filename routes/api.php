@@ -4,6 +4,7 @@ use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CounterController;
 use App\Http\Controllers\DocumentController;
+use App\Http\Controllers\MenuController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\SliderController;
@@ -47,6 +48,8 @@ Route::apiResource('slider', SliderController::class);
 Route::apiResource('document', DocumentController::class);
 
 Route::apiResource('counter', CounterController::class)->only('store');
+
+Route::apiResource('menu', MenuController::class);
 
 Route::get('dashboard', function (Request $request) {
     $resp = [

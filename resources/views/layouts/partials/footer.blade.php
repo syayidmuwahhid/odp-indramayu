@@ -76,21 +76,11 @@
       <div class="col-12 mt-12 md:col-6 lg:col-3">
         <h6 class="text-orange-600">Tautan</h6>
         <ul>
-          <li>
-            <a href="{{ route('landing-page') }}">Beranda</a>
-          </li>
-          <li>
-            <a href="{{ route('article') }}" >Artikel</a>
-          </li>
-          <li>
-            <a href="{{ route('dokumen') }}">Dokumen</a>
-          </li>
-          <li>
-            <a href="{{ route('about') }}">Tentang</a>
-          </li>
-          <li>
-            <a href="{{ route('contact') }}">Kontak</a>
-          </li>
+            @foreach ($menus as $menu)
+            <li>
+                <a href="{{ $menu->url }}">{{ $menu->title }}</a>
+            </li>
+            @endforeach
         </ul>
       </div>
       <div class="col-12 mt-12 md:col-6 lg:col-3">
