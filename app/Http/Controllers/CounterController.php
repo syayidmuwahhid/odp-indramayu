@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Article;
 use App\Models\Counter;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -29,6 +30,11 @@ class CounterController extends Controller
         try {
             // Get only necessary fields from request
             $payload = $request->only('table_name', 'table_id');
+
+            if ($payload['table_name'] == 'article') {
+                $article = Article::where('slug', $payload['table_id'])->first();
+                $payload['table_id'] = $article->id;
+            }
 
             // Create a new Counter record
             Counter::create($payload);

@@ -415,7 +415,7 @@ class ArticleController extends Controller
             // Fetch the most visited articles by joining the Counter, Article, Category, and Users tables
             // Group by table_id and table_name, having table_name as 'article'
             // Order by visitor count in descending order and limit the result to 4
-            $counter = Counter::select(DB::raw('COUNT(table_id) as visitor'), 'table_id', 'article.title', 'article.content', 'article.image', 'user_id', 'date', 'category_id', 'category.name as category_name', 'users.name as user_name', 'users.email as user_email', 'slug')
+            $counter = Counter::select(DB::raw('COUNT(table_id) as visitor'), 'table_id', 'article.title', 'article.content', 'article.image', 'user_id', 'date', 'category_id', 'category.name as category_name', 'users.name as user_name', 'users.email as user_email', 'article.slug')
                 ->join('article', 'table_id', 'article.id')
                 ->join('category', 'category.id', 'category_id')
                 ->join('users', 'users.id', 'user_id')
@@ -428,9 +428,9 @@ class ArticleController extends Controller
             // Fetch tags for each article
             foreach($counter as $article) {
                 $article['tags'] = Tag::select('tag.name', 'article_tag.article_id')
-                ->join('article_tag', "article_tag.id", "article_tag_id")
-                ->where("article_tag.article_id", $article->table_id)
-                ->get();
+                    ->join('article_tag', "article_tag.id", "article_tag_id")
+                    ->where("article_tag.article_id", $article->table_id)
+                    ->get();
             }
 
             // Attach the fetched tags to the articles
@@ -438,7 +438,7 @@ class ArticleController extends Controller
 
             // Prepare the success response data
             $resp['status'] = true;
-            $resp['message'] = 'Data berhasil dihapus';
+            $resp['message'] = 'Data berhasil diambil';
             $code = 200;
 
             // Commit the database transaction
