@@ -10,7 +10,7 @@
             <div
                 class="relative flex flex-col min-w-0 mb-6 break-words bg-white border-0 border-transparent border-solid shadow-soft-xl rounded-2xl bg-clip-border">
                 <div
-                    class="p-6 pb-0 mb-7 flex justify-between bg-white border-b-0 border-b-solid rounded-t-2xl border-b-transparent">
+                    class="p-6 pb-0 mb-7 md:flex md:items-center md:justify-between bg-white border-b-0 border-b-solid rounded-t-2xl border-b-transparent">
                     <h6>Tabel Dokumen</h6>
 
                     {{-- button modal --}}

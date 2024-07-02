@@ -61,7 +61,7 @@
                                 <div class="col-span-6 sm:col-span-3">
                                     <label for="product-name"
                                         class="text-sm font-medium text-gray-900 block mb-2">Judul <span class="text-sm text-red-500">*</span></label>
-                                    <input type="text" name="title" id="product-name" class="inputan"
+                                    <input type="text" name="title"id="title" class="inputan"
                                         placeholder="tambahkan judul artikel" required>
                                 </div>
                                 {{-- kategory --}}
@@ -97,6 +97,11 @@
                                 <div class="col-span-6 sm:col-span-3">
                                     <label for="video" class="text-sm font-medium text-gray-900 block mb-2">Video</label>
                                     <input type="file" name="video" id="video" class="inputan" accept="video/*">
+                                </div>
+                                {{-- slug --}}
+                                <div class="col-span-6 sm:col-span-3">
+                                    <label for="slug" class="text-sm font-medium text-gray-900 block mb-2">Slug</label>
+                                    <input type="text" name="slug" id="slug" class="inputan">
                                 </div>
                                 <input type="hidden" name="user_id" value="{{ Auth::user()->id }}" />
                             </div>

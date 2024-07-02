@@ -2,17 +2,29 @@ let articleData = {};
 let categoryList = [];
 let category = $("#category").val();
 let tagArticle = $("#tag").val();
-$(document).ready(async function () {
-    await getData(); // get data
-    setArticle();
 
-    articleData.data.forEach((e) => {
-        categoryList.push(e.category_name);
-    });
-    categoryList = [...new Set(categoryList)];
+$(document).ready(
+    /**
+     * Anonymous async function that initializes the page.
+     * Fetches article data, sets the article, generates unique categories, and sets the category list.
+     *
+     * @returns {Promise<void>}
+     */
+    async function () {
+        await getData(); // get data
+        setArticle();
 
-    setCategory();
-});
+        // Populate category list from article data
+        articleData.data.forEach((e) => {
+            categoryList.push(e.category_name);
+        });
+
+        // Remove duplicates from category list
+        categoryList = [...new Set(categoryList)];
+
+        setCategory();
+    }
+);
 
 /**
  * Function to fetch and display article data in the table.
@@ -29,9 +41,17 @@ async function getData() {
     }
 }
 
+/**
+ * Function to set the article data in the HTML page.
+ * It iterates over the article data, filters based on category and tag,
+ * generates HTML for each article, and appends it to the article container.
+ *
+ * @returns {void}
+ */
 function setArticle() {
     let html = "";
     articleData.data.reverse().forEach((element) => {
+        // If a category is selected, only display articles from that category
         if (category) {
             if (element.category_name !== category) {
                 return;
@@ -56,6 +76,7 @@ function setArticle() {
         });
         tags += `</div>`;
 
+        // If a tag is selected, only display articles with that tag
         if (tagArticle && count === 0) {
             return;
         }
@@ -66,7 +87,7 @@ function setArticle() {
         let content = doc.body.textContent || "";
 
         html += `<div class="mb-8 md:col-6 lg:col-4">`;
-        html += `<div class="card flex flex-col justify-between h-full cursor-pointer" onclick="window.location.href='${baseL}/article/${element.id}'">`;
+        html += `<div class="card flex flex-col justify-between h-full cursor-pointer" onclick="window.location.href='${baseL}/article/${element.slug}'">`;
         html += `<div><img class="card-img h-28 w-full object-cover" src="${baseL}/${element.image}" alt="" />`;
         html += `<div class="card-tags"><a class="tag" href="${baseL}/article?category=${element.category_name}">${element.category_name}</a></div>
                     <h3 class="h4 card-title mt-5">${element.title}</h3>
@@ -86,8 +107,8 @@ function setArticle() {
                 </span>`;
         html += `<span class="inline-flex items-center text-xs text-[#666]">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
-                        <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
-                        </svg>
+                    <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+                    </svg>
                     <p class="pl-1">${element.user_name}</p>
                 </span>`;
         html += `</div>`;
@@ -99,14 +120,32 @@ function setArticle() {
     $(`#article-container`).append(html);
 }
 
+/**
+ * Function to set the category list in the HTML page.
+ * It generates HTML for each category, including an "All" category,
+ * and appends it to the category container.
+ * The "All" category is active when no category is selected.
+ * Each category is active when it matches the selected category.
+ *
+ * @returns {void}
+ */
 function setCategory() {
+    // Determine the active class for the "All" category
     let active = !category ? "filter-btn-active" : "";
+
+    // Initialize the HTML string for the category list
     let html = `<li><a class="dark:text-slate-800 filter-btn btn btn-sm ${active}" href="/article">Semua</a></li>`;
 
+    // Iterate over the category list
     categoryList.forEach((el) => {
+        // Determine the active class for the current category
         active = category === el ? `filter-btn-active` : ``;
+
+        // Generate HTML for the current category and append it to the HTML string
         html += `<li><a class="dark:text-white filter-btn btn btn-sm ${active}" href="/article?category=${el}">${el}</a></li>`;
+
     });
 
+    // Append the generated HTML to the category container
     $("#list-category").append(html);
 }
