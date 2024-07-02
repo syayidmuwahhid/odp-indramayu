@@ -137,7 +137,7 @@ async function getArticle() {
             html += `<div><img class="card-img w-full object-cover" style="height:170px" src="${baseL}/${element.image}" alt="" />`;
             html += `<div class="card-tags"><a class="tag" href="${baseL}/article?category=${element.category_name}">${element.category_name}</a></div>
                         <h3 class="h4 card-title mt-5">${element.title}</h3>
-                        <p">${content}...</p>
+                        <p class="dark:text-slate-800">${content}...</p>
                     </div>`;
             html += `<div class="card-content">`;
             html += tags;
@@ -220,7 +220,7 @@ async function getArticlePopular() {
             html += `<div class="card-content">`;
             html += `<div class="card-tags"><a class="tag" href="${baseL}/article?category=${element.category_name}">${element.category_name}</a></div>`;
             html += `<h3 class="h4 card-title">${element.title}</h3>`;
-            html += `<p>${content}...</p>`;
+            html += `<p class="dark:text-slate-800">${content}...</p>`;
             html += `<div class="card-footer mt-6 flex space-x-4">`;
             html += `<span class="inline-flex items-center text-xs text-[#666]">
                         <svg class="mr-1.5" width="14" height="16" viewBox="0 0 14 16" fill="none">

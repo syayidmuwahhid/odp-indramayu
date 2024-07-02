@@ -91,7 +91,7 @@ function setArticle() {
         html += `<div><img class="card-img h-28 w-full object-cover" src="${baseL}/${element.image}" alt="" />`;
         html += `<div class="card-tags"><a class="tag" href="${baseL}/article?category=${element.category_name}">${element.category_name}</a></div>
                     <h3 class="h4 card-title mt-5">${element.title}</h3>
-                    <p>${content}...</p>
+                    <p class="dark:text-slate-800">${content}...</p>
                 </div>`;
         html += `<div class="card-content">`;
         html += tags;
@@ -134,7 +134,7 @@ function setCategory() {
     let active = !category ? "filter-btn-active" : "";
 
     // Initialize the HTML string for the category list
-    let html = `<li><a class="filter-btn btn btn-sm ${active}" href="/article">Semua</a></li>`;
+    let html = `<li><a class="dark:text-slate-800 filter-btn btn btn-sm ${active}" href="/article">Semua</a></li>`;
 
     // Iterate over the category list
     categoryList.forEach((el) => {
@@ -142,7 +142,8 @@ function setCategory() {
         active = category === el ? `filter-btn-active` : ``;
 
         // Generate HTML for the current category and append it to the HTML string
-        html += `<li><a class="filter-btn btn btn-sm ${active}" href="/article?category=${el}">${el}</a></li>`;
+        html += `<li><a class="dark:text-white filter-btn btn btn-sm ${active}" href="/article?category=${el}">${el}</a></li>`;
+
     });
 
     // Append the generated HTML to the category container

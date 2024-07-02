@@ -103,7 +103,7 @@
   <label
     id="show-button"
     for="nav-toggle"
-    class="order-1 flex cursor-pointer items-center lg:order-1 lg:hidden"
+    class="order-1 flex cursor-pointer items-center lg:order-1 lg:hidden dark:text-slate-800"
   >
     <svg class="h-6 fill-current" viewBox="0 0 20 20">
       <title>Menu Open</title>
@@ -113,7 +113,7 @@
   <label
     id="hide-button"
     for="nav-toggle"
-    class="order-2 hidden cursor-pointer items-center lg:order-1"
+    class="order-2 hidden cursor-pointer items-center lg:order-1 dark:text-slate-800"
   >
     <svg class="h-6 fill-current" viewBox="0 0 20 20">
       <title>Menu Close</title>
@@ -149,10 +149,19 @@
     
     <li class="nav-item mt-3.5 lg:hidden">
       <a class="btn btn-white btn-sm" href="{{ route('login') }}">{{ Auth::check() ? Auth::user()->name : 'Masuk' }}</a>
+      <button id="dark-mode-toggle1" class="p-2 text-white dark:text-slate-800">
+        <i id="dark-mode-icon" class="fas fa-sun dark:hidden"></i>
+        <i id="dark-mode-icon" class="fas fa-moon hidden dark:inline-block"></i>
+      </button>
     </li>
   </ul>
+
   <div class="order-1 ml-auto hidden items-center md:order-2 md:ml-0 lg:flex nav-button">
     <a class="btn btn-white btn-sm" href="{{ route('login') }}">{{ Auth::check() ? Auth::user()->name : 'Masuk' }}</a>
+    <button id="dark-mode-toggle" class="p-2 text-white dark:text-slate-800">
+      <i id="dark-mode-icon" class="fas fa-sun dark:hidden"></i>
+      <i id="dark-mode-icon" class="fas fa-moon hidden dark:inline-block"></i>
+    </button>
   </div>
 </nav>
 
@@ -164,5 +173,31 @@
     } else {
         header.classList.remove('sticky');
     }
+  });
+
+  if (localStorage.getItem('theme') === 'dark') {
+      document.documentElement.classList.add('dark');
+  }
+
+  document.getElementById('dark-mode-toggle').addEventListener('click', function() {
+      document.documentElement.classList.toggle('dark');
+      const isDarkMode = document.documentElement.classList.contains('dark');
+      localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+      
+      const iconSun = document.querySelector('#dark-mode-toggle .fa-sun');
+      const iconMoon = document.querySelector('#dark-mode-toggle .fa-moon');
+      iconSun.classList.toggle('hidden');
+      iconMoon.classList.toggle('hidden');
+  });
+
+  document.getElementById('dark-mode-toggle1').addEventListener('click', function() {
+      document.documentElement.classList.toggle('dark');
+      const isDarkMode = document.documentElement.classList.contains('dark');
+      localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+      
+      const iconSun = document.querySelector('#dark-mode-toggle1 .fa-sun');
+      const iconMoon = document.querySelector('#dark-mode-toggle1 .fa-moon');
+      iconSun.classList.toggle('hidden');
+      iconMoon.classList.toggle('hidden');
   });
 </script>

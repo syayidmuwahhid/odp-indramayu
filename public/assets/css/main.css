@@ -2531,6 +2531,10 @@ input#nav-toggle:checked ~ #nav-menu {
     color: black;
 }
 
+.navbar.sticky button{
+    color: black;
+}
+
 .navbar-nav {
     text-align: center;
 }
