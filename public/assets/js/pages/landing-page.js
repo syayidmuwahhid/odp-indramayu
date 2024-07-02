@@ -1,6 +1,7 @@
 $(document).ready(async function () {
     await getSlider();
     await getArticle();
+    await getArticlePopular();
 
     //step 1: get DOM
     let nextDom = document.getElementById("next");
@@ -184,7 +185,7 @@ async function getArticle() {
 }
 
 //article populer
-async function getArticle() {
+async function getArticlePopular() {
     try {
         let { data } = await getRequestData(`${baseL}/api/article/popular`);
         let count = 0;
@@ -235,21 +236,7 @@ async function getArticle() {
             html += `</div>`;
             html += `</div>`;
         });
-        $("#artikel_container").append(html);
-        // Initialize Swiper after articles have been appended
-        var swiper = new Swiper(".reviews-carousel", {
-            loop: true,
-            autoplay: {
-                delay: 3000,
-                disableOnInteraction: false,
-            },
-            pagination: {
-                el: ".swiper-pagination",
-                clickable: true,
-            },
-            slidesPerView: 3,
-            spaceBetween: 40,
-        });
+        $("#article_popular_container").append(html);
     } catch (error) {
         notif("error", "Galat!", error);
     }
