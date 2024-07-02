@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Menu;
 use App\Models\Profile;
 use App\Models\Slider;
 use App\Models\User;
@@ -54,6 +55,44 @@ class DatabaseSeeder extends Seeder
             'description' => 'Deskripsi Indramayu',
             'type' => 'image',
             'location' => 'assets/img/slider1.jpg',
+        ]);
+
+        Menu::insert([
+            [
+                'title' => 'Beranda',
+                'Description' => 'Halaman Utama',
+                'url' => '/',
+                'status' => 'active',
+                'created_at' => now()
+            ],
+            [
+                'title' => 'Artikel',
+                'Description' => 'Halaman List Artikel',
+                'url' => 'article',
+                'status' => 'active',
+                'created_at' => now()
+            ],
+            [
+                'title' => 'Dokumen',
+                'Description' => 'Halaman List Dokumen',
+                'url' => 'dokumen',
+                'status' => 'active',
+                'created_at' => now()
+            ],
+            [
+                'title' => 'Tentang',
+                'Description' => 'Halaman Tentang Aplikasi dan Profil',
+                'url' => 'about',
+                'status' => 'active',
+                'created_at' => now()
+            ],
+            [
+                'title' => 'Kontak',
+                'Description' => 'Halaman Kontak Masukan',
+                'url' => 'contact',
+                'status' => 'active',
+                'created_at' => now()
+            ],
         ]);
 
     }

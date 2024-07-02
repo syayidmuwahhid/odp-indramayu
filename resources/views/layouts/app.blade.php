@@ -11,6 +11,7 @@
 
 <head>
     @php ($appData = \App\Helpers\Anyhelpers::AppInfo())
+    @php($menus = \App\Helpers\AnyHelpers::getmenus())
     <meta charset="UTF-8">
     <!-- favicon -->
     <link rel="shortcut icon" href="{{ asset($appData->icon) }}" />

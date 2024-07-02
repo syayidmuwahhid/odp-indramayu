@@ -128,25 +128,13 @@
     id="nav-menu"
     class="navbar-nav order-2 hidden w-full flex-[0_0_100%] lg:order-1 lg:flex lg:w-auto lg:flex-auto lg:justify-center lg:space-x-5"
   >
+    <input id="nav-toggle" type="checkbox" class="hidden" />
+    @foreach($menus as $menu)
     <li class="nav-item">
-      <a href="{{ route('landing-page') }}" class="nav-link {{ url()->current() == route('landing-page') ? 'active' : '' }}">Beranda</a>
+      <a href="{{ $menu->url }}" class="nav-link {{ request()->path() == $menu->url ? 'active' : '' }}">{{ $menu->title }}</a>
     </li>
-    <li class="nav-item">
-        <a href="{{ route('article') }}" class="nav-link {{ url()->current() == route('article') ? 'active' : '' }}">Artikel</a>
-    </li>
+    @endforeach
 
-    <li class="nav-item">
-      <a href="{{ route('dokumen') }}" class="nav-link {{ url()->current() == route('dokumen') ? 'active' : '' }}">Dokumen</a>
-    </li>
-
-    <li class="nav-item">
-        <a href="{{ route('about') }}" class="nav-link {{ url()->current() == route('about') ? 'active' : '' }}">Tentang</a>
-    </li>
-
-    <li class="nav-item">
-      <a href="{{ route('contact') }}" class="nav-link {{ url()->current() == route('contact') ? 'active' : '' }}">Kontak</a>
-    </li>
-    
     <li class="nav-item mt-3.5 lg:hidden">
       <a class="btn btn-white btn-sm" href="{{ route('login') }}">{{ Auth::check() ? Auth::user()->name : 'Masuk' }}</a>
     </li>
