@@ -2,7 +2,7 @@ let c1_data = [];
 let c2_data = [];
 $(document).ready(async function () {
     await getData();
-    chart1(c2_data);
+    chart1(c1_data);
 });
 
 /**

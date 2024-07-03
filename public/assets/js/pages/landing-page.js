@@ -77,6 +77,7 @@ async function getSlider() {
             }
 
             list += `<div class="item">
+            <div class="overlay"></div>
             ${resource}
             <div class="content">
                 <div class="title">${element.title}</div>
@@ -126,7 +127,7 @@ async function getArticle() {
             });
             tags += `</div>`;
 
-            let string = element.content.substring(0, 200);
+            let string = element.content.substring(0, 150);
 
             let parser = new DOMParser();
             let doc = parser.parseFromString(string, "text/html");
