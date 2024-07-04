@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/login', [AuthController::class, 'index']);
@@ -13,7 +14,12 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::name('admin.')->prefix('admin')->middleware('auth')->group(function () {
     Route::get('/', fn() => view('admin.dashboard'))->name('dashboard');
 
-    Route::get('/user', fn () => view('admin.user.index'))->name('user.index');
+    Route::get('/user', function() {
+        if (Auth::user()->id == 1) {
+            return view('admin.user.index');
+        }
+        abort(404);
+    })->name('user.index');
     Route::get('/setting', fn () => view('admin.setting.index'))->name('setting.index');
     Route::get('/category', fn () => view('admin.category.index'))->name('category.index');
     Route::get('/tag', fn () => view('admin.tag.index'))->name('tag.index');
