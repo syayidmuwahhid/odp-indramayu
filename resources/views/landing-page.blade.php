@@ -73,7 +73,7 @@
 {{-- artikel populer --}}
 <section class="section pt-0">
     <div class="container">
-        <h2 class="text-orange-600 mb-3" data-aos="fade-up" data-aos-duration="1200">Artikel Popular</h2>
+        <h2 class="text-orange-600 mb-3" data-aos="fade-up" data-aos-duration="1200">Artikel Populer</h2>
       <div class="featured-posts row floating-image" id="article_popular_container"  data-aos="fade-up"data-aos-duration="1500">
 
       </div>

@@ -127,7 +127,7 @@ async function getArticle() {
             });
             tags += `</div>`;
 
-            let string = element.content.substring(0, 150);
+            let string = element.content.substring(0, 100);
 
             let parser = new DOMParser();
             let doc = parser.parseFromString(string, "text/html");
